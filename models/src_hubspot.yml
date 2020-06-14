@@ -1,0 +1,53 @@
+version: 2
+
+sources:
+  - name: hubspot
+    schema: "{{ var('hubspot_schema', 'hubspot') }}"
+    database: "{{ var('hubspot_database', target.database) }}"
+    loader: Fivetran
+    tables:
+      - name: calendar_event
+      - name: company
+      - name: company_property_history
+      - name: contact
+      - name: contact_form_submission
+      - name: contact_identity_profile
+      - name: contact_list
+      - name: contact_list_member
+      - name: contact_merge_audit
+      - name: contact_property_history
+      - name: deal
+      - name: deal_contact
+      - name: deal_pipeline
+      - name: deal_pipeline_stage
+      - name: deal_property_history
+      - name: email_campaign
+      - name: email_event
+      - name: email_event_bounce
+      - name: email_event_click
+      - name: email_event_deferred
+      - name: email_event_delivered
+      - name: email_event_dropped
+      - name: email_event_forward
+      - name: email_event_open
+      - name: email_event_print
+      - name: email_event_sent
+      - name: email_event_spam_report
+      - name: email_event_status_change
+      - name: email_subscription
+      - name: email_subscription_change
+      - name: engagement
+      - name: engagement_call
+      - name: engagement_company
+      - name: engagement_contact
+      - name: engagement_deal
+      - name: engagement_email
+      - name: engagement_email_cc
+      - name: engagement_email_to
+      - name: engagement_meeting
+      - name: engagement_note
+      - name: engagement_task
+      - name: fivetran_audit
+      - name: form
+      - name: identity_profile_identity
+      - name: owner

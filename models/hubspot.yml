@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: stg_hubspot__contact
+    columns:
+      - name: contact_id
+        tests:
+          - unique
+          - not_null
