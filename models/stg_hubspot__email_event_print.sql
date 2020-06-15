@@ -1,14 +1,14 @@
 with base as (
 
     select *
-    from {{ source('hubspot','email_event_print')}}
+    from {{ source('hubspot','email_event_print') }}
 
 ), fields as (
 
     select
         _fivetran_synced,
         browser,
-        id, as event_id
+        id as event_id,
         ip_address,
         location as geo_location,
         user_agent
