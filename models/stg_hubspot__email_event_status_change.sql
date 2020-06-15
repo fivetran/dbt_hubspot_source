@@ -9,7 +9,7 @@ with base as (
         _fivetran_synced,
         bounced as is_bounced,
         id as event_id,
-        portal_subscription_status,
+        portal_subscription_status as subscription_status,
         requested_by as requested_by_email,
         source as change_source,
         subscriptions
