@@ -7,47 +7,137 @@ sources:
     loader: Fivetran
     tables:
       - name: calendar_event
+        description: TBD
+        
       - name: company
+        description: TBD
+        
       - name: company_property_history
+        description: TBD
+        
       - name: contact
+        description: TBD
+        
       - name: contact_form_submission
+        description: TBD
+        
       - name: contact_identity_profile
+        description: TBD
+        
       - name: contact_list
+        description: TBD
+        
       - name: contact_list_member
+        description: TBD
+        
       - name: contact_merge_audit
+        description: TBD
+        
       - name: contact_property_history
+        description: TBD
+        
       - name: deal
+        description: TBD
+        
       - name: deal_contact
+        description: TBD
+        
       - name: deal_pipeline
+        description: TBD
+        
       - name: deal_pipeline_stage
+        description: TBD
+        
       - name: deal_property_history
+        description: TBD
+        
       - name: email_campaign
+        description: TBD
+        
       - name: email_event
+        description: TBD
+        
       - name: email_event_bounce
+        description: TBD
+        
       - name: email_event_click
+        description: TBD
+        
       - name: email_event_deferred
+        description: TBD
+        
       - name: email_event_delivered
+        description: TBD
+        
       - name: email_event_dropped
+        description: TBD
+        
       - name: email_event_forward
+        description: TBD
+        
       - name: email_event_open
+        description: TBD
+        
       - name: email_event_print
+        description: TBD
+        
       - name: email_event_sent
+        description: TBD
+        
       - name: email_event_spam_report
+        description: TBD
+        
       - name: email_event_status_change
+        description: TBD
+        
       - name: email_subscription
+        description: TBD
+        
       - name: email_subscription_change
+        description: TBD
+        
       - name: engagement
+        description: TBD
+        
       - name: engagement_call
+        description: TBD
+        
       - name: engagement_company
+        description: TBD
+        
       - name: engagement_contact
+        description: TBD
+        
       - name: engagement_deal
+        description: TBD
+        
       - name: engagement_email
+        description: TBD
+        
       - name: engagement_email_cc
+        description: TBD
+        
       - name: engagement_email_to
+        description: TBD
+        
       - name: engagement_meeting
+        description: TBD
+        
       - name: engagement_note
+        description: TBD
+        
       - name: engagement_task
+        description: TBD
+        
       - name: fivetran_audit
+        description: TBD
+        
       - name: form
+        description: TBD
+        
       - name: identity_profile_identity
+        description: TBD
+        
       - name: owner
+        description: TBD
+        
