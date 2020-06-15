@@ -7,3 +7,87 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: stg_hubspot__email_event_bounce
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_click
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_deferred
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_delivered
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_dropped
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_forward
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_open
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_print
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_sent
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_spam_report
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event_status_change
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+          
+  - name: stg_hubspot__email_event
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
