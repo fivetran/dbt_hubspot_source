@@ -4,6 +4,7 @@ with base as (
 
     select *
     from {{ source('hubspot','contact') }}
+    where _fivetran_deleted is null
 
 ), fields as (
 
