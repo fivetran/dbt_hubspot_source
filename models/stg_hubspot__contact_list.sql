@@ -2,6 +2,7 @@ with base as (
 
     select *
     from {{ source('hubspot','contact_list')}}
+    where _fivetran_deleted is null
 
 ), fields as (
 
