@@ -730,41 +730,367 @@ sources:
             description: The timestamp when this change occurred. If 'causedByEvent' is present, this will be absent.
         
       - name: engagement
-        description: TBD
+        description: Each record represents an engagement 
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: active
+            description: Whether the engagement is currently being shown in the UI.
+
+          - name: activity_type
+            description: The engagement's activity type.
+
+          - name: created_at
+            description: A timestamp representing when the engagement was created.
+
+          - name: id
+            description: The ID of the engagement.
+
+          - name: last_updated
+            description: A timestamp in representing when the engagement was last updated.
+
+          - name: owner_id
+            description: The ID of the engagement's owner.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+
+          - name: timestamp
+            description: A timestamp in representing the time that the engagement should appear in the timeline.
+
+          - name: type
+            description: One of NOTE, EMAIL, TASK, MEETING, or CALL, the type of the engagement.
         
       - name: engagement_call
-        description: TBD
+        description: Each record represents a CALL engagement event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: body
+            description: The details or notes of the call
+
+          - name: disposition
+            description: The internal ID for the call outcome.
+
+          - name: duration_milliseconds
+            description: The length of the call in milliseconds
+
+          - name: engagement_id
+            description: The ID of the engagement.
+
+          - name: external_account_id
+            description: For calls made in HubSpot, this will be the internal ID of the account used to make the call.
+
+          - name: external_id
+            description: For calls made in HubSpot, this will be the internal ID of the call.
+
+          - name: from_number
+            description: The phone number that was used as the from number.
+
+          - name: recording_url
+            description: The URL of the recording file .
+
+          - name: status
+            description: Will be COMPLETED once the call is finished.
+
+          - name: to_number
+            description: The phone number that was called.
         
       - name: engagement_company
-        description: TBD
+        description: Each record represents a 'link' between a company and an engagement.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: company_id
+            description: The ID of the related company.
+
+          - name: engagement_id
+            description: The ID of the related engagement.
         
       - name: engagement_contact
-        description: TBD
+        description: Each record represents a 'link' between a contact and an engagement.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: contact_id
+            description: The ID of the related contact.
+
+          - name: engagement_id
+            description: The ID of the related engagement.
         
       - name: engagement_deal
-        description: TBD
+        description: Each record represents a 'link' between a deal and an engagement.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: deal_id
+            description: The ID of the related contact.
+
+          - name: engagement_id
+            description: The ID of the related engagement.
         
       - name: engagement_email
-        description: TBD
+        description: Each record represents an EMAIL engagement event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: attached_video_id
+            description: The ID of the video attached.
+
+          - name: attached_video_opened
+            description: Whether the the attached video was opened.
+
+          - name: attached_video_watched
+            description: Whether the the attached video was watched.
+
+          - name: email_send_event_id_created
+            description: When the SENT event occurred.
+
+          - name: email_send_event_id_id
+            description: The ID of the related SENT email event.
+
+          - name: engagement_id
+            description: The ID of the engagement.
+
+          - name: error_message
+            description: The error message, if applicable.
+
+          - name: from_email
+            description: The email address of the sender.
+
+          - name: from_first_name
+            description: The first name of the sender.
+
+          - name: from_last_name
+            description: The last name of the sender.
+
+          - name: html
+            description: The body of the HTML email.
+
+          - name: media_processing_status
+            description: The processing status of the media content in the email.
+
+          - name: message_id
+            description: The ID of the message.
+
+          - name: sent_via
+            description: How the email was sent.
+
+          - name: status
+            description: The status of the engagement.
+
+          - name: subject
+            description: The subject of the email.
+
+          - name: text
+            description: The body of the text-only email.
+
+          - name: thread_id
+            description: The ID of the email thread.
         
       - name: engagement_email_cc
-        description: TBD
+        description: Each record represents a CC'd email address as part of an EMAIL engagement.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: email
+            description: The email address of the recipient.
+
+          - name: engagement_id
+            description: The ID of the related engagement.
+
+          - name: first_name
+            description: The first name of the recipient.
+
+          - name: last_name
+            description: The last name of the recipient.
         
       - name: engagement_email_to
-        description: TBD
+        description: Each record represents a TO email address as part of an EMAIL engagement.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: email
+            description: The email address of the recipient.
+
+          - name: engagement_id
+            description: The ID of the related engagement.
+
+          - name: first_name
+            description: The first name of the recipient.
+
+          - name: last_name
+            description: The last name of the recipient.
         
       - name: engagement_meeting
-        description: TBD
+        description: Each record represents a MEETING engagement event.
+        columns:
+          - name: _fivetran_synced
+            description: TBD
+
+          - name: body
+            description: The details or body of the meeting.
+
+          - name: end_time
+            description: A timestamp representing the end time of the meeting
+
+          - name: engagement_id
+            description: The ID of the engagement,
+
+          - name: external_url
+            description: The external URL of the engagement.
+
+          - name: meeting_outcome
+            description: The meeting outcome.
+
+          - name: pre_meeting_prospect_reminders
+            description: TBD
+
+          - name: source
+            description: The source of the meeting.
+
+          - name: source_id
+            description: The internal ID of the meeting source.
+
+          - name: start_time
+            description: A timestamp representing the start time of the meeting
+
+          - name: title
+            description: The title or subject of the meeting
+
+          - name: web_conference_meeting_id
+            description: The ID of the web conference meeting.
         
       - name: engagement_note
-        description: TBD
+        description: Each record represents a NOTE engagement event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: body
+            description: The body of the note. The body has a limit of 65536 characters.
+
+          - name: engagement_id
+            description: The ID of the engagement.
         
       - name: engagement_task
-        description: TBD
+        description: Each record represents a TASK engagement event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: body
+            description: The body or details of the task.
+
+          - name: completion_date
+            description: The timestamp the task was completed.
+
+          - name: engagement_id
+            description: The ID of the engagement.
+
+          - name: for_object_type
+            description: One of CONTACT or COMPANY, what object type the task is for.
+
+          - name: is_all_day
+            description: Whether it is an all day task.
+
+          - name: priority
+            description: The priority of the task.
+
+          - name: probability_to_complete
+            description: The probability that the task will be completed.
+
+          - name: status
+            description: The status of the task.
+
+          - name: subject
+            description: The subject or title of the task
+
+          - name: task_type
+            description: The type of task
         
       - name: form
-        description: TBD
+        description: Each record represents a Hubspot form.
+        columns:
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
+
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: created_at
+            description: A timestamp for when the form was created.
+
+          - name: css_class
+            description: The CSS classes assigned to the form.
+
+          - name: follow_up_id
+            description: This field is no longer used.
+
+          - name: guid
+            description: The internal ID of the form
+
+          - name: lead_nurturing_campaign_id
+            description: TBD
+
+          - name: method
+            description: This field is no longer used.
+
+          - name: name
+            description: The name of the form
+
+          - name: notify_recipients
+            description: |
+              A comma-separated list of user IDs that should receive submission notifications. 
+              Email addresses will be returned for individuals who aren't users.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+
+          - name: redirect
+            description: The URL that the visitor will be redirected to after filling out the form.
+
+          - name: submit_text
+            description: The text used for the submit button.
+
+          - name: updated_at
+            description: A timestamp for when the form was last updated.
         
       - name: owner
-        description: TBD
+        description: Each record represents an owner/user in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: created_at
+            description: A timestamp for when the owner was created.
+
+          - name: email
+            description: The email address of the owner.
+
+          - name: first_name
+            description: The first name of the owner.
+
+          - name: last_name
+            description: The last name of the owner.
+
+          - name: owner_id
+            description: The ID of the owner.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+
+          - name: type
+            description: The type of owner.
+
+          - name: updated_at
+            description: A timestamp for when the owner was last updated.
         
