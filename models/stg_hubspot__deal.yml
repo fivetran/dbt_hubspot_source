@@ -1,0 +1,25 @@
+version: 2
+
+models:
+
+  - name: stg_hubspot__deal_pipeline_stage
+    columns:
+      - name: deal_pipeline_stage_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_hubspot__deal_pipeline
+    columns:
+      - name: deal_pipeline_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_hubspot__deal
+    columns:
+      - name: deal_id
+        tests:
+          - unique
+          - not_null
+          
