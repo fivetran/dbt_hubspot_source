@@ -8,6 +8,81 @@ sources:
     tables:
       - name: calendar_event
         description: TBD
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: avatar_url
+            description: URL of image associated with social media event.
+
+          - name: campaign_guid
+            description: Value of campaign GUID associated with Task.
+
+          - name: category
+            description: |
+              Type of event. If the event type is PUBLISHING_TASK, it is one of BLOG_POST, EMAIL, LANDING_PAGE, CUSTOM.
+              If event type is SOCIAL, it is one of twitter, facebook, linkedin, googlepluspages. 
+              If event type is CONTENT, it is one of email, recurring-email, blog-post, landing-page, legacy-page, site-page.
+
+          - name: category_id
+            description: |
+              For event type of PUBLISHING_TASK, a numeric value corresponding to the type of task; one of 3 (BLOG_POST), 2 (EMAIL), 1 (LANDING_PAGE), 0 (CUSTOM).
+              For event type of SOCIAL, this is 0.
+              If event type is CONTENT, it is one of 2 (email, recurring-email), 3 (blog-post), 1 (landing-page), 5 (legacy-page), 4 (site-page).
+
+          - name: content_group_id
+            description: |
+              The ID of the content group (aka blog) that the associated Blog Post belongs to, if any. 
+              Otherwise null. Only populated for single task GETs and for Blog Post Tasks.
+
+          - name: content_id
+            description: ID value of the COS content object associated with the event, null for social or if nothing associated.
+
+          - name: created_by
+            description: HubSpot ID of the user that the event was created by.
+
+          - name: description
+            description: Description of Event.
+
+          - name: event_date
+            description: If task, When the task is set to be due, otherwise when the event is/ was scheduled for; in milliseconds since the epoch.
+
+          - name: event_type
+            description: Type of calendar event; for tasks this is PUBLISHING_TASK, for COS Items, this is CONTENT, for social media events, this is SOCIAL
+
+          - name: id
+            description: The unique ID of the task.
+
+          - name: is_recurring
+            description: Whether the event is recurring.
+
+          - name: name
+            description: Name of Event.
+
+          - name: owner_id
+            description: TASK - HubSpot ID of the user that the task is assigned to.
+
+          - name: portal_id
+            description: The hub ID.
+
+          - name: preview_key
+            description: Preview key of content object; used for showing previews of unpublished items.
+
+          - name: social_display_name
+            description: Social media full name associate with event.
+
+          - name: social_username
+            description: Social media user name associated with event.
+
+          - name: state
+            description: For type publishing task, value of TODO or DONE, for others, a value of SCHEDULED, PUBLISHED, PUBLISHED_OR_SCHEDULED.
+
+          - name: topic_ids
+            description: The list of IDs of topics associated with the associated Blog Post, if any. Otherwise null. Only populated for single task GETs and for Blog Post Tasks.
+
+          - name: url
+            description: Public URL of content item.
+
         
       - name: company
         description: TBD
