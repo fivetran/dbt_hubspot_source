@@ -1,9 +1,9 @@
-{%- set columns = adapter.get_columns_in_relation(source('hubspot','company')) -%}
+{%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__company_adapter')) -%}
 
 with base as (
 
     select *
-    from {{ source('hubspot','company') }}
+    from {{ ref('stg_hubspot__company_adapter') }}
     where is_deleted = False
 
 ), fields as (

@@ -1,7 +1,7 @@
 with base as (
 
     select *
-    from {{ source('hubspot','email_event_sent')}}
+    from {{ var('email_event_sent')}}
 
 ), fields as (
 

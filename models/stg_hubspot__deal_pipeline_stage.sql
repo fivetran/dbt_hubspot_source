@@ -1,7 +1,7 @@
 with base as (
 
     select *
-    from {{ source('hubspot','deal_pipeline_stage')}}
+    from {{ var('deal_pipeline_stage')}}
     where _fivetran_deleted is null
 
 ), fields as (
