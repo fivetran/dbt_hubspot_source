@@ -7,7 +7,7 @@ sources:
     loader: Fivetran
     tables:
       - name: calendar_event
-        description: TBD
+        description: Each record represents a calendar event.
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -63,7 +63,7 @@ sources:
             description: TASK - HubSpot ID of the user that the task is assigned to.
 
           - name: portal_id
-            description: The hub ID.
+            description: '{{ doc("portal_id") }}'
 
           - name: preview_key
             description: Preview key of content object; used for showing previews of unpublished items.
@@ -83,93 +83,651 @@ sources:
           - name: url
             description: Public URL of content item.
 
-        
       - name: company
-        description: TBD
+        description: Each record represents a company in Hubspot.
+        columns:
+          - name: id
+            description: The ID of the company.
+          
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+          
+          - name: is_deleted
+            description: '{{ doc("is_deleted") }}'
         
       - name: company_property_history
-        description: TBD
+        description: Each record represents a change to company record in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: company_id
+            description: The ID of the related company record.
+
+          - name: name
+            description: '{{ doc("history_name") }}'
+
+          - name: source
+            description: '{{ doc("history_source") }}'
+
+          - name: source_id
+            description: '{{ doc("history_source_id") }}'
+
+          - name: timestamp
+            description: '{{ doc("history_timestamp") }}'
+
+          - name: value
+            description: '{{ doc("history_value") }}'
         
       - name: contact
-        description: TBD
+        description: Each record represents a contact in Hubspot.
+        columns:
+          - name: id
+            description: The ID of the contact.
+
+          - name: property_email
+            description: The email address of the contact.
         
       - name: contact_form_submission
         description: TBD
-        
-      - name: contact_identity_profile
-        description: TBD
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: contact_id
+            description: The ID of the related contact.
+
+          - name: conversion_id
+            description: A Unique ID for the specific form conversion.
+
+          - name: form_id
+            description: The GUID of the form that the subission belongs to.
+
+          - name: page_url
+            description: The URL that the form was submitted on, if applicable.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+
+          - name: timestamp
+            description: A Unix timestamp in milliseconds of the time the submission occurred.
+
+          - name: title
+            description: The title of the page that the form was submitted on. This will default to the name of the form if no title is provided.
         
       - name: contact_list
-        description: TBD
+        description: Each record represents a contact list in Hubspot.
+        columns:
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
+
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_deleted") }}'
+
+          - name: created_at
+            description: A timestamp of the time the list was created.
+
+          - name: deleteable
+            description: If this is false, this is a system list and cannot be deleted.
+
+          - name: dynamic
+            description: Whether the contact list is dynamic.
+
+          - name: id
+            description: The ID of the contact list.
+
+          - name: metadata_error
+            description: Any errors that happened the last time the list was processed.
+
+          - name: metadata_last_processing_state_change_at
+            description: A timestamp of the last time that the processing state changed.
+
+          - name: metadata_last_size_change_at
+            description: A timestamp of the last time that the size of the list changed.
+
+          - name: metadata_processing
+            description: |
+              One of DONE, REFRESHING, INITIALIZING, or PROCESSING. 
+              DONE indicates the list has finished processing, any other value indicates that list membership is being evaluated.
+
+          - name: metadata_size
+            description: The approximate number of contacts in the list.
+
+          - name: name
+            description: The name of the contact list.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+
+          - name: updated_at
+            description: A timestamp of the time that the list was last modified.
         
       - name: contact_list_member
-        description: TBD
-        
-      - name: contact_merge_audit
-        description: TBD
+        description: Each record represents a 'link' between a contact and a contact list.
+
+        columns:
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
+
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: added_at
+            description: The timestamp a contact was added to a list.
+
+          - name: contact_id
+            description: The ID of the related contact.
+
+          - name: contact_list_id
+            description: The ID of the related contact list.
         
       - name: contact_property_history
-        description: TBD
+        description: Each record represents a change to contact record in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: contact_id
+            description: The ID of the related contact record.
+
+          - name: name
+            description: '{{ doc("history_name") }}'
+
+          - name: source
+            description: '{{ doc("history_source") }}'
+
+          - name: source_id
+            description: '{{ doc("history_source_id") }}'
+
+          - name: timestamp
+            description: '{{ doc("history_timestamp") }}'
+
+          - name: value
+            description: '{{ doc("history_value") }}'
         
       - name: deal
-        description: TBD
+        description: Each record represents a deal in Hubspot.
+        columns:
+          - name: is_deleted.
+            description: Whether the record was deleted.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+
+          - name: deal_pipeline_id
+            description: The ID of the deal's pipeline.
+
+          - name: deal_pipeline_stage_id
+            description: The ID of the deal's pipeline stage.
+
+          - name: owner_id
+            description: The ID of the deal's owner. 
         
       - name: deal_contact
-        description: TBD
+        description: Each record represents a 'link' between a deal and a contact.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: contact_id
+            description: The ID of the contact.
+
+          - name: deal_id
+            description: The ID of the deal.
         
       - name: deal_pipeline
-        description: TBD
+        description: Each record represents a pipeline in Hubspot.
+        columns:
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
+
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: active
+            description: Whether the stage is currently in use.
+
+          - name: display_order
+            description: Used to determine the order in which the pipelines appear when viewed in HubSpot
+
+          - name: label
+            description: The human-readable label for the pipeline. The label is used when showing the pipeline in HubSpot.
+
+          - name: pipeline_id
+            description: The ID of the pipeline.
         
       - name: deal_pipeline_stage
-        description: TBD
+        description: Each record represents a pipeline stage in Hubspot.
+        columns:
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
+
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: active
+            description: Whether the pipeline stage is currently in use.
+
+          - name: closed_won
+            description: Whether the stage represents a Closed Won deal.  
+
+          - name: display_order
+            description: Used to determine the order in which the stages appear when viewed in HubSpot.
+
+          - name: label
+            description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
+
+          - name: pipeline_id
+            description: The ID of the related pipeline.
+
+          - name: probability
+            description: The probability that the deal will close. Used for the deal forecast.
+
+          - name: stage_id
+            description: The ID of the pipeline stage.
         
       - name: deal_property_history
-        description: TBD
+        description: Each record represents a change to deal record in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: deal_id
+            description: The ID of the related deal record.
+
+          - name: name
+            description: '{{ doc("history_name") }}'
+
+          - name: source
+            description: '{{ doc("history_source") }}'
+
+          - name: source_id
+            description: '{{ doc("history_source_id") }}'
+
+          - name: timestamp
+            description: '{{ doc("history_timestamp") }}'
+
+          - name: value
+            description: '{{ doc("history_value") }}'
         
       - name: email_campaign
-        description: TBD
+        description: Each record represents an email campaign in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: app_id
+            description: The app ID.
+
+          - name: app_name
+            description: The app name.
+
+          - name: content_id
+            description: The ID of the content.
+
+          - name: id
+            description: The ID of the email campaign.
+
+          - name: name
+            description: The name of the email campaign.
+
+          - name: num_included
+            description: The number of messages included as part of the email campaign.
+
+          - name: num_queued
+            description: The number of messages queued as part of the email campaign.
+
+          - name: sub_type
+            description: The email campaign sub-type.
+
+          - name: subject
+            description: The subject of the email campaign.
+
+          - name: type
+            description: The email campaign type.
         
       - name: email_event
-        description: TBD
+        description: Each record represents an email event in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: app_id
+            description: The ID of the app that sent the email.
+
+          - name: caused_by_created
+            description: The timestamp of the event that caused this event.
+
+          - name: caused_by_id
+            description: The event ID which uniquely identifies the event which directly caused this event. If not applicable, this property is omitted.
+
+          - name: created
+            description: The created timestamp of the event.
+
+          - name: email_campaign_id
+            description: The ID of the related email campaign.
+
+          - name: filtered_event
+            description: A boolean representing whether the event has been filtered out of reporting based on customer reports settings or not.
+
+          - name: id
+            description: The ID of the event.
+
+          - name: obsoleted_by_created
+            description: The timestamp of the event that made the current event obsolete.
+
+          - name: obsoleted_by_id
+            description: The event ID which uniquely identifies the follow-on event which makes this current event obsolete. If not applicable, this property is omitted.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+
+          - name: recipient
+            description: The email address of the contact related to the event.
+
+          - name: sent_by_created
+            description: The timestamp of the SENT event related to this event.
+
+          - name: sent_by_id
+            description: The event ID which uniquely identifies the email message's SENT event. If not applicable, this property is omitted.
+
+          - name: type
+            description: The type of event.
         
       - name: email_event_bounce
-        description: TBD
+        description: Each record represents a BOUNCE email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: category
+            description: |
+              The best-guess of the type of bounce encountered. 
+              If an appropriate category couldn't be determined, this property is omitted. See below for the possible values. 
+              Note that this is a derived value, and may be modified at any time to improve the accuracy of classification.
+
+          - name: id
+            description: The ID of the event.
+
+          - name: response
+            description: The full response from the recipient's email server.
+
+          - name: status
+            description: The status code returned from the recipient's email server.
         
       - name: email_event_click
-        description: TBD
+        description: Each record represents a CLICK email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: browser
+            description: '{{ doc("email_event_browser") }}'
+
+          - name: id
+            description: The ID of the event.
+
+          - name: ip_address
+            description: '{{ doc("email_event_ip_address") }}'
+
+          - name: location
+            description: '{{ doc("email_event_location") }}'
+
+          - name: referer
+            description: The URL of the webpage that linked to the URL clicked. Whether this is provided, and what its value is, is determined by the recipient's email client.
+
+          - name: url
+            description: The URL within the message that the recipient clicked.
+
+          - name: user_agent
+            description: '{{ doc("email_event_user_agent") }}'
         
       - name: email_event_deferred
-        description: TBD
+        description: Each record represents a DEFERRED email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: attempt
+            description: The delivery attempt number.
+
+          - name: id
+            description: The ID of the event.
+
+          - name: response
+            description: The full response from the recipient's email server.
         
       - name: email_event_delivered
-        description: TBD
+        description: Each record represents a DELIVERED email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: id
+            description: The ID of the event.
+
+          - name: response
+            description: The full response from the recipient's email server.
+
+          - name: smtp_id
+            description: An ID attached to the message by HubSpot.
         
       - name: email_event_dropped
-        description: TBD
+        description: Each record represents a DROPPED email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: bcc
+            description: The 'bcc' field of the email message.
+
+          - name: cc
+            description: The 'cc' field of the email message.
+
+          - name: drop_message
+            description: The raw message describing why the email message was dropped. This will usually provide additional details beyond 'dropReason'.
+
+          - name: drop_reason
+            description: The reason why the email message was dropped. See below for the possible values.
+
+          - name: from
+            description: The 'from' field of the email message.
+
+          - name: id
+            description: The ID of the event.
+
+          - name: reply_to
+            description: The 'reply-to' field of the email message.
+
+          - name: subject
+            description: The subject line of the email message.
         
       - name: email_event_forward
-        description: TBD
-        
+        description: Each record represents a FORWARD email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: browser
+            description: '{{ doc("email_event_browser") }}'
+
+          - name: id
+            description: The ID of the event.
+
+          - name: ip_address
+            description: '{{ doc("email_event_ip_address") }}'
+
+          - name: location
+            description: '{{ doc("email_event_location") }}'
+
+          - name: user_agent
+            description: '{{ doc("email_event_user_agent") }}'
+
       - name: email_event_open
-        description: TBD
+        description: Each record represents a OPEN email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: browser
+            description: '{{ doc("email_event_browser") }}'
+
+          - name: duration
+            description: If provided and nonzero, the approximate number of milliseconds the user had opened the email.
+
+          - name: id
+            description: The ID of the event.
+
+          - name: ip_address
+            description: '{{ doc("email_event_ip_address") }}'
+
+          - name: location
+            description: '{{ doc("email_event_location") }}'
+
+          - name: user_agent
+            description: '{{ doc("email_event_user_agent") }}'
         
       - name: email_event_print
-        description: TBD
+        description: Each record represents a PRINT email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: browser
+            description: '{{ doc("email_event_browser") }}'
+
+          - name: id
+            description: The ID of the event.
+
+          - name: ip_address
+            description: '{{ doc("email_event_ip_address") }}'
+
+          - name: location
+            description: '{{ doc("email_event_location") }}'
+
+          - name: user_agent
+            description: '{{ doc("email_event_user_agent") }}'
         
       - name: email_event_sent
-        description: TBD
+        description: Each record represents a SENT email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: bcc
+            description: The 'cc' field of the email message.
+
+          - name: cc
+            description: The 'bcc' field of the email message.
+
+          - name: from
+            description: The 'from' field of the email message.
+
+          - name: id
+            description: The ID of the event.
+
+          - name: reply_to
+            description: The 'reply-to' field of the email message.
+
+          - name: subject
+            description: The subject line of the email message.
         
       - name: email_event_spam_report
-        description: TBD
+        description: Each record represents a SPAM_REPORT email event.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: id
+            description: The ID of the event.
+
+          - name: ip_address
+            description: '{{ doc("email_event_ip_address") }}'
+
+          - name: user_agent
+            description: '{{ doc("email_event_user_agent") }}'
         
       - name: email_event_status_change
-        description: TBD
+        description: Each record represents a STATUS_CHANGE email event in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: bounced
+            description: | 
+              A HubSpot employee explicitly initiated the status change to block messages to the recipient. 
+              (Note this usage has been deprecated in favor of dropping messages with a 'dropReason' of BLOCKED_ADDRESS.)
+
+          - name: id
+            description: The ID of the event.
+
+          - name: portal_subscription_status
+            description: |
+              The recipient's portal subscription status. 
+              Note that if this is 'UNSUBSCRIBED', the property 'subscriptions' is not necessarily an empty array, nor are all 
+              subscriptions contained in it necessarily going to have their statuses set to 'UNSUBSCRIBED'.)
+
+          - name: requested_by
+            description: The email address of the person requesting the change on behalf of the recipient. If not applicable, this property is omitted.
+
+          - name: source
+            description: The source of the subscription change. 
+
+          - name: subscriptions
+            description: |
+              An array of JSON objects representing the status of subscriptions for the recipient. 
+              Each JSON subscription object is comprised of the properties: 'id', 'status'.
         
       - name: email_subscription
-        description: TBD
+        description: Each record represents an email subscription in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: active
+            description: Whether the subscription is active.
+
+          - name: description
+            description: The description of the subscription.
+
+          - name: id
+            description: The ID of the email subscription.
+
+          - name: name
+            description: The name of the email subscription.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
         
       - name: email_subscription_change
-        description: TBD
+        description: Each record represents a change to an email subscription in Hubspot.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: caused_by_event_id
+            description: The ID of the event that caused the subscription change.
+
+          - name: change
+            description: The change which occurred. This enumeration is specific to the 'changeType'; see below for the possible values.
+
+          - name: change_type
+            description: The type of change which occurred.
+
+          - name: email_subscription_id
+            description: The ID of the related email subscrption.
+
+          - name: portal_id
+            description: '{{ doc("portal_id") }}'
+
+          - name: recipient
+            description: The email address of the related contact.
+
+          - name: source
+            description: The source of the subscription change. 
+
+          - name: timestamp
+            description: The timestamp when this change occurred. If 'causedByEvent' is present, this will be absent.
         
       - name: engagement
         description: TBD
@@ -204,13 +762,7 @@ sources:
       - name: engagement_task
         description: TBD
         
-      - name: fivetran_audit
-        description: TBD
-        
       - name: form
-        description: TBD
-        
-      - name: identity_profile_identity
         description: TBD
         
       - name: owner
