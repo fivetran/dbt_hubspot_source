@@ -5,6 +5,7 @@ sources:
     schema: "{{ var('hubspot_schema', 'hubspot') }}"
     database: "{{ var('hubspot_database', target.database) }}"
     loader: Fivetran
+    loaded_at_field: _fivetran_synced
     tables:
       - name: calendar_event
         description: Each record represents a calendar event.
@@ -120,6 +121,8 @@ sources:
             description: '{{ doc("history_value") }}'
         
       - name: contact
+          warn_after: {count: 84, period: hour}
+          error_after: {count: 168, period: hour}
         description: Each record represents a contact in Hubspot.
         columns:
           - name: id
@@ -222,6 +225,8 @@ sources:
             description: The ID of the related contact list.
         
       - name: contact_property_history
+          warn_after: {count: 84, period: hour}
+          error_after: {count: 168, period: hour}
         description: Each record represents a change to contact record in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -387,6 +392,9 @@ sources:
             description: The email campaign type.
         
       - name: email_event
+        freshness:
+          warn_after: {count: 84, period: hour}
+          error_after: {count: 168, period: hour}
         description: Each record represents an email event in Hubspot.
         columns:
           - name: _fivetran_synced
