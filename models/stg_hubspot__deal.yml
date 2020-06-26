@@ -3,23 +3,106 @@ version: 2
 models:
 
   - name: stg_hubspot__deal_pipeline_stage
+    description: Each record represents a pipeline stage in Hubspot.
     columns:
+      - name: _fivetran_deleted
+        description: '{{ doc("_fivetran_deleted") }}'
+
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+
+      - name: deal_pipeline_id
+        description: The ID of the related pipeline.
+
       - name: deal_pipeline_stage_id
-        tests:
+        description: The ID of the pipeline stage.
+        tests: 
           - unique
           - not_null
+
+      - name: display_order
+        description: Used to determine the order in which the stages appear when viewed in HubSpot.
+
+      - name: is_active
+        description: Whether the pipeline stage is currently in use.
+
+      - name: is_closed_won
+        description: Whether the stage represents a Closed Won deal.
+
+      - name: pipeline_stage_label
+        description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
+
+      - name: probability
+        description: The probability that the deal will close. Used for the deal forecast.
 
   - name: stg_hubspot__deal_pipeline
+    description: Each record represents a pipeline in Hubspot.
     columns:
+      - name: _fivetran_deleted
+        description: '{{ doc("_fivetran_deleted") }}'
+
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+
       - name: deal_pipeline_id
+        description: The ID of the pipeline.
         tests:
           - unique
           - not_null
 
+      - name: display_order
+        description: Used to determine the order in which the pipelines appear when viewed in HubSpot
+
+      - name: is_active
+        description: Whether the stage is currently in use.
+
+      - name: pipeline_label
+        description: The human-readable label for the pipeline. The label is used when showing the pipeline in HubSpot.
+
   - name: stg_hubspot__deal
+    description: Each record represents a deal in Hubspot.
     columns:
       - name: deal_id
+        description: The ID of the deal
         tests:
-          - unique
           - not_null
-          
+          - unique
+
+      - name: is_deleted
+        description: Whether the record was deleted.
+
+      - name: portal_id
+        description: '{{ doc("portal_id") }}'
+
+      - name: deal_pipeline_id
+        description: The ID of the deal's pipeline.
+
+      - name: deal_pipeline_stage_id
+        description: The ID of the deal's pipeline stage.
+
+      - name: owner_id
+        description: The ID of the deal's owner. 
+
+  - name: stg_hubspot__deal_property_history
+    description: TBD
+    columns:
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+
+      - name: change_source
+        description: '{{ doc("history_source") }}'
+
+      - name: change_source_id
+        description: '{{ doc("history_source_id") }}'
+
+      - name: change_timestamp
+        description: '{{ doc("history_timestamp") }}'
+
+      - name: deal_id
+        description: The ID of the related deal record.
+
+      - name: field_name
+        description: '{{ doc("history_name") }}'
+
+      - name: new_value
+        description: '{{ doc("history_value") }}'

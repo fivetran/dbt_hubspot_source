@@ -255,7 +255,10 @@ sources:
       - name: deal
         description: Each record represents a deal in Hubspot.
         columns:
-          - name: is_deleted.
+          - name: id
+            description: The ID of the deal.
+
+          - name: is_deleted
             description: Whether the record was deleted.
 
           - name: portal_id
@@ -944,7 +947,7 @@ sources:
         description: Each record represents a MEETING engagement event.
         columns:
           - name: _fivetran_synced
-            description: TBD
+            description: '{{ doc("_fivetran_synced") }}'
 
           - name: body
             description: The details or body of the meeting.
@@ -953,7 +956,7 @@ sources:
             description: A timestamp representing the end time of the meeting
 
           - name: engagement_id
-            description: The ID of the engagement,
+            description: The ID of the engagement.
 
           - name: external_url
             description: The external URL of the engagement.
