@@ -121,6 +121,7 @@ sources:
             description: '{{ doc("history_value") }}'
         
       - name: contact
+        freshness:
           warn_after: {count: 84, period: hour}
           error_after: {count: 168, period: hour}
         description: Each record represents a contact in Hubspot.
@@ -225,6 +226,7 @@ sources:
             description: The ID of the related contact list.
         
       - name: contact_property_history
+        freshness:
           warn_after: {count: 84, period: hour}
           error_after: {count: 168, period: hour}
         description: Each record represents a change to contact record in Hubspot.
