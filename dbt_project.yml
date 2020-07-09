@@ -34,8 +34,6 @@ vars:
     engagement_contact: "{{ source('hubspot','engagement_contact') }}" 
     engagement_deal: "{{ source('hubspot','engagement_deal') }}" 
     engagement_email: "{{ source('hubspot','engagement_email') }}" 
-    engagement_email_cc: "{{ source('hubspot','engagement_email_cc') }}" 
-    engagement_email_to: "{{ source('hubspot','engagement_email_to') }}" 
     engagement_meeting: "{{ source('hubspot','engagement_meeting') }}" 
     engagement_note: "{{ source('hubspot','engagement_note') }}" 
     engagement_task: "{{ source('hubspot','engagement_task') }}" 
