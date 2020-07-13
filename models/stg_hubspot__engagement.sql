@@ -1,3 +1,5 @@
+{{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_engagement_enabled'])) }}
+
 with base as (
 
     select *

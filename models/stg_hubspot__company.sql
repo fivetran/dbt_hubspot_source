@@ -1,3 +1,5 @@
+{{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_company_enabled'])) }}
+
 {%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__company_adapter')) -%}
 
 with base as (
