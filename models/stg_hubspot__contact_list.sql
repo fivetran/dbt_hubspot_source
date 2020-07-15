@@ -21,7 +21,6 @@ with base as (
         metadata_processing,
         metadata_size,
         name as contact_list_name,
-        offset,
         portal_id,
         updated_at as updated_timestamp
     from base

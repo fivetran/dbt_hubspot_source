@@ -13,7 +13,11 @@ with base as (
         cc as cc_emails,
         drop_message,
         drop_reason,
+        {% if target.type == 'snowflake' %}
+        "FROM" as from_email,
+        {% else %}
         "from" as from_email,
+        {% endif %}
         id as event_id,
         reply_to as reply_to_email,
         subject as email_subject
