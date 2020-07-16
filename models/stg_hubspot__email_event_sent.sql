@@ -11,7 +11,11 @@ with base as (
         _fivetran_synced,
         bcc as bcc_emails,
         cc as cc_emails,
+        {% if target.type == 'snowflake' %}
+        "FROM" as from_email,
+        {% else %}
         "from" as from_email,
+        {% endif %}
         id as event_id,
         reply_to as reply_to_email,
         subject as email_subject
