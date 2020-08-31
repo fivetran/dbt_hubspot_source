@@ -4,6 +4,7 @@ with base as (
 
     select * 
     from {{ ref('stg_hubspot__ticket_adapter') }}
+    where is_deleted = False
 
 ), fields as (
 
