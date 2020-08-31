@@ -80,6 +80,10 @@ vars:
     hubspot_engagement_meetings_enabled: false
     hubspot_engagement_notes_enabled: false
     hubspot_engagement_tasks_enabled: false
+
+    # Service
+    hubspot_service_enabled: false                          # Disables all service models
+    hubspot_ticket_enabled: false                           # Disables all ticket models and functionality
 ```
 
 ## Contributions
