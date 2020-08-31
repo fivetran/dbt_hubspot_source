@@ -4,7 +4,7 @@ with base as (
 
     select *
     from {{ var('deal_pipeline')}}
-    where _fivetran_deleted is null
+    where _fivetran_deleted = False
 
 ), fields as (
 
