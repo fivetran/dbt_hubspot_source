@@ -40,6 +40,6 @@ vars:
     owner: "{{ source('hubspot','owner') }}" 
     ticket: "{{ source('hubspot_tickets','ticket') }}"
     ticket_pipeline: "{{ source('hubspot_tickets','ticket_pipeline') }}"
-    ticket_pipeline_stage: "{{ source('hubspot_tickets','ticket_pipeline') }}"
+    ticket_pipeline_stage: "{{ source('hubspot_tickets','ticket_pipeline_stage') }}"
     ticket_property_history: "{{ source('hubspot_tickets','ticket_property_history') }}"
     ticket_deal: "{{ source('hubspot_tickets','ticket_deal') }}"
