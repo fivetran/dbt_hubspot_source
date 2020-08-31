@@ -1106,4 +1106,20 @@ sources:
 
           - name: updated_at
             description: A timestamp for when the owner was last updated.
-        
+
+  - name: hubspot_tickets
+    schema: "{{ var('hubspot_schema', 'hubspot_tickets') }}"
+    database: "{{ var('hubspot_database', target.database) }}"
+    loader: Fivetran
+    loaded_at_field: _fivetran_synced
+    tables:
+      - name: ticket
+        description: Each record represents an ticket in Hubspot.
+      - name: ticket_pipeline
+        description: Each record represents an pipeline in Hubspot.
+      - name: ticket_pipeline_stage
+        description: Each record represents an pipeline stage in Hubspot.
+      - name: ticket_property_history
+        description: Each record represents a change to ticket record in Hubspot.
+      - name: ticket_deal       
+        description: Each record represents a 'link' between a deal and a contact.
