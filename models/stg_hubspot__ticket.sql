@@ -13,9 +13,7 @@ with base as (
     select
         _fivetran_synced,
         id as ticket_id,
-        hs_pipeline as ticket_pipeline_id,
-        hs_pipeline_stage as ticket_pipeline_stage_id,
-        {{ hubspot_source.remove_prefix_from_columns(columns=columns, exclude=['_fivetran_synced','id','hs_pipeline','hs_pipeline_stage']) }}
+        {{ hubspot_source.remove_prefix_from_columns(columns=columns, exclude=['_fivetran_synced','id']) }}
     from base
 
 )
