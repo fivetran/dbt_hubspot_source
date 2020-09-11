@@ -12,7 +12,7 @@ with base as (
 
     select
         _fivetran_synced,
-        cast(id as int) as ticket_id,
+        cast(id as int64) as ticket_id,
         timestamp_millis(createdate) as createdate, -- need to fix data type in fivetran
         timestamp_millis(closed_date) as closed_date, -- need to fix data type in fivetran
         timestamp_millis(first_agent_reply_date) as first_agent_reply_date, -- need to fix data type in fivetran
