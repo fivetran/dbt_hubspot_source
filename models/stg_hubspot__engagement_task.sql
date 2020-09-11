@@ -10,7 +10,7 @@ with base as (
     select
         _fivetran_synced,
         body as task_note,
-        completion_date as completion_timestamp,
+        timestamp_millis(completion_date) as completion_timestamp, -- need to fix data type in fivetran
         engagement_id,
         for_object_type,
         is_all_day,
@@ -20,7 +20,7 @@ with base as (
         subject as task_subject,
         task_type
     from base
-    
+
 )
 
 select *

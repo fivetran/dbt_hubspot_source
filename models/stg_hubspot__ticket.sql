@@ -4,7 +4,7 @@
 
 with base as (
 
-    select * 
+    select *
     from {{ ref('stg_hubspot__ticket_adapter') }}
     where is_deleted = False
 
@@ -12,8 +12,11 @@ with base as (
 
     select
         _fivetran_synced,
-        id as ticket_id,
-        {{ hubspot_source.remove_prefix_from_columns(columns=columns, exclude=['_fivetran_synced','id']) }}
+        cast(id as int) as ticket_id,
+        timestamp_millis(createdate) as createdate, -- need to fix data type in fivetran
+        timestamp_millis(closed_date) as closed_date, -- need to fix data type in fivetran
+        timestamp_millis(first_agent_reply_date) as first_agent_reply_date, -- need to fix data type in fivetran
+        {{ hubspot_source.remove_prefix_from_columns(columns=columns, exclude=['_fivetran_synced','id','createdate','closed_date','first_agent_reply_date']) }}
     from base
 
 )

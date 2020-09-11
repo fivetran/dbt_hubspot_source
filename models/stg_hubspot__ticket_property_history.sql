@@ -2,7 +2,7 @@
 
 with base as (
 
-    select * 
+    select *
     from {{ var('ticket_property_history')}}
 
 ), fields as (
@@ -13,10 +13,10 @@ with base as (
         name as field_name,
         source as change_source,
         source_id as change_source_id,
-        timestamp as change_timestamp,
+        timestamp_millis(timestamp) as change_timestamp, -- need to fix data type in fivetran
         value as new_value
     from base
-    
+
 )
 
 select *
