@@ -13,7 +13,7 @@ with base as (
         label as pipeline_stage_label,
         archived as is_archived,
         display_order,
-        pipeline_id as ticket_pipeline_id
+        cast(pipeline_id as string) as ticket_pipeline_id
     from base
 
 )
