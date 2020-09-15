@@ -134,5 +134,5 @@ models:
       - name: ticket_id
         description: The ID of the related ticket.
 
-      - name: deal_id
-        description: The ID of the related deal.
+      - name: deal_id_array
+        description: The ID of the related deal in an array.

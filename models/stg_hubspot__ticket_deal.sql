@@ -2,7 +2,7 @@
 
 with base as (
 
-    select * 
+    select *
     from {{ var('ticket_deal') }}
 
 ), fields as (
@@ -10,9 +10,10 @@ with base as (
     select
         _fivetran_synced,
         ticket_id,
-        deal_id
+        array_agg(deal_id) as deal_id_array -- deal_id to array
     from base
-    
+    group by 1,2
+
 )
 
 select *
