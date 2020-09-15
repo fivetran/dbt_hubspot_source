@@ -10,7 +10,7 @@ with base as (
 
     select
         id as contact_id,
-        {{ remove_prefix_from_columns(columns=columns, exclude=['id']) }}
+        {{ remove_prefix_from_columns(columns=columns, exclude=['id','PROPERTY_CONTACT_ID']) }}
     from base
 
 )
