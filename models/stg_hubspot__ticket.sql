@@ -7,6 +7,7 @@ with base as (
     select *
     from {{ ref('stg_hubspot__ticket_adapter') }}
     where is_deleted = False
+        and merge_id is null -- removing any tickets that have been merged into consolidated ticket
 
 ), fields as (
 

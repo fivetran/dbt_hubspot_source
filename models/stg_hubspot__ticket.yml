@@ -57,7 +57,10 @@ models:
         description: Timestamp of first agent reply to customer.
 
       - name: merge_id
-        description: Ticket ID of merged ticket (if applicable).
+        description: ID of consolidated ticket that resulted from a merge operation.
+
+      - name: hs_merged_object_ids
+        description: ID's of tickets that have been merged to created this consolidated ticket.
 
   - name: stg_hubspot__ticket_property_history
     description: Each record represents a change to ticket record in Hubspot.
