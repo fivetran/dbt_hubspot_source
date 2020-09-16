@@ -10,6 +10,9 @@ models:
 
       - name: ticket_id
         description: ID of the ticket.
+        tests:
+          - unique
+          - not_null
 
       - name: subject
         description: Short summary of ticket.
