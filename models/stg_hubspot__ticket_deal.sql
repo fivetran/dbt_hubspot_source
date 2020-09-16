@@ -10,9 +10,8 @@ with base as (
     select
         _fivetran_synced,
         ticket_id,
-        array_agg(deal_id) as deal_id_array -- deal_id to array
+        deal_id
     from base
-    group by 1,2
 
 )
 
