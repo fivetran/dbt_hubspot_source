@@ -60,7 +60,7 @@ models:
         description: ID of consolidated ticket that resulted from a merge operation.
 
       - name: hs_merged_object_ids
-        description: ID's of tickets that have been merged to created this consolidated ticket.
+        description: ID's of tickets that have been merged to create consolidated ticket.
 
   - name: stg_hubspot__ticket_property_history
     description: Each record represents a change to ticket record in Hubspot.
