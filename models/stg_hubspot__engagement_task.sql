@@ -17,7 +17,7 @@ with base as (
         priority,
         probability_to_complete,
         status as task_status,
-        subject as task_subject,
+        trim(subject) as task_subject,
         task_type
     from base
 
