@@ -13,7 +13,7 @@ with base as (
         _fivetran_synced,
         active as is_active,
         display_order,
-        label as deal_pipeline_label,
+        label as pipeline_label,
         pipeline_id as deal_pipeline_id
     from base
 

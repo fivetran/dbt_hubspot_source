@@ -14,7 +14,7 @@ with base as (
         active as is_active,
         closed_won as is_closed_won,
         display_order,
-        label as deal_pipeline_stage_label,
+        label as pipeline_stage_label,
         pipeline_id as deal_pipeline_id,
         probability,
         stage_id as deal_pipeline_stage_id

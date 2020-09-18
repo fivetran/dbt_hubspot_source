@@ -101,14 +101,14 @@ models:
           - unique
           - not_null
 
-      - name: ticket_pipeline_stage_label
-        description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
-
       - name: display_order
         description: Used to determine the order in which the stages appear when viewed in HubSpot.
 
       - name: is_archived
         description: Whether the pipeline stage is currently in use.
+
+      - name: pipeline_stage_label
+        description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
 
   - name: stg_hubspot__ticket_pipeline
     description: Each record represents a pipeline in Hubspot.
@@ -122,14 +122,14 @@ models:
           - unique
           - not_null
 
-      - name: ticket_pipeline_label
-        description: The human-readable label for the pipeline. The label is used when showing the pipeline in HubSpot.
-
       - name: display_order
         description: Used to determine the order in which the pipelines appear when viewed in HubSpot
 
       - name: is_archived
         description: Whether the stage is currently in use.
+
+      - name: pipeline_label
+        description: The human-readable label for the pipeline. The label is used when showing the pipeline in HubSpot.
 
   - name: stg_hubspot__ticket_deal
     description: Each record represents a 'link' between a ticket and a deal.
