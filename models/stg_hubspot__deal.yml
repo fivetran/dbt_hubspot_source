@@ -16,9 +16,12 @@ models:
 
       - name: deal_pipeline_stage_id
         description: The ID of the pipeline stage.
-        tests: 
+        tests:
           - unique
           - not_null
+
+      - name: deal_pipeline_stage_label
+        description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
 
       - name: display_order
         description: Used to determine the order in which the stages appear when viewed in HubSpot.
@@ -28,9 +31,6 @@ models:
 
       - name: is_closed_won
         description: Whether the stage represents a Closed Won deal.
-
-      - name: pipeline_stage_label
-        description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
 
       - name: probability
         description: The probability that the deal will close. Used for the deal forecast.
@@ -50,14 +50,14 @@ models:
           - unique
           - not_null
 
+      - name: deal_pipeline_label
+        description: The human-readable label for the pipeline. The label is used when showing the pipeline in HubSpot.
+
       - name: display_order
         description: Used to determine the order in which the pipelines appear when viewed in HubSpot
 
       - name: is_active
         description: Whether the stage is currently in use.
-
-      - name: pipeline_label
-        description: The human-readable label for the pipeline. The label is used when showing the pipeline in HubSpot.
 
   - name: stg_hubspot__deal
     description: Each record represents a deal in Hubspot.
@@ -81,7 +81,7 @@ models:
         description: The ID of the deal's pipeline stage.
 
       - name: owner_id
-        description: The ID of the deal's owner. 
+        description: The ID of the deal's owner.
 
   - name: stg_hubspot__deal_property_history
     description: TBD

@@ -10,7 +10,7 @@ with base as (
     select
         _fivetran_synced,
         cast(id as string) as ticket_pipeline_stage_id,
-        label as pipeline_stage_label,
+        label as ticket_pipeline_stage_label,
         archived as is_archived,
         display_order,
         cast(pipeline_id as string) as ticket_pipeline_id
