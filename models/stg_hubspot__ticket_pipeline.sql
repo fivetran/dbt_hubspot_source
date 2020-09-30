@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_service_enabled','hubspot_ticket_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('ticket_pipeline') }}
@@ -9,11 +9,12 @@ with base as (
 
     select
         _fivetran_synced,
-        cast(id as string) as ticket_pipeline_id,
-        label as pipeline_label,
         archived as is_archived,
-        display_order
-    from base
+        display_order,
+        id as ticket_pipeline_id,
+        label as pipeline_label
+
+    from source
 
 )
 

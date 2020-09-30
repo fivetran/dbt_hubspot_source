@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_engagement_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('engagement')}}
@@ -11,15 +11,16 @@ with base as (
         _fivetran_synced,
         active as is_active,
         activity_type,
-        created_at as created_timestamp,
+        created_at,
         id as engagement_id,
-        last_updated as last_updated_timestamp,
+        last_updated_at,
         owner_id,
         portal_id,
-        timestamp as occurred_timestamp,
+        timestamp as occurred_at,
         type as engagement_type
-    from base
-    
+
+    from source
+
 )
 
 select *

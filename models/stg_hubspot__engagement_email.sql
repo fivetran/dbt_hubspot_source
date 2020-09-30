@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_engagement_enabled','hubspot_engagement_email_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('engagement_email')}}
@@ -12,7 +12,7 @@ with base as (
         attached_video_id,
         attached_video_opened as was_attached_video_opened,
         attached_video_watched as was_attached_video_watched,
-        email_send_event_id_created as email_send_event_created_timestamp,
+        email_send_event_id_created as email_send_event_created_at,
         email_send_event_id_id as email_send_event_id,
         engagement_id,
         error_message,
@@ -33,8 +33,9 @@ with base as (
         thread_id,
         tracker_key,
         validation_skipped
-    from base
-    
+
+    from source
+
 )
 
 select *

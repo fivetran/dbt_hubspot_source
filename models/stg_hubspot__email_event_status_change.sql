@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_marketing_enabled','hubspot_email_event_enabled','hubspot_email_event_status_change_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('email_event_status_change')}}
@@ -15,8 +15,9 @@ with base as (
         requested_by as requested_by_email,
         source as change_source,
         subscriptions
-    from base
-    
+
+    from source
+
 )
 
 select *

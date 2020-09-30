@@ -1,6 +1,6 @@
-{{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_company_enabled'])) }}
+{{config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_company_enabled']))}}
 
-with base as (
+with source as (
 
     select *
     from {{ var('company_property_history') }}
@@ -13,10 +13,11 @@ with base as (
         name as field_name,
         source as change_source,
         source_id as change_source_id,
-        timestamp as change_timestamp,
+        timestamp as changed_at,
         value as new_value
-    from base
-    
+
+    from source
+
 )
 
 select *

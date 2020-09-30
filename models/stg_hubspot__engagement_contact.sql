@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_engagement_enabled','hubspot_engagement_contact_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('engagement_contact')}}
@@ -11,8 +11,9 @@ with base as (
         _fivetran_synced,
         contact_id,
         engagement_id
-    from base
-    
+
+    from source
+
 )
 
 select *

@@ -176,7 +176,7 @@ models:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
 
-      - name: end_timestamp
+      - name: ended_at
         description: A timestamp representing the end time of the meeting
 
       - name: engagement_id
@@ -203,7 +203,7 @@ models:
       - name: source_id
         description: The internal ID of the meeting source.
 
-      - name: start_timestamp
+      - name: started_at
         description: A timestamp representing the start time of the meeting
 
       - name: web_conference_meeting_id
@@ -230,7 +230,7 @@ models:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
 
-      - name: completion_timestamp
+      - name: closed_at
         description: The timestamp the task was completed.
 
       - name: engagement_id
@@ -264,7 +264,7 @@ models:
         description: The type of task
 
   - name: stg_hubspot__engagement
-    description: Each record represents an engagement 
+    description: Each record represents an engagement
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -272,7 +272,7 @@ models:
       - name: activity_type
         description: The engagement's activity type.
 
-      - name: created_timestamp
+      - name: created_at
         description: A timestamp representing when the engagement was created.
 
       - name: engagement_id
@@ -287,10 +287,10 @@ models:
       - name: is_active
         description: Whether the engagement is currently being shown in the UI.
 
-      - name: last_updated_timestamp
+      - name: last_updated_at
         description: A timestamp in representing when the engagement was last updated.
 
-      - name: occurred_timestamp
+      - name: occurred_at
         description: A timestamp in representing the time that the engagement should appear in the timeline.
 
       - name: owner_id

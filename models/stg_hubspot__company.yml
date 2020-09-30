@@ -14,7 +14,7 @@ models:
       - name: change_source_id
         description: '{{ doc("history_source_id") }}'
 
-      - name: change_timestamp
+      - name: changed_at
         description: '{{ doc("history_timestamp") }}'
 
       - name: company_id
@@ -34,10 +34,9 @@ models:
         tests:
           - unique
           - not_null
-      
+
       - name: portal_id
         description: '{{ doc("portal_id") }}'
-      
+
       - name: is_deleted
         description: '{{ doc("is_deleted") }}'
-          

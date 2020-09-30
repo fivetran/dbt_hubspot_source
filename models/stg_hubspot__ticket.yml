@@ -47,19 +47,16 @@ models:
       - name: collections_blocked_category
         description: Further categorization for blocked collections ticket
 
-      - name: createdate
+      - name: created_at
         description: Timestamp of ticket creation in HubSpot.
 
-      - name: closed_date
+      - name: closed_at
         description: Timestamp of ticket closure in HubSpot.
 
-      - name: first_agent_reply_date
+      - name: first_agent_reply_at
         description: Timestamp of first agent reply to customer.
 
-      - name: merge_id
-        description: ID of consolidated ticket that resulted from a merge operation.
-
-      - name: hs_merged_object_ids
+      - name: merged_object_ids
         description: ID's of tickets that have been merged to create consolidated ticket.
 
   - name: stg_hubspot__ticket_property_history
@@ -74,7 +71,7 @@ models:
       - name: change_source_id
         description: '{{ doc("history_source_id") }}'
 
-      - name: change_timestamp
+      - name: changed_at
         description: '{{ doc("history_timestamp") }}'
 
       - name: ticket_id

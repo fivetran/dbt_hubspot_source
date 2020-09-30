@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_marketing_enabled','hubspot_email_event_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('email_event')}}
@@ -23,8 +23,9 @@ with base as (
         sent_by_created as sent_timestamp,
         sent_by_id as sent_by_event_id,
         type as event_type
-    from base
-    
+
+    from source
+
 )
 
 select *

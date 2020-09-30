@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_engagement_enabled','hubspot_engagement_call_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('engagement_call')}}
@@ -23,8 +23,9 @@ with base as (
         to_number,
         transcription_id,
         unknown_visitor_conversation
-    from base
-    
+
+    from source
+
 )
 
 select *

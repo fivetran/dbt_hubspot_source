@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_service_enabled','hubspot_ticket_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('ticket_deal') }}
@@ -9,9 +9,10 @@ with base as (
 
     select
         _fivetran_synced,
-        ticket_id,
         deal_id
-    from base
+        ticket_id
+
+    from source
 
 )
 

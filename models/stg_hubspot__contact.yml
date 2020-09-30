@@ -4,13 +4,10 @@ models:
   - name: stg_hubspot__contact_list_member
     description: Each record represents a 'link' between a contact and a contact list.
     columns:
-      - name: _fivetran_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
-
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
 
-      - name: added_timestamp
+      - name: added_at
         description: The timestamp a contact was added to a list.
 
       - name: contact_id
@@ -22,9 +19,6 @@ models:
   - name: stg_hubspot__contact_list
     description: Each record represents a contact list in Hubspot.
     columns:
-      - name: _fivetran_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
-
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_deleted") }}'
 
@@ -34,10 +28,10 @@ models:
           - unique
           - not_null
 
-      - name: contact_list_name
+      - name: name
         description: The name of the contact list.
 
-      - name: created_timestamp
+      - name: created_at
         description: A timestamp of the time the list was created.
 
       - name: is_deletable
@@ -46,27 +40,27 @@ models:
       - name: is_dynamic
         description: Whether the contact list is dynamic.
 
-      - name: metadata_error
+      - name: error
         description: Any errors that happened the last time the list was processed.
 
-      - name: metadata_last_processing_state_change_at
+      - name: last_processing_state_change_at
         description: A timestamp of the last time that the processing state changed.
 
-      - name: metadata_last_size_change_at
+      - name: last_size_change_at
         description: A timestamp of the last time that the size of the list changed.
 
-      - name: metadata_processing
+      - name: processing_status
         description: |
-              One of DONE, REFRESHING, INITIALIZING, or PROCESSING. 
+              One of DONE, REFRESHING, INITIALIZING, or PROCESSING.
               DONE indicates the list has finished processing, any other value indicates that list membership is being evaluated.
 
-      - name: metadata_size
+      - name: size
         description: The approximate number of contacts in the list.
 
       - name: portal_id
         description: '{{ doc("portal_id") }}'
 
-      - name: updated_timestamp
+      - name: updated_at
         description: A timestamp of the time that the list was last modified.
 
   - name: stg_hubspot__contact_property_history
@@ -81,7 +75,7 @@ models:
       - name: change_source_id
         description: '{{ doc("history_source_id") }}'
 
-      - name: change_timestamp
+      - name: changed_at
         description: '{{ doc("history_timestamp") }}'
 
       - name: contact_id
@@ -102,6 +96,5 @@ models:
           - unique
           - not_null
 
-      - name: email
+      - name: email_address
         description: The email address of the contact.
-        

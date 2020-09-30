@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_marketing_enabled','hubspot_email_event_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('email_campaign')}}
@@ -19,8 +19,9 @@ with base as (
         sub_type as email_campaign_sub_type,
         subject as email_campaign_subject,
         type as email_campaign_type
-    from base
-    
+
+    from source
+
 )
 
 select *

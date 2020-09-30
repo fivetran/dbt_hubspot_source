@@ -1,6 +1,6 @@
 {{ config(enabled=enabled_vars(['hubspot_marketing_enabled','hubspot_email_event_enabled','hubspot_email_event_open_enabled'])) }}
 
-with base as (
+with source as (
 
     select *
     from {{ var('email_event_open')}}
@@ -15,8 +15,9 @@ with base as (
         ip_address,
         location as geo_location,
         user_agent
-    from base
-    
+
+    from source
+
 )
 
 select *

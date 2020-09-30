@@ -1,4 +1,4 @@
-with base as (
+with source as (
 
     select *
     from {{ var('contact_property_history') }}
@@ -11,10 +11,11 @@ with base as (
         name as field_name,
         source as change_source,
         source_id as change_source_id,
-        timestamp as change_timestamp,
+        timestamp as changed_at,
         value as new_value
-    from base
-    
+
+    from source
+
 )
 
 select *
