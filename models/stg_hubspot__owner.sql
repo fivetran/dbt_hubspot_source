@@ -17,7 +17,7 @@ with base as (
         portal_id,
         type as owner_type,
         updated_at as updated_timestamp,
-        {{ full_name('first_name','last_name') }}
+        trim( {{ dbt_utils.concat(['first_name', "' '", 'last_name']) }} ) as full_name
     from base
     
 )
