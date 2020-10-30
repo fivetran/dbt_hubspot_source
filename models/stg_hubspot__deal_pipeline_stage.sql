@@ -4,7 +4,7 @@ with base as (
 
     select *
     from {{ var('deal_pipeline_stage')}}
-    where _fivetran_deleted is null
+    where not coalesce(_fivetran_deleted, false) 
 
 ), fields as (
 

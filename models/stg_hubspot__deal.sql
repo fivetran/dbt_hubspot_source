@@ -11,7 +11,7 @@ with base as (
 ), fields as (
 
     select
-        {{ remove_prefix_from_columns(columns=columns) }}
+        {{ fivetran_utils.remove_prefix_from_columns(columns=columns) }}
     from base
 
 )

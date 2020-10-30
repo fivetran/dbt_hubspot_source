@@ -12,7 +12,7 @@ with base as (
 
     select
         id as company_id, 
-        {{ remove_prefix_from_columns(columns=columns, exclude=['id']) }}
+        {{ fivetran_utils.remove_prefix_from_columns(columns=columns, exclude=['id']) }}
     from base
 
 )
