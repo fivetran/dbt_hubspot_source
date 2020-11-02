@@ -1,10 +1,10 @@
-{{ config(enabled=enabled_vars(['hubspot_marketing_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_marketing_enabled'])) }}
 
 with base as (
 
     select *
     from {{ var('contact_list') }}
-    where _fivetran_deleted is null
+    where not coalesce(_fivetran_deleted, false) 
 
 ), fields as (
 

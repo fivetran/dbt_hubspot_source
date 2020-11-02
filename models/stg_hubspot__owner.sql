@@ -1,4 +1,4 @@
-{{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_owner_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_owner_enabled'])) }}
 
 with base as (
 
@@ -17,7 +17,7 @@ with base as (
         portal_id,
         type as owner_type,
         updated_at as updated_timestamp,
-        {{ full_name('first_name','last_name') }}
+        trim( {{ dbt_utils.concat(['first_name', "' '", 'last_name']) }} ) as full_name
     from base
     
 )

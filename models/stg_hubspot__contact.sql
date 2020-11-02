@@ -4,13 +4,13 @@ with base as (
 
     select *
     from {{ ref('stg_hubspot__contact_adapter') }}
-    where _fivetran_deleted is null
+    where not coalesce(_fivetran_deleted, false) 
 
 ), fields as (
 
     select
         id as contact_id,
-        {{ remove_prefix_from_columns(columns=columns, exclude=['id']) }}
+        {{ fivetran_utils.remove_prefix_from_columns(columns=columns, prefix='property_', exclude=['id']) }}
     from base
 
 )

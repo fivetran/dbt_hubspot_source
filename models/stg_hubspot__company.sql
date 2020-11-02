@@ -1,4 +1,4 @@
-{{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_company_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_company_enabled'])) }}
 
 {%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__company_adapter')) -%}
 
@@ -12,7 +12,7 @@ with base as (
 
     select
         id as company_id, 
-        {{ remove_prefix_from_columns(columns=columns, exclude=['id']) }}
+        {{ fivetran_utils.remove_prefix_from_columns(columns=columns, prefix='property_', exclude=['id']) }}
     from base
 
 )

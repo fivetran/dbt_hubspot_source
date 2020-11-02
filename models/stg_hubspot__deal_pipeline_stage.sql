@@ -1,10 +1,10 @@
-{{ config(enabled=enabled_vars(['hubspot_sales_enabled','hubspot_deal_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_deal_enabled'])) }}
 
 with base as (
 
     select *
     from {{ var('deal_pipeline_stage')}}
-    where _fivetran_deleted is null
+    where not coalesce(_fivetran_deleted, false) 
 
 ), fields as (
 
