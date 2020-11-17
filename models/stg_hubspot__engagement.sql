@@ -27,8 +27,8 @@ with base as (
         last_updated as last_updated_timestamp,
         owner_id,
         portal_id,
-        timestamp as occurred_timestamp,
-        type as engagement_type
+        occurred_timestamp,
+        engagement_type
     from macro
     
 )

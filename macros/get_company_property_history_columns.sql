@@ -6,7 +6,7 @@
     {"name": "name", "datatype": dbt_utils.type_string()},
     {"name": "source", "datatype": dbt_utils.type_string()},
     {"name": "source_id", "datatype": dbt_utils.type_string()},
-    {"name": "timestamp", "datatype": dbt_utils.type_timestamp()},
+    {"name": "timestamp", "datatype": dbt_utils.type_timestamp(), "alias": "change_timestamp"},
     {"name": "value", "datatype": dbt_utils.type_string()}
 ] %}
 

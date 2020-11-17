@@ -13,7 +13,6 @@
     {"name": "metadata_processing", "datatype": dbt_utils.type_string()},
     {"name": "metadata_size", "datatype": dbt_utils.type_int()},
     {"name": "name", "datatype": dbt_utils.type_string()},
-    {"name": "offset", "datatype": dbt_utils.type_int()},
     {"name": "portal_id", "datatype": dbt_utils.type_int()},
     {"name": "updated_at", "datatype": dbt_utils.type_timestamp()}
 ] %}

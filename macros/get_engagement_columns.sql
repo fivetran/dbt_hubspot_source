@@ -9,8 +9,8 @@
     {"name": "last_updated", "datatype": dbt_utils.type_timestamp()},
     {"name": "owner_id", "datatype": dbt_utils.type_int()},
     {"name": "portal_id", "datatype": dbt_utils.type_int()},
-    {"name": "timestamp", "datatype": dbt_utils.type_timestamp()},
-    {"name": "type", "datatype": dbt_utils.type_string()}
+    {"name": "timestamp", "datatype": dbt_utils.type_timestamp(), "alias": "occurred_timestamp"},
+    {"name": "type", "datatype": dbt_utils.type_string(), "alias": "engagement_type"}
 ] %}
 
 {{ return(columns) }}
