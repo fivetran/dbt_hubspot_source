@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('email_campaign')}}
+    from {{ ref('stg_hubspot__email_campaign_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__email_campaign_tmp')),
+                staging_columns=get_email_campaign_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -19,9 +30,11 @@ with base as (
         sub_type as email_campaign_sub_type,
         subject as email_campaign_subject,
         type as email_campaign_type
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

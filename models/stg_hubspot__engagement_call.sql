@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('engagement_call')}}
+    from {{ ref('stg_hubspot__engagement_call_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_call_tmp')),
+                staging_columns=get_engagement_call_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -23,9 +34,11 @@ with base as (
         to_number,
         transcription_id,
         unknown_visitor_conversation
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

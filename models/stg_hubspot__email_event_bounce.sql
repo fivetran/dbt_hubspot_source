@@ -4,8 +4,19 @@
 with base as (
 
     select *
-    from {{ var('email_event_bounce')}}
+    from {{ ref('stg_hubspot__email_event_bounce_tmp') }}
 
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__email_event_bounce_tmp')),
+                staging_columns=get_email_event_bounce_columns()
+            )
+        }}
+    from base
+    
 ), fields as (
 
     select
@@ -14,9 +25,11 @@ with base as (
         id as event_id,
         response as returned_response,
         status as returned_status
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+
