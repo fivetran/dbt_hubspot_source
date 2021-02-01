@@ -1,3 +1,5 @@
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_marketing_enabled'])) }}
+
 with base as (
 
     select *
