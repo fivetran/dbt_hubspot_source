@@ -1,6 +1,6 @@
 # Hubspot (Source)
 
-This package models Hubspot data from [Fivetran's connector](https://fivetran.com/docs/applications/hubspot). It uses data in the format described by the [marketing](https://docs.google.com/presentation/d/1hrPp310SNK2qyESCV_g_JFx_Knm1MwB467wN3dEgy0M/edit#slide=id.g244d368397_0_1) and [sales](https://docs.google.com/presentation/d/1KABQnt8WmtZe7u5l7WFUoPIsWzv63P9gsWF79XGLoZE/edit#slide=id.g244d368397_0_1) ERDs.
+This package models Hubspot data from [Fivetran's connector](https://fivetran.com/docs/applications/hubspot). It uses data in the format described by the [marketing](https://docs.google.com/presentation/d/1hrPp310SNK2qyESCV_g_JFx_Knm1MwB467wN3dEgy0M/edit#slide=id.g244d368397_0_1), [sales](https://docs.google.com/presentation/d/1KABQnt8WmtZe7u5l7WFUoPIsWzv63P9gsWF79XGLoZE/edit#slide=id.g244d368397_0_1) and [service](https://docs.google.com/presentation/d/1OIPFpkqkSYAPPFfq1-yICdfArg6mmG71P-cm15cpy7U/edit) ERDs.
 
 This package enriches your Fivetran data by doing the following:
 
@@ -33,12 +33,12 @@ config-version: 2
 vars:
   hubspot_source:
     hubspot_database: your_database_name
-    hubspot_schema: your_schema_name 
+    hubspot_schema: your_schema_name
 ```
 
 ### Disabling models
 
-When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. In order to disable the relevant functionality in the package, you will need to add the relevant variables. By default, all variables are assumed to be `true`. You only need to add variables for the tables you would like to disable:  
+When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. In order to disable the relevant functionality in the package, you will need to add the relevant variables. By default, all variables are assumed to be `true`. You only need to add variables for the tables you would like to disable:
 
 ```yml
 # dbt_project.yml
@@ -51,7 +51,7 @@ vars:
 
     # Marketing
 
-    hubspot_marketing_enabled: false                        # Disables all marketing models 
+    hubspot_marketing_enabled: false                        # Disables all marketing models
     hubspot_email_event_enabled: false                      # Disables all email_event models and functionality
     hubspot_email_event_bounce_enabled: false
     hubspot_email_event_click_enabled: false
@@ -80,13 +80,17 @@ vars:
     hubspot_engagement_meetings_enabled: false
     hubspot_engagement_notes_enabled: false
     hubspot_engagement_tasks_enabled: false
+
+    # Service
+    hubspot_service_enabled: false                          # Disables all service models
+    hubspot_ticket_enabled: false                           # Disables all ticket models and functionality
 ```
 
 ## Contributions
 
 Additional contributions to this package are very welcome! Please create issues
-or open PRs against `master`. Check out 
-[this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) 
+or open PRs against `master`. Check out
+[this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657)
 on the best workflow for contributing to a package.
 
 ## Resources:
