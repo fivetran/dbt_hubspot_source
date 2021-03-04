@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('engagement_task')}}
+    from {{ ref('stg_hubspot__engagement_task_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_task_tmp')),
+                staging_columns=get_engagement_task_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -19,9 +30,11 @@ with base as (
         status as task_status,
         subject as task_subject,
         task_type
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

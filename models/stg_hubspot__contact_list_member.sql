@@ -3,8 +3,19 @@
 with base as (
 
     select *
-    from {{ var('contact_list_member') }}
+    from {{ ref('stg_hubspot__contact_list_member_tmp') }}
     where not coalesce(_fivetran_deleted, false) 
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__contact_list_member_tmp')),
+                staging_columns=get_contact_list_member_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -14,7 +25,7 @@ with base as (
         added_at as added_timestamp,
         contact_id,
         contact_list_id
-    from base
+    from macro
     
 )
 

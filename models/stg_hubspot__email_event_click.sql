@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('email_event_click')}}
+    from {{ ref('stg_hubspot__email_event_click_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__email_event_click_tmp')),
+                staging_columns=get_email_event_click_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -16,9 +27,11 @@ with base as (
         referer as referer_url,
         url as click_url,
         user_agent
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

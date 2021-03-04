@@ -1,9 +1,9 @@
-{%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__contact_adapter')) -%}
+{%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')) -%}
 
 with base as (
 
     select *
-    from {{ ref('stg_hubspot__contact_adapter') }}
+    from {{ ref('stg_hubspot__contact_tmp') }}
     where not coalesce(_fivetran_deleted, false) 
 
 ), fields as (

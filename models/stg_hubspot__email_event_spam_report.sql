@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('email_event_spam_report')}}
+    from {{ ref('stg_hubspot__email_event_spam_report_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__email_event_spam_report_tmp')),
+                staging_columns=get_email_event_spam_report_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -12,9 +23,11 @@ with base as (
         id as event_id,
         ip_address,
         user_agent
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

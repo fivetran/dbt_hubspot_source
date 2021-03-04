@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('email_event_dropped')}}
+    from {{ ref('stg_hubspot__email_event_dropped_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__email_event_dropped_tmp')),
+                staging_columns=get_email_event_dropped_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -13,17 +24,15 @@ with base as (
         cc as cc_emails,
         drop_message,
         drop_reason,
-        {% if target.type == 'snowflake' %}
-        "FROM" as from_email,
-        {% else %}
-        "from" as from_email,
-        {% endif %}
+        from_email,
         id as event_id,
         reply_to as reply_to_email,
         subject as email_subject
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('owner')}}
+    from {{ ref('stg_hubspot__owner_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__owner_tmp')),
+                staging_columns=get_owner_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -18,9 +29,11 @@ with base as (
         type as owner_type,
         updated_at as updated_timestamp,
         trim( {{ dbt_utils.concat(['first_name', "' '", 'last_name']) }} ) as full_name
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+
