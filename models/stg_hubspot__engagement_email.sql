@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('engagement_email')}}
+    from {{ ref('stg_hubspot__engagement_email_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_email_tmp')),
+                staging_columns=get_engagement_email_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -33,9 +44,11 @@ with base as (
         thread_id,
         tracker_key,
         validation_skipped
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

@@ -1,11 +1,11 @@
 {{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_deal_enabled'])) }}
 
-{%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__deal_adapter')) -%}
+{%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__deal_tmp')) -%}
 
 with base as (
 
     select *
-    from {{ ref('stg_hubspot__deal_adapter') }}
+    from {{ ref('stg_hubspot__deal_tmp') }}
     where is_deleted = False
 
 ), fields as (

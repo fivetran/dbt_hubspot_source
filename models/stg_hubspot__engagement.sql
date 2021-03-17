@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('engagement')}}
+    from {{ ref('stg_hubspot__engagement_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_tmp')),
+                staging_columns=get_engagement_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -16,11 +27,13 @@ with base as (
         last_updated as last_updated_timestamp,
         owner_id,
         portal_id,
-        timestamp as occurred_timestamp,
-        type as engagement_type
-    from base
+        occurred_timestamp,
+        engagement_type
+    from macro
     
 )
 
 select *
 from fields
+
+

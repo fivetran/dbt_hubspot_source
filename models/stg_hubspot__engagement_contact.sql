@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('engagement_contact')}}
+    from {{ ref('stg_hubspot__engagement_contact_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_contact_tmp')),
+                staging_columns=get_engagement_contact_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -11,9 +22,11 @@ with base as (
         _fivetran_synced,
         contact_id,
         engagement_id
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

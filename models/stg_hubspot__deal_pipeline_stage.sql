@@ -3,8 +3,19 @@
 with base as (
 
     select *
-    from {{ var('deal_pipeline_stage')}}
+    from {{ ref('stg_hubspot__deal_pipeline_stage_tmp') }}
     where not coalesce(_fivetran_deleted, false) 
+
+), macro as (
+
+    select 
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__deal_pipeline_stage_tmp')),
+                staging_columns=get_deal_pipeline_stage_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -18,7 +29,7 @@ with base as (
         pipeline_id as deal_pipeline_id,
         probability,
         stage_id as deal_pipeline_stage_id
-    from base
+    from macro
     
 )
 

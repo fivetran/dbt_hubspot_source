@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('email_event_status_change')}}
+    from {{ ref('stg_hubspot__email_event_status_change_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__email_event_status_change_tmp')),
+                staging_columns=get_email_event_status_change_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -15,9 +26,11 @@ with base as (
         requested_by as requested_by_email,
         source as change_source,
         subscriptions
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+

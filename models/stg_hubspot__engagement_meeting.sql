@@ -3,7 +3,18 @@
 with base as (
 
     select *
-    from {{ var('engagement_meeting')}}
+    from {{ ref('stg_hubspot__engagement_meeting_tmp') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')),
+                staging_columns=get_engagement_meeting_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -21,9 +32,11 @@ with base as (
         start_time as start_timestamp,
         title as meeting_title,
         web_conference_meeting_id
-    from base
+    from macro
     
 )
 
 select *
 from fields
+
+
