@@ -1,6 +1,6 @@
 # Hubspot (Source)
 
-This package models Hubspot data from [Fivetran's connector](https://fivetran.com/docs/applications/hubspot). It uses data in the format described by the [marketing](https://docs.google.com/presentation/d/1hrPp310SNK2qyESCV_g_JFx_Knm1MwB467wN3dEgy0M/edit#slide=id.g244d368397_0_1), [sales](https://docs.google.com/presentation/d/1KABQnt8WmtZe7u5l7WFUoPIsWzv63P9gsWF79XGLoZE/edit#slide=id.g244d368397_0_1) and [service](https://docs.google.com/presentation/d/1OIPFpkqkSYAPPFfq1-yICdfArg6mmG71P-cm15cpy7U/edit) ERDs.
+This package models Hubspot data from [Fivetran's connector](https://fivetran.com/docs/applications/hubspot). It uses data in the format described by the [marketing](https://fivetran.com/docs/applications/hubspot#schemainformation), [sales](https://fivetran.com/docs/applications/hubspot#crmandsaleshubschema) and [service](https://fivetran.com/docs/applications/hubspot#servicehubschema) ERDs.
 
 This package enriches your Fivetran data by doing the following:
 
@@ -38,7 +38,7 @@ vars:
 
 ### Disabling models
 
-When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. In order to disable the relevant functionality in the package, you will need to add the relevant variables. By default, all variables are assumed to be `true`. You only need to add variables for the tables you would like to disable:
+When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. In order to disable the relevant functionality in the package, you will need to add the relevant variables. By default, all variables are assumed to be `true` (with exception of `hubspot_service_enabled`). You only need to add variables for the tables you would like to disable or enable respectively:
 
 ```yml
 # dbt_project.yml
@@ -51,51 +51,71 @@ vars:
 
     # Marketing
 
-    hubspot_marketing_enabled: false                        # Disables all marketing models
-    hubspot_email_event_enabled: false                      # Disables all email_event models and functionality
-    hubspot_email_event_bounce_enabled: false
-    hubspot_email_event_click_enabled: false
-    hubspot_email_event_deferred_enabled: false
-    hubspot_email_event_delivered_enabled: false
-    hubspot_email_event_dropped_enabled: false
-    hubspot_email_event_forward_enabled: false
-    hubspot_email_event_click_enabled: false
-    hubspot_email_event_opens_enabled: false
-    hubspot_email_event_print_enabled: false
-    hubspot_email_event_sent_enabled: false
-    hubspot_email_event_spam_report: false
-    hubspot_email_event_status_change_enabled: false
+    hubspot_marketing_enabled:                  false       # Disables all marketing models
+    hubspot_email_event_enabled:                false       # Disables all email_event models and functionality
+    hubspot_email_event_bounce_enabled:         false
+    hubspot_email_event_click_enabled:          false
+    hubspot_email_event_deferred_enabled:       false
+    hubspot_email_event_delivered_enabled:      false
+    hubspot_email_event_dropped_enabled:        false
+    hubspot_email_event_forward_enabled:        false
+    hubspot_email_event_click_enabled:          false
+    hubspot_email_event_opens_enabled:          false
+    hubspot_email_event_print_enabled:          false
+    hubspot_email_event_sent_enabled:           false
+    hubspot_email_event_spam_report:            false
+    hubspot_email_event_status_change_enabled:  false
 
     # Sales
 
-    hubspot_sales_enabled: false                            # Disables all sales models
-    hubspot_company_enabled: false
-    hubspot_deal_enabled: false
-    hubspot_engagement_enabled: false                       # Disables all engagement models and functionality
-    hubspot_engagement_contact_enabled: false
-    hubspot_engagement_company_enabled: false
-    hubspot_engagement_deal_enabled: false
-    hubspot_engagement_calls_enabled: false
-    hubspot_engagement_emails_enabled: false
-    hubspot_engagement_meetings_enabled: false
-    hubspot_engagement_notes_enabled: false
-    hubspot_engagement_tasks_enabled: false
+    hubspot_sales_enabled:                      false       # Disables all sales models
+    hubspot_company_enabled:                    false
+    hubspot_deal_enabled:                       false
+    hubspot_engagement_enabled:                 false       # Disables all engagement models and functionality
+    hubspot_engagement_contact_enabled:         false
+    hubspot_engagement_company_enabled:         false
+    hubspot_engagement_deal_enabled:            false
+    hubspot_engagement_calls_enabled:           false
+    hubspot_engagement_emails_enabled:          false
+    hubspot_engagement_meetings_enabled:        false
+    hubspot_engagement_notes_enabled:           false
+    hubspot_engagement_tasks_enabled:           false
 
     # Service
-    hubspot_service_enabled: false                          # Disables all service models
-    hubspot_ticket_enabled: false                           # Disables all ticket models and functionality
+    hubspot_service_enabled:                    true        # Enables all service models
 ```
 
-## Contributions
+### Changing the Build Schema
+By default this package will build the HubSpot staging models within a schema titled (<target_schema> + `_stg_hubspot`). If this is not where you would like your HubSpot staging models to be written to, add the following configuration to your `dbt_project.yml` file:
+
+```yml
+# dbt_project.yml
+
+...
+models:
+  hubspot_source:
+    +schema: my_new_staging_models_schema # leave blank for just the target_schema
+
+```
+
+*Read more about using custom schemas in dbt [here](https://docs.getdbt.com/docs/building-a-dbt-project/building-models/using-custom-schemas).*
+
+### Contributions ###
 
 Additional contributions to this package are very welcome! Please create issues
-or open PRs against `master`. Check out
-[this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657)
+or open PRs against `master`. Check out 
+[this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) 
 on the best workflow for contributing to a package.
 
-## Resources:
+## Database support
+This package has been tested on BigQuery, Snowflake, and Redshift.
+
+### Resources:
+- Provide [feedback](https://www.surveymonkey.com/r/DQ7K7WW) on our existing dbt packages or what you'd like to see next
+- Have questions, feedback, or need help? Book a time during our office hours [using Calendly](https://calendly.com/fivetran-solutions-team/fivetran-solutions-team-office-hours) or email us at solutions@fivetran.com
 - Find all of Fivetran's pre-built dbt packages in our [dbt hub](https://hub.getdbt.com/fivetran/)
-- Learn more about Fivetran [in the Fivetran docs](https://fivetran.com/docs)
+- Learn how to orchestrate [dbt transformations with Fivetran](https://fivetran.com/docs/transformations/dbt)
+- Learn more about Fivetran overall [in our docs](https://fivetran.com/docs)
 - Check out [Fivetran's blog](https://fivetran.com/blog)
 - Learn more about dbt [in the dbt docs](https://docs.getdbt.com/docs/introduction)
 - Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers

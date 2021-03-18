@@ -93,7 +93,7 @@ models:
         description: '{{ doc("portal_id") }}'
 
       - name: ticket_pipeline_id
-        description: The ID of the tickets's pipeline.
+        description: The ID of the ticket's pipeline.
 
       - name: ticket_pipeline_stage_id
         description: The ID of the ticket's pipeline stage.

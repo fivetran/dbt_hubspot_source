@@ -10,7 +10,7 @@ with base as (
 
     select
         id as contact_id,
-        {{ fivetran_utils.remove_prefix_from_columns(columns=columns, prefix='property_', exclude=['id']) }}
+        {{ fivetran_utils.remove_prefix_from_columns(columns=columns, prefix='property_', exclude=['id', 'contact_id']) }}
     from base
 
 )

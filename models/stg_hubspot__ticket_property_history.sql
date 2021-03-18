@@ -1,9 +1,20 @@
-{{ config(enabled=enabled_vars(['hubspot_service_enabled','hubspot_ticket_enabled'])) }}
+{{ config(enabled=var('hubspot_service_enabled', False)) }}
 
 with base as (
 
     select *
     from {{ var('ticket_property_history')}}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__ticket_property_history_tmp')),
+                staging_columns=get_ticket_property_history_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -16,7 +27,7 @@ with base as (
         timestamp_instant as change_timestamp,
         value as new_value
 
-    from base
+    from macro
 
 )
 

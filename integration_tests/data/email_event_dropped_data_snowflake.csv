@@ -1,4 +1,4 @@
-id,_fivetran_synced,drop_reason,bcc,cc,drop_message,"""FROM""",reply_to,subject
+id,_fivetran_synced,drop_reason,bcc,cc,drop_message,"FROM",reply_to,subject
 c9f1ccec-8095-409e-a09e-bb7a18ffa379,2020-06-01 15:25:50.633 UTC,PREVIOUSLY_UNSUBSCRIBED_PORTAL,11FxOYiYfpMxmANj4kGJzg==,11FxOYiYfpMxmANj4kGJzg==,5oud6Os7LQSG5Na9lC7AGg==,J7VhyoE1a5qCRd8epAUNKw==,XmG5klrsApNLT5FM7b6v6Q==,P9zWRqiMgUqj03ltSN6voQ==
 41305de4-8dc0-4e8c-ba08-9db10126f474,2020-06-01 15:25:50.628 UTC,PREVIOUSLY_UNSUBSCRIBED_PORTAL,11FxOYiYfpMxmANj4kGJzg==,11FxOYiYfpMxmANj4kGJzg==,eki28QsoVX8oR/8X2SQC9A==,J7VhyoE1a5qCRd8epAUNKw==,XmG5klrsApNLT5FM7b6v6Q==,P9zWRqiMgUqj03ltSN6voQ==
 bfe2fac3-a0ca-4b35-9ccf-11b44fd8cc46,2020-01-14 18:20:29.343 UTC,PREVIOUSLY_BOUNCED,11FxOYiYfpMxmANj4kGJzg==,11FxOYiYfpMxmANj4kGJzg==,i5aaMG/rgyadpmEGqSuzIA==,rx3EVY8dC8n/ZVtgE5pYfw==,QnhKGl1qShwzOpHOzBKYCg==,yYvtQ1+v2jm+9gVHs8cT0A==

@@ -1,4 +1,6 @@
-{{ config(enabled=enabled_vars(['hubspot_service_enabled','hubspot_ticket_enabled'])) }}
+{{ config(enabled=var('hubspot_service_enabled', False)) }}
+
+{%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__ticket_tmp')) -%}
 
 with base as (
 
@@ -10,25 +12,7 @@ with base as (
 
     select
         id as ticket_id,
-        property_closed_date as closed_at,
-        property_createdate as created_at,
-        property_hubspot_owner_id as owner_id,
-        property_hs_pipeline as ticket_pipeline_id,
-        property_hs_pipeline_stage as ticket_pipeline_stage_id,
-        {{
-            fivetran_utils.remove_prefix_from_columns(
-                columns=columns,
-                prefix='property_',
-                exclude=[
-                    'id',
-                    'property_closed_date',
-                    'property_createdate',
-                    'property_hubspot_owner_id',
-                    'property_hs_pipeline',
-                    'property_hs_pipeline_stage'
-                ]
-            )
-        }}
+        {{ fivetran_utils.remove_prefix_from_columns(columns=columns, prefix='property_', exclude=['id']) }}
 
     from base
 

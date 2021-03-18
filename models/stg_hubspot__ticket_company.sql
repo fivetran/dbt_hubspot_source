@@ -1,9 +1,20 @@
-{{ config(enabled=enabled_vars(['hubspot_service_enabled','hubspot_ticket_enabled'])) }}
+{{ config(enabled=var('hubspot_service_enabled', False)) }}
 
 with base as (
 
     select *
     from {{ var('ticket_company') }}
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__ticket_company_tmp')),
+                staging_columns=get_ticket_company_columns()
+            )
+        }}
+    from base
 
 ), fields as (
 
@@ -12,7 +23,7 @@ with base as (
         ticket_id,
         company_id
 
-    from base
+    from macro
 
 )
 

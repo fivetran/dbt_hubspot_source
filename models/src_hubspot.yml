@@ -1195,7 +1195,7 @@ sources:
             description: '{{ doc("portal_id") }}'
 
           - name: property_hs_pipeline
-            description: The ID of the tickets's pipeline.
+            description: The ID of the ticket's pipeline.
 
           - name: property_hs_pipeline_stage
             description: The ID of the ticket's pipeline stage.
