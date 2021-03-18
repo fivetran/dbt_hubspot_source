@@ -1,5 +1,5 @@
 name: 'hubspot_source'
-version: '0.2.1'
+version: '0.3.0'
 config-version: 2
 require-dbt-version: [">=0.18.0", "<0.20.0"]
 
@@ -39,3 +39,10 @@ vars:
     engagement_note: "{{ source('hubspot','engagement_note') }}" 
     engagement_task: "{{ source('hubspot','engagement_task') }}" 
     owner: "{{ source('hubspot','owner') }}" 
+
+models: 
+  hubspot_source:
+    +materialized: table
+    +schema: stg_hubspot
+    tmp:
+      +materialized: view
