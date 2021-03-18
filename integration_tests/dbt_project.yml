@@ -4,6 +4,10 @@ version: '1.0.0'
 profile: 'integration_tests'
 config-version: 2
 
+models:
+  hubspot_source:
+    +schema:
+
 vars:
   hubspot_source:
     hubspot_service_enabled:    true

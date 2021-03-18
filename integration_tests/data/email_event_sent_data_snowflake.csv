@@ -1,4 +1,4 @@
-id,_fivetran_synced,bcc,cc,"FROM",reply_to,subject
+id,_fivetran_synced,bcc,cc,"""FROM""",reply_to,subject
 6a36403b-e520-4e45-8957-1dfd466facdf,2020-06-01 15:25:50.638 UTC,11FxOYiYfpMxmANj4kGJzg==,11FxOYiYfpMxmANj4kGJzg==,J7VhyoE1a5qCRd8epAUNKw==,XmG5klrsApNLT5FM7b6v6Q==,P9zWRqiMgUqj03ltSN6voQ==
 2a95aedc-908d-4361-85c9-c18ae6dc68e2,2020-06-01 15:25:50.643 UTC,11FxOYiYfpMxmANj4kGJzg==,11FxOYiYfpMxmANj4kGJzg==,J7VhyoE1a5qCRd8epAUNKw==,XmG5klrsApNLT5FM7b6v6Q==,P9zWRqiMgUqj03ltSN6voQ==
 e74e4ea3-34e2-4712-a68b-e54cd4b6cb5a,2020-06-01 15:25:50.641 UTC,11FxOYiYfpMxmANj4kGJzg==,11FxOYiYfpMxmANj4kGJzg==,J7VhyoE1a5qCRd8epAUNKw==,XmG5klrsApNLT5FM7b6v6Q==,P9zWRqiMgUqj03ltSN6voQ==
