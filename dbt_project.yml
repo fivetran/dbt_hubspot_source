@@ -1,7 +1,7 @@
 name: 'hubspot_source'
-version: '0.2.0'
+version: '0.2.1'
 config-version: 2
-require-dbt-version: [">=0.18.0", "<0.19.0"]
+require-dbt-version: [">=0.18.0", "<0.20.0"]
 
 vars:
   hubspot_source: 
@@ -12,6 +12,7 @@ vars:
     contact_list_member: "{{ source('hubspot','contact_list_member') }}" 
     contact_property_history: "{{ source('hubspot','contact_property_history') }}" 
     deal: "{{ source('hubspot','deal') }}" 
+    deal_company: "{{ source('hubspot','deal_company') }}" 
     deal_pipeline: "{{ source('hubspot','deal_pipeline') }}" 
     deal_pipeline_stage: "{{ source('hubspot','deal_pipeline_stage') }}" 
     deal_property_history: "{{ source('hubspot','deal_property_history') }}" 
@@ -38,4 +39,3 @@ vars:
     engagement_note: "{{ source('hubspot','engagement_note') }}" 
     engagement_task: "{{ source('hubspot','engagement_task') }}" 
     owner: "{{ source('hubspot','owner') }}" 
-
