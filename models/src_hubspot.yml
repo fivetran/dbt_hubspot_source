@@ -145,7 +145,7 @@ sources:
             description: A Unique ID for the specific form conversion.
 
           - name: form_id
-            description: The GUID of the form that the subission belongs to.
+            description: The GUID of the form that the submission belongs to.
 
           - name: page_url
             description: The URL that the form was submitted on, if applicable.
@@ -728,7 +728,7 @@ sources:
             description: The type of change which occurred.
 
           - name: email_subscription_id
-            description: The ID of the related email subscrption.
+            description: The ID of the related email subscription.
 
           - name: portal_id
             description: '{{ doc("portal_id") }}'
