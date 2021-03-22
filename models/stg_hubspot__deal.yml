@@ -93,7 +93,7 @@ models:
         description: The ID of the deal.
 
   - name: stg_hubspot__deal_property_history
-    description: TBD
+    description: Each record represents the details of your deal properties.
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
