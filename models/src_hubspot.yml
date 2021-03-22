@@ -272,6 +272,18 @@ sources:
 
           - name: owner_id
             description: The ID of the deal's owner. 
+
+      - name: deal_company
+        description: Each record represents a 'link' between a deal and company.
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+          - name: company_id
+            description: The ID of the company.
+            
+          - name: deal_id
+            description: The ID of the deal.
         
       - name: deal_contact
         description: Each record represents a 'link' between a deal and a contact.
