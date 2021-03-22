@@ -1,3 +1,4 @@
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_marketing_enabled', 'hubspot_contact_enabled'])) }}
 {%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')) -%}
 
 with base as (

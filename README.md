@@ -51,7 +51,10 @@ vars:
 
     # Marketing
 
-    hubspot_marketing_enabled: false                        # Disables all marketing models 
+    hubspot_marketing_enabled: false                        # Disables all marketing models
+    hubspot_contact_enabled: false                          # Disables the contact models
+    hubspot_contact_list_enabled: false                     # Disables contact list models
+    hubspot_contact_property_enabled: false                 # Disables the contact property models
     hubspot_email_event_enabled: false                      # Disables all email_event models and functionality
     hubspot_email_event_bounce_enabled: false
     hubspot_email_event_click_enabled: false
@@ -81,7 +84,17 @@ vars:
     hubspot_engagement_notes_enabled: false
     hubspot_engagement_tasks_enabled: false
 ```
+### Changing the Build Schema
+By default this package will build the HubSpot staging models within a schema titled (<target_schema> + `_stg_hubspot`) in your target database. If this is not where you would like your modeled HubSpot data to be written to, add the following configuration to your `dbt_project.yml` file:
 
+```yml
+# dbt_project.yml
+
+...
+models:
+    hubspot_source:
+      +schema: my_new_schema_name # leave blank for just the target_schema
+```
 ## Contributions
 
 Additional contributions to this package are very welcome! Please create issues
