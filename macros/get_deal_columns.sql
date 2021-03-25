@@ -9,7 +9,7 @@
     {"name": "owner_id", "datatype": dbt_utils.type_int()},
     {"name": "portal_id", "datatype": dbt_utils.type_int()},
     {"name": "property_amount", "datatype": dbt_utils.type_float()},
-    {"name": "property_amount_in_home_currency", "datatype": dbt_utils.type_float()},    
+    {"name": "property_amount_in_home_currency", "datatype": dbt_utils.type_float()},
     {"name": "property_closed_lost_reason", "datatype": dbt_utils.type_string()},
     {"name": "property_closedate", "datatype": dbt_utils.type_timestamp()},
     {"name": "property_createdate", "datatype": dbt_utils.type_timestamp()},
@@ -23,7 +23,7 @@
     {"name": "property_hs_closed_amount", "datatype": dbt_utils.type_float()},
     {"name": "property_hs_closed_amount_in_home_currency", "datatype": dbt_utils.type_float()},
     {"name": "property_hs_created_by_user_id", "datatype": dbt_utils.type_float()},
-    {"name": "property_hs_createdate", "datatype": dbt_utils.type_timestamp()},  
+    {"name": "property_hs_createdate", "datatype": dbt_utils.type_timestamp()},
     {"name": "property_hs_date_entered_closedlost", "datatype": dbt_utils.type_timestamp()},
     {"name": "property_hs_date_entered_presentationscheduled", "datatype": dbt_utils.type_timestamp()},
     {"name": "property_hs_date_entered_qualifiedtobuy", "datatype": dbt_utils.type_timestamp()},
@@ -46,8 +46,11 @@
     {"name": "property_notes_last_updated", "datatype": dbt_utils.type_timestamp()},
     {"name": "property_notes_next_activity_date", "datatype": dbt_utils.type_timestamp()},
     {"name": "property_num_contacted_notes", "datatype": dbt_utils.type_float()},
-    {"name": "property_num_notes", "datatype": dbt_utils.type_float()},
+    {"name": "property_num_notes", "datatype": dbt_utils.type_float()}
 ] %}
+
+-- add pass through columns from project var
+{{ add_pass_through_columns(columns, var('deal_pass_through_columns')) }}
 
 {{ return(columns) }}
 

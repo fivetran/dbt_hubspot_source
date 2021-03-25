@@ -1,7 +1,5 @@
 {{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_deal_enabled'])) }}
 
-{%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__deal_tmp')) -%}
-
 with base as (
 
     select *
@@ -11,7 +9,14 @@ with base as (
 ), fields as (
 
     select
-        {{ fivetran_utils.remove_prefix_from_columns(columns=columns, prefix='property_') }}
+
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__deal_tmp')),
+                staging_columns=get_deal_columns()
+            )
+        }}
+
     from base
 
 )
