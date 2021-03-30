@@ -51,8 +51,16 @@ vars:
     ticket_contact:             "{{ source('hubspot','ticket_contact') }}"
     ticket_deal:                "{{ source('hubspot','ticket_deal') }}"
     ticket_engagement:          "{{ source('hubspot','ticket_engagement') }}"
+    ticket_pipeline:            "{{ source('hubspot','ticket_pipeline') }}"
+    ticket_pipeline_stage:      "{{ source('hubspot','ticket_pipeline_stage') }}"
     ticket_property_history:    "{{ source('hubspot','ticket_property_history') }}"
     ticket:                     "{{ source('hubspot','ticket') }}"
 
     #Service Hub Enable Variables
     hubspot_service_enabled:    false
+
+    #HubSpot Passthrough Columns
+    hubspot__deal_pass_through_columns: []
+    hubspot__contact_pass_through_columns: []
+    hubspot__company_pass_through_columns: []
+    hubspot__ticket_pass_through_columns: []

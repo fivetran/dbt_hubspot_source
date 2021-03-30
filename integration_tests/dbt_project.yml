@@ -48,6 +48,8 @@ vars:
     ticket_contact:             "{{ ref('ticket_contact_data') }}"
     ticket_deal:                "{{ ref('ticket_deal_data') }}"
     ticket_engagement:          "{{ ref('ticket_engagement_data') }}"
+    ticket_pipeline:            "{{ ref('ticket_pipeline_data') }}"
+    ticket_pipeline_stage:      "{{ ref('ticket_pipeline_stage_data') }}"
     ticket_property_history:    "{{ ref('ticket_property_history_data') }}"
     ticket:                     "{{ ref('ticket_data') }}"
 
@@ -108,9 +110,11 @@ seeds:
     engagement_note_data:
       +column_types:
         engagement_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
-    ticket_company_data:
-    ticket_contact_data:
-    ticket_deal_data:
-    ticket_engagement_data:
-    ticket_property_history_data:
-    ticket_data:
+    email_event_sent_data_snowflake:
+      +enabled: "{{ true if target.type == 'snowflake' else false }}"    
+    email_event_sent_data:
+      +enabled: "{{ true if target.type != 'snowflake' else false }}"
+    email_event_dropped_data_snowflake:
+      +enabled: "{{ true if target.type == 'snowflake' else false }}"    
+    email_event_dropped_data:
+      +enabled: "{{ true if target.type != 'snowflake' else false }}"

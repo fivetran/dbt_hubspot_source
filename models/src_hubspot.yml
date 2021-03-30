@@ -145,7 +145,7 @@ sources:
             description: A Unique ID for the specific form conversion.
 
           - name: form_id
-            description: The GUID of the form that the subission belongs to.
+            description: The GUID of the form that the submission belongs to.
 
           - name: page_url
             description: The URL that the form was submitted on, if applicable.
@@ -728,7 +728,7 @@ sources:
             description: The type of change which occurred.
 
           - name: email_subscription_id
-            description: The ID of the related email subscrption.
+            description: The ID of the related email subscription.
 
           - name: portal_id
             description: '{{ doc("portal_id") }}'
@@ -1154,6 +1154,47 @@ sources:
 
           - name: engagement_id
             description: The ID of the related deal.
+      
+      - name: ticket_pipeline_stage
+        description: Each record represents a ticket pipeline stage.
+        columns:
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+          - name: active
+            description: Boolean indicating whether the pipeline stage is active.
+          - name: display_order
+            description: Used to determine the order in which the stages appear when viewed in HubSpot.
+          - name: is_closed
+            description: Boolean indicating if the pipeline stage is closed.
+          - name: label
+            description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
+          - name: pipeline_id
+            description: The ID of the pipeline.
+          - name: stage_id
+            description: The ID of the pipeline stage.
+          - name: ticket_state
+            description: State of the ticket.
+          
+      - name: ticket_pipeline
+        description: Each record represents a ticket pipeline.
+        columns:
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+          - name: active
+            description: Boolean indicating whether the pipeline is active.
+          - name: display_order
+            description: Used to determine the order in which the stages appear when viewed in HubSpot.
+          - name: label
+            description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
+          - name: object_type_id
+            description: Reference to the object type.
+          - name: pipeline_id
+            description: Reference to the pipeline.
+          
 
       - name: ticket_property_history
         description: Each record represents a change to ticket record in Hubspot.
@@ -1179,7 +1220,7 @@ sources:
           - name: value
             description: '{{ doc("history_value") }}'
 
-      - name: stg_hubspot__ticket
+      - name: ticket
         description: Each record represents a ticket in Hubspot.
         columns:
           - name: _fivetran_synced

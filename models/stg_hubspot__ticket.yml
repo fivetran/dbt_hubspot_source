@@ -112,3 +112,43 @@ models:
 
       - name: root_cause
         description: Root cause of customer contact.
+
+  - name: stg_hubspot__ticket_pipeline_stage
+    description: Each record represents a ticket pipeline stage.
+    columns:
+      - name: _fivetran_deleted
+        description: '{{ doc("_fivetran_deleted") }}'
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+      - name: is_active
+        description: Boolean indicating whether the pipeline stage is active.
+      - name: display_order
+        description: Used to determine the order in which the stages appear when viewed in HubSpot.
+      - name: is_closed
+        description: Boolean indicating if the pipeline stage is closed.
+      - name: label
+        description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
+      - name: pipeline_id
+        description: The ID of the pipeline.
+      - name: stage_id
+        description: The ID of the pipeline stage.
+      - name: ticket_state
+        description: State of the ticket.
+      
+  - name: stg_hubspot__ticket_pipeline
+    description: Each record represents a ticket pipeline.
+    columns:
+      - name: _fivetran_deleted
+        description: '{{ doc("_fivetran_deleted") }}'
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+      - name: is_active
+        description: Boolean indicating whether the pipeline is active.
+      - name: display_order
+        description: Used to determine the order in which the stages appear when viewed in HubSpot.
+      - name: label
+        description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
+      - name: object_type_id
+        description: Reference to the object type.
+      - name: pipeline_id
+        description: Reference to the pipeline.

@@ -85,6 +85,20 @@ vars:
     hubspot_service_enabled:                    true        # Enables all service models
 ```
 
+### Passthrough Columns
+Additionally, this package includes all source columns defined in the macros folder. If you want to include custom fields in this package, you can add more columns using our pass-through column variables for the `company`, `contact`, `deal`, and `ticket` tables.
+
+```yml
+# dbt_project.yml
+
+...
+vars:
+  hubspot__deal_pass_through_columns: ['property_field_to_add', 'this_other_customer_field']
+  hubspot__contact_pass_through_columns: ['wow_i_can_add_all_my_custom_fields']
+  hubspot__company_pass_through_columns: ['this_is_radical','property_hubspot_dbt_field']
+  hubspot__ticket_pass_through_columns: ['property_mmm','property_bop']
+```
+
 ### Changing the Build Schema
 By default this package will build the HubSpot staging models within a schema titled (<target_schema> + `_stg_hubspot`). If this is not where you would like your HubSpot staging models to be written to, add the following configuration to your `dbt_project.yml` file:
 

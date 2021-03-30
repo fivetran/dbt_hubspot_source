@@ -1,20 +1,43 @@
 {{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_company_enabled'])) }}
 
-{%- set columns = adapter.get_columns_in_relation(ref('stg_hubspot__company_tmp')) -%}
-
 with base as (
 
     select *
     from {{ ref('stg_hubspot__company_tmp') }}
-    where is_deleted = False
+    where not coalesce(is_deleted, false) 
+
+), macro as (
+
+    select
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__company_tmp')),
+                staging_columns=get_company_columns()
+            )
+        }}
+        --The below script allows for pass through columns.
+        {% if var('hubspot__company_pass_through_columns') %}
+        ,
+        {{ var('hubspot__company_pass_through_columns') | join (", ")}}
+
+        {% endif %}
+    from base
 
 ), fields as (
 
     select
         id as company_id, 
-        {{ fivetran_utils.remove_prefix_from_columns(columns=columns, prefix='property_', exclude=['id']) }}
-    from base
+        _fivetran_synced,
+        is_deleted
 
+        --The below script allows for pass through columns.
+        {% if var('hubspot__company_pass_through_columns') %}
+        ,
+        {{ var('hubspot__company_pass_through_columns') | join (", ")}}
+
+        {% endif %}
+    from macro
+    
 )
 
 select *
