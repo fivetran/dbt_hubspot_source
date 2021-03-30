@@ -23,13 +23,13 @@ fields as (
 final as (
     
     select 
+        cast(pipeline_id as dbt_utils.type_int()) as pipeline_id,
         _fivetran_deleted,
         _fivetran_synced,
         active as is_active,
         display_order,
         label,
-        object_type_id,
-        pipeline_id
+        object_type_id
     from fields
     where not coalesce(_fivetran_deleted, false)
 )

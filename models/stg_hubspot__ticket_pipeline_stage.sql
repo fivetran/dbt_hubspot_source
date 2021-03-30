@@ -29,7 +29,7 @@ final as (
         display_order,
         is_closed,
         label,
-        pipeline_id,
+        cast(pipeline_id as dbt_utils.type_int()) as pipeline_id,
         stage_id,
         ticket_state
     from fields
