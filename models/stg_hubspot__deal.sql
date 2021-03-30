@@ -15,12 +15,6 @@ with base as (
                 staging_columns=get_deal_columns()
             )
         }}
-        --The below script allows for pass through columns.
-        {% if var('hubspot__deal_pass_through_columns') %}
-        ,
-        {{ var('hubspot__deal_pass_through_columns') | join (", ")}}
-
-        {% endif %}
     from base
 
 ), fields as (
@@ -36,9 +30,9 @@ with base as (
 
         --The below script allows for pass through columns.
         {% if var('hubspot__deal_pass_through_columns') %}
-        ,
-        {{ var('hubspot__deal_pass_through_columns') | join (", ")}}
-
+            {% for field in var('hubspot__deal_pass_through_columns') %}
+                , {{ field.alias if field.alias else field.name }}
+            {% endfor %}
         {% endif %}
     from macro
     

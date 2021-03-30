@@ -94,7 +94,13 @@ Additionally, this package includes all source columns defined in the macros fol
 ...
 vars:
   hubspot__deal_pass_through_columns: ['property_field_to_add', 'this_other_customer_field']
+    - name:   "property_field_to_add"
+      alias:  "new_name_for_this_field"
+    - name:   "this_other_field"
+      alias:  "new_field_name"
   hubspot__contact_pass_through_columns: ['wow_i_can_add_all_my_custom_fields']
+    - name:   "wow_i_can_add_all_my_custom_fields"
+      alias:  "new_name_for_this_field"
   hubspot__company_pass_through_columns: ['this_is_radical','property_hubspot_dbt_field']
   hubspot__ticket_pass_through_columns: ['property_mmm','property_bop']
 ```

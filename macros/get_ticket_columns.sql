@@ -6,6 +6,8 @@
     {"name": "is_deleted", "datatype": "boolean"}
 ] %}
 
+{{ fivetran_utils.add_pass_through_columns(columns, var('hubspot__ticket_pass_through_columns')) }}
+
 {{ return(columns) }}
 
 {% endmacro %}
