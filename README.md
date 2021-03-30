@@ -86,23 +86,29 @@ vars:
 ```
 
 ### Passthrough Columns
-Additionally, this package includes all source columns defined in the macros folder. If you want to include custom fields in this package, you can add more columns using our pass-through column variables for the `company`, `contact`, `deal`, and `ticket` tables.
+Additionally, this package includes all source columns defined in the macros folder. If you want to include custom fields in this package, you can add more columns using our pass-through column variables for the `company`, `contact`, `deal`, and `ticket` tables. These variables allow for the pass-through fields to be aliased if desired. Use the below format for declaring the respective pass-through variables.
 
 ```yml
 # dbt_project.yml
 
 ...
 vars:
-  hubspot__deal_pass_through_columns: ['property_field_to_add', 'this_other_customer_field']
+  hubspot__deal_pass_through_columns:
     - name:   "property_field_to_add"
       alias:  "new_name_for_this_field"
     - name:   "this_other_field"
       alias:  "new_field_name"
-  hubspot__contact_pass_through_columns: ['wow_i_can_add_all_my_custom_fields']
+  hubspot__contact_pass_through_columns:
     - name:   "wow_i_can_add_all_my_custom_fields"
       alias:  "new_name_for_this_field"
   hubspot__company_pass_through_columns: ['this_is_radical','property_hubspot_dbt_field']
+    - name:   "this_is_radical"
+      alias:  "radical_field"
   hubspot__ticket_pass_through_columns: ['property_mmm','property_bop']
+    - name:   "property_mmm"
+      alias:  "mmm"
+    - name:   "property_bop"
+      alias:  "bop"
 ```
 
 ### Changing the Build Schema
