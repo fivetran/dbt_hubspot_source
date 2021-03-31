@@ -51,20 +51,24 @@ vars:
 
     # Marketing
 
-    hubspot_marketing_enabled:                  false       # Disables all marketing models
-    hubspot_email_event_enabled:                false       # Disables all email_event models and functionality
-    hubspot_email_event_bounce_enabled:         false
-    hubspot_email_event_click_enabled:          false
-    hubspot_email_event_deferred_enabled:       false
-    hubspot_email_event_delivered_enabled:      false
-    hubspot_email_event_dropped_enabled:        false
-    hubspot_email_event_forward_enabled:        false
-    hubspot_email_event_click_enabled:          false
-    hubspot_email_event_opens_enabled:          false
-    hubspot_email_event_print_enabled:          false
-    hubspot_email_event_sent_enabled:           false
-    hubspot_email_event_spam_report:            false
-    hubspot_email_event_status_change_enabled:  false
+    hubspot_marketing_enabled: false                        # Disables all marketing models
+    hubspot_contact_enabled: false                          # Disables the contact models
+    hubspot_contact_list_enabled: false                     # Disables contact list models
+    hubspot_contact_list_member_enabled: false              # Disables contact list member models
+    hubspot_contact_property_enabled: false                 # Disables the contact property models
+    hubspot_email_event_enabled: false                      # Disables all email_event models and functionality
+    hubspot_email_event_bounce_enabled: false
+    hubspot_email_event_click_enabled: false
+    hubspot_email_event_deferred_enabled: false
+    hubspot_email_event_delivered_enabled: false
+    hubspot_email_event_dropped_enabled: false
+    hubspot_email_event_forward_enabled: false
+    hubspot_email_event_click_enabled: false
+    hubspot_email_event_opens_enabled: false
+    hubspot_email_event_print_enabled: false
+    hubspot_email_event_sent_enabled: false
+    hubspot_email_event_spam_report: false
+    hubspot_email_event_status_change_enabled: false
 
     # Sales
 
@@ -84,6 +88,7 @@ vars:
     # Service
     hubspot_service_enabled:                    true        # Enables all service models
 ```
+
 
 ### Passthrough Columns
 Additionally, this package includes all source columns defined in the macros folder. If you want to include custom fields in this package, you can add more columns using our pass-through column variables for the `company`, `contact`, `deal`, and `ticket` tables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but are not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables.
@@ -124,12 +129,11 @@ By default this package will build the HubSpot staging models within a schema ti
 models:
   hubspot_source:
     +schema: my_new_staging_models_schema # leave blank for just the target_schema
-
 ```
 
 *Read more about using custom schemas in dbt [here](https://docs.getdbt.com/docs/building-a-dbt-project/building-models/using-custom-schemas).*
 
-### Contributions ###
+## Contributions
 
 Additional contributions to this package are very welcome! Please create issues
 or open PRs against `master`. Check out 

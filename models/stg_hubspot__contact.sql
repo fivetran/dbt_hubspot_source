@@ -15,7 +15,6 @@ with base as (
                 staging_columns=get_contact_columns()
             )
         }}
-
     from base
 
 ), fields as (
