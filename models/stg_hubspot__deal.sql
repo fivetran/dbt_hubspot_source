@@ -28,12 +28,9 @@ with base as (
         owner_id,
         portal_id
 
-        --The below script allows for pass through columns.
-        {% if var('hubspot__deal_pass_through_columns') %}
-            {% for field in var('hubspot__deal_pass_through_columns') %}
-                , {{ field.alias if field.alias else field.name }}
-            {% endfor %}
-        {% endif %}
+        --The below macro adds the fields defined within your hubspot__deal_pass_through_columns variable into the staging model
+        {{ fivetran_utils.fill_pass_through_columns('hubspot__deal_pass_through_columns') }}
+
     from macro
     
 )

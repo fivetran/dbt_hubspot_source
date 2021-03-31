@@ -25,12 +25,9 @@ with base as (
         _fivetran_synced,
         id as contact_id
 
-        --The below script allows for pass through columns.
-        {% if var('hubspot__contact_pass_through_columns') %}
-            {% for field in var('hubspot__contact_pass_through_columns') %}
-                , {{ field.alias if field.alias else field.name }}
-            {% endfor %}
-        {% endif %}
+        --The below macro adds the fields defined within your hubspot__contact_pass_through_columns variable into the staging model
+        {{ fivetran_utils.fill_pass_through_columns('hubspot__contact_pass_through_columns') }}
+
     from macro
     
 )
