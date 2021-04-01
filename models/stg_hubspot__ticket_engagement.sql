@@ -3,7 +3,7 @@
 with base as (
 
     select *
-    from {{ var('ticket_engagement') }}
+    from {{ ref('stg_hubspot__ticket_engagement_tmp') }}
 
 ), macro as (
 
