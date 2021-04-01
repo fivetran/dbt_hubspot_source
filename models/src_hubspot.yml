@@ -273,6 +273,28 @@ sources:
           - name: owner_id
             description: The ID of the deal's owner. 
 
+      - name: deal_stage
+        description: Each record represents a deal stage.
+        columns:
+          - name: _fivetran_active
+            description: Boolean indicating whether the deal stage is active.
+          - name: _fivetran_end
+            description: The Fivetran calculated exist time of the deal stage. 
+          - name: _fivetran_start
+            description: The date the deal stage was entered.
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+          - name: date_entered
+            description: The timestamp the deal stage was entered.
+          - name: deal_id
+            description: Reference to the deal.
+          - name: source
+            description: The relevant source of the deal stage.
+          - name: source_id
+            description: Reference to the source.
+          - name: value
+            description: The value of the deal stage. Typically the name of the stage.
+
       - name: deal_company
         description: Each record represents a 'link' between a deal and company.
         columns:
