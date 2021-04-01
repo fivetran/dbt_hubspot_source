@@ -23,7 +23,6 @@ with base as (
         deal_id,
         deal_pipeline_id,
         deal_pipeline_stage_id,
-        is_deleted,
         owner_id,
         portal_id
 
