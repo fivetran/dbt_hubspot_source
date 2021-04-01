@@ -4,8 +4,13 @@ version: '0.3.0'
 profile: 'integration_tests'
 config-version: 2
 
+models:
+  hubspot_source:
+    +schema:
+
 vars:
-  hubspot_source: 
+  hubspot_source:
+    hubspot_service_enabled:    true
     company:                    "{{ ref('company_data')}}"
     company_property_history:   "{{ ref('company_property_history_data')}}"
     contact:                    "{{ ref('contact_data')}}"
@@ -41,6 +46,14 @@ vars:
     engagement_note:            "{{ ref('engagement_note_data')}}"
     engagement_task:            "{{ ref('engagement_task_data')}}"
     owner:                      "{{ ref('owner_data')}}"
+    ticket_company:             "{{ ref('ticket_company_data') }}"
+    ticket_contact:             "{{ ref('ticket_contact_data') }}"
+    ticket_deal:                "{{ ref('ticket_deal_data') }}"
+    ticket_engagement:          "{{ ref('ticket_engagement_data') }}"
+    ticket_pipeline:            "{{ ref('ticket_pipeline_data') }}"
+    ticket_pipeline_stage:      "{{ ref('ticket_pipeline_stage_data') }}"
+    ticket_property_history:    "{{ ref('ticket_property_history_data') }}"
+    ticket:                     "{{ ref('ticket_data') }}"
 
 seeds:
   +quote_columns: "{{ true if target.type == 'redshift' else false }}"

@@ -3,8 +3,15 @@ version: '0.3.0'
 config-version: 2
 require-dbt-version: [">=0.18.0", "<0.20.0"]
 
+models:
+  hubspot_source:
+    +materialized: table
+    +schema: stg_hubspot
+    tmp:
+      +materialized: view
+
 vars:
-  hubspot_source: 
+  hubspot_source:
     company:                    "{{ source('hubspot','company') }}" 
     company_property_history:   "{{ source('hubspot','company_property_history') }}" 
     contact:                    "{{ source('hubspot','contact') }}" 
@@ -41,9 +48,21 @@ vars:
     engagement_task:            "{{ source('hubspot','engagement_task') }}" 
     owner:                      "{{ source('hubspot','owner') }}" 
 
-models: 
-  hubspot_source:
-    +materialized: table
-    +schema: stg_hubspot
-    tmp:
-      +materialized: view
+    #Service Hub Models
+    ticket_company:             "{{ source('hubspot','ticket_company') }}"
+    ticket_contact:             "{{ source('hubspot','ticket_contact') }}"
+    ticket_deal:                "{{ source('hubspot','ticket_deal') }}"
+    ticket_engagement:          "{{ source('hubspot','ticket_engagement') }}"
+    ticket_pipeline:            "{{ source('hubspot','ticket_pipeline') }}"
+    ticket_pipeline_stage:      "{{ source('hubspot','ticket_pipeline_stage') }}"
+    ticket_property_history:    "{{ source('hubspot','ticket_property_history') }}"
+    ticket:                     "{{ source('hubspot','ticket') }}"
+
+    #Service Hub Enable Variables
+    hubspot_service_enabled:    false
+
+    #HubSpot Passthrough Columns
+    hubspot__deal_pass_through_columns: []
+    hubspot__contact_pass_through_columns: []
+    hubspot__company_pass_through_columns: []
+    hubspot__ticket_pass_through_columns: []
