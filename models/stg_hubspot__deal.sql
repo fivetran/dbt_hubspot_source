@@ -20,11 +20,9 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_synced,
         deal_id,
         deal_pipeline_id,
         deal_pipeline_stage_id,
-        is_deleted,
         owner_id,
         portal_id
 
