@@ -107,7 +107,6 @@ vars:
       transform_sql:  "cast(this_other_field as string)"
   hubspot__contact_pass_through_columns:
     - name:           "wow_i_can_add_all_my_custom_fields"
-      alias:          "best_field"
   hubspot__company_pass_through_columns:
     - name:           "this_is_radical"
       alias:          "radical_field"

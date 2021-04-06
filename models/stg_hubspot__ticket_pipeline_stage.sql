@@ -30,7 +30,7 @@ final as (
         is_closed,
         label,
         cast(pipeline_id as {{ dbt_utils.type_int() }} ) as ticket_pipeline_id,
-        stage_id,
+        stage_id as ticket_pipeline_stage_id,
         ticket_state
     from fields
     where not coalesce(_fivetran_deleted, false)
