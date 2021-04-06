@@ -4,7 +4,7 @@ with base as (
 
     select *
     from {{ ref('stg_hubspot__deal_tmp') }}
-    where not coalesce(is_deleted, false) 
+    where not coalesce(is_deleted, false)
 
 ), macro as (
 
@@ -20,6 +20,7 @@ with base as (
 ), fields as (
 
     select
+        _fivetran_synced,
         deal_id,
         deal_pipeline_id,
         deal_pipeline_stage_id,
@@ -35,7 +36,7 @@ with base as (
         {{ fivetran_utils.fill_pass_through_columns('hubspot__deal_pass_through_columns') }}
 
     from macro
-    
+
 )
 
 select *
