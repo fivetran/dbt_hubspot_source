@@ -97,10 +97,10 @@ models:
 
       - name: closed_at
         description: The date the ticket was closed.
-        
+
       - name: created_at
         description: The date the ticket was created.
-      
+
       - name: first_agent_reply_at
         description: the date for the first agent reply on the ticket.
 
@@ -109,7 +109,7 @@ models:
 
       - name: ticket_pipeline_stage_id
         description: The ID of the ticket's pipeline stage.
-      
+
       - name: ticket_priority
         description: The priority of the ticket.
 
@@ -138,7 +138,7 @@ models:
         description: Used to determine the order in which the stages appear when viewed in HubSpot.
       - name: is_closed
         description: Boolean indicating if the pipeline stage is closed.
-      - name: label
+      - name: pipeline_stage_label
         description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
       - name: ticket_pipeline_id
         description: The ID of the pipeline.
@@ -146,7 +146,7 @@ models:
         description: The ID of the pipeline stage.
       - name: ticket_state
         description: State of the ticket.
-      
+
   - name: stg_hubspot__ticket_pipeline
     description: Each record represents a ticket pipeline.
     columns:
@@ -158,7 +158,7 @@ models:
         description: Boolean indicating whether the pipeline is active.
       - name: display_order
         description: Used to determine the order in which the stages appear when viewed in HubSpot.
-      - name: label
+      - name: pipeline_label
         description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
       - name: object_type_id
         description: Reference to the object type.
