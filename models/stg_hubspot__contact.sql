@@ -23,8 +23,13 @@ with base as (
         _fivetran_deleted,
         _fivetran_synced,
         property_email as email,
-        id as contact_id
-
+        id as contact_id,
+        property_company as contact_company,
+        property_firstname as first_name,
+        property_lastname as last_name,
+        property_createdate as created_at,
+        property_jobtitle as job_title,
+        property_annualrevenue as company_annual_revenue
 
         --The below macro adds the fields defined within your hubspot__contact_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__contact_pass_through_columns') }}

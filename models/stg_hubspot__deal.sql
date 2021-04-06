@@ -24,7 +24,12 @@ with base as (
         deal_pipeline_id,
         deal_pipeline_stage_id,
         owner_id,
-        portal_id
+        portal_id,
+        property_dealname as deal_name,
+        property_description as description,
+        property_amount as amount,
+        property_closedate as closed_at,
+        property_createdate as created_at
 
         --The below macro adds the fields defined within your hubspot__deal_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__deal_pass_through_columns') }}

@@ -86,32 +86,44 @@ models:
           - unique
           - not_null
 
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+
       - name: is_deleted
         description: Whether the record was deleted.
 
       - name: portal_id
         description: '{{ doc("portal_id") }}'
 
+      - name: closed_at
+        description: The date the ticket was closed.
+        
+      - name: created_at
+        description: The date the ticket was created.
+      
+      - name: first_agent_reply_at
+        description: the date for the first agent reply on the ticket.
+
       - name: ticket_pipeline_id
         description: The ID of the ticket's pipeline.
 
       - name: ticket_pipeline_stage_id
         description: The ID of the ticket's pipeline stage.
+      
+      - name: ticket_priority
+        description: The priority of the ticket.
+
+      - name: ticket_category
+        description: The category of the ticket.
 
       - name: owner_id
         description: The ID of the deal's owner.
 
-      - name: subject
+      - name: ticket_subject
         description: Short summary of ticket.
 
-      - name: content
+      - name: ticket_content
         description: Text in body of the ticket.
-
-      - name: reason_for_contact
-        description: Reason for customer contact.
-
-      - name: root_cause
-        description: Root cause of customer contact.
 
   - name: stg_hubspot__ticket_pipeline_stage
     description: Each record represents a ticket pipeline stage.
@@ -128,7 +140,7 @@ models:
         description: Boolean indicating if the pipeline stage is closed.
       - name: label
         description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
-      - name: pipeline_id
+      - name: ticket_pipeline_id
         description: The ID of the pipeline.
       - name: stage_id
         description: The ID of the pipeline stage.
@@ -150,5 +162,5 @@ models:
         description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
       - name: object_type_id
         description: Reference to the object type.
-      - name: pipeline_id
+      - name: ticket_pipeline_id
         description: Reference to the pipeline.

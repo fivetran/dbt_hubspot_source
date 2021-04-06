@@ -21,7 +21,17 @@ with base as (
 
     select
         id as company_id, 
-        _fivetran_synced
+        _fivetran_synced,
+        property_name as company_name,
+        property_description as description,
+        property_createdate as created_at,
+        property_industry as industry,
+        property_address as street_address,
+        property_address_2 as street_address_2,
+        property_city as city,
+        property_state as state,
+        property_country as country,
+        property_annualrevenue as company_annual_revenue
         
         --The below macro adds the fields defined within your hubspot__ticket_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__company_pass_through_columns') }}
