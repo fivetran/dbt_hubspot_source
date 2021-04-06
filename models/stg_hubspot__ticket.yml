@@ -142,7 +142,7 @@ models:
         description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
       - name: ticket_pipeline_id
         description: The ID of the pipeline.
-      - name: stage_id
+      - name: ticket_pipeline_stage_id
         description: The ID of the pipeline stage.
       - name: ticket_state
         description: State of the ticket.
