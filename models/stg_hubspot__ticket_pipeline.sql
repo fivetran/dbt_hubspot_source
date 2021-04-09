@@ -2,7 +2,7 @@
 
 with base as (
 
-    select * 
+    select *
     from {{ ref('stg_hubspot__ticket_pipeline_tmp') }}
 
 ),
@@ -16,23 +16,23 @@ fields as (
                 staging_columns=get_ticket_pipeline_columns()
             )
         }}
-        
+
     from base
 ),
 
 final as (
-    
-    select 
-        cast(pipeline_id as {{ dbt_utils.type_int() }} ) as pipeline_id,
+
+    select
+        cast(pipeline_id as {{ dbt_utils.type_int() }} ) as ticket_pipeline_id,
         _fivetran_deleted,
         _fivetran_synced,
         active as is_active,
         display_order,
-        label,
+        label as pipeline_label,
         object_type_id
     from fields
     where not coalesce(_fivetran_deleted, false)
 )
 
-select * 
+select *
 from final

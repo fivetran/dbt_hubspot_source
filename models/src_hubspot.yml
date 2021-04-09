@@ -95,6 +95,36 @@ sources:
 
           - name: is_deleted
             description: '{{ doc("is_deleted") }}'
+          
+          - name: property_name
+            description: The name of the company.
+
+          - name: property_description
+            description: A short statement about the company's mission and goals.
+
+          - name: property_createdate
+            description: The date the company was added to your account.
+
+          - name: property_industry
+            description: The type of business the company performs.
+
+          - name: property_address
+            description: The street address of the company.
+
+          - name: property_address_2
+            description: Additional address information for the company.
+
+          - name: property_city
+            description: The city where the company is located.
+
+          - name: property_state
+            description: The state where the company is located.
+
+          - name: property_country
+            description: The country where the company is located.
+
+          - name: property_annualrevenue
+            description: The actual or estimated annual revenue of the company.
 
       - name: company_property_history
         description: Each record represents a change to company record in Hubspot.
@@ -131,6 +161,27 @@ sources:
 
           - name: property_email
             description: The email address of the contact.
+
+          - name: property_company
+            description: The name of the contact's company
+
+          - name: property_firstname
+            description: The contact's first name.
+
+          - name: property_lastname
+            description: The contact's last name.
+
+          - name: property_email
+            description: The contact's email.
+
+          - name: property_createdate
+            description: The date that the contact was created in your HubSpot account.
+
+          - name: property_jobtitle
+            description: The contact's job title.
+
+          - name: property_annualrevenue
+            description: The contact's annual company revenue.
 
       - name: contact_form_submission
         description: TBD
@@ -272,6 +323,21 @@ sources:
 
           - name: owner_id
             description: The ID of the deal's owner. 
+
+          - name: property_dealname
+            description: The name you have given this deal.
+
+          - name: property_description
+            description: A brief description of the deal.
+
+          - name: property_amount
+            description: The total value of the deal in the deal's currency.
+
+          - name: property_closedate
+            description: The day the deal is expected to close, or was closed.
+
+          - name: property_createdate
+            description: The date the deal was created. This property is set automatically by HubSpot.
 
       - name: deal_stage
         description: Each record represents a deal stage.
@@ -1269,11 +1335,26 @@ sources:
           - name: portal_id
             description: '{{ doc("portal_id") }}'
 
+          - name: property_closed_date
+            description: The date the ticket was closed.
+            
+          - name: property_createdate
+            description: The date the ticket was created.
+          
+          - name: property_first_agent_reply_date
+            description: the date for the first agent reply on the ticket.
+
           - name: property_hs_pipeline
             description: The ID of the ticket's pipeline.
 
           - name: property_hs_pipeline_stage
             description: The ID of the ticket's pipeline stage.
+          
+          - name: property_hs_ticket_priority
+            description: The priority of the ticket.
+
+          - name: property_hs_ticket_category
+            description: The category of the ticket.
 
           - name: property_hubspot_owner_id
             description: The ID of the deal's owner.
@@ -1284,8 +1365,3 @@ sources:
           - name: property_content
             description: Text in body of the ticket.
 
-          - name: property_reason_for_contact
-            description: Reason for customer contact.
-
-          - name: property_root_cause
-            description: Root cause of customer contact.

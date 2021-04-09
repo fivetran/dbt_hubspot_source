@@ -104,4 +104,24 @@ models:
 
       - name: email
         description: The email address of the contact.
-        
+
+      - name: contact_company
+        description: The name of the contact's company
+
+      - name: first_name
+        description: The contact's first name.
+
+      - name: last_name
+        description: The contact's last name.
+
+      - name: email
+        description: The contact's email.
+
+      - name: created_at
+        description: The date that the contact was created in your HubSpot account.
+
+      - name: job_title
+        description: The contact's job title.
+
+      - name: company_annual_revenue
+        description: The contact's annual company revenue.
