@@ -217,7 +217,7 @@ sources:
             description: '{{ doc("_fivetran_deleted") }}'
 
           - name: _fivetran_synced
-            description: '{{ doc("_fivetran_deleted") }}'
+            description: '{{ doc("_fivetran_synced") }}'
 
           - name: created_at
             description: A timestamp of the time the list was created.
