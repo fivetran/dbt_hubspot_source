@@ -21,7 +21,7 @@ with base as (
     select
         _fivetran_synced,
         body as task_note,
-        completion_date as completion_timestamp,
+        {{ dbt_utils.safe_cast('completion_date', 'timestamp') }} as completion_timestamp,
         engagement_id,
         for_object_type,
         is_all_day,
