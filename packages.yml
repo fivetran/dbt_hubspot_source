@@ -1,6 +1,3 @@
 packages:
-  - package: fishtown-analytics/dbt_utils
-    version: [">=0.6.0", "<0.7.0"]
-
-  - git: "https://github.com/fivetran/dbt_fivetran_utils.git"
-    warn-unpinned: false
+- package: fivetran/fivetran_utils
+  version: [">=0.1.0", "<0.2.0"]
