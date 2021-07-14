@@ -28,7 +28,7 @@ Include in `packages.yml`
 
 ```yaml
 packages:
-  - package: fivetran/dbt_hubspot_source
+  - package: fivetran/hubspot_source
     version: [">=0.4.0", "<0.5.0"]
 ```
 
