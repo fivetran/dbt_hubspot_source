@@ -1,3 +1,4 @@
+[![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![dbt logo and version](https://img.shields.io/static/v1?logo=dbt&label=dbt-version&message=0.20.x&color=orange)
 # Hubspot (Source)
 
 This package models Hubspot data from [Fivetran's connector](https://fivetran.com/docs/applications/hubspot). It uses data in the format described by the [marketing](https://fivetran.com/docs/applications/hubspot#schemainformation), [sales](https://fivetran.com/docs/applications/hubspot#crmandsaleshubschema) and [service](https://fivetran.com/docs/applications/hubspot#servicehubschema) ERDs.
