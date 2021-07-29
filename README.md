@@ -1,3 +1,4 @@
+[![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![dbt logo and version](https://img.shields.io/static/v1?logo=dbt&label=dbt-version&message=0.20.x&color=orange)
 # Hubspot (Source)
 
 This package models Hubspot data from [Fivetran's connector](https://fivetran.com/docs/applications/hubspot). It uses data in the format described by the [marketing](https://fivetran.com/docs/applications/hubspot#schemainformation), [sales](https://fivetran.com/docs/applications/hubspot#crmandsaleshubschema) and [service](https://fivetran.com/docs/applications/hubspot#servicehubschema) ERDs.
@@ -128,6 +129,16 @@ vars:
     - name:           "property_bop"
       alias:          "bop"
 
+```
+
+**Alternatively**, if you would like to simply pass through **all columns** in the above four tables, add the following configuration to your dbt_project.yml. Note that this will override any `hubspot__[table_name]_pass_through_columns` variables.
+
+```yml
+# dbt_project.yml
+
+...
+vars:
+  hubspot__pass_through_all_columns: true # default is false
 ```
 
 ### Changing the Build Schema

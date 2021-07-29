@@ -21,6 +21,18 @@ with base as (
 
     select
         id as ticket_id,
+
+{% if var('hubspot__pass_through_all_columns', false) %}
+        -- just pass everything through
+        {{ 
+            fivetran_utils.remove_prefix_from_columns(
+                columns=adapter.get_columns_in_relation(ref('stg_hubspot__ticket_tmp')), 
+                prefix='property_', exclude=['id']) 
+        }}
+    from base
+
+{% else %}
+        -- just default columns + explicitly configured passthrough columns
         _fivetran_synced,
         is_deleted,
         property_closed_date as closed_at,
@@ -38,7 +50,8 @@ with base as (
         {{ fivetran_utils.fill_pass_through_columns('hubspot__ticket_pass_through_columns') }}
         
     from macro
-    
+{% endif %}
+
 )
 
 select *

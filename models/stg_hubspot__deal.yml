@@ -68,9 +68,6 @@ models:
           - not_null
           - unique
 
-      - name: is_deleted
-        description: Whether the record was deleted.
-
       - name: portal_id
         description: '{{ doc("portal_id") }}'
 

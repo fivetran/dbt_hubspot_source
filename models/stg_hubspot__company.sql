@@ -20,7 +20,21 @@ with base as (
 ), fields as (
 
     select
-        id as company_id, 
+        id as company_id,
+
+{% if var('hubspot__pass_through_all_columns', false) %}
+        -- just pass everything through
+        {{ 
+            fivetran_utils.remove_prefix_from_columns(
+                columns=adapter.get_columns_in_relation(ref('stg_hubspot__company_tmp')), 
+                prefix='property_', exclude=['id']
+            ) 
+        }}
+
+    from base
+
+{% else %}
+        -- just default columns + explicitly configured passthrough columns
         _fivetran_synced,
         property_name as company_name,
         property_description as description,
@@ -37,7 +51,8 @@ with base as (
         {{ fivetran_utils.fill_pass_through_columns('hubspot__company_pass_through_columns') }}
         
     from macro
-    
+
+{% endif %}
 )
 
 select *

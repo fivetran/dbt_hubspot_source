@@ -34,12 +34,6 @@ models:
         tests:
           - unique
           - not_null
-      
-      - name: portal_id
-        description: '{{ doc("portal_id") }}'
-      
-      - name: is_deleted
-        description: '{{ doc("is_deleted") }}'
 
       - name: company_name
         description: The name of the company.

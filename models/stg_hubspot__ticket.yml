@@ -86,14 +86,8 @@ models:
           - unique
           - not_null
 
-      - name: _fivetran_synced
-        description: '{{ doc("_fivetran_synced") }}'
-
       - name: is_deleted
         description: Whether the record was deleted.
-
-      - name: portal_id
-        description: '{{ doc("portal_id") }}'
 
       - name: closed_at
         description: The date the ticket was closed.
