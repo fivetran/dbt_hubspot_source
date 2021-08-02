@@ -92,7 +92,7 @@ models:
 
       - name: new_value
         description: '{{ doc("history_value") }}'
-
+  
   - name: stg_hubspot__contact
     description: Each record represents a contact in Hubspot.
     columns:
