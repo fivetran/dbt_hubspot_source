@@ -61,6 +61,8 @@ vars:
 
     #Service Hub Enable Variables
     hubspot_service_enabled:              false
+
+    #Contact Merge Audit Enable Variable
     hubspot_contact_merge_audit_enabled:  false
 
     #HubSpot Passthrough Columns
