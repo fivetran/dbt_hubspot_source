@@ -60,7 +60,8 @@ vars:
     ticket:                     "{{ source('hubspot','ticket') }}"
 
     #Service Hub Enable Variables
-    hubspot_service_enabled:    false
+    hubspot_service_enabled:              false
+    hubspot_contact_merge_audit_enabled:  false
 
     #HubSpot Passthrough Columns
     hubspot__deal_pass_through_columns: []
