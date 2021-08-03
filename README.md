@@ -20,9 +20,6 @@ This package contains staging models, designed to work simultaneously with our [
 * ID primary keys are prefixed with the name of the table. For example, the user table's ID column is renamed user_id.
 
 ## Installation Instructions
-
-`dbt_hubspot_source` currently supports `dbt 0.20.x`.
-
 Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 
 Include in `packages.yml`
