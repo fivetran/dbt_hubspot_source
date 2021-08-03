@@ -25,7 +25,11 @@ with base as (
         first_name,
         last_name,
         num_properties_moved,
-        timestamp,
+        {% if target.type == 'redshift' %}
+        "timestamp"
+        {% else %} 
+        timestamp {% endif %}
+        as timestamp_at,
         user_id,
         vid_to_merge,
         _fivetran_synced

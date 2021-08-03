@@ -92,7 +92,31 @@ models:
 
       - name: new_value
         description: '{{ doc("history_value") }}'
-  
+
+  - name: stg_hubspot__contact_merge_audit
+    description: Each record contains a contact merge event and the contacts effected by the merge.
+    columns:
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+      - name: canonical_vid
+        description: The contact ID of the contact which the vid_to_merge contact was merged into.
+      - name: contact_id
+        description: The ID of the contact.
+      - name: entity_id
+        description: The ID of the related entity.
+      - name: first_name
+        description: The contacts first name.
+      - name: last_name
+        description: The contacts last name.
+      - name: num_properties_moved
+        description: The number of properties which were removed from the merged contact.
+      - name: timestamp_at
+        description: Timestamp of when the contacts were merged.
+      - name: user_id
+        description: The ID of the user.
+      - name: vid_to_merge
+        description: The ID of the contact which was merged.
+
   - name: stg_hubspot__contact
     description: Each record represents a contact in Hubspot.
     columns:
