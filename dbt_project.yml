@@ -1,5 +1,5 @@
 name: 'hubspot_source'
-version: '0.4.1'
+version: '0.4.2'
 config-version: 2
 require-dbt-version: ">=0.20.0"
 
@@ -15,6 +15,7 @@ vars:
     company:                    "{{ source('hubspot','company') }}" 
     company_property_history:   "{{ source('hubspot','company_property_history') }}" 
     contact:                    "{{ source('hubspot','contact') }}" 
+    contact_merge_audit:        "{{ source('hubspot','contact_merge_audit') }}"
     contact_list:               "{{ source('hubspot','contact_list') }}" 
     contact_list_member:        "{{ source('hubspot','contact_list_member') }}" 
     contact_property_history:   "{{ source('hubspot','contact_property_history') }}" 
@@ -59,7 +60,10 @@ vars:
     ticket:                     "{{ source('hubspot','ticket') }}"
 
     #Service Hub Enable Variables
-    hubspot_service_enabled:    false
+    hubspot_service_enabled:              false
+
+    #Contact Merge Audit Enable Variable
+    hubspot_contact_merge_audit_enabled:  false
 
     #HubSpot Passthrough Columns
     hubspot__deal_pass_through_columns: []
