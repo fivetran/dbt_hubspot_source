@@ -105,9 +105,9 @@ models:
       - name: entity_id
         description: The ID of the related entity.
       - name: first_name
-        description: The contacts first name.
+        description: The contact's first name.
       - name: last_name
-        description: The contacts last name.
+        description: The contact's last name.
       - name: num_properties_moved
         description: The number of properties which were removed from the merged contact.
       - name: timestamp_at
