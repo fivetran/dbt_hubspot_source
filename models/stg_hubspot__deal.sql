@@ -46,7 +46,13 @@ with base as (
 
         --The below macro adds the fields defined within your hubspot__deal_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__deal_pass_through_columns') }}
-
+        
+        {% if var('hubspot__deal_calculated_field', none) %}
+            {% for field in var('hubspot__deal_calculated_field') %}
+                , {{ field.transform_sql }} as {{ field.name }} 
+            {% endfor %}
+        {% endif %}
+        
     from macro
 {% endif %}
 

@@ -139,7 +139,14 @@ vars:
 vars:
   hubspot__pass_through_all_columns: true # default is false
 ```
-
+### Calculated Fields
+TBD
+```yml
+vars:
+  hubspot__deal_calculated_field:
+    - name:          "calculated_field_name"
+      transform_sql:  "field_in_select_statement * other_field_in_select_statement"
+```
 ### Changing the Build Schema
 By default this package will build the HubSpot staging models within a schema titled (<target_schema> + `_stg_hubspot`). If this is not where you would like your HubSpot staging models to be written to, add the following configuration to your `dbt_project.yml` file:
 
