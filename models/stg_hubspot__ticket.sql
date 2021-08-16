@@ -48,6 +48,9 @@ with base as (
 
         --The below macro adds the fields defined within your hubspot__ticket_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__ticket_pass_through_columns') }}
+
+        -- The below macro add the ability to create calculated fields using the hubspot__ticket_calculated_fields variable.
+        {{ fivetran_utils.calculated_fields('hubspot__ticket_calculated_fields') -%}
         
     from macro
 {% endif %}
