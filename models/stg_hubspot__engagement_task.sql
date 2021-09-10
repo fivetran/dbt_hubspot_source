@@ -14,6 +14,7 @@ with base as (
                 staging_columns=get_engagement_task_columns()
             )
         }}
+        , cast(completion_date as {{dbt_utils.type_string() }}) as completion_timestamp
     from base
 
 ), fields as (
@@ -21,7 +22,7 @@ with base as (
     select
         _fivetran_synced,
         body as task_note,
-        {{ dbt_utils.safe_cast('completion_date', 'timestamp') }} as completion_timestamp,
+        {{ dbt_utils.safe_cast('completion_timestamp', 'timestamp') }} as completion_timestamp,
         engagement_id,
         for_object_type,
         is_all_day,
