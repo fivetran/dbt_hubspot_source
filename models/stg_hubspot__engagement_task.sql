@@ -14,15 +14,25 @@ with base as (
                 staging_columns=get_engagement_task_columns()
             )
         }}
-        , cast(completion_date as {{dbt_utils.type_string() }}) as completion_timestamp
     from base
+
+{% if execute -%}
+    {% set results = run_query('select distinct completion_date from ' ~ ref('stg_hubspot__engagement_task_tmp') ~ ' where completion_date is not null limit 1') %}
+    {% set results_list = results.columns[0].values() | string %}
+{% endif -%}
 
 ), fields as (
 
     select
         _fivetran_synced,
         body as task_note,
-        {{ dbt_utils.safe_cast('completion_timestamp', 'timestamp') }} as completion_timestamp,
+
+        {% if 'tzinfo=<UTC>' not in results_list %}
+            {{ dbt_utils.safe_cast('completion_date', 'timestamp') }} as completion_timestamp,
+        {% else %}
+            completion_date as completion_timestamp,
+        {% endif %}
+
         engagement_id,
         for_object_type,
         is_all_day,
@@ -37,5 +47,3 @@ with base as (
 
 select *
 from fields
-
-
