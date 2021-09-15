@@ -16,6 +16,14 @@ with base as (
         }}
     from base
 
+/*
+Some users have experienced the `completion_date` field being synced as a string rather than a timestamp.
+To address this, we use the below run_query command to query a sinlge record from the engagement_task tmp table
+and then assess in a conditional within the fields cte if the engagement_task field is indeed a UTC timestamp or not.
+
+If the field is not a timestamp, then we safe_cast so downstream models do not fail. Otherwise, we do nothing to the 
+field.
+*/
 {% if execute -%}
     {% set results = run_query('select distinct completion_date from ' ~ ref('stg_hubspot__engagement_task_tmp') ~ ' where completion_date is not null limit 1') %}
     {% set results_list = results.columns[0].values() | string %}
