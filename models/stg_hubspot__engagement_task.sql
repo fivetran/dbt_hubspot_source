@@ -25,7 +25,7 @@ If the field is not a timestamp, then we safe_cast so downstream models do not f
 field.
 */
 {% if execute -%}
-    {% set results = run_query('select distinct completion_date from ' ~ ref('stg_hubspot__engagement_task_tmp') ~ ' where completion_date is not null limit 1') %}
+    {% set results = run_query('select completion_date from ' ~ ref('stg_hubspot__engagement_task_tmp') ~ ' where completion_date is not null limit 1') %}
     {% set results_list = results.columns[0].values() | string %}
 {% endif -%}
 
