@@ -103,7 +103,7 @@ vars:
 
 
 ### Passthrough Columns
-Additionally, this package includes all source columns defined in the macros folder. We highly recommend including custom fields in this package as models now only bring in a few fields for the `company`, `contact`, `deal`, and `ticket` tables. You can add more columns using our pass-through column variables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables.
+Additionally, this package includes all source columns defined in the macros folder. Models by default only bring in a few fields for the `company`, `contact`, `deal`, and `ticket` tables. You can add more columns using our pass-through column variables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables.
 
 ```yml
 # dbt_project.yml
@@ -138,6 +138,24 @@ vars:
 ...
 vars:
   hubspot__pass_through_all_columns: true # default is false
+```
+
+### Calculated Fields
+This package also provides the ability to pass calculated fields through to the `company`, `contact`, `deal`, and `ticket` staging models. If you would like to add a calculated field to any of the mentioned staging models, you may configure the respective `hubspot__[table_name]_calculated_fields` variables with the `name` of the field you would like to create, and the `transform_sql` which will be the actual calculation that will make up the calculated field.
+```yml
+vars:
+  hubspot__deal_calculated_fields:
+    - name:          "deal_calculated_field"
+      transform_sql: "existing_field * other_field"
+  hubspot__company_calculated_fields:
+    - name:          "company_calculated_field"
+      transform_sql: "concat(name_field, '_company_name')"
+  hubspot__contact_calculated_fields:
+    - name:          "contact_calculated_field"
+      transform_sql: "contact_revenue - contact_expense"
+  hubspot__ticket_calculated_fields:
+    - name:          "ticket_calculated_field"
+      transform_sql: "total_field / other_total_field"
 ```
 
 ### Changing the Build Schema
