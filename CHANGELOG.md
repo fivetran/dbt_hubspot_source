@@ -1,3 +1,7 @@
+# dbt_hubspot_source v0.5.1
+
+### Updates
+- Updating `README.md` to reflect global variable references in `dbt_project.yml` to be consistent with `dbt_hubspot` package.
 # dbt_hubspot_source v0.5.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
