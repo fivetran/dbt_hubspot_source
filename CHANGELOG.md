@@ -1,3 +1,8 @@
+# dbt_hubspot_source v0.5.2
+
+### Updates
+- Removing unused models `stg_hubspot__engagement_email_cc` and `stg_hubspot__engagement_email_to` from `stg_hubspot__engagement.yml` 
+
 # dbt_hubspot_source v0.5.1
 
 ### Updates
