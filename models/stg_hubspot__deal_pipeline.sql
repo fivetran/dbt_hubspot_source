@@ -25,7 +25,7 @@ with base as (
         active as is_active,
         display_order,
         label as pipeline_label,
-        pipeline_id as deal_pipeline_id
+        cast(pipeline_id as {{ dbt_utils.type_int() }}) as deal_pipeline_id
     from macro
     
 )

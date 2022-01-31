@@ -1,6 +1,11 @@
+# dbt_hubspot_source v0.5.3
+
+## Under the Hood
+- The `deal_pipeline_stage_id` field within the stg_hubspot__deal_pipeline_stage model and `deal_pipeline_id` within the stg_hubspot__deal_pipeline models have been cast using the `dbt_utils.type_int()` macro. This ensures joins in downstream models are accurate across warehouses.
+
 # dbt_hubspot_source v0.5.2
 
-### Updates
+## Updates
 - Removing unused models `stg_hubspot__engagement_email_cc` and `stg_hubspot__engagement_email_to` from `stg_hubspot__engagement.yml` ([#56](https://github.com/fivetran/dbt_hubspot_source/pull/56))
 
 ## Contributors
@@ -8,7 +13,7 @@
 
 # dbt_hubspot_source v0.5.1
 
-### Updates
+## Updates
 - Updating `README.md` to reflect global variable references in `dbt_project.yml` to be consistent with `dbt_hubspot` package.
 # dbt_hubspot_source v0.5.0
 🎉 dbt v1.0.0 Compatibility 🎉
