@@ -1,7 +1,7 @@
 # dbt_hubspot_source v0.5.3
 
 ## Under the Hood
-- The `deal_pipeline_stage_id` field within the stg_hubspot__deal_pipeline_stage model and `deal_pipeline_id` within the stg_hubspot__deal_pipeline models have been cast using the `dbt_utils.type_int()` macro. This ensures joins in downstream models are accurate across warehouses. ([#57](https://github.com/fivetran/dbt_hubspot_source/pull/57))
+- Cast the `deal_pipeline_stage_id` and `deal_pipeline_id` fields within the stg_hubspot__deal_pipeline, stg_hubspot__deal_pipeline_stage, stg_hubspot__deal using the `dbt_utils.type_string()` macro. This ensures joins in downstream models are accurate across warehouses. ([#57](https://github.com/fivetran/dbt_hubspot_source/pull/57))
 
 # dbt_hubspot_source v0.5.2
 
