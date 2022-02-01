@@ -34,8 +34,8 @@ with base as (
         -- just default columns + explicitly configured passthrough columns
         _fivetran_synced,
         deal_id,
-        deal_pipeline_id,
-        deal_pipeline_stage_id,
+        cast(deal_pipeline_id as {{ dbt_utils.type_string() }}) as deal_pipeline_id,
+        cast(deal_pipeline_stage_id as {{ dbt_utils.type_string() }}) as deal_pipeline_stage_id,
         owner_id,
         portal_id,
         property_dealname as deal_name,
