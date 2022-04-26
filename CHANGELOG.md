@@ -1,6 +1,7 @@
 # dbt_hubspot_source v0.5.4
 ## Fixes
 - Updated the README to reference the proper `hubspot_email_event_spam_report_enabled` variable name. ([#59](https://github.com/fivetran/dbt_hubspot_source/pull/59))
+- Adds missing is_deleted field when using custom columns([#61](https://github.com/fivetran/dbt_hubspot_source/pull/61))
 
 ## Contributors
 - [@cmcau](https://github.com/cmcau) ([#59](https://github.com/fivetran/dbt_hubspot_source/pull/59))
