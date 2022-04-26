@@ -36,6 +36,7 @@ with base as (
 {% else %}
         -- just default columns + explicitly configured passthrough columns
         _fivetran_synced,
+        is_deleted,
         property_name as company_name,
         property_description as description,
         property_createdate as created_at,
