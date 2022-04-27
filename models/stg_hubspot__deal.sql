@@ -33,6 +33,7 @@ with base as (
 {% else %}
         -- just default columns + explicitly configured passthrough columns
         _fivetran_synced,
+        is_deleted,
         deal_id,
         cast(deal_pipeline_id as {{ dbt_utils.type_string() }}) as deal_pipeline_id,
         cast(deal_pipeline_stage_id as {{ dbt_utils.type_string() }}) as deal_pipeline_stage_id,
