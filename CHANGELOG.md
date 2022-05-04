@@ -1,3 +1,16 @@
+# dbt_hubspot_source v0.5.5
+## Fixes
+- Adds missing `stg_hubspot__deal_contact` model.
+
+## Contributors
+- [@dietofworms](https://github.com/dietofworms)
+
+# dbt_hubspot_source v0.5.3
+
+## Under the Hood
+- Cast the `deal_pipeline_stage_id` and `deal_pipeline_id` fields within the stg_hubspot__deal_pipeline, stg_hubspot__deal_pipeline_stage, stg_hubspot__deal using the `dbt_utils.type_string()` macro. This ensures joins in downstream models are accurate across warehouses. ([#57](https://github.com/fivetran/dbt_hubspot_source/pull/57))
+
+
 # dbt_hubspot_source v0.5.4
 ## Fixes
 - Updated the README to reference the proper `hubspot_email_event_spam_report_enabled` variable name. ([#59](https://github.com/fivetran/dbt_hubspot_source/pull/59))
