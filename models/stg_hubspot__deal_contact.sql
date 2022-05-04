@@ -11,7 +11,7 @@ with base as (
         {{
             fivetran_utils.fill_staging_columns(
                 source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__deal_contact_tmp')),
-                staging_columns=get_deal_company_columns()
+                staging_columns=get_deal_contact_columns()
             )
         }}
     from base
