@@ -1,3 +1,10 @@
+# dbt_hubspot_source v0.5.5
+## Fixes
+- Adds missing `stg_hubspot__deal_contact` model. ([#64](https://github.com/fivetran/dbt_hubspot_source/pull/64))
+
+## Contributors
+- [@dietofworms](https://github.com/dietofworms) ([#64](https://github.com/fivetran/dbt_hubspot_source/pull/64))
+
 # dbt_hubspot_source v0.5.4
 ## Fixes
 - Updated the README to reference the proper `hubspot_email_event_spam_report_enabled` variable name. ([#59](https://github.com/fivetran/dbt_hubspot_source/pull/59))

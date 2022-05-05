@@ -1,5 +1,5 @@
 name: 'hubspot_source'
-version: '0.5.4'
+version: '0.5.5'
 config-version: 2
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
@@ -22,6 +22,7 @@ vars:
     deal: "{{ source('hubspot','deal') }}"
     deal_stage: "{{ source('hubspot','deal_stage') }}"
     deal_company: "{{ source('hubspot','deal_company') }}"
+    deal_contact: "{{ source('hubspot','deal_contact') }}"
     deal_pipeline: "{{ source('hubspot','deal_pipeline') }}"
     deal_pipeline_stage: "{{ source('hubspot','deal_pipeline_stage') }}"
     deal_property_history: "{{ source('hubspot','deal_property_history') }}"
