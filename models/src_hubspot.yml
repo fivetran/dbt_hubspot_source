@@ -8,6 +8,7 @@ sources:
     loaded_at_field: _fivetran_synced
     tables:
       - name: calendar_event
+        identifier: "{{ var('hubspot_calendar_event_identifier', 'calendar_event')}}"
         description: Each record represents a calendar event.
         columns:
           - name: _fivetran_synced
@@ -85,6 +86,7 @@ sources:
             description: Public URL of content item.
 
       - name: company
+        identifier: "{{ var('hubspot_company_identifier', 'company')}}"
         description: Each record represents a company in Hubspot.
         columns:
           - name: id
@@ -127,6 +129,7 @@ sources:
             description: The actual or estimated annual revenue of the company.
 
       - name: company_property_history
+        identifier: "{{ var('hubspot_company_property_history_identifier', 'company_property_history')}}"
         description: Each record represents a change to company record in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -151,6 +154,7 @@ sources:
             description: '{{ doc("history_value") }}'
 
       - name: contact_merge_audit
+        identifier: "{{ var('hubspot_contact_merge_audit_identifier', 'contact_merge_audit')}}"
         description: Each record contains a contact merge event and the contacts effected by the merge.
         columns:
           - name: _fivetran_synced
@@ -175,6 +179,7 @@ sources:
             description: The ID of the contact which was merged.
 
       - name: contact
+        identifier: "{{ var('hubspot_contact_identifier', 'contact')}}"
         freshness:
           warn_after: {count: 84, period: hour}
           error_after: {count: 168, period: hour}
@@ -210,7 +215,8 @@ sources:
             description: The contact's annual company revenue.
 
       - name: contact_form_submission
-        description: TBD
+        identifier: "{{ var('hubspot_contact_form_submission_identifier', 'contact_form_submission')}}"
+        description: Table containing contact form submission information
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -237,6 +243,7 @@ sources:
             description: The title of the page that the form was submitted on. This will default to the name of the form if no title is provided.
 
       - name: contact_list
+        identifier: "{{ var('hubspot_contact_list_identifier', 'contact_list')}}"
         description: Each record represents a contact list in Hubspot.
         columns:
           - name: _fivetran_deleted
@@ -284,6 +291,7 @@ sources:
             description: A timestamp of the time that the list was last modified.
 
       - name: contact_list_member
+        identifier: "{{ var('hubspot_contact_list_member_identifier', 'contact_list_member')}}"
         description: Each record represents a 'link' between a contact and a contact list.
         columns:
           - name: _fivetran_deleted
@@ -302,6 +310,7 @@ sources:
             description: The ID of the related contact list.
 
       - name: contact_property_history
+        identifier: "{{ var('hubspot_contact_property_history_identifier', 'contact_property_history')}}"
         freshness:
           warn_after: {count: 84, period: hour}
           error_after: {count: 168, period: hour}
@@ -331,6 +340,7 @@ sources:
             description: '{{ doc("history_value") }}'
 
       - name: deal
+        identifier: "{{ var('hubspot_deal_identifier', 'deal')}}"
         description: Each record represents a deal in Hubspot.
         columns:
           - name: id
@@ -367,6 +377,7 @@ sources:
             description: The date the deal was created. This property is set automatically by HubSpot.
 
       - name: deal_stage
+        identifier: "{{ var('hubspot_deal_stage_identifier', 'deal_stage')}}"
         description: Each record represents a deal stage.
         columns:
           - name: _fivetran_active
@@ -389,6 +400,7 @@ sources:
             description: The value of the deal stage. Typically the name of the stage.
 
       - name: deal_company
+        identifier: "{{ var('hubspot_deal_company_identifier', 'deal_company')}}"
         description: Each record represents a 'link' between a deal and company.
         columns:
           - name: _fivetran_synced
@@ -401,6 +413,7 @@ sources:
             description: The ID of the deal.
         
       - name: deal_contact
+        identifier: "{{ var('hubspot_deal_contact_identifier', 'deal_contact')}}"
         description: Each record represents a 'link' between a deal and a contact.
         columns:
           - name: _fivetran_synced
@@ -413,6 +426,7 @@ sources:
             description: The ID of the deal.
 
       - name: deal_pipeline
+        identifier: "{{ var('hubspot_deal_pipeline_identifier', 'deal_pipeline')}}"
         description: Each record represents a pipeline in Hubspot.
         columns:
           - name: _fivetran_deleted
@@ -434,6 +448,7 @@ sources:
             description: The ID of the pipeline.
 
       - name: deal_pipeline_stage
+        identifier: "{{ var('hubspot_deal_pipeline_stage_identifier', 'deal_pipeline_stage')}}"
         description: Each record represents a pipeline stage in Hubspot.
         columns:
           - name: _fivetran_deleted
@@ -464,6 +479,7 @@ sources:
             description: The ID of the pipeline stage.
 
       - name: deal_property_history
+        identifier: "{{ var('hubspot_deal_property_history_identifier', 'deal_property_history')}}"
         description: Each record represents a change to deal record in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -488,6 +504,7 @@ sources:
             description: '{{ doc("history_value") }}'
 
       - name: email_campaign
+        identifier: "{{ var('hubspot_email_campaign_identifier', 'email_campaign')}}"
         description: Each record represents an email campaign in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -524,6 +541,7 @@ sources:
             description: The email campaign type.
 
       - name: email_event
+        identifier: "{{ var('hubspot_email_event_identifier', 'email_event')}}"
         freshness:
           warn_after: {count: 84, period: hour}
           error_after: {count: 168, period: hour}
@@ -577,6 +595,7 @@ sources:
             description: The type of event.
 
       - name: email_event_bounce
+        identifier: "{{ var('hubspot_email_event_bounce_identifier', 'email_event_bounce')}}"
         description: Each record represents a BOUNCE email event.
         columns:
           - name: _fivetran_synced
@@ -598,6 +617,7 @@ sources:
             description: The status code returned from the recipient's email server.
 
       - name: email_event_click
+        identifier: "{{ var('hubspot_email_event_click_identifier', 'email_event_click')}}"
         description: Each record represents a CLICK email event.
         columns:
           - name: _fivetran_synced
@@ -625,6 +645,7 @@ sources:
             description: '{{ doc("email_event_user_agent") }}'
 
       - name: email_event_deferred
+        identifier: "{{ var('hubspot_email_event_deferred_identifier', 'email_event_deferred')}}"
         description: Each record represents a DEFERRED email event.
         columns:
           - name: _fivetran_synced
@@ -640,6 +661,7 @@ sources:
             description: The full response from the recipient's email server.
 
       - name: email_event_delivered
+        identifier: "{{ var('hubspot_email_event_delivered_identifier', 'email_event_delivered')}}"
         description: Each record represents a DELIVERED email event.
         columns:
           - name: _fivetran_synced
@@ -655,6 +677,7 @@ sources:
             description: An ID attached to the message by HubSpot.
 
       - name: email_event_dropped
+        identifier: "{{ var('hubspot_email_event_dropped_identifier', 'email_event_dropped')}}"
         description: Each record represents a DROPPED email event.
         columns:
           - name: _fivetran_synced
@@ -685,6 +708,7 @@ sources:
             description: The subject line of the email message.
 
       - name: email_event_forward
+        identifier: "{{ var('hubspot_email_event_forward_identifier', 'email_event_forward')}}"
         description: Each record represents a FORWARD email event.
         columns:
           - name: _fivetran_synced
@@ -706,6 +730,7 @@ sources:
             description: '{{ doc("email_event_user_agent") }}'
 
       - name: email_event_open
+        identifier: "{{ var('hubspot_email_event_open_identifier', 'email_event_open')}}"
         description: Each record represents a OPEN email event.
         columns:
           - name: _fivetran_synced
@@ -730,6 +755,7 @@ sources:
             description: '{{ doc("email_event_user_agent") }}'
 
       - name: email_event_print
+        identifier: "{{ var('hubspot_email_event_print_identifier', 'email_event_print')}}"
         description: Each record represents a PRINT email event.
         columns:
           - name: _fivetran_synced
@@ -751,6 +777,7 @@ sources:
             description: '{{ doc("email_event_user_agent") }}'
 
       - name: email_event_sent
+        identifier: "{{ var('hubspot_email_event_sent_identifier', 'email_event_sent')}}"
         description: Each record represents a SENT email event.
         columns:
           - name: _fivetran_synced
@@ -775,6 +802,7 @@ sources:
             description: The subject line of the email message.
 
       - name: email_event_spam_report
+        identifier: "{{ var('hubspot_email_event_spam_report_identifier', 'email_event_spam_report')}}"
         description: Each record represents a SPAM_REPORT email event.
         columns:
           - name: _fivetran_synced
@@ -790,6 +818,7 @@ sources:
             description: '{{ doc("email_event_user_agent") }}'
 
       - name: email_event_status_change
+        identifier: "{{ var('hubspot_email_event_status_change_identifier', 'email_event_status_change')}}"
         description: Each record represents a STATUS_CHANGE email event in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -821,6 +850,7 @@ sources:
               Each JSON subscription object is comprised of the properties: 'id', 'status'.
 
       - name: email_subscription
+        identifier: "{{ var('hubspot_email_subscription_identifier', 'email_subscription')}}"
         description: Each record represents an email subscription in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -842,6 +872,7 @@ sources:
             description: '{{ doc("portal_id") }}'
 
       - name: email_subscription_change
+        identifier: "{{ var('hubspot_email_subscription_change_identifier', 'email_subscription_change')}}"
         description: Each record represents a change to an email subscription in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -872,6 +903,7 @@ sources:
             description: The timestamp when this change occurred. If 'causedByEvent' is present, this will be absent.
 
       - name: engagement
+        identifier: "{{ var('hubspot_engagement_identifier', 'engagement')}}"
         description: Each record represents an engagement
         columns:
           - name: _fivetran_synced
@@ -905,6 +937,7 @@ sources:
             description: One of NOTE, EMAIL, TASK, MEETING, or CALL, the type of the engagement.
 
       - name: engagement_call
+        identifier: "{{ var('hubspot_engagement_call_identifier', 'engagement_call')}}"
         description: Each record represents a CALL engagement event.
         columns:
           - name: _fivetran_synced
@@ -941,6 +974,7 @@ sources:
             description: The phone number that was called.
 
       - name: engagement_company
+        identifier: "{{ var('hubspot_engagement_company_identifier', 'engagement_company')}}"
         description: Each record represents a 'link' between a company and an engagement.
         columns:
           - name: _fivetran_synced
@@ -953,6 +987,7 @@ sources:
             description: The ID of the related engagement.
 
       - name: engagement_contact
+        identifier: "{{ var('hubspot_engagement_contact_identifier', 'engagement_contact')}}"
         description: Each record represents a 'link' between a contact and an engagement.
         columns:
           - name: _fivetran_synced
@@ -965,6 +1000,7 @@ sources:
             description: The ID of the related engagement.
 
       - name: engagement_deal
+        identifier: "{{ var('hubspot_engagement_deal_identifier', 'engagement_deal')}}"
         description: Each record represents a 'link' between a deal and an engagement.
         columns:
           - name: _fivetran_synced
@@ -977,6 +1013,7 @@ sources:
             description: The ID of the related engagement.
 
       - name: engagement_email
+        identifier: "{{ var('hubspot_engagement_email_identifier', 'engagement_email')}}"
         description: Each record represents an EMAIL engagement event.
         columns:
           - name: _fivetran_synced
@@ -1037,6 +1074,7 @@ sources:
             description: The ID of the email thread.
 
       - name: engagement_email_cc
+        identifier: "{{ var('hubspot_engagement_email_cc_identifier', 'engagement_email_cc')}}"
         description: Each record represents a CC'd email address as part of an EMAIL engagement.
         columns:
           - name: _fivetran_synced
@@ -1055,6 +1093,7 @@ sources:
             description: The last name of the recipient.
 
       - name: engagement_email_to
+        identifier: "{{ var('hubspot_engagement_email_to_identifier', 'engagement_email_to')}}"
         description: Each record represents a TO email address as part of an EMAIL engagement.
         columns:
           - name: _fivetran_synced
@@ -1073,6 +1112,7 @@ sources:
             description: The last name of the recipient.
 
       - name: engagement_meeting
+        identifier: "{{ var('hubspot_engagement_meeting_identifier', 'engagement_meeting')}}"
         description: Each record represents a MEETING engagement event.
         columns:
           - name: _fivetran_synced
@@ -1112,6 +1152,7 @@ sources:
             description: The ID of the web conference meeting.
 
       - name: engagement_note
+        identifier: "{{ var('hubspot_engagement_note_identifier', 'engagement_note')}}"
         description: Each record represents a NOTE engagement event.
         columns:
           - name: _fivetran_synced
@@ -1124,6 +1165,7 @@ sources:
             description: The ID of the engagement.
 
       - name: engagement_task
+        identifier: "{{ var('hubspot_engagement_task_identifier', 'engagement_task')}}"
         description: Each record represents a TASK engagement event.
         columns:
           - name: _fivetran_synced
@@ -1160,6 +1202,7 @@ sources:
             description: The type of task
 
       - name: form
+        identifier: "{{ var('hubspot_form_identifier', 'form')}}"
         description: Each record represents a Hubspot form.
         columns:
           - name: _fivetran_deleted
@@ -1207,6 +1250,7 @@ sources:
             description: A timestamp for when the form was last updated.
 
       - name: owner
+        identifier: "{{ var('hubspot_owner_identifier', 'owner')}}"
         description: Each record represents an owner/user in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -1237,6 +1281,7 @@ sources:
             description: A timestamp for when the owner was last updated.
 
       - name: ticket_company
+        identifier: "{{ var('hubspot_ticket_company_identifier', 'ticket_company')}}"
         description: Each record represents a 'link' between a ticket and company.
         columns:
           - name: _fivetran_synced
@@ -1249,6 +1294,7 @@ sources:
             description: The ID of the related company.
 
       - name: ticket_contact
+        identifier: "{{ var('hubspot_ticket_contact_identifier', 'ticket_contact')}}"
         description: Each record represents a 'link' between a ticket and a contact.
         columns:
           - name: _fivetran_synced
@@ -1261,6 +1307,7 @@ sources:
             description: The ID of the related contact.
 
       - name: ticket_deal
+        identifier: "{{ var('hubspot_ticket_deal_identifier', 'ticket_deal')}}"
         description: Each record represents a 'link' between a ticket and a deal.
         columns:
           - name: _fivetran_synced
@@ -1273,6 +1320,7 @@ sources:
             description: The ID of the related deal.
 
       - name: ticket_engagement
+        identifier: "{{ var('hubspot_ticket_engagement_identifier', 'ticket_engagement')}}"
         description: Each record represents a 'link' between a ticket and an engagement.
         columns:
           - name: _fivetran_synced
@@ -1285,6 +1333,7 @@ sources:
             description: The ID of the related deal.
       
       - name: ticket_pipeline_stage
+        identifier: "{{ var('hubspot_ticket_pipeline_stage_identifier', 'ticket_pipeline_stage')}}"
         description: Each record represents a ticket pipeline stage.
         columns:
           - name: _fivetran_deleted
@@ -1307,6 +1356,7 @@ sources:
             description: State of the ticket.
           
       - name: ticket_pipeline
+        identifier: "{{ var('hubspot_ticket_pipeline_identifier', 'ticket_pipeline')}}"
         description: Each record represents a ticket pipeline.
         columns:
           - name: _fivetran_deleted
@@ -1324,8 +1374,8 @@ sources:
           - name: pipeline_id
             description: Reference to the pipeline.
           
-
       - name: ticket_property_history
+        identifier: "{{ var('hubspot_ticket_property_history_identifier', 'ticket_property_history')}}"
         description: Each record represents a change to ticket record in Hubspot.
         columns:
           - name: _fivetran_synced
@@ -1350,6 +1400,7 @@ sources:
             description: '{{ doc("history_value") }}'
 
       - name: ticket
+        identifier: "{{ var('hubspot_ticket_identifier', 'ticket')}}"
         description: Each record represents a ticket in Hubspot.
         columns:
           - name: _fivetran_synced
