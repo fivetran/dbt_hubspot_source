@@ -1,3 +1,6 @@
 packages:
-- package: fivetran/fivetran_utils
-  version: [">=0.3.0", "<0.4.0"]
+# - package: fivetran/fivetran_utils
+#   version: [">=0.3.0", "<0.4.0"]
+  - git: https://github.com/fivetran/dbt_fivetran_utils.git
+    revision: releases/v0.3.latest
+    warn-unpinned: false
