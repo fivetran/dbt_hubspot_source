@@ -1,7 +1,7 @@
 # dbt_hubspot v0.6.0
 ## 🎉 Documentation and Feature Updates
 - Updated README documentation updates for easier navigation and setup of the dbt package
-- Included `hubspot_[source_table_name]_identifier` variable within the HubSpot source package for additional flexibility within the package when source tables are named differently.
+- Included `hubspot_[source_table_name]_identifier` variable for additional flexibility within the package when source tables are named differently.
 # dbt_hubspot_source v0.5.5
 ## Fixes
 - Adds missing `stg_hubspot__deal_contact` model. ([#64](https://github.com/fivetran/dbt_hubspot_source/pull/64))
