@@ -4,7 +4,6 @@ with base as (
 
     select *
     from {{ ref('stg_hubspot__deal_pipeline_stage_tmp') }}
-    where not coalesce(_fivetran_deleted, false) 
 
 ), macro as (
 
@@ -35,3 +34,4 @@ with base as (
 
 select *
 from fields
+where not coalesce(_fivetran_deleted, false) 

@@ -1,6 +1,6 @@
 
 name: 'hubspot_source_integration_tests'
-version: '0.5.5'
+version: '0.5.6'
 profile: 'integration_tests'
 config-version: 2
 

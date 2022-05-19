@@ -4,7 +4,6 @@ with base as (
 
     select *
     from {{ ref('stg_hubspot__company_tmp') }}
-    where not coalesce(is_deleted, false) 
 
 ), macro as (
 
@@ -61,3 +60,4 @@ with base as (
 
 select *
 from fields
+where not coalesce(is_deleted, false) 
