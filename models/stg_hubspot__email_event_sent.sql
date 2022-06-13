@@ -22,7 +22,7 @@ with base as (
         _fivetran_synced,
         bcc as bcc_emails,
         cc as cc_emails,
-        from_email, -- source field name = from ; alias declared in model's macros
+        from_email, -- source field name = from ; alias declared in macros/get_email_event_sent_columns.sql
         id as event_id,
         reply_to as reply_to_email,
         subject as email_subject

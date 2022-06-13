@@ -27,7 +27,7 @@ with base as (
         last_updated as last_updated_timestamp,
         owner_id,
         portal_id,
-        occurred_timestamp, -- source field name = timestamp ; alias declared in model's macros
+        occurred_timestamp, -- source field name = timestamp ; alias declared in macros/get_engagement_columns.sql
         engagement_type
     from macro
     
