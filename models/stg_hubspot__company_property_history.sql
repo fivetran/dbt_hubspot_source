@@ -24,7 +24,7 @@ with base as (
         name as field_name,
         source as change_source,
         source_id as change_source_id,
-        change_timestamp,
+        change_timestamp, -- source field name = timestamp ; alias declared in macros/get_company_property_history_columns.sql
         value as new_value
     from macro
     
