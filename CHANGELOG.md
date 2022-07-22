@@ -1,9 +1,9 @@
 # dbt_hubspot_source [next release changes]
 ## Fixes
-- Typo fix within the README. ([#71](https://github.com/fivetran/dbt_hubspot_source/pull/71))
+- Fix typo within the README. ([#73](https://github.com/fivetran/dbt_hubspot_source/pull/73))
 
 ## Contributors
-- [@mp56](https://github.com/moreaupascal56) ([#71](https://github.com/fivetran/dbt_hubspot_source/pull/71))
+- [@mp56](https://github.com/moreaupascal56) ([#73](https://github.com/fivetran/dbt_hubspot_source/pull/73))
 
 # dbt_hubspot_source v0.5.6
 ## Bug Fixes
