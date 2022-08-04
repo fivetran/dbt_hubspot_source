@@ -1,3 +1,7 @@
+# dbt_hubspot_source v0.5.8
+
+## Fixes
+- Removing a `_fivetran_deleted` filter within the `stg_hubspot__deal_pipeline_stag` model. This filter was erroneously removing stages from deal pipelines when they should not have been.
 # dbt_hubspot_source v0.5.7
 ## Fixes
 - Spelling correction of variable names within the README. ([#73](https://github.com/fivetran/dbt_hubspot_source/pull/73))
