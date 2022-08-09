@@ -1,6 +1,6 @@
 # dbt_hubspot_source v0.5.8
 ## Fixes
-- Bypass freshness tests for when a source is disabled by adding an enable/disable config to the source yml ([#]())
+- Bypass freshness tests for when a source is disabled by adding an enable/disable config to the source yml ([#77](https://github.com/fivetran/dbt_hubspot_source/pull/77))
 ## Contributors
 - [@gabriel-inventa](https://github.com/gabriel-inventa) ([#72](https://github.com/fivetran/dbt_hubspot_source/issues/72))
 
