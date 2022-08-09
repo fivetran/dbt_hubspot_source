@@ -179,8 +179,8 @@ sources:
           warn_after: {count: 84, period: hour}
           error_after: {count: 168, period: hour}
         description: Each record represents a contact in Hubspot.
-        meta:
-          is_enabled: "{{ var('hubspot_marketing_enabled', true) }} and {{ var('hubspot_contact_enabled', true) }}"
+        config:
+          enabled: "{{ var('hubspot_marketing_enabled', true) }} and {{ var('hubspot_contact_enabled', true) }}"
         columns:
           - name: id
             description: The ID of the contact.
@@ -306,8 +306,8 @@ sources:
           warn_after: {count: 84, period: hour}
           error_after: {count: 168, period: hour}
         description: Each record represents a change to contact record in Hubspot.
-        meta:
-          is_enabled: "{{ var('hubspot_marketing_enabled', true) }} and {{ var('hubspot_contact_property_enabled', true) }}"
+        config:
+          enabled: "{{ var('hubspot_marketing_enabled', true) }} and {{ var('hubspot_contact_property_enabled', true) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -528,8 +528,8 @@ sources:
           warn_after: {count: 84, period: hour}
           error_after: {count: 168, period: hour}
         description: Each record represents an email event in Hubspot.
-        meta:
-          is_enabled: "{{ var('hubspot_email_event_enabled', true) }} and {{ var('hubspot_marketing_enabled', true) }}"
+        config:
+          enabled: "{{ var('hubspot_email_event_enabled', true) }} and {{ var('hubspot_marketing_enabled', true) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
