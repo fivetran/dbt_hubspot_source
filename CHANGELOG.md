@@ -1,3 +1,8 @@
+# dbt_hubspot_source v0.5.8
+
+## Features
+- Adds `hubspot_ticket_deal_enabled` variable (default value=`False`) to disable modelling and testing of the `ticket_deal` source table. If there are no associations between tickets and deals in your Hubspot environment, this table will not exist. 
+
 # dbt_hubspot_source v0.5.7
 ## Fixes
 - Spelling correction of variable names within the README. ([#73](https://github.com/fivetran/dbt_hubspot_source/pull/73))
