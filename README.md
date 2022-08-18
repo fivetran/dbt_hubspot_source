@@ -94,7 +94,6 @@ vars:
 ```
 
 ## (Optional) Step 5: Additional configurations
-<details><summary>Expand to view configurations</summary>
 
 ### Adding passthrough columns
 This package includes all source columns defined in the macros folder. Models by default only bring in a few fields for the `company`, `contact`, `deal`, and `ticket` tables. You can add more columns using our pass-through column variables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables within your root `dbt_project.yml`.
@@ -160,16 +159,11 @@ If an individual source table has a different name than the package expects, add
 vars:
     hubspot_<default_source_table_name>_identifier: your_table_name 
 ```
-    
-</details>
 
 ## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
-<details><summary>Expand to view details</summary>
-<br>
-    
+
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
-</details>
-    
+
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. Please be aware that these dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > IMPORTANT: If you have any of these dependent packages in your own `packages.yml` file, we highly recommend that you remove them from your root `packages.yml` to avoid package version conflicts.
