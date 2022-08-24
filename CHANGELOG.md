@@ -1,3 +1,11 @@
+# dbt_hubspot_source v0.5.8
+## Fixes
+- Bypass freshness tests for when a source is disabled by adding an enable/disable config to the source yml ([#77](https://github.com/fivetran/dbt_hubspot_source/pull/77))
+
+**Notice**: You must have dbt v1.1.0 or greater for the config to work. 
+## Contributors
+- [@gabriel-inventa](https://github.com/gabriel-inventa) ([#72](https://github.com/fivetran/dbt_hubspot_source/issues/72))
+
 # dbt_hubspot_source v0.5.7
 ## Fixes
 - Spelling correction of variable names within the README. ([#73](https://github.com/fivetran/dbt_hubspot_source/pull/73))
