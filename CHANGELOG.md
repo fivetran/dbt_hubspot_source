@@ -1,4 +1,4 @@
-# dbt_hubspot v0.6.0
+# dbt_hubspot_source v0.6.0
 ## 🎉 Documentation and Feature Updates
 - Updated README documentation updates for easier navigation and setup of the dbt package
 - Included `hubspot_[source_table_name]_identifier` variable for additional flexibility within the package when source tables are named differently.
