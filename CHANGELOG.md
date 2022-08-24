@@ -1,3 +1,8 @@
+# dbt_hubspot v0.6.0
+## 🎉 Documentation and Feature Updates
+- Updated README documentation updates for easier navigation and setup of the dbt package
+- Included `hubspot_[source_table_name]_identifier` variable for additional flexibility within the package when source tables are named differently.
+
 # dbt_hubspot_source v0.5.8
 ## Features
 - Adds `hubspot_ticket_deal_enabled` variable (default value=`False`) to disable modelling and testing of the `ticket_deal` source table. If there are no associations between tickets and deals in your Hubspot environment, this table will not exist ([#79](https://github.com/fivetran/dbt_hubspot_source/pull/79)).
@@ -24,6 +29,7 @@
 
 ## Contributors
 - [@sambradbury](https://github.com/sambradbury) ([#67](https://github.com/fivetran/dbt_hubspot_source/pull/67))
+
 # dbt_hubspot_source v0.5.5
 ## Fixes
 - Adds missing `stg_hubspot__deal_contact` model. ([#64](https://github.com/fivetran/dbt_hubspot_source/pull/64))
