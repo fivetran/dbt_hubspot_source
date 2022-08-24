@@ -64,7 +64,7 @@ vars:
   hubspot_email_event_dropped_enabled: false
   hubspot_email_event_forward_enabled: false
   hubspot_email_event_click_enabled: false
-  hubspot_email_event_opens_enabled: false
+  hubspot_email_event_open_enabled: false
   hubspot_email_event_print_enabled: false
   hubspot_email_event_sent_enabled: false
   hubspot_email_event_spam_report_enabled: false
@@ -83,15 +83,18 @@ vars:
   hubspot_engagement_contact_enabled: false
   hubspot_engagement_company_enabled: false
   hubspot_engagement_deal_enabled: false
-  hubspot_engagement_calls_enabled: false
-  hubspot_engagement_emails_enabled: false
-  hubspot_engagement_meetings_enabled: false
-  hubspot_engagement_notes_enabled: false
-  hubspot_engagement_tasks_enabled: false
+  hubspot_engagement_call_enabled: false
+  hubspot_engagement_email_enabled: false
+  hubspot_engagement_meeting_enabled: false
+  hubspot_engagement_note_enabled: false
+  hubspot_engagement_task_enabled: false
 
   # Service
   hubspot_service_enabled: true                           # Enables all service models
 ```
+
+### Dbt-core Version Requirement for disabling freshness tests
+If you are not using a source table that involves freshness tests, please be aware that the feature to disable freshness was only introduced in dbt-core 1.1.0. Therefore ensure the dbt version you're using is v1.1.0 or greater for this config to work.
 
 ## (Optional) Step 5: Additional configurations
 

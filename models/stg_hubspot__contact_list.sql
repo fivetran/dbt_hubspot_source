@@ -4,7 +4,6 @@ with base as (
 
     select *
     from {{ ref('stg_hubspot__contact_list_tmp') }}
-    where not coalesce(_fivetran_deleted, false) 
 
 ), macro as (
 
@@ -40,3 +39,4 @@ with base as (
 
 select *
 from fields
+where not coalesce(_fivetran_deleted, false) 

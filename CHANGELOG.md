@@ -2,6 +2,30 @@
 ## 🎉 Documentation and Feature Updates
 - Updated README documentation updates for easier navigation and setup of the dbt package
 - Included `hubspot_[source_table_name]_identifier` variable for additional flexibility within the package when source tables are named differently.
+
+# dbt_hubspot_source v0.5.8
+## Fixes
+- Bypass freshness tests for when a source is disabled by adding an enable/disable config to the source yml ([#77](https://github.com/fivetran/dbt_hubspot_source/pull/77))
+
+**Notice**: You must have dbt v1.1.0 or greater for the config to work. 
+## Contributors
+- [@gabriel-inventa](https://github.com/gabriel-inventa) ([#72](https://github.com/fivetran/dbt_hubspot_source/issues/72))
+
+# dbt_hubspot_source v0.5.7
+## Fixes
+- Spelling correction of variable names within the README. ([#73](https://github.com/fivetran/dbt_hubspot_source/pull/73))
+
+## Contributors
+- [@mp56](https://github.com/moreaupascal56) ([#73](https://github.com/fivetran/dbt_hubspot_source/pull/73))
+
+# dbt_hubspot_source v0.5.6
+## Bug Fixes
+- The below staging tables contain a `where` clause to filter out soft deletes. However, this where clause was conducted in the first CTE of the staging model before the `fill_staging_columns` macro. Therefore, if the field doesn't exist, the dbt run would fail. These updates have moved the CTE to the final one to avoid this error. ([#68](https://github.com/fivetran/dbt_hubspot_source/pull/68))
+  - `stg_hubspot__company`, `stg_hubspot__contact`, `stg_hubspot__contact_list`, `stg_hubspot__deal`, `stg_hubspot__deal_pipeline`, `stg_hubspot__deal_pipeline_stage`, `stg_hubspot__ticket`, and `stg_hubspot__contact_list`.
+
+## Contributors
+- [@sambradbury](https://github.com/sambradbury) ([#67](https://github.com/fivetran/dbt_hubspot_source/pull/67))
+
 # dbt_hubspot_source v0.5.5
 ## Fixes
 - Adds missing `stg_hubspot__deal_contact` model. ([#64](https://github.com/fivetran/dbt_hubspot_source/pull/64))
