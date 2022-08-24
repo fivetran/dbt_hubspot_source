@@ -1,5 +1,6 @@
 name: 'hubspot_source'
-version: '0.5.7'
+version: '0.6.0'
+
 config-version: 2
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
@@ -62,6 +63,7 @@ vars:
 
     #Service Hub Enable Variables
     hubspot_service_enabled: false
+    hubspot_ticket_deal_enabled: false
 
     #Contact Merge Audit Enable Variable
     hubspot_contact_merge_audit_enabled: false

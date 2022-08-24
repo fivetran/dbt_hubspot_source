@@ -1,4 +1,4 @@
-{{ config(enabled=var('hubspot_service_enabled', False)) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_service_enabled','hubspot_ticket_deal_enabled'])) }}
 
 with base as (
 
