@@ -100,6 +100,8 @@ vars:
   hubspot_ticket_deal_enabled: true
 ```
 
+### Dbt-core Version Requirement for disabling freshness tests
+If you are not using a source table that involves freshness tests, please be aware that the feature to disable freshness was only introduced in dbt-core 1.1.0. Therefore ensure the dbt version you're using is v1.1.0 or greater for this config to work.
 
 ### Passthrough Columns
 Additionally, this package includes all source columns defined in the macros folder. Models by default only bring in a few fields for the `company`, `contact`, `deal`, and `ticket` tables. You can add more columns using our pass-through column variables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables.
