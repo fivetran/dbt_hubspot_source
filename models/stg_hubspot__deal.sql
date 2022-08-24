@@ -19,13 +19,17 @@ with base as (
 ), fields as (
 
     select
+        property_dealname as deal_name,
+        property_closedate as closed_at,
+        property_createdate as created_at,
 
 {% if var('hubspot__pass_through_all_columns', false) %}
-        -- just pass everything through
+        -- just pass everything else through
         {{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__deal_tmp')), 
-                prefix='property_') 
+                prefix='property_',
+                exclude=['property_dealname','property_closedate','property_createdate']) 
         }}
     from base
 
@@ -38,11 +42,8 @@ with base as (
         cast(deal_pipeline_stage_id as {{ dbt_utils.type_string() }}) as deal_pipeline_stage_id,
         owner_id,
         portal_id,
-        property_dealname as deal_name,
         property_description as description,
-        property_amount as amount,
-        property_closedate as closed_at,
-        property_createdate as created_at
+        property_amount as amount
 
         --The below macro adds the fields defined within your hubspot__deal_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__deal_pass_through_columns') }}

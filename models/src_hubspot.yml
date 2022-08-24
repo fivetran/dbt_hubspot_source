@@ -1382,7 +1382,7 @@ sources:
         identifier: "{{ var('hubspot_ticket_deal_identifier', 'ticket_deal')}}"
         description: Each record represents a 'link' between a ticket and a deal.
         config:
-          enabled: "{{ var('hubspot_service_enabled', true) }}"
+          enabled: "{{ var('hubspot_service_enabled', false) and var('hubspot_ticket_deal_enabled', false) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
