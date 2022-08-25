@@ -161,7 +161,7 @@ sources:
         identifier: "{{ var('hubspot_contact_merge_audit_identifier', 'contact_merge_audit')}}"
         description: Each record contains a contact merge event and the contacts effected by the merge.
         config:
-          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_merge_audit_enabled', true) }}"
+          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_merge_audit_enabled', false) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1352,7 +1352,7 @@ sources:
         identifier: "{{ var('hubspot_ticket_company_identifier', 'ticket_company')}}"
         description: Each record represents a 'link' between a ticket and company.
         config:
-          enabled: "{{ var('hubspot_service_enabled', true) }}"
+          enabled: "{{ var('hubspot_service_enabled', false) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1367,7 +1367,7 @@ sources:
         identifier: "{{ var('hubspot_ticket_contact_identifier', 'ticket_contact')}}"
         description: Each record represents a 'link' between a ticket and a contact.
         config:
-          enabled: "{{ var('hubspot_service_enabled', true) }}"
+          enabled: "{{ var('hubspot_service_enabled', false) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1397,7 +1397,7 @@ sources:
         identifier: "{{ var('hubspot_ticket_engagement_identifier', 'ticket_engagement')}}"
         description: Each record represents a 'link' between a ticket and an engagement.
         config:
-          enabled: "{{ var('hubspot_service_enabled', true) }}"
+          enabled: "{{ var('hubspot_service_enabled', false) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1412,7 +1412,7 @@ sources:
         identifier: "{{ var('hubspot_ticket_pipeline_stage_identifier', 'ticket_pipeline_stage')}}"
         description: Each record represents a ticket pipeline stage.
         config:
-          enabled: "{{ var('hubspot_service_enabled', true) }}"
+          enabled: "{{ var('hubspot_service_enabled', false) }}"
         columns:
           - name: _fivetran_deleted
             description: '{{ doc("_fivetran_deleted") }}'
@@ -1437,7 +1437,7 @@ sources:
         identifier: "{{ var('hubspot_ticket_pipeline_identifier', 'ticket_pipeline')}}"
         description: Each record represents a ticket pipeline.
         config:
-          enabled: "{{ var('hubspot_service_enabled', true) }}"
+          enabled: "{{ var('hubspot_service_enabled', false) }}"
         columns:
           - name: _fivetran_deleted
             description: '{{ doc("_fivetran_deleted") }}'
@@ -1458,7 +1458,7 @@ sources:
         identifier: "{{ var('hubspot_ticket_property_history_identifier', 'ticket_property_history')}}"
         description: Each record represents a change to ticket record in Hubspot.
         config:
-          enabled: "{{ var('hubspot_service_enabled', true) }}"
+          enabled: "{{ var('hubspot_service_enabled', false) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1485,7 +1485,7 @@ sources:
         identifier: "{{ var('hubspot_ticket_identifier', 'ticket')}}"
         description: Each record represents a ticket in Hubspot.
         config:
-          enabled: "{{ var('hubspot_service_enabled', true) }}"
+          enabled: "{{ var('hubspot_service_enabled', false) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'

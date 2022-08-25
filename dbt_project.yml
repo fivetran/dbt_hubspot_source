@@ -61,10 +61,6 @@ vars:
     ticket_property_history: "{{ source('hubspot','ticket_property_history') }}"
     ticket: "{{ source('hubspot','ticket') }}"
 
-    #Service Hub Enable Variables
-    hubspot_service_enabled: false
-    hubspot_ticket_deal_enabled: false
-
     #Contact Merge Audit Enable Variable
     hubspot_contact_merge_audit_enabled: false
 
