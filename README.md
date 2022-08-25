@@ -1,17 +1,15 @@
 <p align="center">
     <a alt="License"
-        href="https://github.com/fivetran/dbt_hubspot_source/blob/main/LICENSE">
+        href="https://github.com/fivetran/dbt_salesforce_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
-    <a alt="Fivetran-Release"
-        href="https://fivetran.com/docs/getting-started/core-concepts#releasephases">
-        <img src="https://img.shields.io/badge/Fivetran Release Phase-_Beta-orange.svg" /></a>
     <a alt="dbt-core">
-        <img src="https://img.shields.io/badge/dbt_Core™_version->=1.0.0_<2.0.0-orange.svg" /></a>
+        <img src="https://img.shields.io/badge/dbt_Core™_version->=1.0.0_,<2.0.0-orange.svg" /></a>
     <a alt="Maintained?">
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
+
 
 # HubSpot Source dbt Package ([Docs](https://fivetran.github.io/dbt_hubspot_source/))
 # 📣 What does this dbt package do?
@@ -45,10 +43,11 @@ vars:
     hubspot_schema: your_schema_name 
 ```
 ## Step 4: Disable models for non-existent sources
-When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. In order to disable the relevant functionality in the package, you will need to add the relevant variables. By default, all variables are assumed to be `true` (with exception of `hubspot_service_enabled` and `hubspot_contact_merge_audit_enabled`). You only need to add variables within your root `dbt_project.yml` for the tables you would like to disable or enable respectively:
+When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. Therefore we have added enable/disable configs in the `src.yml` to allow you to disable certain sources not present. Downstream models are automatically disabled as well. In order to disable the relevant functionality in the package, you will need to add the relevant variables in your root `dbt_project.yml`. By default, all variables are assumed to be `true` (with exception of `hubspot_service_enabled`, `hubspot_ticket_deal_enabled`, and `hubspot_contact_merge_audit_enabled`). You only need to add variables for the tables different from default:
 
 
 ```yml
+# dbt_project.yml
 vars:
   # Marketing
 
