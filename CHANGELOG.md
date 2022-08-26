@@ -1,3 +1,8 @@
+# dbt_hubspot_source v0.6.1
+## Fixes
+- Removes default variable configs in the `dbt_project.yml` for `hubspot_service_enabled`, `hubspot_contact_merge_audit_enabled`, and `hubspot_ticket_deal_enabled`. Otherwise it will conflict with enable configs in the source tables. 
+- Toggle default enable in the `src.yml` to false for `hubspot_service_enabled`, `hubspot_contact_merge_audit_enabled`, and `hubspot_ticket_deal_enabled`. 
+
 # dbt_hubspot_source v0.6.0
 ## 🎉 Documentation and Feature Updates
 - Updated README documentation updates for easier navigation and setup of the dbt package
