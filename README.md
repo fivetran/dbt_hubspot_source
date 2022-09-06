@@ -164,6 +164,22 @@ vars:
     hubspot_<default_source_table_name>_identifier: your_table_name 
 ```
 
+### Change freshness settings
+
+In order to change the settings of freshness tests on all source tables, you can set the default variables:
+```yml
+vars:
+    hubspot_freshness_warn: number_of_hours 
+    hubspot_freshness_error: number_of_hours 
+```
+
+You can as well set specific configurations by source tables:
+```yml
+vars:
+    hubspot_freshness_warn_<specific_source_table_name>: number_of_hours 
+    hubspot_freshness_error_<specific_source_table_name>: number_of_hours 
+```
+
 ## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
