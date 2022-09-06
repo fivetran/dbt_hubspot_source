@@ -187,8 +187,14 @@ sources:
       - name: contact
         identifier: "{{ var('hubspot_contact_identifier', 'contact')}}"
         freshness:
-          warn_after: {count: 84, period: hour}
-          error_after: {count: 168, period: hour}
+          warn_after: {
+            count: "{{ var('hubspot_freshness_warn_contact', var('hubspot_freshness_warn',84)) }}",
+            period: hour
+          }
+          error_after: {
+            count: "{{ var('hubspot_freshness_error_contact', var('hubspot_freshness_error',168)) }}",
+            period: hour
+          }
         description: Each record represents a contact in Hubspot.
         config:
           enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_enabled', true) }}"
@@ -322,8 +328,14 @@ sources:
       - name: contact_property_history
         identifier: "{{ var('hubspot_contact_property_history_identifier', 'contact_property_history')}}"
         freshness:
-          warn_after: {count: 84, period: hour}
-          error_after: {count: 168, period: hour}
+          warn_after: {
+            count: "{{ var('hubspot_freshness_warn_contact_property_history', var('hubspot_freshness_warn',84)) }}",
+            period: hour
+          }
+          error_after: {
+            count: "{{ var('hubspot_freshness_error_contact_property_history', var('hubspot_freshness_error',168)) }}",
+            period: hour
+          }
         description: Each record represents a change to contact record in Hubspot.
         config:
           enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_property_enabled', true) }}"
@@ -569,8 +581,14 @@ sources:
       - name: email_event
         identifier: "{{ var('hubspot_email_event_identifier', 'email_event')}}"
         freshness:
-          warn_after: {count: 84, period: hour}
-          error_after: {count: 168, period: hour}
+          warn_after: {
+            count: "{{ var('hubspot_freshness_warn_email_event', var('hubspot_freshness_warn',84)) }}",
+            period: hour
+          }
+          error_after: {
+            count: "{{ var('hubspot_freshness_error_email_event', var('hubspot_freshness_error',168)) }}",
+            period: hour
+          }
         description: Each record represents an email event in Hubspot.
         config:
           enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_email_event_enabled', true) }}"
