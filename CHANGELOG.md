@@ -1,3 +1,7 @@
+# dbt_hubspot_source v0.6.3
+## Fixes
+- Fixes a bug in the model `stg_hubspot__engagement_meeting` where the `fivetran_utils.enabled_vars` macro was referencing the wrong variable (`hubspot_engagement_email_enabled`) from the vars list in the `dbt_project.yml`. This was preventing users from disabling these enagagement_meeting models in their projects.
+
 # dbt_hubspot_source v0.6.2
 ## Fixes
 - Removes the `fivetran_utils.enabled_vars` macro from the configuration blocks of models dependent on `hubspot_service_enabled`, `hubspot_contact_merge_audit_enabled`, and `hubspot_ticket_deal_enabled`. This macro assumes its arguments to be true by default, which these variables are not. This produces conflicts if you do not provide explicit values for these variables in your root dbt_project.yml file.
