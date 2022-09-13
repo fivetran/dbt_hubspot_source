@@ -1175,7 +1175,7 @@ sources:
         identifier: "{{ var('hubspot_engagement_meeting_identifier', 'engagement_meeting')}}"
         description: Each record represents a MEETING engagement event.
         config:
-          enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_engagement_enabled', true) and var('hubspot_engagement_email_enabled', true) }}"
+          enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_engagement_enabled', true) and var('hubspot_engagement_meeting_enabled', true) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
