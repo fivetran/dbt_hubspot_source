@@ -4,7 +4,7 @@
 - Also updates `src_hubspot.yml` variable to `hubspot_engagement_meeting_enabled`. This was preventing users from disabling these enagagement_meeting models in their projects. ([#85](https://github.com/fivetran/dbt_hubspot_source/pull/85))
 
 ## Contributors
-- @fivetran-seanodriscoll ([#83](https://github.com/fivetran/dbt_hubspot_source/pull/83))
+- [@fivetran-seanodriscoll](https://github.com/fivetran-seanodriscoll) ([#83](https://github.com/fivetran/dbt_hubspot_source/pull/83))
 
 # dbt_hubspot_source v0.6.2
 ## Fixes
