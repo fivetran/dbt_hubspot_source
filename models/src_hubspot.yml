@@ -91,6 +91,9 @@ sources:
         config:
           enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_company_enabled', true) }}"
         columns:
+          - name: _fivetran_synced
+          description: '{{ doc("_fivetran_synced") }}'
+
           - name: id
             description: The ID of the company.
 
@@ -193,10 +196,16 @@ sources:
         config:
           enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_enabled', true) }}"
         columns:
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
+
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
           - name: id
             description: The ID of the contact.
 
-          - name: property_email
+          - name: property_email_1
             description: The email address of the contact.
 
           - name: property_company
@@ -355,7 +364,7 @@ sources:
         config:
           enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_deal_enabled', true) }}"
         columns:
-          - name: id
+          - name: deal_id
             description: The ID of the deal.
 
           - name: is_deleted
@@ -998,6 +1007,12 @@ sources:
           - name: body
             description: The details or notes of the call
 
+          - name: callee_object_id
+            description: The ID of the HubSpot record associated with the call. This will be the recipient of the call for OUTBOUND calls, or the dialer of the call for INBOUND calls.
+
+          - name: callee_object_type
+            description: The ID of the object to which the call's associated record belongs (e.g., specifies if the record is a contact or company). This will be the object of the recipient for OUTBOUND calls, or the object of the dialer for INBOUND calls.
+
           - name: disposition
             description: The internal ID for the call outcome.
 
@@ -1024,6 +1039,12 @@ sources:
 
           - name: to_number
             description: The phone number that was called.
+
+          - name: transcription_id
+            description: The ID of the transcription for the call.
+          
+          - name: unknown_visitor_conversation
+            description: If a visitor is unknown.
 
       - name: engagement_company
         identifier: "{{ var('hubspot_engagement_company_identifier', 'engagement_company')}}"
@@ -1100,6 +1121,9 @@ sources:
           - name: error_message
             description: The error message, if applicable.
 
+          - name: facsimile_send_id
+            description: facsimile_send_id
+
           - name: from_email
             description: The email address of the sender.
 
@@ -1112,12 +1136,21 @@ sources:
           - name: html
             description: The body of the HTML email.
 
+          - name: logged_from
+            description: The source of the logged email.
+
           - name: media_processing_status
             description: The processing status of the media content in the email.
 
           - name: message_id
             description: The ID of the message.
 
+          - name: post_send_status
+            description: Indicates if the post was sent.
+
+          - name: recipient_drop_reasons
+            description: recipient_drop_reasons
+            
           - name: sent_via
             description: How the email was sent.
 
@@ -1133,6 +1166,12 @@ sources:
           - name: thread_id
             description: The ID of the email thread.
 
+          - name: tracker_key
+            description: The ID of the tracker.
+
+          - name: validation_skipped
+            description: validation_skipped
+            
       - name: engagement_email_cc
         identifier: "{{ var('hubspot_engagement_email_cc_identifier', 'engagement_email_cc')}}"
         description: Each record represents a CC'd email address as part of an EMAIL engagement.
@@ -1183,6 +1222,9 @@ sources:
           - name: body
             description: The details or body of the meeting.
 
+          - name: created_from_link_id
+            description: created_from_link_id
+            
           - name: end_time
             description: A timestamp representing the end time of the meeting
 
