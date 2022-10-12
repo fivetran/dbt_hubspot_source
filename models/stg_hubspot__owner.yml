@@ -2,7 +2,7 @@ version: 2
 
 models:
 
-  - name: stg_hubspot__engagement_call
+  - name: stg_hubspot__owner
     description: Each record represents an owner/user in Hubspot.
     columns:
       - name: _fivetran_synced

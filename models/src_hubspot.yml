@@ -92,7 +92,7 @@ sources:
           enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_company_enabled', true) }}"
         columns:
           - name: _fivetran_synced
-          description: '{{ doc("_fivetran_synced") }}'
+            description: '{{ doc("_fivetran_synced") }}'
 
           - name: id
             description: The ID of the company.
