@@ -1,3 +1,8 @@
+# dbt_hubspot_source v0.6.4
+PR [#88](https://github.com/fivetran/dbt_hubspot_source/pull/88) incorporates the following updates:
+## Fixes
+- Added column descriptions that were missing in [our documentation](https://fivetran.github.io/dbt_hubspot_source/#!/overview).
+
 # dbt_hubspot_source v0.6.3
 ## Fixes
 - Fixes a bug in the models `stg_hubspot__engagement_meeting.sql` and `stg_hubspot__engagement_meeting_tmp.sql` where the `fivetran_utils.enabled_vars` macro was referencing the wrong variable (`hubspot_engagement_email_enabled`) from the vars list in the `dbt_project.yml`. 

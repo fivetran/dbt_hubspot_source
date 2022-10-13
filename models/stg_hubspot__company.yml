@@ -29,6 +29,12 @@ models:
   - name: stg_hubspot__company
     description: Each record represents a company in Hubspot.
     columns:
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+
+      - name: is_deleted
+        description: '{{ doc("is_deleted") }}'
+
       - name: company_id
         description: The ID of the company.
         tests:

@@ -62,6 +62,12 @@ models:
   - name: stg_hubspot__deal
     description: Each record represents a deal in Hubspot.
     columns:
+      - name: _fivetran_deleted
+        description: '{{ doc("_fivetran_deleted") }}'
+
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+
       - name: deal_id
         description: The ID of the deal
         tests:
@@ -125,6 +131,21 @@ models:
         
       - name: deal_id
         description: The ID of the deal.
+
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+
+  - name: stg_hubspot__deal_contact
+    description: Each record represents a 'link' between a deal and contact.
+    columns:
+      - name: contact_id
+        description: The ID of the contact.
+        
+      - name: deal_id
+        description: The ID of the deal.
+
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
 
   - name: stg_hubspot__deal_property_history
     description: Each record represents the details of your deal properties.

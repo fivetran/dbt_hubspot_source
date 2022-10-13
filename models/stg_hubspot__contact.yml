@@ -120,6 +120,12 @@ models:
   - name: stg_hubspot__contact
     description: Each record represents a contact in Hubspot.
     columns:
+      - name: _fivetran_deleted
+        description: '{{ doc("_fivetran_deleted") }}'
+
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+        
       - name: contact_id
         description: The ID of the contact.
         tests:
