@@ -1,5 +1,5 @@
 # dbt_hubspot_source v0.6.4
-PR [#22](https://github.com/fivetran/dbt_marketo/pull/22) incorporates the following updates:
+PR [#88](https://github.com/fivetran/dbt_hubspot_source/pull/22) incorporates the following updates:
 ## Fixes
 - Added column descriptions that were missing in [our documentation](https://fivetran.github.io/dbt_hubspot/#!/overview).
 
