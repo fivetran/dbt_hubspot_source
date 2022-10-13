@@ -1,7 +1,7 @@
 # dbt_hubspot_source v0.6.4
 PR [#88](https://github.com/fivetran/dbt_hubspot_source/pull/88) incorporates the following updates:
 ## Fixes
-- Added column descriptions that were missing in [our documentation](https://fivetran.github.io/dbt_hubspot/#!/overview).
+- Added column descriptions that were missing in [our documentation](https://fivetran.github.io/dbt_hubspot_source/#!/overview).
 
 # dbt_hubspot_source v0.6.3
 ## Fixes
