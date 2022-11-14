@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: hubspot
     schema: "{{ var('hubspot_schema', 'hubspot') }}"
-    database: "{{ var('hubspot_database', target.database) }}"
+    database: "{% if target.type != 'spark'%}{{ var('hubspot_database', target.database) }}{% endif %}"
     loader: Fivetran
     loaded_at_field: _fivetran_synced
     tables:

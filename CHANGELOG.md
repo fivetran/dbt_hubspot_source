@@ -36,6 +36,9 @@
     - `dbt.current_timestamp_in_utc_backcompat`
 - Dependencies on `fivetran/fivetran_utils` have been upgraded, previously `[">=0.3.0", "<0.4.0"]` now `[">=0.4.0", "<0.5.0"]`.
 
+## 🎉 Features
+- 🧱 Databricks compatibility! [(PR #91)](https://github.com/fivetran/dbt_hubspot_source/pull/91)
+
 # dbt_hubspot_source v0.6.4
 PR [#88](https://github.com/fivetran/dbt_hubspot_source/pull/88) incorporates the following updates:
 ## Fixes
