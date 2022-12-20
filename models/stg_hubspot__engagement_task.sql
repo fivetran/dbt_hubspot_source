@@ -36,7 +36,7 @@ field.
         body as task_note,
 
         {% if 'tzinfo=<UTC>' not in results_list %}
-            {{ dbt_utils.safe_cast('completion_date', 'timestamp') }} as completion_timestamp,
+            {{ dbt.safe_cast('completion_date', 'timestamp') }} as completion_timestamp,
         {% else %}
             completion_date as completion_timestamp,
         {% endif %}

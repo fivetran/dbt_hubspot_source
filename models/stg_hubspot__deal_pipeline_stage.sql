@@ -27,7 +27,7 @@ with base as (
         label as pipeline_stage_label,
         pipeline_id as deal_pipeline_id,
         probability,
-        cast(stage_id as {{ dbt_utils.type_string() }}) as deal_pipeline_stage_id
+        cast(stage_id as {{ dbt.type_string() }}) as deal_pipeline_stage_id
     from macro
     
 )
