@@ -21,7 +21,7 @@ with base as (
     select
         _fivetran_deleted,
         _fivetran_synced,
-        active as is_active,
+        not coalesce(_fivetran_deleted, false) as is_active, as is_active,
         closed_won as is_closed_won,
         display_order,
         label as pipeline_stage_label,
@@ -34,4 +34,3 @@ with base as (
 
 select *
 from fields
-where not coalesce(_fivetran_deleted, false) 

@@ -21,7 +21,7 @@ with base as (
     select
         _fivetran_deleted,
         _fivetran_synced,
-        active as is_active,
+        not coalesce(_fivetran_deleted, false) as is_active,
         display_order,
         label as pipeline_label,
         cast(pipeline_id as {{ dbt.type_string() }}) as deal_pipeline_id
@@ -31,5 +31,3 @@ with base as (
 
 select *
 from fields
-where not coalesce(_fivetran_deleted, false) 
-

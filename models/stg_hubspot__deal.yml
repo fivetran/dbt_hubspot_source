@@ -24,7 +24,9 @@ models:
         description: Used to determine the order in which the stages appear when viewed in HubSpot.
 
       - name: is_active
-        description: Whether the pipeline stage is currently in use.
+        description: >
+          Whether the pipeline stage is currently in use. Since HubSpot hard deletes pipeline stages, this column
+          returns the inverse of _fivetran_deleted.
 
       - name: is_closed_won
         description: Whether the stage represents a Closed Won deal.
@@ -54,7 +56,9 @@ models:
         description: Used to determine the order in which the pipelines appear when viewed in HubSpot
 
       - name: is_active
-        description: Whether the stage is currently in use.
+        description: >
+          Whether the pipeline stage is currently in use. Since HubSpot hard deletes pipelines, this column
+          returns the inverse of _fivetran_deleted.
 
       - name: pipeline_label
         description: The human-readable label for the pipeline. The label is used when showing the pipeline in HubSpot.
