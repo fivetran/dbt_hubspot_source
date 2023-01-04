@@ -33,7 +33,6 @@ final as (
         cast(stage_id as {{ dbt.type_int() }} ) as ticket_pipeline_stage_id,
         ticket_state
     from fields
-    where not coalesce(_fivetran_deleted, false)
 )
 
 select *

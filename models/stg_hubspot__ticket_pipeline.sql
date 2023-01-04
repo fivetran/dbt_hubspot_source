@@ -31,7 +31,6 @@ final as (
         label as pipeline_label,
         object_type_id
     from fields
-    where not coalesce(_fivetran_deleted, false)
 )
 
 select *

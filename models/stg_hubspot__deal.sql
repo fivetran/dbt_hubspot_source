@@ -58,4 +58,3 @@ with base as (
 
 select *
 from fields
-where not coalesce(is_deleted, false)
