@@ -1,3 +1,23 @@
+# dbt_hubspot_source v0.7.1 (May be a breaking change, TBD)
+
+## Updates
+- The `is_deleted` field has been renamed within the below models:
+  - `stg_hubspot__company` ( `is_company_deleted`)
+  - `stg_hubspot__deal` (`is_deal_deleted`)
+  - `stg_hubspot__ticket` (`is_ticket_deleted`)
+
+- The `_fivetran_deleted` field has been renamed within the below models:
+  - `stg_husbpot__contact_list_member` (`is_contact_list_member_deleted`)
+  - `stg_hubspot__contact_list` (`is_contact_list_deleted`)
+  - `stg_hubspot__contact` (`is_contact_list_deleted`)
+  - `stg_hubspot__deal_pipeline_stage` (`is_deal_pipeline_stage_deleted`)
+  - `stg_hubspot__deal_pipeline` (`is_deal_pipeline_deleted`)
+  - `stg_hubspot__ticket_pipeline_stage` (`is_ticket_pipeline_stage_deleted`)
+  - `stg_hubspot__ticket_pipeline` (`is_ticket_pipeline_deleted`)
+
+## Features
+- Filtering deleted records with the methods `where not coalesce(is_deleted, false)` or `where not coalesce(_fivetran_deleted, false)` has been removed from the above models. Instead, the new `is_<model>_deleted` flags will now offer customers flexibility to filter models for deleted records as necessary.
+
 # dbt_hubspot_source v0.7.0
 ## 🚨 Breaking Changes 🚨:
 [PR #89](https://github.com/fivetran/dbt_hubspot_source/pull/89/files) includes the following breaking changes:

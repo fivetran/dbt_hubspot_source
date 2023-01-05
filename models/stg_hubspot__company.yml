@@ -32,7 +32,7 @@ models:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
 
-      - name: is_deleted
+      - name: is_company_deleted
         description: '{{ doc("is_deleted") }}'
 
       - name: company_id

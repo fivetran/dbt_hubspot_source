@@ -23,7 +23,7 @@ fields as (
 final as (
 
     select
-        _fivetran_deleted,
+        _fivetran_deleted as is_ticket_pipeline_stage_deleted,
         _fivetran_synced,
         active as is_active,
         display_order,
@@ -33,7 +33,6 @@ final as (
         cast(stage_id as {{ dbt.type_int() }} ) as ticket_pipeline_stage_id,
         ticket_state
     from fields
-    where not coalesce(_fivetran_deleted, false)
 )
 
 select *

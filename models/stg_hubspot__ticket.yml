@@ -86,8 +86,8 @@ models:
           - unique
           - not_null
 
-      - name: is_deleted
-        description: Whether the record was deleted.
+      - name: is_ticket_deleted
+        description: '{{ doc("is_deleted") }}'
 
       - name: closed_at
         description: The date the ticket was closed.
@@ -122,7 +122,7 @@ models:
   - name: stg_hubspot__ticket_pipeline_stage
     description: Each record represents a ticket pipeline stage.
     columns:
-      - name: _fivetran_deleted
+      - name: is_ticket_pipeline_stage_deleted
         description: '{{ doc("_fivetran_deleted") }}'
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -144,7 +144,7 @@ models:
   - name: stg_hubspot__ticket_pipeline
     description: Each record represents a ticket pipeline.
     columns:
-      - name: _fivetran_deleted
+      - name: is_ticket_pipeline_deleted
         description: '{{ doc("_fivetran_deleted") }}'
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'

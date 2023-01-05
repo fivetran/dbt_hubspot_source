@@ -19,7 +19,7 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_deleted,
+        _fivetran_deleted as is_deal_pipeline_deleted,
         _fivetran_synced,
         active as is_active,
         display_order,
@@ -31,5 +31,3 @@ with base as (
 
 select *
 from fields
-where not coalesce(_fivetran_deleted, false) 
-

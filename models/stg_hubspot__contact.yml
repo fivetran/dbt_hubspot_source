@@ -4,7 +4,7 @@ models:
   - name: stg_hubspot__contact_list_member
     description: Each record represents a 'link' between a contact and a contact list.
     columns:
-      - name: _fivetran_deleted
+      - name: is_contact_list_member_deleted
         description: '{{ doc("_fivetran_deleted") }}'
 
       - name: _fivetran_synced
@@ -22,7 +22,7 @@ models:
   - name: stg_hubspot__contact_list
     description: Each record represents a contact list in Hubspot.
     columns:
-      - name: _fivetran_deleted
+      - name: is_contact_list_deleted
         description: '{{ doc("_fivetran_deleted") }}'
 
       - name: _fivetran_synced
@@ -120,7 +120,7 @@ models:
   - name: stg_hubspot__contact
     description: Each record represents a contact in Hubspot.
     columns:
-      - name: _fivetran_deleted
+      - name: is_contact_deleted
         description: '{{ doc("_fivetran_deleted") }}'
 
       - name: _fivetran_synced

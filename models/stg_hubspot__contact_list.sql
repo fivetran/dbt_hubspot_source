@@ -19,7 +19,7 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_deleted,
+        _fivetran_deleted as is_contact_list_deleted,
         _fivetran_synced,
         created_at as created_timestamp,
         deleteable as is_deletable,
@@ -39,4 +39,3 @@ with base as (
 
 select *
 from fields
-where not coalesce(_fivetran_deleted, false) 
