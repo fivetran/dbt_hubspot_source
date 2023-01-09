@@ -3,7 +3,7 @@ Timestamp of when Fivetran synced a record.
 {% enddocs %}
 
 {% docs _fivetran_deleted %}
-Timestamp of when Fivetran marked a record as deleted.
+Boolean of whether Fivetran marked a record as deleted.
 {% enddocs %}
 
 {% docs portal_id %}
