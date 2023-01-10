@@ -18,6 +18,9 @@
 
 - Filtering deleted records with the methods `where not coalesce(is_deleted, false)` or `where not coalesce(_fivetran_deleted, false)` has been removed from the above models. Instead, the new `is_<model>_deleted` flags will now offer customers flexibility to filter models for deleted records as necessary.
 
+## Under the Hood
+- `stg*.yml` documentation has been updated such that all `is_<model>_deleted` fields point to the `is_deleted` definition rather than respective `is_deleted` and `_fivetran_deleted` since the two fields are equivalent and in order to maintain consistency. ([PR #96](https://github.com/fivetran/dbt_hubspot_source/pull/96)).
+
 # dbt_hubspot_source v0.7.0
 ## 🚨 Breaking Changes 🚨:
 [PR #89](https://github.com/fivetran/dbt_hubspot_source/pull/89/files) includes the following breaking changes:

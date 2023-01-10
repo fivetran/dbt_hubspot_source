@@ -123,7 +123,7 @@ models:
     description: Each record represents a ticket pipeline stage.
     columns:
       - name: is_ticket_pipeline_stage_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
+        description: '{{ doc("is_deleted") }}'
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: is_active
@@ -145,7 +145,7 @@ models:
     description: Each record represents a ticket pipeline.
     columns:
       - name: is_ticket_pipeline_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
+        description: '{{ doc("is_deleted") }}'
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: is_active

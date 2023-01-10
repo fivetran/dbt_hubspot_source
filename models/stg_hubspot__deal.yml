@@ -6,7 +6,7 @@ models:
     description: Each record represents a pipeline stage in Hubspot.
     columns:
       - name: is_deal_pipeline_stage_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
+        description: '{{ doc("is_deleted") }}'
 
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -39,7 +39,7 @@ models:
     description: Each record represents a pipeline in Hubspot.
     columns:
       - name: is_deal_pipeline_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
+        description: '{{ doc("is_deleted") }}'
 
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
