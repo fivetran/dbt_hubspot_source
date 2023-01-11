@@ -20,13 +20,14 @@ with base as (
 
     select
         id as contact_id,
+        _fivetran_deleted as is_contact_deleted,
 
 {% if var('hubspot__pass_through_all_columns', false) %}
         -- just pass everything through
         {{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')), 
-                prefix='property_', exclude=['id', 'property_contact_id']) 
+                prefix='property_', exclude=['id', 'property_contact_id','_fivetran_deleted']) 
         }}
     from base
 
@@ -39,7 +40,6 @@ with base as (
         property_createdate as created_at,
         property_jobtitle as job_title,
         property_annualrevenue as company_annual_revenue,
-        _fivetran_deleted,
         _fivetran_synced
 
         --The below macro adds the fields defined within your hubspot__contact_pass_through_columns variable into the staging model
@@ -55,4 +55,3 @@ with base as (
 
 select *
 from fields
-where not coalesce(_fivetran_deleted, false) 

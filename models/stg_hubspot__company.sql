@@ -20,13 +20,14 @@ with base as (
 
     select
         id as company_id,
+        is_deleted as is_company_deleted,
 
 {% if var('hubspot__pass_through_all_columns', false) %}
         -- just pass everything through
         {{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__company_tmp')), 
-                prefix='property_', exclude=['id']
+                prefix='property_', exclude=['id', 'is_deleted']
             ) 
         }}
 
@@ -35,7 +36,6 @@ with base as (
 {% else %}
         -- just default columns + explicitly configured passthrough columns
         _fivetran_synced,
-        is_deleted,
         property_name as company_name,
         property_description as description,
         property_createdate as created_at,
@@ -60,4 +60,3 @@ with base as (
 
 select *
 from fields
-where not coalesce(is_deleted, false) 

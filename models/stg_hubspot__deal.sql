@@ -22,6 +22,7 @@ with base as (
         property_dealname as deal_name,
         property_closedate as closed_at,
         property_createdate as created_at,
+        is_deleted as is_deal_deleted,
 
 {% if var('hubspot__pass_through_all_columns', false) %}
         -- just pass everything else through
@@ -29,14 +30,13 @@ with base as (
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__deal_tmp')), 
                 prefix='property_',
-                exclude=['property_dealname','property_closedate','property_createdate']) 
+                exclude=['property_dealname','property_closedate','property_createdate', 'is_deleted']) 
         }}
     from base
 
 {% else %}
         -- just default columns + explicitly configured passthrough columns
         _fivetran_synced,
-        is_deleted,
         deal_id,
         cast(deal_pipeline_id as {{ dbt.type_string() }}) as deal_pipeline_id,
         cast(deal_pipeline_stage_id as {{ dbt.type_string() }}) as deal_pipeline_stage_id,
@@ -58,4 +58,3 @@ with base as (
 
 select *
 from fields
-where not coalesce(is_deleted, false)

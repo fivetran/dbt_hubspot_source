@@ -24,14 +24,13 @@ final as (
 
     select
         cast(pipeline_id as {{ dbt.type_int() }} ) as ticket_pipeline_id,
-        _fivetran_deleted,
+        _fivetran_deleted as is_ticket_pipeline_deleted,
         _fivetran_synced,
         active as is_active,
         display_order,
         label as pipeline_label,
         object_type_id
     from fields
-    where not coalesce(_fivetran_deleted, false)
 )
 
 select *

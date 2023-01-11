@@ -5,8 +5,8 @@ models:
   - name: stg_hubspot__deal_pipeline_stage
     description: Each record represents a pipeline stage in Hubspot.
     columns:
-      - name: _fivetran_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
+      - name: is_deal_pipeline_stage_deleted
+        description: '{{ doc("is_deleted") }}'
 
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -38,8 +38,8 @@ models:
   - name: stg_hubspot__deal_pipeline
     description: Each record represents a pipeline in Hubspot.
     columns:
-      - name: _fivetran_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
+      - name: is_deal_pipeline_deleted
+        description: '{{ doc("is_deleted") }}'
 
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -62,8 +62,8 @@ models:
   - name: stg_hubspot__deal
     description: Each record represents a deal in Hubspot.
     columns:
-      - name: _fivetran_deleted
-        description: '{{ doc("_fivetran_deleted") }}'
+      - name: is_deal_deleted
+        description: '{{ doc("is_deleted") }}'
 
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
