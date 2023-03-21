@@ -19,12 +19,12 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         company_id,
         name as field_name,
         source as change_source,
         source_id as change_source_id,
-        change_timestamp, -- source field name = timestamp ; alias declared in macros/get_company_property_history_columns.sql
+        cast(change_timestamp as {{ dbt.type_timestamp() }}) as change_timestamp, -- source field name = timestamp ; alias declared in macros/get_company_property_history_columns.sql
         value as new_value
     from macro
     

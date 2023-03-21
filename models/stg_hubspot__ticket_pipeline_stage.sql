@@ -24,7 +24,7 @@ final as (
 
     select
         _fivetran_deleted as is_ticket_pipeline_stage_deleted,
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         active as is_active,
         display_order,
         is_closed,

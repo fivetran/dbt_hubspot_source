@@ -1,3 +1,8 @@
+# dbt_hubspot_source v0.8.1
+
+PR # fill this in applies the following changes:
+- Ensures that all timestamp fields are explicitly cast as timestamps.
+
 # dbt_hubspot_source v0.8.0
 
 ## 🚨 Breaking Changes 🚨:

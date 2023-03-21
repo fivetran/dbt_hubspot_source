@@ -27,20 +27,21 @@ with base as (
         {{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')), 
-                prefix='property_', exclude=['id', 'property_contact_id','_fivetran_deleted']) 
+                prefix='property_', exclude=['id', 'property_contact_id','_fivetran_deleted','property_hs_calculated_merged_vids']) 
         }}
     from base
 
 {% else %}
         -- just default columns + explicitly configured passthrough columns
+        property_hs_calculated_merged_vids as calculated_merged_vids, -- will be null for BigQuery users until v3 api is rolled out to them
         property_email as email,
         property_company as contact_company,
         property_firstname as first_name,
         property_lastname as last_name,
-        property_createdate as created_at,
+        cast(property_createdate as {{ dbt.type_timestamp() }}) as created_at,
         property_jobtitle as job_title,
         property_annualrevenue as company_annual_revenue,
-        _fivetran_synced
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced
 
         --The below macro adds the fields defined within your hubspot__contact_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__contact_pass_through_columns') }}

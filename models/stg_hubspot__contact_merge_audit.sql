@@ -1,4 +1,4 @@
-{{ config(enabled=(var('hubspot_marketing_enabled', true) and var('hubspot_contact_merge_audit_enabled', false))) }}
+{{ config(enabled=(target.type=='bigquery' or (var('hubspot_marketing_enabled', true) and var('hubspot_contact_merge_audit_enabled', false)))) }}
 
 with base as (
 
@@ -25,14 +25,15 @@ with base as (
         first_name,
         last_name,
         num_properties_moved,
-        {% if target.type == 'redshift' %}
+        cast(
+        {%- if target.type == 'redshift' -%}
         "timestamp"
-        {% else %} 
-        timestamp {% endif %}
-        as timestamp_at,
+        {%- else -%} 
+        timestamp {%- endif -%}
+        as {{ dbt.type_timestamp() }}) as timestamp_at,
         user_id,
         vid_to_merge,
-        _fivetran_synced
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced
     from macro
     
 )

@@ -4,6 +4,7 @@
     {"name": "_fivetran_deleted", "datatype": "boolean"},
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
     {"name": "id", "datatype": dbt.type_int()},
+    {"name": "property_hs_calculated_merged_vids", "datatype": dbt.type_string()},
     {"name": "property_email", "datatype": dbt.type_string()},
     {"name": "property_company", "datatype": dbt.type_string()},
     {"name": "property_firstname", "datatype": dbt.type_string()},

@@ -19,7 +19,7 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         browser,
         id as event_id,
         ip_address,

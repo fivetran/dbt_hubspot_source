@@ -20,8 +20,8 @@ with base as (
 
     select
         _fivetran_deleted as is_contact_list_member_deleted,
-        _fivetran_synced,
-        added_at as added_timestamp,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
+        cast(added_at as {{ dbt.type_timestamp() }}) as added_timestamp,
         contact_id,
         contact_list_id
     from macro
