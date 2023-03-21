@@ -164,7 +164,7 @@ sources:
         identifier: "{{ var('hubspot_contact_merge_audit_identifier', 'contact_merge_audit')}}"
         description: Each record contains a contact merge event and the contacts effected by the merge.
         config:
-          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_merge_audit_enabled', false) }}"
+          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_merge_audit_enabled', target.type == 'bigquery') }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
