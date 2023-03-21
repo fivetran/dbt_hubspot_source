@@ -26,10 +26,10 @@ with base as (
         last_name,
         num_properties_moved,
         cast(
-        {%- if target.type == 'redshift' -%}
+        {%- if target.type == 'redshift' %}
         "timestamp"
-        {%- else -%} 
-        timestamp {%- endif -%}
+        {%- else %} 
+        timestamp {%- endif %}
         as {{ dbt.type_timestamp() }}) as timestamp_at,
         user_id,
         vid_to_merge,

@@ -27,7 +27,7 @@ with base as (
         cast(last_updated as {{ dbt.type_timestamp() }}) as last_updated_timestamp,
         owner_id,
         portal_id,
-        cast(occurred_timestamp as {{ dbt.type_timestamp() }}), -- source field name = timestamp ; alias declared in macros/get_engagement_columns.sql
+        cast(occurred_timestamp as {{ dbt.type_timestamp() }}) as occurred_timestamp, -- source field name = timestamp ; alias declared in macros/get_engagement_columns.sql
         engagement_type
     from macro
     
