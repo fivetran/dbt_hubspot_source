@@ -57,6 +57,7 @@ vars:
 ## Step 4: Disable models for non-existent sources
 When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. Therefore we have added enable/disable configs in the `src.yml` to allow you to disable certain sources not present. Downstream models are automatically disabled as well. In order to disable the relevant functionality in the package, you will need to add the relevant variables in your root `dbt_project.yml`. By default, all variables are assumed to be `true` (with exception of `hubspot_service_enabled`, `hubspot_ticket_deal_enabled`, and `hubspot_contact_merge_audit_enabled`). You only need to add variables for the tables different from default:
 
+> Note: The default value of `hubspot_contact_merge_audit_enabled` is `True` **only** for BigQuery destinations (`False` for destinations).
 
 ```yml
 # dbt_project.yml
@@ -82,8 +83,9 @@ vars:
   hubspot_email_event_spam_report_enabled: false
   hubspot_email_event_status_change_enabled: false
   
-  hubspot_contact_merge_audit_enabled: true               # Enables contact merge auditing to be applied to final models (removes any merged contacts that are still persisting in the contact table)
-
+  hubspot_contact_merge_audit_enabled: true               # Enables the use of the CONTACT_MERGE_AUDIT table (deprecated by Hubspot v3 API) for removing merged contacts in the final models.
+                                                          # If false, ~~~contacts will still be merged~~~, but using the CONTACT.property_hs_calculated_merged_vids field
+                                                          # Default = false for non-Bigquery users;  true for Bigquery users
   # Sales
 
   hubspot_sales_enabled: false                            # Disables all sales models
