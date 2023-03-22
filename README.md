@@ -38,13 +38,13 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 ```
 
-## Step 2: Install the package
+## Step 2: Install the package (skip if also using the `hubspot` transformation package)
 Include the following hubspot_source package version in your `packages.yml` file.
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yaml
 packages:
   - package: fivetran/hubspot_source
-    version: [">=0.7.0", "<0.8.0"]
+    version: [">=0.8.0", "<0.9.0"]
 ```
 ## Step 3: Define database and schema variables
 By default, this package runs using your destination and the `hubspot` schema. If this is not where your HubSpot data is (for example, if your HubSpot schema is named `hubspot_fivetran`), add the following configuration to your root `dbt_project.yml` file:
@@ -57,7 +57,7 @@ vars:
 ## Step 4: Disable models for non-existent sources
 When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. Therefore we have added enable/disable configs in the `src.yml` to allow you to disable certain sources not present. Downstream models are automatically disabled as well. In order to disable the relevant functionality in the package, you will need to add the relevant variables in your root `dbt_project.yml`. By default, all variables are assumed to be `true` (with exception of `hubspot_service_enabled`, `hubspot_ticket_deal_enabled`, and `hubspot_contact_merge_audit_enabled`). You only need to add variables for the tables different from default:
 
-> Note: The default value of `hubspot_contact_merge_audit_enabled` is `True` **only** for BigQuery destinations (`False` for destinations).
+> Note: The default value of `hubspot_contact_merge_audit_enabled` is `True` **only** for BigQuery destinations (`False` for other destinations).
 
 ```yml
 # dbt_project.yml
@@ -85,7 +85,7 @@ vars:
   
   hubspot_contact_merge_audit_enabled: true               # Enables the use of the CONTACT_MERGE_AUDIT table (deprecated by Hubspot v3 API) for removing merged contacts in the final models.
                                                           # If false, ~~~contacts will still be merged~~~, but using the CONTACT.property_hs_calculated_merged_vids field
-                                                          # Default = false for non-Bigquery users;  true for Bigquery users
+                                                          # Default = false for non-Bigquery users;  true for Bigquery users!!
   # Sales
 
   hubspot_sales_enabled: false                            # Disables all sales models
