@@ -7,7 +7,6 @@ models:
     +schema:
 vars:
   hubspot_schema: hubspot_source_integration_tests_2
-  hubspot_contact_merge_audit_enabled: false # true = use old way
   hubspot_source:
     hubspot_service_enabled: true
     hubspot_company_property_history_identifier: "company_property_history_data"
