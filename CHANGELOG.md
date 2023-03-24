@@ -1,16 +1,21 @@
-# dbt_hubspot_source v0.9.0 or v0.8.1 - breaking or na
+# dbt_hubspot_source v0.9.0
 
-## 🎉 Features
+## 🚨 Breaking Changes 🚨
+In [November 2022](https://fivetran.com/docs/applications/hubspot/changelog#november2022), the Fivetran Hubspot connector switched to v3 of the Hubspot CRM API, which deprecated the `CONTACT_MERGE_AUDIT` table and stored merged contacts in a field in the `CONTACT` table. **This has not been rolled out to BigQuery warehouses yet.** BigQuery connectors with the `CONTACT_MERGE_AUDIT` table enabled will continue to sync this table until the new `CONTACT.property_hs_calculated_merged_vids` field and API version becomes available to them.
+
+This release introduces breaking changes around how contacts are merged in order to align with the above connector changes. It is, however, backwards-compatible.
+
 [PR #98](https://github.com/fivetran/dbt_hubspot_source/pull/98) applies the following changes:
-- Ensures that all timestamp fields are explicitly cast as timestamps (without timezones).
 - Updates logic around the recently deprecated `CONTACT_MERGE_AUDIT` table.
-  - In [November 2022](https://fivetran.com/docs/applications/hubspot/changelog#november2022), the Fivetran Hubspot connector switched to v3 of the Hubspot CRM API, which deprecated the `CONTACT_MERGE_AUDIT` table and stored merged contacts in the `property_hs_calculated_merged_vids` column in the `CONTACT` table. **This has not been rolled out to BigQuery warehouses yet.**
-  - The package now brings in the new `property_hs_calculated_merged_vids` field (and removes the `property_hs_` prefix) for all customers.
-  - The package will only reference the old `CONTACT_MERGE_AUDIT` table if `hubspot_contact_merge_audit_enabled` is explicitly set to `true`, or if you are running the package on a BigQuery destination.
-    - If you are on BigQuery, but would not like to reference `CONTACT_MERGE_AUDIT`, set `hubspot_contact_merge_audit_enabled` to false. This will result in no merging of contacts (until your connector is rolled onto v3 of the Hubspot CRM API).
-  - Updates seed data to test new merging paradigm.
+  - The package now brings in the new `property_hs_calculated_merged_vids` field (and removes the `property_hs_` prefix) for all customers, including those on BigQuery (the field will just be `null`).
+  - **Backwards-compatibility:** the package will only reference the old `CONTACT_MERGE_AUDIT` table and create `stg_hubspot__contact_merge_audit` if `hubspot_contact_merge_audit_enabled` is explicitly set to `true` in your root `dbt_project.yml` file.
+  
+## Under the Hood
+[PR #98](https://github.com/fivetran/dbt_hubspot_source/pull/98) applies the following changes:
+- Updates seed data to test new merging paradigm.
+- Ensures that all timestamp fields are explicitly cast as timestamps without timezone, as recent API changes also introduced inconsistent timestamp formats.
 
-See the transform package [CHANEGLOG](https://github.com/fivetran/dbt_hubspot/blob/main/CHANGELOG.md) for updates made to end models in <v0.9.0 or v0.8.3>
+See the transform package [CHANEGLOG](https://github.com/fivetran/dbt_hubspot/blob/main/CHANGELOG.md) for updates made to end models in `dbt_hubspot v0.9.0`.
 
 # dbt_hubspot_source v0.8.0
 
