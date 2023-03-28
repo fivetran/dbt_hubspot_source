@@ -20,8 +20,8 @@ with base as (
 
     select
         property_dealname as deal_name,
-        property_closedate as closed_at,
-        property_createdate as created_at,
+        cast(property_closedate as {{ dbt.type_timestamp() }}) as closed_at,
+        cast(property_createdate as {{ dbt.type_timestamp() }}) as created_at,
         is_deleted as is_deal_deleted,
 
 {% if var('hubspot__pass_through_all_columns', false) %}
@@ -36,7 +36,7 @@ with base as (
 
 {% else %}
         -- just default columns + explicitly configured passthrough columns
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         deal_id,
         cast(deal_pipeline_id as {{ dbt.type_string() }}) as deal_pipeline_id,
         cast(deal_pipeline_stage_id as {{ dbt.type_string() }}) as deal_pipeline_stage_id,

@@ -33,9 +33,9 @@ with base as (
 
 {% else %}
         -- just default columns + explicitly configured passthrough columns
-        _fivetran_synced,
-        property_closed_date as closed_at,
-        property_createdate as created_at,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
+        cast(property_closed_date as {{ dbt.type_timestamp() }}) as closed_at,
+        cast(property_createdate as {{ dbt.type_timestamp() }}) as created_at,
         property_first_agent_reply_date as first_agent_reply_at,
         property_hs_pipeline as ticket_pipeline_id,
         property_hs_pipeline_stage as ticket_pipeline_stage_id,

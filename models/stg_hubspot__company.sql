@@ -35,7 +35,7 @@ with base as (
 
 {% else %}
         -- just default columns + explicitly configured passthrough columns
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         property_name as company_name,
         property_description as description,
         property_createdate as created_at,

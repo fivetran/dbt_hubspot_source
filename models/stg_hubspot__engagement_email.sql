@@ -19,11 +19,11 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         attached_video_id,
         attached_video_opened as was_attached_video_opened,
         attached_video_watched as was_attached_video_watched,
-        email_send_event_id_created as email_send_event_created_timestamp,
+        cast(email_send_event_id_created as {{ dbt.type_timestamp() }}) as email_send_event_created_timestamp,
         email_send_event_id_id as email_send_event_id,
         engagement_id,
         error_message,

@@ -20,19 +20,19 @@ with base as (
 
     select
         _fivetran_deleted as is_contact_list_deleted,
-        _fivetran_synced,
-        created_at as created_timestamp,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
+        cast(created_at as {{ dbt.type_timestamp() }}) as created_timestamp,
         deleteable as is_deletable,
         dynamic as is_dynamic,
         id as contact_list_id,
         metadata_error,
-        metadata_last_processing_state_change_at,
-        metadata_last_size_change_at,
+        cast(metadata_last_processing_state_change_at as {{ dbt.type_timestamp() }}) as metadata_last_processing_state_change_at,
+        cast(metadata_last_size_change_at as {{ dbt.type_timestamp() }}) as metadata_last_size_change_at,
         metadata_processing,
         metadata_size,
         name as contact_list_name,
         portal_id,
-        updated_at as updated_timestamp
+        cast(updated_at as {{ dbt.type_timestamp() }}) as updated_timestamp
     from macro
     
 )

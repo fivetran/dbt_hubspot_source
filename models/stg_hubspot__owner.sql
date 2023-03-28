@@ -19,15 +19,15 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_synced,
-        created_at as created_timestamp,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
+        cast(created_at as {{ dbt.type_timestamp() }}) as created_timestamp,
         email as email_address,
         first_name,
         last_name,
         owner_id,
         portal_id,
         type as owner_type,
-        updated_at as updated_timestamp,
+        cast(updated_at as {{ dbt.type_timestamp() }}) as updated_timestamp,
         trim( {{ dbt.concat(['first_name', "' '", 'last_name']) }} ) as full_name
     from macro
     

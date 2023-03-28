@@ -23,14 +23,14 @@ fields as (
 final as (
     
     select 
-        date_entered,
+        cast(date_entered as {{ dbt.type_timestamp() }}) as date_entered,
         deal_id,
         source,
         source_id,
         value as deal_stage_name,
         _fivetran_active,
-        _fivetran_end,
-        _fivetran_start
+        cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
+        cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start
     from fields
 )
 
