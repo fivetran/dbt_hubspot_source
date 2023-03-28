@@ -27,7 +27,7 @@ with base as (
                 staging_columns=get_contact_columns()
             )
         }}
-        {% if all_passthrough_column_check('stg_hubspot__company_tmp',get_company_columns()) > 0 %}
+        {% if all_passthrough_column_check('stg_hubspot__contact_tmp',get_contact_columns()) > 0 %}
         -- just pass everything through if extra columns are present, but ensure required columns are present.
         ,{{ 
             fivetran_utils.remove_prefix_from_columns(
