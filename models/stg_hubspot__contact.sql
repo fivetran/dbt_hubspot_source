@@ -19,28 +19,36 @@ with base as (
 ), fields as (
 
     select
-        id as contact_id,
-        _fivetran_deleted as is_contact_deleted,
 
 {% if var('hubspot__pass_through_all_columns', false) %}
-        -- just pass everything through
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')),
+                staging_columns=get_contact_columns()
+            )
+        }},
+        -- just pass everything through and ensure required columns are present.
         {{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')), 
-                prefix='property_', exclude=['id', 'property_contact_id','_fivetran_deleted','property_hs_calculated_merged_vids']) 
+                prefix='property_', exclude=get_macro_columns(get_contact_columns())) 
         }}
+
     from base
 
 {% else %}
-        -- just default columns + explicitly configured passthrough columns
-        property_hs_calculated_merged_vids as calculated_merged_vids, -- will be null for BigQuery users until v3 api is rolled out to them
-        property_email as email,
-        property_company as contact_company,
-        property_firstname as first_name,
-        property_lastname as last_name,
-        cast(property_createdate as {{ dbt.type_timestamp() }}) as created_at,
-        property_jobtitle as job_title,
-        property_annualrevenue as company_annual_revenue,
+        -- just default columns + explicitly configured passthrough columns.
+        -- a few columns below are aliased within the macros/get_contact_columns.sql macro
+        contact_id,
+        is_contact_deleted,
+        calculated_merged_vids, -- will be null for BigQuery users until v3 api is rolled out to them
+        email,
+        contact_company,
+        first_name,
+        last_name,
+        cast(created_at as {{ dbt.type_timestamp() }}) as created_at,
+        job_title,
+        company_annual_revenue,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced
 
         --The below macro adds the fields defined within your hubspot__contact_pass_through_columns variable into the staging model
