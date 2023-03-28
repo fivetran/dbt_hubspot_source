@@ -9,11 +9,13 @@ This release introduces breaking changes around how contacts are merged in order
 - Updates logic around the recently deprecated `CONTACT_MERGE_AUDIT` table.
   - The package now brings in the new `property_hs_calculated_merged_vids` field (and removes the `property_hs_` prefix) for all customers, including those on BigQuery (the field will just be `null`).
   - **Backwards-compatibility:** the package will only reference the old `CONTACT_MERGE_AUDIT` table and create `stg_hubspot__contact_merge_audit` if `hubspot_contact_merge_audit_enabled` is explicitly set to `true` in your root `dbt_project.yml` file.
-  
+
+## Bug Fixes
+- The `CONTACT`, `COMPANY`, `DEAL`, and `TICKET` staging models have been updated to ensure users enabling the `hubspot__pass_through_all_columns` will have all required columns. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
 ## Under the Hood
-- Updates seed data to test new merging paradigm. ([#98](https://github.com/fivetran/dbt_hubspot_source/pull/98))
-- Ensures that all timestamp fields are explicitly cast as timestamps without timezone, as recent API changes also introduced inconsistent timestamp formats.([#98](https://github.com/fivetran/dbt_hubspot_source/pull/98))
-- The `CONTACT`, `COMPANY`, `DEAL`, and `TICKET` staging models have been updated to ensure users enabling the `hubspot__pass_through_all_columns` will have all required columns.
+[PR #98](https://github.com/fivetran/dbt_hubspot_source/pull/98) applies the following changes:
+- Updates seed data to test new merging paradigm.
+- Ensures that all timestamp fields are explicitly cast as timestamps without timezone, as recent API changes also introduced inconsistent timestamp formats.
 
 See the transform package [CHANEGLOG](https://github.com/fivetran/dbt_hubspot/blob/main/CHANGELOG.md) for updates made to end models in `dbt_hubspot v0.9.0`.
 
