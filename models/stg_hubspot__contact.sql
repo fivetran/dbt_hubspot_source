@@ -26,14 +26,15 @@ with base as (
                 source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')),
                 staging_columns=get_contact_columns()
             )
-        }},
-        -- just pass everything through and ensure required columns are present.
-        {{ 
+        }}
+        {% if all_passthrough_column_check('stg_hubspot__company_tmp',get_company_columns()) > 0 %}
+        -- just pass everything through if extra columns are present, but ensure required columns are present.
+        ,{{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')), 
                 prefix='property_', exclude=get_macro_columns(get_contact_columns())) 
         }}
-
+        {% endif %}
     from base
 
 {% else %}
