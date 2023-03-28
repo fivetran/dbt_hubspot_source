@@ -165,7 +165,7 @@ sources:
         description: >
           DEPRECATED FOR NON-BIGQUERY USERS (will be deprecated on BigQuery as well). Each record contains a contact merge event and the contacts effected by the merge.
         config:
-          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_merge_audit_enabled', target.type == 'bigquery') }}"
+          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_merge_audit_enabled', false) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
