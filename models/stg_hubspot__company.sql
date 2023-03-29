@@ -19,33 +19,40 @@ with base as (
 ), fields as (
 
     select
-        id as company_id,
-        is_deleted as is_company_deleted,
 
 {% if var('hubspot__pass_through_all_columns', false) %}
-        -- just pass everything through
-        {{ 
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__company_tmp')),
+                staging_columns=get_company_columns()
+            )
+        }}
+        {% if all_passthrough_column_check('stg_hubspot__company_tmp',get_company_columns()) > 0 %}
+        -- just pass everything through if extra columns are present, but ensure required columns are present.
+        ,{{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__company_tmp')), 
-                prefix='property_', exclude=['id', 'is_deleted']
-            ) 
+                prefix='property_', exclude=get_macro_columns(get_company_columns()))
         }}
-
+        {% endif %}
     from base
 
 {% else %}
         -- just default columns + explicitly configured passthrough columns
+        -- a few columns below are aliased within the macros/get_company_columns.sql macro
+        company_id,
+        is_company_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        property_name as company_name,
-        property_description as description,
-        property_createdate as created_at,
-        property_industry as industry,
-        property_address as street_address,
-        property_address_2 as street_address_2,
-        property_city as city,
-        property_state as state,
-        property_country as country,
-        property_annualrevenue as company_annual_revenue
+        company_name,
+        description,
+        created_at,
+        industry,
+        street_address,
+        street_address_2,
+        city,
+        state,
+        country,
+        company_annual_revenue
         
         --The below macro adds the fields defined within your hubspot__ticket_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__company_pass_through_columns') }}
