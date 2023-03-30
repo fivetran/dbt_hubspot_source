@@ -19,7 +19,7 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         bcc as bcc_emails,
         cc as cc_emails,
         from_email, -- source field name = from ; alias declared in macros/get_email_event_sent_columns.sql

@@ -1,3 +1,25 @@
+# dbt_hubspot_source v0.9.0
+
+## 🚨 Breaking Changes 🚨
+In [November 2022](https://fivetran.com/docs/applications/hubspot/changelog#november2022), the Fivetran Hubspot connector switched to v3 of the Hubspot CRM API, which deprecated the `CONTACT_MERGE_AUDIT` table and stored merged contacts in a field in the `CONTACT` table. **This has not been rolled out to BigQuery warehouses yet.** BigQuery connectors with the `CONTACT_MERGE_AUDIT` table enabled will continue to sync this table until the new `CONTACT.property_hs_calculated_merged_vids` field and API version becomes available to them.
+
+This release introduces breaking changes around how contacts are merged in order to align with the above connector changes. It is, however, backwards-compatible.
+
+[PR #98](https://github.com/fivetran/dbt_hubspot_source/pull/98) applies the following changes:
+- Updates logic around the recently deprecated `CONTACT_MERGE_AUDIT` table.
+  - The package now brings in the new `property_hs_calculated_merged_vids` field (and removes the `property_hs_` prefix) for all customers, including those on BigQuery (the field will just be `null`).
+  - **Backwards-compatibility:** the package will only reference the old `CONTACT_MERGE_AUDIT` table and create `stg_hubspot__contact_merge_audit` if `hubspot_contact_merge_audit_enabled` is explicitly set to `true` in your root `dbt_project.yml` file.
+
+## Bug Fixes
+- The `CONTACT`, `COMPANY`, `DEAL`, and `TICKET` staging models have been updated to ensure users enabling the `hubspot__pass_through_all_columns` will have all required columns. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+## Under the Hood
+- Updates seed data to test new merging paradigm. ([PR #98](https://github.com/fivetran/dbt_hubspot_source/pull/98))
+- Ensures that all timestamp fields are explicitly cast as timestamps without timezone, as recent API changes also introduced inconsistent timestamp formats. ([PR #98](https://github.com/fivetran/dbt_hubspot_source/pull/98))
+- Creation of the `get_macro_columns` macro to help perform a check when enabling the `hubspot__pass_through_all_columns` to ensure the required fields are captured regardless of their existence in the source table. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+- Creation of the `all_passthrough_column_check` macro to help ensure that the operation to bring in all fields for the `CONTACT`, `COMPANY`, `DEAL`, and `TICKET` staging models is performed **only** if additional fields from the required are present in the source. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+
+See the transform package [CHANGELOG](https://github.com/fivetran/dbt_hubspot/blob/main/CHANGELOG.md) for updates made to end models in `dbt_hubspot v0.9.0`.
+
 # dbt_hubspot_source v0.8.0
 
 ## 🚨 Breaking Changes 🚨:

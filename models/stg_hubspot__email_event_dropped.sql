@@ -19,7 +19,7 @@ with base as (
 ), fields as (
 
     select
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         bcc as bcc_emails,
         cc as cc_emails,
         drop_message,
