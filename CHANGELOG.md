@@ -18,7 +18,7 @@ This release introduces breaking changes around how contacts are merged in order
 - Creation of the `get_macro_columns` macro to help perform a check when enabling the `hubspot__pass_through_all_columns` to ensure the required fields are captured regardless of their existence in the source table. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
 - Creation of the `all_passthrough_column_check` macro to help ensure that the operation to bring in all fields for the `CONTACT`, `COMPANY`, `DEAL`, and `TICKET` staging models is performed **only** if additional fields from the required are present in the source. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
 
-See the transform package [CHANEGLOG](https://github.com/fivetran/dbt_hubspot/blob/main/CHANGELOG.md) for updates made to end models in `dbt_hubspot v0.9.0`.
+See the transform package [CHANGELOG](https://github.com/fivetran/dbt_hubspot/blob/main/CHANGELOG.md) for updates made to end models in `dbt_hubspot v0.9.0`.
 
 # dbt_hubspot_source v0.8.0
 
