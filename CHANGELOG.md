@@ -6,6 +6,9 @@
 ## Under the Hood
 - The `email_event_data.csv` seed file was updated to include events that are listed as `true` for filtered_events. This is to effectively test the above mentioned feature update. ([PR #104](https://github.com/fivetran/dbt_hubspot_source/pull/104))
 - Included `hubspot_using_filtered_events: false` as a variable declared in the final `run_models.sh` step to ensure our integration tests gain coverage over this new feature and variable. ([PR #104](https://github.com/fivetran/dbt_hubspot_source/pull/104))
+- Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job. ([PR #103](https://github.com/fivetran/dbt_hubspot_source/pull/103))
+- Updated the pull request [templates](/.github). ([PR #103](https://github.com/fivetran/dbt_hubspot_source/pull/103))
+
 # dbt_hubspot_source v0.9.0
 
 ## 🚨 Breaking Changes 🚨

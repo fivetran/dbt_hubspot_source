@@ -25,3 +25,5 @@ dbt run --vars '{hubspot_marketing_enabled: false, hubspot_sales_enabled: true}'
 dbt run --vars '{hubspot_marketing_enabled: false, hubspot_sales_enabled: false}' --target "$db"
 dbt run --vars '{hubspot__pass_through_all_columns: true, hubspot_service_enabled: true, hubspot_using_filtered_events: false}' --target "$db"
 dbt test --target "$db"
+
+dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"
