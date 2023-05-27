@@ -1,6 +1,10 @@
 # dbt_hubspot_Source v0.9.2
 
 ## Under the Hood
+PR [#108](https://github.com/fivetran/dbt_hubspot_source/pull/108) specifies data types for the following fields:
+  - deal_pipeline_id
+  - deal_stage_name
+
 # dbt_hubspot_source v0.9.1
 ## Feature Updates
 - A new variable was added `hubspot_using_all_email_events` to allow package users to remove filtered email events from the `stg_hubspot__email_event` staging model as well as the relevant downstream reporting models. This is crucial for HubSpot users who greatly take advantage of marking events as filtered in order to provide accurate reporting. ([PR #104](https://github.com/fivetran/dbt_hubspot_source/pull/104))
