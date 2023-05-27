@@ -27,7 +27,7 @@ final as (
         deal_id,
         source,
         source_id,
-        value as deal_stage_name,
+        cast(value as {{ dbt.type_string() }}) as deal_stage_name,
         _fivetran_active,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
         cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start
