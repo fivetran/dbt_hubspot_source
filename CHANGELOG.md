@@ -1,3 +1,12 @@
+# dbt_hubspot_source v0.10.0
+## 🚨 Breaking Changes 🚨
+- In the [May 2023 connector update](https://fivetran.com/docs/applications/hubspot/changelog#may2023) `type_id` was added to sources `DEAL_COMPANY` and `DEAL_CONTACT` as a part of the composite primary key for these tables. This column has been adding to the corresponding staging models. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+- Also resulting from the connector update, columns `updated_at` and `created_at` have been added to the following sources and their corresponding staging models: ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+  - `DEAL_PIPELINE`
+  - `DEAL_PIPELINE_STAGE`
+  - `TICKET_PIPELINE`
+  - `TICKET_PIPELINE_STAGE`
+
 # dbt_hubspot_source v0.9.0
 
 ## 🚨 Breaking Changes 🚨
