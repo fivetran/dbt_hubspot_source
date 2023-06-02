@@ -443,7 +443,10 @@ sources:
             
           - name: deal_id
             description: The ID of the deal.
-        
+
+          - name: type_id
+            description: The ID of the deal.
+
       - name: deal_contact
         identifier: "{{ var('hubspot_deal_contact_identifier', 'deal_contact')}}"
         description: Each record represents a 'link' between a deal and a contact.
@@ -457,6 +460,9 @@ sources:
             description: The ID of the contact.
 
           - name: deal_id
+            description: The ID of the deal.
+
+          - name: type_id
             description: The ID of the deal.
 
       - name: deal_pipeline
