@@ -32,8 +32,8 @@ final as (
         cast(pipeline_id as {{ dbt.type_int() }} ) as ticket_pipeline_id,
         cast(stage_id as {{ dbt.type_int() }} ) as ticket_pipeline_stage_id,
         ticket_state,
-        created_at,
-        updated_at
+        created_at as ticket_pipeline_stage_created_at,
+        updated_at as ticket_pipeline_stage_updated_at
     from fields
 )
 

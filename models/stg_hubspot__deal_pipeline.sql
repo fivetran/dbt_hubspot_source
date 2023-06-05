@@ -25,8 +25,8 @@ with base as (
         display_order,
         label as pipeline_label,
         cast(pipeline_id as {{ dbt.type_string() }}) as deal_pipeline_id,
-        created_at,
-        updated_at
+        created_at as deal_pipeline_created_at,
+        updated_at as deal_pipeline_updated_at
     from macro
     
 )

@@ -28,8 +28,8 @@ with base as (
         pipeline_id as deal_pipeline_id,
         probability,
         cast(stage_id as {{ dbt.type_string() }}) as deal_pipeline_stage_id,
-        created_at,
-        updated_at
+        created_at as deal_pipeline_stage_created_at,
+        updated_at as deal_pipeline_stage_updated_at
     from macro
     
 )

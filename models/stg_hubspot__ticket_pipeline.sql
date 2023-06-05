@@ -30,8 +30,8 @@ final as (
         display_order,
         label as pipeline_label,
         object_type_id,
-        created_at,
-        updated_at
+        created_at as ticket_pipeline_created_at,
+        updated_at as ticket_pipeline_updated_at
     from fields
 )
 

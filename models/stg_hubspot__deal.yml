@@ -26,9 +26,9 @@ models:
         description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
       - name: probability
         description: The probability that the deal will close. Used for the deal forecast.
-      - name: created_at
+      - name: deal_pipeline_stage_created_at
         description: A timestamp representing when the record was created.
-      - name: updated_at
+      - name: deal_pipeline_stage_updated_at
         description: A timestamp representing when the record was updated.
 
   - name: stg_hubspot__deal_pipeline
@@ -45,9 +45,9 @@ models:
           - not_null
       - name: display_order
         description: Used to determine the order in which the pipelines appear when viewed in HubSpot
-      - name: created_at
+      - name: deal_pipeline_created_at
         description: A timestamp representing when the record was created.
-      - name: updated_at
+      - name: deal_pipeline_updated_at
         description: A timestamp representing when the record was updated.
 
       - name: is_active
