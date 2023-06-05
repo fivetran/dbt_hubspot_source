@@ -110,6 +110,12 @@ models:
 
   - name: stg_hubspot__deal_company
     description: Each record represents a 'link' between a deal and company.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - company_id
+            - deal_id
+            - type_id
     columns:
       - name: company_id
         description: The ID of the company.
@@ -122,6 +128,12 @@ models:
 
   - name: stg_hubspot__deal_contact
     description: Each record represents a 'link' between a deal and contact.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - contact_id
+            - deal_id
+            - type_id
     columns:
       - name: contact_id
         description: The ID of the contact.
