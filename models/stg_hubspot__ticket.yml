@@ -114,9 +114,9 @@ models:
         description: The ID of the pipeline stage.
       - name: ticket_state
         description: State of the ticket.
-      - name: ticket_pipeline_created_at
+      - name: ticket_pipeline_stage_created_at
         description: A timestamp representing when the record was created.
-      - name: ticket_pipeline_updated_at
+      - name: ticket_pipeline_stage_updated_at
         description: A timestamp representing when the record was updated.
 
   - name: stg_hubspot__ticket_pipeline
@@ -136,7 +136,7 @@ models:
         description: Reference to the object type.
       - name: ticket_pipeline_id
         description: Reference to the pipeline.
-      - name: ticket_pipeline_stage_created_at
+      - name: ticket_pipeline_created_at
         description: A timestamp representing when the record was created.
-      - name: ticket_pipeline_stage_updated_at
+      - name: ticket_pipeline_updated_at
         description: A timestamp representing when the record was updated.
