@@ -9,6 +9,9 @@
   - `TICKET_PIPELINE_STAGE`
 - Updated docs with these changes and a little housekeeping. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
 
+## Feature Updates
+- Updated README to include the variable `hubspot_owner_enabled`.
+
 ## 🚘 Under the Hood
 - Updated seed data for testing newly added columns. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
 
