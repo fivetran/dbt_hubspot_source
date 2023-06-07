@@ -1,5 +1,9 @@
 name: 'hubspot_source_integration_tests'
+<<<<<<< HEAD
 version: '0.10.0'
+=======
+version: '0.9.1'
+>>>>>>> 460ba3076e7df0c3426b6f5d7495692b1d014e08
 profile: 'integration_tests'
 config-version: 2
 models:

@@ -40,5 +40,6 @@ with base as (
 
 select *
 from fields
-
-
+{% if not var('hubspot_using_all_email_events',true) -%}
+where not coalesce(is_filtered_event, false)
+{%- endif -%}
