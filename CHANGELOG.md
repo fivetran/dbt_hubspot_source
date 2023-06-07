@@ -9,6 +9,9 @@
   - `TICKET_PIPELINE_STAGE`
 - Updated docs with these changes and a little housekeeping. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
 
+## 🚘 Under the Hood
+- Updated seed data for testing newly added columns. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+
 # dbt_hubspot_source v0.9.0
 
 ## 🚨 Breaking Changes 🚨
