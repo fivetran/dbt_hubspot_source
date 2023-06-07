@@ -1,19 +1,19 @@
 # dbt_hubspot_source v0.10.0
 ## 🚨 Breaking Changes 🚨
-- In the [May 2023 connector update](https://fivetran.com/docs/applications/hubspot/changelog#may2023) `type_id` was added to sources `DEAL_COMPANY` and `DEAL_CONTACT` as a part of the composite primary key for these tables. This column has been adding to the corresponding staging models. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
-- Updated tests for these tables with `type_id` as part of the primary key. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
-- Also resulting from the connector update, columns `updated_at` and `created_at` have been added to the following sources and their corresponding staging models: ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+- In the [May 2023 connector update](https://fivetran.com/docs/applications/hubspot/changelog#may2023) `type_id` was added to sources `DEAL_COMPANY` and `DEAL_CONTACT` as a part of the composite primary key for these tables. This column has been adding to the corresponding staging models. ([PR #109](https://github.com/fivetran/dbt_hubspot_source/pull/109))
+- Updated tests for these tables with `type_id` as part of the primary key. ([PR #109](https://github.com/fivetran/dbt_hubspot_source/pull/109))
+- Also resulting from the connector update, columns `updated_at` and `created_at` have been added to the following sources and their corresponding staging models: ([PR #109](https://github.com/fivetran/dbt_hubspot_source/pull/109))
   - `DEAL_PIPELINE`
   - `DEAL_PIPELINE_STAGE`
   - `TICKET_PIPELINE`
   - `TICKET_PIPELINE_STAGE`
-- Updated docs with these changes and a little housekeeping. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+- Updated docs with these changes and a little housekeeping. ([PR #109](https://github.com/fivetran/dbt_hubspot_source/pull/109))
 
 ## Feature Updates
-- Updated README to include the variable `hubspot_owner_enabled`.
+- Updated README to include the variable `hubspot_owner_enabled`. ([PR #109](https://github.com/fivetran/dbt_hubspot_source/pull/109))
 
 ## 🚘 Under the Hood
-- Updated seed data for testing newly added columns. ([PR #100](https://github.com/fivetran/dbt_hubspot_source/pull/100))
+- Updated seed data for testing newly added columns. ([PR #109](https://github.com/fivetran/dbt_hubspot_source/pull/109))
 
 # dbt_hubspot_source v0.9.1
 ## Feature Updates
