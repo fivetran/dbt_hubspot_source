@@ -7,7 +7,9 @@
     {"name": "display_order", "datatype": dbt.type_int()},
     {"name": "label", "datatype": dbt.type_string()},
     {"name": "object_type_id", "datatype": dbt.type_string()},
-    {"name": "pipeline_id", "datatype": dbt.type_string()}
+    {"name": "pipeline_id", "datatype": dbt.type_string()},
+    {"name": "created_at", "datatype": dbt.type_timestamp()},
+    {"name": "updated_at", "datatype": dbt.type_timestamp()}
 ] %}
 
 {{ return(columns) }}
