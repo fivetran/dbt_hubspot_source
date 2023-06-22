@@ -6,7 +6,7 @@ models:
   hubspot_source:
     +schema:
 vars:
-  hubspot_schema: hubspot_source_integration_tests_5
+  hubspot_schema: hubspot_source_integration_tests_6
   hubspot_source:
     hubspot_service_enabled: true
     hubspot_company_property_history_identifier: "company_property_history_data"
