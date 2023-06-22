@@ -45,7 +45,7 @@ with base as (
         cast(created_at as {{ dbt.type_timestamp() }}) as created_at,
         is_deal_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        deal_id,
+        cast(deal_id as {{ dbt.type_string() }}) as deal_id,
         cast(deal_pipeline_id as {{ dbt.type_string() }}) as deal_pipeline_id,
         cast(deal_pipeline_stage_id as {{ dbt.type_string() }}) as deal_pipeline_stage_id,
         owner_id,

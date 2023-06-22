@@ -20,7 +20,7 @@ with base as (
 
     select
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        deal_id,
+        cast(deal_id as {{ dbt.type_string() }}) as deal_id,
         name as field_name,
         source as change_source,
         source_id as change_source_id,

@@ -24,7 +24,7 @@ final as (
     
     select 
         cast(date_entered as {{ dbt.type_timestamp() }}) as date_entered,
-        deal_id,
+        cast(deal_id as {{ dbt.type_string() }}) as deal_id,
         source,
         source_id,
         cast(value as {{ dbt.type_string() }}) as deal_stage_name,

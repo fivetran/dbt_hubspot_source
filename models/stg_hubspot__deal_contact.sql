@@ -20,7 +20,7 @@ with base as (
 
     select
         contact_id,
-        deal_id,
+        cast(deal_id as {{ dbt.type_string() }}) as deal_id,
         type_id,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced
         
