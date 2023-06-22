@@ -14,7 +14,8 @@ with base as (
                 staging_columns=get_ticket_contact_columns()
             )
         }}
-        ,{{ 
+        {% if fivetran_utils.remove_prefix_from_columns(columns=adapter.get_columns_in_relation(ref('stg_hubspot__ticket_contact_tmp')), prefix='property_hs_',exclude=get_macro_columns(get_ticket_contact_columns())) | length > 0 %},{% endif %}
+        {{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__ticket_contact_tmp')), 
                 prefix='property_hs_',exclude=get_macro_columns(get_ticket_contact_columns()))

@@ -14,7 +14,8 @@ with base as (
                 staging_columns=get_engagement_meeting_columns()
             )
         }}
-        ,{{ 
+        {% if fivetran_utils.remove_prefix_from_columns(columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')), prefix='property_hs_',exclude=get_macro_columns(get_engagement_meeting_columns())) | length > 0 %},{% endif %}
+        {{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')), 
                 prefix='property_hs_',exclude=get_macro_columns(get_engagement_meeting_columns()))
