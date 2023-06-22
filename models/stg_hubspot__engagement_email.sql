@@ -25,7 +25,7 @@ with base as (
         attached_video_watched as was_attached_video_watched,
         cast(email_send_event_id_created as {{ dbt.type_timestamp() }}) as email_send_event_created_timestamp,
         email_send_event_id_id as email_send_event_id,
-        engagement_id,
+        cast(engagement_id as {{ dbt.type_string() }}) as engagement_id,
         error_message,
         facsimile_send_id,
         from_email,

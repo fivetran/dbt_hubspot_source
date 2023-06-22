@@ -23,7 +23,7 @@ with base as (
         active as is_active,
         activity_type,
         cast(created_at as {{ dbt.type_timestamp() }}) as created_timestamp,
-        id as engagement_id,
+        cast(id as {{ dbt.type_string() }}) as engagement_id,
         cast(last_updated as {{ dbt.type_timestamp() }}) as last_updated_timestamp,
         owner_id,
         portal_id,

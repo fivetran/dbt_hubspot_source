@@ -25,7 +25,7 @@ with base as (
         callee_object_type,
         disposition as disposition_id,
         duration_milliseconds as call_duration_milliseconds,
-        engagement_id,
+        cast(engagement_id as {{ dbt.type_string() }}) as engagement_id,
         external_account_id,
         external_id,
         from_number,

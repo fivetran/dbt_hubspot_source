@@ -23,7 +23,7 @@ with base as (
         body as meeting_notes,
         created_from_link_id,
         cast(end_time as {{ dbt.type_timestamp() }}) as end_timestamp,
-        engagement_id,
+        cast(engagement_id as {{ dbt.type_string() }}) as engagement_id,
         external_url,
         meeting_outcome,
         pre_meeting_prospect_reminders,

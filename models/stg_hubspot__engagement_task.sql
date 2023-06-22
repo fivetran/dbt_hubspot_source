@@ -41,7 +41,7 @@ field.
             cast(completion_date as {{ dbt.type_timestamp() }}) as completion_timestamp,
         {% endif %}
 
-        engagement_id,
+        cast(engagement_id as {{ dbt.type_string() }}) as engagement_id,
         for_object_type,
         is_all_day,
         priority,

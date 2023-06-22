@@ -21,7 +21,7 @@ with base as (
     select
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         body as note,
-        engagement_id
+        cast(engagement_id as {{ dbt.type_string() }}) as engagement_id
     from macro
     
 )
