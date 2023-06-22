@@ -14,41 +14,15 @@ with base as (
                 staging_columns=get_engagement_email_columns()
             )
         }}
+        ,{{ 
+            fivetran_utils.remove_prefix_from_columns(
+                columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_email_tmp')), 
+                prefix='property_hs_',exclude=get_macro_columns(get_engagement_email_columns()))
+        }}
+
     from base
 
-), fields as (
-
-    select
-        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        attached_video_id,
-        attached_video_opened as was_attached_video_opened,
-        attached_video_watched as was_attached_video_watched,
-        cast(email_send_event_id_created as {{ dbt.type_timestamp() }}) as email_send_event_created_timestamp,
-        email_send_event_id_id as email_send_event_id,
-        engagement_id,
-        error_message,
-        facsimile_send_id,
-        from_email,
-        from_first_name,
-        from_last_name,
-        html as email_html,
-        logged_from,
-        media_processing_status,
-        message_id,
-        post_send_status,
-        recipient_drop_reasons,
-        sent_via,
-        status as email_status,
-        subject as email_subject,
-        text as email_text,
-        thread_id,
-        tracker_key,
-        validation_skipped
-    from macro
-    
 )
 
 select *
-from fields
-
-
+from macro

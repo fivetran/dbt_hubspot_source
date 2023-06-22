@@ -14,29 +14,16 @@ with base as (
                 staging_columns=get_engagement_meeting_columns()
             )
         }}
+        ,{{ 
+            fivetran_utils.remove_prefix_from_columns(
+                columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')), 
+                prefix='property_hs_',exclude=get_macro_columns(get_engagement_meeting_columns()))
+        }}
     from base
 
-), fields as (
-
-    select
-        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        body as meeting_notes,
-        created_from_link_id,
-        cast(end_time as {{ dbt.type_timestamp() }}) as end_timestamp,
-        engagement_id,
-        external_url,
-        meeting_outcome,
-        pre_meeting_prospect_reminders,
-        source,
-        source_id,
-        cast(start_time as {{ dbt.type_timestamp() }}) as start_timestamp,
-        title as meeting_title,
-        web_conference_meeting_id
-    from macro
-    
 )
 
 select *
-from fields
+from macro
 
 

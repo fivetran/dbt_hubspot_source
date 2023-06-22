@@ -14,19 +14,16 @@ with base as (
                 staging_columns=get_engagement_note_columns()
             )
         }}
+        ,{{ 
+            fivetran_utils.remove_prefix_from_columns(
+                columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_note_tmp')), 
+                prefix='property_hs_',exclude=get_macro_columns(get_engagement_note_columns()))
+        }}
     from base
 
-), fields as (
-
-    select
-        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        body as note,
-        engagement_id
-    from macro
-    
 )
 
 select *
-from fields
+from macro
 
 
