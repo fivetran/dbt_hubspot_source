@@ -20,15 +20,13 @@ with base as (
 
     select
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        active as is_active,
-        activity_type,
-        cast(created_at as {{ dbt.type_timestamp() }}) as created_timestamp,
         id as engagement_id,
-        cast(last_updated as {{ dbt.type_timestamp() }}) as last_updated_timestamp,
+        created_timestamp,
         owner_id,
+        occurred_timestamp,
         portal_id,
-        cast(occurred_timestamp as {{ dbt.type_timestamp() }}) as occurred_timestamp, -- source field name = timestamp ; alias declared in macros/get_engagement_columns.sql
-        engagement_type
+        engagement_type,
+        is_active
     from macro
     
 )
