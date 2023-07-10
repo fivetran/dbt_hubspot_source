@@ -1,4 +1,5 @@
 # dbt_hubspot_source v0.11.0
+[PR #112](https://github.com/fivetran/dbt_hubspot_source/pull/112) includes the following updates:
 ## 🚨 Breaking Changes 🚨
 - Following the [May 2023 connector update](https://fivetran.com/docs/applications/hubspot/changelog#may2023) the HubSpot connector now syncs the below parent and child tables from the new v3 API. As a result the dependent fields and field names from the downstream staging models have changed depending on the fields available in your HubSpot data. Now the respective staging models will sync the required fields for the dbt_hubspot downstream transformations and **all** of your `property_hs_*` fields. Please be aware that the `property_hs_*` will be truncated from the field name in the staging and downstream models. The impacted sources (and relevant staging models) are below:
 ```txt
