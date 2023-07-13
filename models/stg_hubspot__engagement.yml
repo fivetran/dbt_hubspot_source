@@ -14,6 +14,8 @@ models:
           - unique
       - name: _fivetran_deleted
         description: Boolean to mark rows that were deleted in the source database.
+      - name: engagement_type
+        description: The type of the engagement.
       - name: created_timestamp
         description: >
           This field marks the call's time of creation and determines where the call sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
@@ -77,6 +79,8 @@ models:
         tests:
           - not_null
           - unique
+      - name: engagement_type
+        description: The type of the engagement.
       - name: created_timestamp
         description: >
           This field marks the email's time of creation and determines where the email sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
@@ -110,6 +114,8 @@ models:
         tests:
           - not_null
           - unique
+      - name: engagement_type
+        description: The type of the engagement.
       - name: created_timestamp
         description: >
           This field marks the meeting's time of creation and determines where the meeting sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
@@ -143,6 +149,8 @@ models:
         tests:
           - not_null
           - unique
+      - name: engagement_type
+        description: The type of the engagement.
       - name: note
         description: The body of the note. The body has a limit of 65536 characters.
       - name: created_timestamp
@@ -178,6 +186,8 @@ models:
         tests:
           - not_null
           - unique
+      - name: engagement_type
+        description: The type of the engagement.
       - name: created_timestamp
         description: >
           This field marks the task's time of creation and determines where the task sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
@@ -221,6 +231,11 @@ models:
           A timestamp in representing the time that the engagement should appear in the timeline.
 
           PLEASE NOTE - This field will only be populated for pre HubSpot v3 API versions. This field is only included to allow for backwards compatibility between HubSpot API versions. This field will be deprecated in the near future.
+      - name: created_timestamp
+        description: >
+          This field marks the call's time of creation and determines where the call sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for pre HubSpot v3 API versions. This field is only included to allow for backwards compatibility between HubSpot API versions. This field will be deprecated in the near future.
       - name: owner_id
         description: >
           The ID of the engagement's owner.
