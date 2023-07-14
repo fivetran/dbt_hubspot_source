@@ -8,18 +8,17 @@ with base as (
 ), macro as (
 
     select
+        {% set default_cols = adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')) %}
+        {% set new_cols = fivetran_utils.remove_prefix_from_columns(columns=default_cols, 
+            prefix='property_hs_',exclude=get_macro_columns(get_engagement_meeting_columns())) %}
         {{
-            fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')),
+            fivetran_utils.fill_staging_columns(source_columns=default_cols,
                 staging_columns=get_engagement_meeting_columns()
             )
         }}
-        {% if fivetran_utils.remove_prefix_from_columns(columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')), prefix='property_hs_',exclude=get_macro_columns(get_engagement_meeting_columns())) | length > 0 %},{% endif %}
-        {{ 
-            fivetran_utils.remove_prefix_from_columns(
-                columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')), 
-                prefix='property_hs_',exclude=get_macro_columns(get_engagement_meeting_columns()))
-        }}
+        {% if new_cols | length > 0 %} 
+            ,{{ new_cols }} 
+        {% endif %}
     from base
 
 )
