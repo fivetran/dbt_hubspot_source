@@ -3,41 +3,39 @@ version: 2
 models:
 
   - name: stg_hubspot__engagement_call
-    description: Each record represents a CALL engagement event.
+    description: Each record represents a CALL engagement event. All source `property_hs_*` fields 
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
-      - name: call_notes
-        description: The description of the call, including any notes that you want to add.
-      - name: callee_object_id
-        description: The ID of the HubSpot record associated with the call. This will be the recipient of the call for OUTBOUND calls, or the dialer of the call for INBOUND calls.
-      - name: callee_object_type
-        description: The ID of the object to which the call's associated record belongs (e.g., specifies if the record is a contact or company). This will be the object of the recipient for OUTBOUND calls, or the object of the dialer for INBOUND calls.
-      - name: call_status
-        description: The status of the call. The statuses are BUSY, CALLING_CRM_USER, CANCELED, COMPLETED, CONNECTING, FAILED, IN_PROGRESS, NO_ANSWER, QUEUED, and RINGING.
-      - name: transcription_id
-        description: The ID of the transcription for the call.
-      - name: unknown_visitor_conversation
-        description: If a visitor is unknown.
-      - name: call_duration_milliseconds
-        description: The length of the call in milliseconds.
-      - name: disposition_id
-        description: The internal ID for the call outcome.
       - name: engagement_id
         description: The ID of the engagement.
         tests:
           - not_null
           - unique
-      - name: external_account_id
-        description: For calls made in HubSpot, this will be the internal ID of the account used to make the call.
-      - name: external_id
-        description: For calls made in HubSpot, this will be the internal ID of the call.
-      - name: from_number
-        description: The phone number that was used as the from number.
-      - name: recording_url
-        description: The URL of the recording file .
-      - name: to_number
-        description: The phone number that was called.
+      - name: _fivetran_deleted
+        description: Boolean to mark rows that were deleted in the source database.
+      - name: engagement_type
+        description: The type of the engagement.
+      - name: created_timestamp
+        description: >
+          This field marks the call's time of creation and determines where the call sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: occurred_timestamp
+        description: > 
+          This field marks the call's time of occurrence and determines where the call sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: owner_id
+        description: > 
+          The ID of the owner associated with the call. This field determines the user listed as the call creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: team_id
+        description: >
+          The ID of the team associated with the call. This field determines the team listed as the call creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version.
 
   - name: stg_hubspot__engagement_company
     description: Each record represents a 'link' between a company and an engagement.
@@ -74,143 +72,148 @@ models:
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
-      - name: attached_video_id
-        description: The ID of the video attached.
-      - name: email_html
-        description: The body of the HTML email.
-      - name: email_send_event_created_timestamp
-        description: When the SENT event occurred.
-      - name: email_send_event_id
-        description: The ID of the related SENT email event.
-      - name: email_status
-        description: The status of the engagement.
-      - name: email_subject
-        description: The subject of the email.
-      - name: email_text
-        description: The body of the text-only email.
+      - name: _fivetran_deleted
+        description: Boolean to mark rows that were deleted in the source database.
       - name: engagement_id
         description: The ID of the engagement.
         tests:
           - not_null
           - unique
-      - name: error_message
-        description: The error message, if applicable.
-      - name: facsimile_send_id
-        description: facsimile_send_id
-      - name: from_email
-        description: The email address of the sender.
-      - name: from_first_name
-        description: The first name of the sender.
-      - name: from_last_name
-        description: The last name of the sender.
-      - name: logged_from
-        description: The source of the logged email.
-      - name: media_processing_status
-        description: The processing status of the media content in the email.
-      - name: message_id
-        description: The ID of the message.
-      - name: post_send_status
-        description: Indicates if the post was sent.
-      - name: recipient_drop_reasons
-        description: recipient_drop_reasons
-      - name: sent_via
-        description: How the email was sent.
-      - name: thread_id
-        description: The ID of the email thread.
-      - name: tracker_key
-        description: The ID of the tracker.
-      - name: validation_skipped
-        description: validation_skipped
-      - name: was_attached_video_opened
-        description: Whether the the attached video was opened.
-      - name: was_attached_video_watched
-        description: Whether the the attached video was watched.
+      - name: engagement_type
+        description: The type of the engagement.
+      - name: created_timestamp
+        description: >
+          This field marks the email's time of creation and determines where the email sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: occurred_timestamp
+        description: > 
+          This field marks the email's time of occurrence and determines where the email sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: owner_id
+        description: > 
+          The ID of the owner associated with the email. This field determines the user listed as the email creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: team_id
+        description: >
+          The ID of the team associated with the email. This field determines the team listed as the email creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version.
 
   - name: stg_hubspot__engagement_meeting
     description: Each record represents a MEETING engagement event.
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
-      - name: created_from_link_id
-        description: created_from_link_id
-      - name: end_timestamp
-        description: A timestamp representing the end time of the meeting
-
+      - name: _fivetran_deleted
+        description: Boolean to mark rows that were deleted in the source database.
       - name: engagement_id
         description: The ID of the engagement.
         tests:
           - not_null
           - unique
-      - name: external_url
-        description: The external URL of the engagement.
-      - name: meeting_notes
-        description: The details or body of the meeting.
-      - name: meeting_outcome
-        description: The meeting outcome.
-      - name: meeting_title
-        description: The title or subject of the meeting.
-      - name: pre_meeting_prospect_reminders
-        description: pre_meeting_prospect_reminders
-      - name: source
-        description: The source of the meeting.
-      - name: source_id
-        description: The internal ID of the meeting source.
-      - name: start_timestamp
-        description: A timestamp representing the start time of the meeting.
-      - name: web_conference_meeting_id
-        description: The ID of the web conference meeting.
+      - name: engagement_type
+        description: The type of the engagement.
+      - name: created_timestamp
+        description: >
+          This field marks the meeting's time of creation and determines where the meeting sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: occurred_timestamp
+        description: > 
+          This field marks the meeting's time of occurrence and determines where the meeting sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: owner_id
+        description: > 
+          The ID of the owner associated with the meeting. This field determines the user listed as the meeting creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: team_id
+        description: >
+          The ID of the team associated with the meeting. This field determines the team listed as the meeting creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version.
 
   - name: stg_hubspot__engagement_note
     description: Each record represents a NOTE engagement event.
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
+      - name: _fivetran_deleted
+        description: Boolean to mark rows that were deleted in the source database.
       - name: engagement_id
         description: The ID of the engagement.
         tests:
           - not_null
           - unique
+      - name: engagement_type
+        description: The type of the engagement.
       - name: note
         description: The body of the note. The body has a limit of 65536 characters.
+      - name: created_timestamp
+        description: >
+          This field marks the note's time of creation and determines where the note sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: occurred_timestamp
+        description: > 
+          This field marks the note's time of occurrence and determines where the note sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: owner_id
+        description: > 
+          The ID of the owner associated with the note. This field determines the user listed as the note creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: team_id
+        description: >
+          The ID of the team associated with the note. This field determines the team listed as the note creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version.
 
   - name: stg_hubspot__engagement_task
     description: Each record represents a TASK engagement event.
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
-      - name: completion_timestamp
-        description: The timestamp the task was completed.
+      - name: _fivetran_deleted
+        description: Boolean to mark rows that were deleted in the source database.
       - name: engagement_id
         description: The ID of the engagement.
         tests:
           - not_null
           - unique
-      - name: for_object_type
-        description: One of CONTACT or COMPANY, what object type the task is for.
-      - name: is_all_day
-        description: Whether it is an all day task.
-      - name: priority
-        description: The priority of the task.
-      - name: probability_to_complete
-        description: The probability that the task will be completed.
-      - name: task_note
-        description: The body or details of the task.
-      - name: task_status
-        description: The status of the task.
-      - name: task_subject
-        description: The subject or title of the task.
-      - name: task_type
-        description: The type of task
+      - name: engagement_type
+        description: The type of the engagement.
+      - name: created_timestamp
+        description: >
+          This field marks the task's time of creation and determines where the task sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: occurred_timestamp
+        description: > 
+          This field marks the task's time of occurrence and determines where the task sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: owner_id
+        description: > 
+          The ID of the owner associated with the task. This field determines the user listed as the task creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: team_id
+        description: >
+          The ID of the team associated with the task. This field determines the team listed as the task creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version.
 
   - name: stg_hubspot__engagement
     description: Each record represents an engagement 
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
-      - name: activity_type
-        description: The engagement's activity type.
-      - name: created_timestamp
-        description: A timestamp representing when the engagement was created.
       - name: engagement_id
         description: The ID of the engagement.
         tests:
@@ -219,12 +222,24 @@ models:
       - name: engagement_type
         description: One of NOTE, EMAIL, TASK, MEETING, or CALL, the type of the engagement.
       - name: is_active
-        description: Whether the engagement is currently being shown in the UI.
-      - name: last_updated_timestamp
-        description: A timestamp in representing when the engagement was last updated.
+        description: >
+          Whether the engagement is currently being shown in the UI.
+
+          PLEASE NOTE - This field will only be populated for pre HubSpot v3 API versions. This field is only included to allow for backwards compatibility between HubSpot API versions. This field will be deprecated in the near future.
       - name: occurred_timestamp
-        description: A timestamp in representing the time that the engagement should appear in the timeline.
+        description: >
+          A timestamp in representing the time that the engagement should appear in the timeline.
+
+          PLEASE NOTE - This field will only be populated for pre HubSpot v3 API versions. This field is only included to allow for backwards compatibility between HubSpot API versions. This field will be deprecated in the near future.
+      - name: created_timestamp
+        description: >
+          This field marks the call's time of creation and determines where the call sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for pre HubSpot v3 API versions. This field is only included to allow for backwards compatibility between HubSpot API versions. This field will be deprecated in the near future.
       - name: owner_id
-        description: The ID of the engagement's owner.
+        description: >
+          The ID of the engagement's owner.
+
+          PLEASE NOTE - This field will only be populated for pre HubSpot v3 API versions. This field is only included to allow for backwards compatibility between HubSpot API versions. This field will be deprecated in the near future.
       - name: portal_id
         description: '{{ doc("portal_id") }}'

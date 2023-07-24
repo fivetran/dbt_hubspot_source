@@ -8,37 +8,22 @@ with base as (
 ), macro as (
 
     select
+        {% set default_cols = adapter.get_columns_in_relation(ref('stg_hubspot__engagement_call_tmp')) %}
+        {% set new_cols = fivetran_utils.remove_prefix_from_columns(columns=default_cols, 
+            prefix='property_hs_',exclude=get_macro_columns(get_engagement_call_columns())) %}
         {{
-            fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_call_tmp')),
+            fivetran_utils.fill_staging_columns(source_columns=default_cols,
                 staging_columns=get_engagement_call_columns()
             )
         }}
+        {% if new_cols | length > 0 %} 
+            ,{{ new_cols }} 
+        {% endif %}
     from base
 
-), fields as (
-
-    select
-        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        body as call_notes,
-        callee_object_id,
-        callee_object_type,
-        disposition as disposition_id,
-        duration_milliseconds as call_duration_milliseconds,
-        engagement_id,
-        external_account_id,
-        external_id,
-        from_number,
-        recording_url,
-        status as call_status,
-        to_number,
-        transcription_id,
-        unknown_visitor_conversation
-    from macro
-    
 )
 
 select *
-from fields
+from macro
 
 

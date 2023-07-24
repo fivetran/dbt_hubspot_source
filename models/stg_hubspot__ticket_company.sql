@@ -8,24 +8,20 @@ with base as (
 ), macro as (
 
     select
+        {% set default_cols = adapter.get_columns_in_relation(ref('stg_hubspot__ticket_company_tmp')) %}
+        {% set new_cols = fivetran_utils.remove_prefix_from_columns(columns=default_cols, 
+            prefix='property_hs_',exclude=get_macro_columns(get_ticket_company_columns())) %}
         {{
-            fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__ticket_company_tmp')),
+            fivetran_utils.fill_staging_columns(source_columns=default_cols,
                 staging_columns=get_ticket_company_columns()
             )
         }}
+        {% if new_cols | length > 0 %} 
+            ,{{ new_cols }} 
+        {% endif %}
     from base
-
-), fields as (
-
-    select
-        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        ticket_id,
-        company_id
-
-    from macro
 
 )
 
 select *
-from fields
+from macro

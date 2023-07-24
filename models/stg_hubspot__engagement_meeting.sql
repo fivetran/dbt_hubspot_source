@@ -8,35 +8,22 @@ with base as (
 ), macro as (
 
     select
+        {% set default_cols = adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')) %}
+        {% set new_cols = fivetran_utils.remove_prefix_from_columns(columns=default_cols, 
+            prefix='property_hs_',exclude=get_macro_columns(get_engagement_meeting_columns())) %}
         {{
-            fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_hubspot__engagement_meeting_tmp')),
+            fivetran_utils.fill_staging_columns(source_columns=default_cols,
                 staging_columns=get_engagement_meeting_columns()
             )
         }}
+        {% if new_cols | length > 0 %} 
+            ,{{ new_cols }} 
+        {% endif %}
     from base
 
-), fields as (
-
-    select
-        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        body as meeting_notes,
-        created_from_link_id,
-        cast(end_time as {{ dbt.type_timestamp() }}) as end_timestamp,
-        engagement_id,
-        external_url,
-        meeting_outcome,
-        pre_meeting_prospect_reminders,
-        source,
-        source_id,
-        cast(start_time as {{ dbt.type_timestamp() }}) as start_timestamp,
-        title as meeting_title,
-        web_conference_meeting_id
-    from macro
-    
 )
 
 select *
-from fields
+from macro
 
 

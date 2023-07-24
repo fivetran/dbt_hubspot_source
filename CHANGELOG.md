@@ -1,3 +1,29 @@
+# dbt_hubspot_source v0.11.0
+[PR #112](https://github.com/fivetran/dbt_hubspot_source/pull/112) includes the following updates:
+## 🚨 Breaking Changes 🚨
+- Following the [May 2023 connector update](https://fivetran.com/docs/applications/hubspot/changelog#may2023) the HubSpot connector now syncs the below parent and child tables from the new v3 API. As a result the dependent fields and field names from the downstream staging models have changed depending on the fields available in your HubSpot data. Now the respective staging models will sync the required fields for the dbt_hubspot downstream transformations and **all** of your `property_hs_*` fields. Please be aware that the `property_hs_*` will be truncated from the field name in the staging and downstream models. The impacted sources (and relevant staging models) are below:
+```txt
+  - `ENGAGEMENT`
+    - `ENGAGEMENT_CALL`
+    - `ENGAGEMENT_COMPANY`
+    - `ENGAGEMENT_CONTACT`
+    - `ENGAGEMENT_DEAL`
+    - `ENGAGEMENT_EMAIL`
+    - `ENGAGEMENT_MEETING`
+    - `ENGAGEMENT_NOTE`
+    - `ENGAGEMENT_TASK`
+  - `TICKET`
+    - `TICKET_COMPANY`
+    - `TICKET_CONTACT`
+    - `TICKET_DEAL`
+    - `TICKET_ENGAGEMENT`
+    - `TICKET_PROPERTY_HISTORY`
+```
+  - Please note that while these changes are breaking, the package has been updated to ensure backwards compatibility with the pre HubSpot v3 API updates. As a result, you may see some `null` fields which are artifacts of the pre v3 API HubSpot version. Be sure to inspect the relevant field descriptions for an understanding of which fields remain for backwards compatibility purposes. These fields will be removed once all HubSpot connectors are upgraded to the v3 API.
+
+## Documentation Updates
+- As new fields were added in the v3 API updates, and old fields were removed, the documentation was updated to reflect the v3 API consistent fields. Please take note if you are still using the pre v3 API, you will find the above mentioned source (and respective staging) models no longer have complete field documentation coverage.
+
 # dbt_hubspot_source v0.10.0
 ## 🚨 Breaking Changes 🚨
 - In the [May 2023 connector update](https://fivetran.com/docs/applications/hubspot/changelog#may2023) `type_id` was added to sources `DEAL_COMPANY` and `DEAL_CONTACT` as a part of the composite primary key for these tables. This column has been adding to the corresponding staging models. ([PR #109](https://github.com/fivetran/dbt_hubspot_source/pull/109))

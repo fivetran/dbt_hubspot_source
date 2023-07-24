@@ -2,20 +2,13 @@
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
-    {"name": "body", "datatype": dbt.type_string()},
-    {"name": "callee_object_id", "datatype": dbt.type_int()},
-    {"name": "callee_object_type", "datatype": dbt.type_string()},
-    {"name": "disposition", "datatype": dbt.type_string()},
-    {"name": "duration_milliseconds", "datatype": dbt.type_int()},
+    {"name": "_fivetran_deleted", "datatype": dbt.type_boolean()},
     {"name": "engagement_id", "datatype": dbt.type_int()},
-    {"name": "external_account_id", "datatype": dbt.type_string()},
-    {"name": "external_id", "datatype": dbt.type_string()},
-    {"name": "from_number", "datatype": dbt.type_string()},
-    {"name": "recording_url", "datatype": dbt.type_string()},
-    {"name": "status", "datatype": dbt.type_string()},
-    {"name": "to_number", "datatype": dbt.type_string()},
-    {"name": "transcription_id", "datatype": dbt.type_int()},
-    {"name": "unknown_visitor_conversation", "datatype": "boolean"}
+    {"name": "type", "datatype": dbt.type_string(), "alias": "engagement_type"},
+    {"name": "property_hs_createdate", "datatype": dbt.type_timestamp(), "alias": "created_timestamp"},
+    {"name": "property_hs_timestamp", "datatype": dbt.type_timestamp(), "alias": "occurred_timestamp"},
+    {"name": "property_hubspot_owner_id", "datatype": dbt.type_int(), "alias": "owner_id"},
+    {"name": "property_hubspot_team_id", "datatype": dbt.type_int(), "alias": "team_id"}
 ] %}
 
 {{ return(columns) }}
