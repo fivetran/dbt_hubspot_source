@@ -1,6 +1,6 @@
 # dbt_hubspot_source v0.12.0
 ## 🚨 Breaking Changes 🚨
-- The following models have received an update to leverage a new custom macro to remove the prefix `property_hs_` prefix from the source columns in the staging models. If a column with the prefix removed matches the same name as an existing column (for example `property_hs_meeting_outcome` and `meeting_outcome` are both fields in the source table), then the new macro will coalesce the fields giving preference to the `property_hs_` field as this is likely the most relevant field per the latest HubSpot API upgrade. ([PR #115](https://github.com/fivetran/dbt_hubspot_source/pull/115))
+- The following models now use a custom macro to remove the property_hs_ prefix in staging columns, while also preventing duplicates. If de-prefixed columns match existing ones (e.g., `property_hs_meeting_outcome` vs. `meeting_outcome`), the macro favors the `property_hs_`field, aligning with the latest HubSpot API update. ([PR #115](https://github.com/fivetran/dbt_hubspot_source/pull/115))
   - `stg_hubspot__engagement_call`
   - `stg_hubspot__engagement_company`
   - `stg_hubspot__engagement_contact`
