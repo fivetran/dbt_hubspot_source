@@ -1,6 +1,6 @@
 # dbt_hubspot_source v0.12.0
 
-[PR #]() includes the following updates:
+[PR #119](https://github.com/fivetran/dbt_hubspot_source/pull/119) includes the following updates:
 
 ## 🚨 Breaking Changes 🚨
 - The `created_at` field within the `stg_hubspot__contact` model has been renamed to `created_date` to be consistent with the source data. Additionally, this ensure there are no duplicate column errors when passing through all `property_*` columns which could potentially conflict with `property_created_at`.
