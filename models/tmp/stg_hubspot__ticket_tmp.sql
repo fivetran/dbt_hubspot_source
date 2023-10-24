@@ -1,4 +1,4 @@
 {{ config(enabled=var('hubspot_service_enabled', False)) }}
 
-select *
+select {{ dbt_utils.star(source('hubspot','ticket')) }}
 from {{ var('ticket') }}
