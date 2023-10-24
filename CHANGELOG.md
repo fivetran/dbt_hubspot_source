@@ -8,6 +8,9 @@
 ## Feature Updates
 - All `stg_hubspot__*_tmp` models have been updated to leverage the `dbt_utils.star()` macro. This ensures if the source dimension changes there is no potential for a mismatch in columns error that is commonly seen in Snowflake destinations.
 
+## Under the Hood
+- Updates to the seed files and seed file configurations for the package integration tests to ensure updates are properly tested.
+
 # dbt_hubspot_source v0.12.0
 ## 🚨 Breaking Changes 🚨
 - The following models now use a custom macro to remove the property_hs_ prefix in staging columns, while also preventing duplicates. If de-prefixed columns match existing ones (e.g., `property_hs_meeting_outcome` vs. `meeting_outcome`), the macro favors the `property_hs_`field, aligning with the latest HubSpot API update. ([PR #115](https://github.com/fivetran/dbt_hubspot_source/pull/115))
