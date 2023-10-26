@@ -1,3 +1,10 @@
+# dbt_hubspot_source v0.12.1
+
+Teeny tiny release!
+
+## Under the Hood 
+- V3 of the Hubspot Service endpoint contains the field `_fivetran_deleted` in the `TICKET` table, whereas V2 has a field called `is_deleted`. Previously, the package only looked at `is_deleted`. Now, it will fold in `_fivetran_deleted` and coalesce it with `is_deleted` to more fully represent `is_ticket_deleted` ([PR #120](https://github.com/fivetran/dbt_hubspot_source/pull/120)).
+
 # dbt_hubspot_source v0.12.0
 ## 🚨 Breaking Changes 🚨
 - The following models now use a custom macro to remove the property_hs_ prefix in staging columns, while also preventing duplicates. If de-prefixed columns match existing ones (e.g., `property_hs_meeting_outcome` vs. `meeting_outcome`), the macro favors the `property_hs_`field, aligning with the latest HubSpot API update. ([PR #115](https://github.com/fivetran/dbt_hubspot_source/pull/115))
