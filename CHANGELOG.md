@@ -3,12 +3,20 @@
 [PR #119](https://github.com/fivetran/dbt_hubspot_source/pull/119) includes the following updates:
 
 ## 🚨 Breaking Changes 🚨
-- The `created_at` field within the `stg_hubspot__contact` model has been renamed to `created_date` to be consistent with the source data. Additionally, this will ensure there are no duplicate column errors when passing through all `property_*` columns, which could potentially conflict with `property_created_at`.
+- The `created_at` and `closed_at` fields in the below mentioned staging models have been renamed to `created_date` and `closed_date` respectively to be consistent with the source data. Additionally, this will ensure there are no duplicate column errors when passing through all `property_*` columns, which could potentially conflict with `property_created_at` or `property_closed_at`.
+  - `stg_hubspot__company`
+  - `stg_hubspot__contact`
+  - `stg_hubspot__deal`
+  - `stg_hubspot__ticket`
 
-## Feature Updates
-- All `stg_hubspot__*_tmp` models have been updated to leverage the `dbt_utils.star()` macro. This ensures if the source dimension changes there is no potential for a mismatch in columns error that is commonly seen in Snowflake destinations.
+## Features
+- Addition of the following variables to allow the disabling of the `*_property_history` models if they are not being leveraged. All variables are `true` by default.
+  - `hubspot_company_property_history_enabled`
+  - `hubspot_contact_property_history_enabled`
+  - `hubspot_deal_property_history_enabled`
 
 ## Under the Hood
+- All `stg_hubspot__*_tmp` models have been updated to leverage the `dbt_utils.star()` macro. This ensures if the source dimension changes there is no potential for a mismatch in columns error that is commonly seen in Snowflake destinations.
 - Updates to the seed files and seed file configurations for the package integration tests to ensure updates are properly tested.
 
 # dbt_hubspot_source v0.12.0

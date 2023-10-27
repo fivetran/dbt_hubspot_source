@@ -45,7 +45,7 @@ with base as (
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         company_name,
         description,
-        created_at,
+        created_date,
         industry,
         street_address,
         street_address_2,

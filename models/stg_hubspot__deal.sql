@@ -41,8 +41,8 @@ with base as (
         -- just default columns + explicitly configured passthrough columns
         -- a few columns below are aliased within the macros/get_deal_columns.sql macro
         deal_name,
-        cast(closed_at as {{ dbt.type_timestamp() }}) as closed_at,
-        cast(created_at as {{ dbt.type_timestamp() }}) as created_at,
+        cast(closed_date as {{ dbt.type_timestamp() }}) as closed_date,
+        cast(created_date as {{ dbt.type_timestamp() }}) as created_date,
         is_deal_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         deal_id,

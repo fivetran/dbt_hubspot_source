@@ -11,8 +11,8 @@
     {"name": "property_dealname", "datatype": dbt.type_string(), "alias": "deal_name"},
     {"name": "property_description", "datatype": dbt.type_string(), "alias": "description"},
     {"name": "property_amount", "datatype": dbt.type_int(), "alias": "amount"},
-    {"name": "property_closedate", "datatype": dbt.type_timestamp(), "alias": "closed_at"},
-    {"name": "property_createdate", "datatype": dbt.type_timestamp(), "alias": "created_at"}
+    {"name": "property_closedate", "datatype": dbt.type_timestamp(), "alias": "closed_date"},
+    {"name": "property_createdate", "datatype": dbt.type_timestamp(), "alias": "created_date"}
 ] %}
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('hubspot__deal_pass_through_columns')) }}
