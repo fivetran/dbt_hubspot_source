@@ -74,9 +74,9 @@ models:
           - not_null
       - name: is_ticket_deleted
         description: '{{ doc("is_deleted") }}'
-      - name: closed_at
+      - name: closed_date
         description: The date the ticket was closed.
-      - name: created_at
+      - name: created_date
         description: The date the ticket was created.
       - name: first_agent_reply_at
         description: the date for the first agent reply on the ticket.
