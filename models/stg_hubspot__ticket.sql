@@ -41,7 +41,7 @@ with base as (
         -- just default columns + explicitly configured passthrough columns
         -- a few columns below are aliased within the macros/get_ticket_columns.sql macro
         ticket_id,
-        is_ticket_deleted,
+        coalesce(_fivetran_ticket_deleted, is_ticket_deleted) as is_ticket_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         cast(closed_date as {{ dbt.type_timestamp() }}) as closed_date,
         cast(created_date as {{ dbt.type_timestamp() }}) as created_date,

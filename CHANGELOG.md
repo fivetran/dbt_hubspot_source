@@ -18,6 +18,7 @@
 ## Under the Hood
 - All `stg_hubspot__*_tmp` models have been updated to leverage the `dbt_utils.star()` macro. This ensures if the source dimension changes there is no potential for a mismatch in columns error that is commonly seen in Snowflake destinations.
 - Updates to the seed files and seed file configurations for the package integration tests to ensure updates are properly tested.
+- V3 of the Hubspot Service endpoint contains the field `_fivetran_deleted` in the `TICKET` table, whereas V2 has a field called `is_deleted`. Previously, the package only looked at `is_deleted`. Now, it will fold in `_fivetran_deleted` and coalesce it with `is_deleted` to more fully represent `is_ticket_deleted` ([PR #120](https://github.com/fivetran/dbt_hubspot_source/pull/120)).
 
 # dbt_hubspot_source v0.12.0
 ## 🚨 Breaking Changes 🚨
