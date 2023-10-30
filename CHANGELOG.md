@@ -1,3 +1,23 @@
+# dbt_hubspot_source v0.13.0
+
+## 🚨 Breaking Changes 🚨
+- The `created_at` and `closed_at` fields in the below mentioned staging models have been renamed to `created_date` and `closed_date` respectively to be consistent with the source data. Additionally, this will ensure there are no duplicate column errors when passing through all `property_*` columns, which could potentially conflict with `property_created_at` or `property_closed_at` ([PR #119](https://github.com/fivetran/dbt_hubspot_source/pull/119)).
+  - `stg_hubspot__company`
+  - `stg_hubspot__contact`
+  - `stg_hubspot__deal`
+  - `stg_hubspot__ticket`
+
+## Features
+- Addition of the following variables to allow the disabling of the `*_property_history` models if they are not being leveraged. All variables are `true` by default ([PR #119](https://github.com/fivetran/dbt_hubspot_source/pull/119)).
+  - `hubspot_company_property_history_enabled`
+  - `hubspot_contact_property_history_enabled`
+  - `hubspot_deal_property_history_enabled`
+
+## Under the Hood
+- All `stg_hubspot__*_tmp` models have been updated to leverage the `dbt_utils.star()` macro. This ensures if the source dimension changes there is no potential for a mismatch in columns error that is commonly seen in Snowflake destinations ([PR #119](https://github.com/fivetran/dbt_hubspot_source/pull/119)).
+- Updates to the seed files and seed file configurations for the package integration tests to ensure updates are properly tested ([PR #119](https://github.com/fivetran/dbt_hubspot_source/pull/119)).
+- V3 of the Hubspot Service endpoint contains the field `_fivetran_deleted` in the `TICKET` table, whereas V2 has a field called `is_deleted`. Previously, the package only looked at `is_deleted`. Now, it will fold in `_fivetran_deleted` and coalesce it with `is_deleted` to more fully represent `is_ticket_deleted` ([PR #120](https://github.com/fivetran/dbt_hubspot_source/pull/120)).
+
 # dbt_hubspot_source v0.12.0
 ## 🚨 Breaking Changes 🚨
 - The following models now use a custom macro to remove the property_hs_ prefix in staging columns, while also preventing duplicates. If de-prefixed columns match existing ones (e.g., `property_hs_meeting_outcome` vs. `meeting_outcome`), the macro favors the `property_hs_`field, aligning with the latest HubSpot API update. ([PR #115](https://github.com/fivetran/dbt_hubspot_source/pull/115))

@@ -36,7 +36,7 @@ models:
         description: The name of the company.
       - name: description
         description: A short statement about the company's mission and goals.
-      - name: created_at
+      - name: created_date
         description: The date the company was added to your account.
       - name: industry
         description: The type of business the company performs.

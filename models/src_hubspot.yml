@@ -103,7 +103,7 @@ sources:
         identifier: "{{ var('hubspot_company_property_history_identifier', 'company_property_history')}}"
         description: Each record represents a change to company record in Hubspot.
         config:
-          enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_company_enabled', true) }}"
+          enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_company_enabled', true) and var('hubspot_company_property_history_enabled', true) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -267,7 +267,7 @@ sources:
           error_after: {count: 168, period: hour}
         description: Each record represents a change to contact record in Hubspot.
         config:
-          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_property_enabled', true) }}"
+          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_property_enabled', true) and var('hubspot_contact_property_history_enabled', true) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -424,7 +424,7 @@ sources:
         identifier: "{{ var('hubspot_deal_property_history_identifier', 'deal_property_history')}}"
         description: Each record represents a change to deal record in Hubspot.
         config:
-          enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_deal_enabled', true) }}"
+          enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_deal_enabled', true) and var('hubspot_deal_property_history_enabled', true) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1233,7 +1233,9 @@ sources:
           - name: id
             description: ID of the ticket.
           - name: is_deleted
-            description: Whether the record was deleted.
+            description: Whether the record was deleted (v2 endpoint).
+          - name: _fivetran_deleted
+            description: Whether the record was deleted (v3 endpoint).
           - name: portal_id
             description: '{{ doc("portal_id") }}'
           - name: property_closed_date
