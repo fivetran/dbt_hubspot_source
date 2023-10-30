@@ -44,7 +44,7 @@ Include the following hubspot_source package version in your `packages.yml` file
 ```yaml
 packages:
   - package: fivetran/hubspot_source
-    version: [">=0.12.0", "<0.13.0"]
+    version: [">=0.13.0", "<0.14.0"]
 ```
 ## Step 3: Define database and schema variables
 By default, this package runs using your destination and the `hubspot` schema. If this is not where your HubSpot data is (for example, if your HubSpot schema is named `hubspot_fivetran`), add the following configuration to your root `dbt_project.yml` file:
@@ -67,6 +67,7 @@ vars:
   hubspot_contact_list_enabled: false                     # Disables contact list models
   hubspot_contact_list_member_enabled: false              # Disables contact list member models
   hubspot_contact_property_enabled: false                 # Disables the contact property models
+  hubspot_contact_property_history_enabled: false         # Disables the contact property history models
   hubspot_email_event_enabled: false                      # Disables all email_event models and functionality
   hubspot_email_event_bounce_enabled: false
   hubspot_email_event_click_enabled: false
@@ -88,9 +89,11 @@ vars:
 
   hubspot_sales_enabled: false                            # Disables all sales models
   hubspot_company_enabled: false
+  hubspot_company_property_history_enabled: false         # Disable the company property history models
   hubspot_deal_enabled: false
   hubspot_deal_company_enabled: false
   hubspot_deal_contact_enabled: false
+  hubspot_deal_property_history_enabled: false            # Disables the deal property history tables
   hubspot_engagement_enabled: false                       # Disables all engagement models and functionality
   hubspot_engagement_contact_enabled: false
   hubspot_engagement_company_enabled: false

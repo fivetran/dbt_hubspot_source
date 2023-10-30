@@ -47,7 +47,7 @@ with base as (
         contact_company,
         first_name,
         last_name,
-        cast(created_at as {{ dbt.type_timestamp() }}) as created_at,
+        cast(created_date as {{ dbt.type_timestamp() }}) as created_date,
         job_title,
         company_annual_revenue,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced

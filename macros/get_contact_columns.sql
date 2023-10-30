@@ -9,7 +9,7 @@
     {"name": "property_company", "datatype": dbt.type_string(), "alias": "contact_company"},
     {"name": "property_firstname", "datatype": dbt.type_string(), "alias": "first_name"},
     {"name": "property_lastname", "datatype": dbt.type_string(), "alias": "last_name"},
-    {"name": "property_createdate", "datatype": dbt.type_timestamp(), "alias": "created_at"},
+    {"name": "property_createdate", "datatype": dbt.type_timestamp(), "alias": "created_date"},
     {"name": "property_jobtitle", "datatype": dbt.type_string(), "alias": "job_title"},
     {"name": "property_annualrevenue", "datatype": dbt.type_int(), "alias": "company_annual_revenue"}
 ] %}

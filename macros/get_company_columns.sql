@@ -6,7 +6,7 @@
     {"name": "is_deleted", "datatype": "boolean", "alias": "is_company_deleted"},
     {"name": "property_name", "datatype": dbt.type_string(), "alias": "company_name"},
     {"name": "property_description", "datatype": dbt.type_string(), "alias": "description"},
-    {"name": "property_createdate", "datatype": dbt.type_timestamp(), "alias": "created_at"},
+    {"name": "property_createdate", "datatype": dbt.type_timestamp(), "alias": "created_date"},
     {"name": "property_industry", "datatype": dbt.type_string(), "alias": "industry"},
     {"name": "property_address", "datatype": dbt.type_string(), "alias": "street_address"},
     {"name": "property_address_2", "datatype": dbt.type_string(), "alias": "street_address_2"},
