@@ -1,3 +1,8 @@
+# dbt_hubspot_source v0.14.0
+
+# Bug fix
+- Removed extra comma from `stg_hubspot__ticket`, which was causing compilation issues when passing through all columns. 
+
 # dbt_hubspot_source v0.13.0
 
 ## 🚨 Breaking Changes 🚨
