@@ -1094,24 +1094,24 @@ sources:
             description: The type of owner.
           - name: updated_at
   
-        - name: property_option
-          identifier: "{{ var('hubspot_property_option_identifier', 'property_option')}}"
-          description: Each record represents an option for the related property.
-          config:
-            enabled: "{{ var('hubspot_sales_enabled', true) }}"
-          columns:
-            - name: _fivetran_synced
-              description: '{{ doc("_fivetran_synced") }}'
-            - name: label
-              description: The label of the option displayed inside the HubSpot app.
-            - name: property_id
-              description: The ID of the related property.
-            - name: display_order
-              description: Order of options displayed in Hubspot, starting with the lowest positive integer value. Values of -1 will cause the option to be displayed after any positive values.
-            - name: hidden
-              description: Boolean if the option will be displayed in HubSpot
-            - name: value
-              description: The internal value of the option.
+      - name: property_option
+        identifier: "{{ var('hubspot_property_option_identifier', 'property_option')}}"
+        description: Each record represents an option for the related property.
+        config:
+          enabled: "{{ var('hubspot_sales_enabled', true) }}"
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+          - name: label
+            description: The label of the option displayed inside the HubSpot app.
+          - name: property_id
+            description: The ID of the related property.
+          - name: display_order
+            description: Order of options displayed in Hubspot, starting with the lowest positive integer value. Values of -1 will cause the option to be displayed after any positive values.
+          - name: hidden
+            description: Boolean if the option will be displayed in HubSpot
+          - name: value
+            description: The internal value of the option.
 
       - name: ticket_company
         identifier: "{{ var('hubspot_ticket_company_identifier', 'ticket_company')}}"
