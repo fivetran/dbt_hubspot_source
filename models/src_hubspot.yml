@@ -1094,6 +1094,12 @@ sources:
             description: The type of owner.
           - name: updated_at
   
+      - name: property
+        identifier: "{{ var('hubspot_property_identifier', 'property')}}"
+        description: Each record represents an option for the related property.
+        config:
+          enabled: "{{ var('hubspot_sales_enabled', true) }}"
+
       - name: property_option
         identifier: "{{ var('hubspot_property_option_identifier', 'property_option')}}"
         description: Each record represents an option for the related property.

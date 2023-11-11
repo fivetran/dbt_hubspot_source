@@ -47,6 +47,7 @@ vars:
     engagement_note: "{{ source('hubspot','engagement_note') }}"
     engagement_task: "{{ source('hubspot','engagement_task') }}"
     owner: "{{ source('hubspot','owner') }}"
+    property: "{{ source('hubspot','property') }}"
     property_option: "{{ source('hubspot','property_option') }}"
     ticket_company: "{{ source('hubspot','ticket_company') }}"
     ticket_contact: "{{ source('hubspot','ticket_contact') }}"

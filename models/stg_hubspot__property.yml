@@ -2,6 +2,7 @@ version: 2
 
 models:
 
+  - name: stg_hubspot__property
   - name: stg_hubspot__property_option
     description: Each record represents an option for the related property.
     columns:
