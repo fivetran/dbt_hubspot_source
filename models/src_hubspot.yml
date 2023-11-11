@@ -1096,9 +1096,38 @@ sources:
   
       - name: property
         identifier: "{{ var('hubspot_property_identifier', 'property')}}"
-        description: Each record represents an option for the related property.
+        description: Each record represents a property.
         config:
           enabled: "{{ var('hubspot_sales_enabled', true) }}"
+        columns:
+          - name: _fivetran_id
+            description: Fivetran generated id. Joins to `property_id` in the `property_option` table.
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+          - name: calculated
+            description: Indicates if the property is calculated by a HubSpot process
+          - name: created_at
+            description: Timestamp representing when the property was created.
+          - name: description
+            description: A description of the property. 
+          - name: field_type
+            description: One of textarea, text, date, file, number, select, radio, checkbox, or booleancheckbox.
+          - name: group_name
+            description: The name of the property group that the property belongs to.
+          - name: hubspot_defined
+            description: This will be true for default properties that are built into HubSpot.
+          - name: hubspot_object
+            description: If this property is related to other objects, the object will be listed here.
+          - name: label
+            description: A human readable label for the property.
+          - name: name
+            description: The internal name of the property.
+          - name: show_currency_symbol
+            description: If true, the property will display the currency symbol set in the portal settings.
+          - name: type
+            description: One of string, number, date, datetime, or enumeration.
+          - name: updated_at
+            description: Timestamp representing when the property was last updated.
 
       - name: property_option
         identifier: "{{ var('hubspot_property_option_identifier', 'property_option')}}"
