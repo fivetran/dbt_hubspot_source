@@ -12,6 +12,7 @@
     {"name": "hubspot_object", "datatype": dbt.type_string()},
     {"name": "label", "datatype": dbt.type_string()},
     {"name": "name", "datatype": dbt.type_string()},
+    {"name": "show_currency_symbol", "datatype": dbt.type_boolean()},
     {"name": "type", "datatype": dbt.type_string()},
     {"name": "updated_at", "datatype": dbt.type_timestamp()}
 ] %}
