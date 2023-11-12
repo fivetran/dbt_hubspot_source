@@ -25,6 +25,7 @@ select {{ ref_name }}.*
     from {{ ref('stg_hubspot__property_option') }} as property_option
     join {{ ref('stg_hubspot__property') }} as property
       on property_option.property_id = property._fivetran_id
+      and property_option.property_option_label = property.property_label
     where property.property_name = '{{ col.name.replace('property_', '') }}'
     ) as {{ col.name }}_option
 
