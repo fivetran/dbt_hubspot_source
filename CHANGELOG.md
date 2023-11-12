@@ -10,6 +10,11 @@
     - `stg_hubspot__deal`
     - `stg_hubspot__ticket`
 
+## Features
+- Added the following staging models, along with documentation and tests:
+  - `stg_hubspot__property`
+  - `stg_hubspot__property_option`
+
 ## Bug fixes
 - Updated macro `remove_duplicate_and_prefix_from_columns` to accommodate incoming custom column names containing characters such as `-` or `$` that are not permitted. The resulting column name will have these characters removed or replaced in its `stg_*` model. 
 - Removed extra comma from `stg_hubspot__ticket`, which was causing compilation issues when passing through all columns. 

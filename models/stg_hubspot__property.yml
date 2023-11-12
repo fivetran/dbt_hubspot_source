@@ -7,6 +7,9 @@ models:
     columns:
       - name: _fivetran_id
         description: Fivetran generated id. Joins to `property_id` in the `property_option` table.
+        tests:
+          - unique
+          - not_null
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: calculated
@@ -34,6 +37,11 @@ models:
 
   - name: stg_hubspot__property_option
     description: Each record represents an option for the related property.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - property_id
+            - property_option_label
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
