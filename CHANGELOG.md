@@ -1,6 +1,17 @@
 # dbt_hubspot_source v0.14.0
+[PR #122](https://github.com/fivetran/dbt_hubspot_source/pull/122) includes the following updates:
 
-# Bug fix
+## 🚨 Breaking Change 🚨 
+- When including a passthrough `property_hs_*` column, you now have the option to include the corresponding, human-readable label in the staging models. 
+  - See the [Adding property label section](https://github.com/fivetran/dbt_hubspot_source#adding-property-label) of the README for instructions on how to enable this feature! 
+  - This update applies to models:
+    - `stg_hubspot__company`
+    - `stg_hubspot__contact`
+    - `stg_hubspot__deal`
+    - `stg_hubspot__ticket`
+
+## Bug fixes
+- Updated macro `remove_duplicate_and_prefix_from_columns` to accommodate incoming custom column names containing characters such as `-` or `$` that are not permitted. The resulting column name will have these characters removed or replaced in its `stg_*` model. 
 - Removed extra comma from `stg_hubspot__ticket`, which was causing compilation issues when passing through all columns. 
 
 # dbt_hubspot_source v0.13.0

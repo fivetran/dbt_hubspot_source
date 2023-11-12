@@ -12,7 +12,6 @@
     {"name": "property_createdate", "datatype": dbt.type_timestamp(), "alias": "created_date"},
     {"name": "property_jobtitle", "datatype": dbt.type_string(), "alias": "job_title"},
     {"name": "property_annualrevenue", "datatype": dbt.type_int(), "alias": "company_annual_revenue"}
-
 ] %}
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('hubspot__contact_pass_through_columns')) }}

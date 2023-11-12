@@ -135,7 +135,7 @@ vars:
   hubspot__ticket_pass_through_columns:
     - name:           "property_mmm"
       alias:          "mmm"
-    - name:           "property_bop"
+    - name:           "property_hs_bop"
       alias:          "bop"
 ```
 **Alternatively**, if you would like to simply pass through **all columns** in the above four tables, add the following configuration to your dbt_project.yml. Note that this will override any `hubspot__[table_name]_pass_through_columns` variables.
@@ -143,6 +143,28 @@ vars:
 ```yml
 vars:
   hubspot__pass_through_all_columns: true # default is false
+```
+
+### Adding property label
+For `property_hs_*` columns, you can enable the corresponding, human-readable `property_option`.`label` to be included in the staging models. 
+- **Note** you cannot bring in labels if using `hubspot__pass_through_all_columns: true`.` 
+- To enable labels for a given property, set the property attribute `use_property_label: true`, using the below format.
+
+```yml
+vars:
+  hubspot__ticket_pass_through_columns:
+    - name: "property_hs_fieldname"
+      alias: "fieldname"
+      use_property_label: true
+```
+  Alternatively, you can enable labels for all passthrough properties by using variable `hubspot__enable_all_property_labels: true`, formatted like the below example. 
+
+```yml
+vars:
+  hubspot__enable_all_property_labels: true
+  hubspot__ticket_pass_through_columns:
+    - name: "property_hs_fieldname1"
+    - name: "property_hs_fieldname2"
 ```
 ### Including calculated fields
 This package also provides the ability to pass calculated fields through to the `company`, `contact`, `deal`, and `ticket` staging models. If you would like to add a calculated field to any of the mentioned staging models, you may configure the respective `hubspot__[table_name]_calculated_fields` variables with the `name` of the field you would like to create, and the `transform_sql` which will be the actual calculation that will make up the calculated field.
