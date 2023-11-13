@@ -14,6 +14,7 @@
 - Added the following staging models, along with documentation and tests:
   - `stg_hubspot__property`
   - `stg_hubspot__property_option`
+  - These tables can be disabled by setting `hubspot_property_enabled': False` in your dbt_project.yml vars. See [Step 4 of the README](https://github.com/fivetran/dbt_hubspot_source#step-4-disable-models-for-non-existent-sources) for more details. 
 
 ## Bug fixes
 - Updated macro `remove_duplicate_and_prefix_from_columns` to accommodate incoming custom column names containing characters such as `-` or `$` that are not permitted. The resulting column name will have these characters removed or replaced in its `stg_*` model. 

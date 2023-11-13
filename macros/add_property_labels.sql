@@ -2,7 +2,8 @@
 
 select {{ cte_name }}.*
 
-{%- if var(passthrough_var_name, []) != [] -%}
+{% if var(passthrough_var_name, []) != [] and var('hubspot_property_enabled', True) %}
+  {% set source_name = passthrough_var_name.replace('hubspot__', '').replace('_pass_through_columns', '') %}
   {%- set col_list = var(passthrough_var_name) -%}
 
   {%- for col in col_list -%} -- Create label cols
@@ -25,8 +26,8 @@ select {{ cte_name }}.*
     from {{ ref('stg_hubspot__property_option') }} as property_option
     join {{ ref('stg_hubspot__property') }} as property
       on property_option.property_id = property._fivetran_id
-      and property_option.property_option_label = property.property_label
     where property.property_name = '{{ col.name.replace('property_', '') }}'
+      and property.hubspot_object = '{{ source_name }}'
     ) as {{ col.name }}_option
 
     on cast({{ cte_name }}.{{ col_alias }} as {{ dbt.type_string() }})

@@ -1098,7 +1098,7 @@ sources:
         identifier: "{{ var('hubspot_property_identifier', 'property')}}"
         description: Each record represents a property.
         config:
-          enabled: "{{ var('hubspot_sales_enabled', true) }}"
+          enabled: "{{ var('hubspot_property_enabled', true) }}"
         columns:
           - name: _fivetran_id
             description: Fivetran generated id. Joins to `property_id` in the `property_option` table.
@@ -1133,7 +1133,7 @@ sources:
         identifier: "{{ var('hubspot_property_option_identifier', 'property_option')}}"
         description: Each record represents an option for the related property.
         config:
-          enabled: "{{ var('hubspot_sales_enabled', true) }}"
+          enabled: "{{ var('hubspot_property_enabled', true) }}"
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'

@@ -1,4 +1,4 @@
-{{ config(enabled=var('hubspot_sales_enabled', False)) }}
+{{ config(enabled=var('hubspot_property_enabled', True)) }}
 
 with base as (
 
