@@ -64,7 +64,7 @@ with base as (
 {% endif %}
 
 ), joined as (
-    {{ add_property_labels('hubspot__ticket_pass_through_columns', 'fields', get_ticket_columns()) }}
+    {{ add_property_labels('hubspot__ticket_pass_through_columns', 'fields') }}
 )
 
 select *

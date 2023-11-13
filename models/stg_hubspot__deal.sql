@@ -63,7 +63,7 @@ with base as (
 {% endif %}
 
 ), joined as (
-    {{ add_property_labels('hubspot__deal_pass_through_columns', 'fields', get_deal_columns()) }}
+    {{ add_property_labels('hubspot__deal_pass_through_columns', 'fields') }}
 )
 
 select *

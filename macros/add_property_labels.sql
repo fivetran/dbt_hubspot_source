@@ -1,6 +1,6 @@
-{% macro add_property_labels(passthrough_var_name, ref_name, default_cols) %}
+{% macro add_property_labels(passthrough_var_name, cte_name) %}
 
-select {{ ref_name }}.*
+select {{ cte_name }}.*
 
 {%- if var(passthrough_var_name, []) != [] -%}
   {%- set col_list = var(passthrough_var_name) -%}
@@ -12,7 +12,7 @@ select {{ ref_name }}.*
     {% endif -%}
   {%- endfor %}
 
-  from {{ ref_name }}
+  from {{ cte_name }}
 
   {% for col in col_list -%} -- Create joins
     {%- if col.add_property_label or var('hubspot__enable_all_property_labels', false) -%}
@@ -29,14 +29,14 @@ select {{ ref_name }}.*
     where property.property_name = '{{ col.name.replace('property_', '') }}'
     ) as {{ col.name }}_option
 
-    on cast({{ ref_name }}.{{ col_alias }} as {{ dbt.type_string() }})
+    on cast({{ cte_name }}.{{ col_alias }} as {{ dbt.type_string() }})
       = cast({{ col.name }}_option.property_option_value as {{ dbt.type_string() }})
 
     {% endif -%}
   {%- endfor %}
 
 {%- else -%}
-  from {{ ref_name }}
+  from {{ cte_name }}
 
 {%- endif -%}
 {% endmacro %}
