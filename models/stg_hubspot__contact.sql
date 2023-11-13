@@ -62,7 +62,7 @@ with base as (
 {% endif %}    
 
 ), joined as (
-    {{ add_property_labels('hubspot__contact_pass_through_columns', 'fields') }}
+    {{ add_property_labels('hubspot__contact_pass_through_columns', cte_name='fields') }}
 )
 
 select *
