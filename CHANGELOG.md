@@ -1,20 +1,20 @@
 # dbt_hubspot_source v0.14.0
 [PR #122](https://github.com/fivetran/dbt_hubspot_source/pull/122) includes the following updates:
 
-## 🚨 Breaking Change 🚨 
+## Features
+- Added the following staging models, along with documentation and tests:
+  - `stg_hubspot__property`
+  - `stg_hubspot__property_option`
+  - These tables can be disabled by setting `hubspot_property_enabled': False` in your dbt_project.yml vars. See [Step 4 of the README](https://github.com/fivetran/dbt_hubspot_source#step-4-disable-models-for-non-existent-sources) for more details. 
+
 - When including a passthrough `property_hs_*` column, you now have the option to include the corresponding, human-readable label in the staging models. 
+  - The above-mentioned `property` tables are required for this feature. If you do not have them and have to disable them, unfortunately you will not be able to use this feature.
   - See the [Adding property label section](https://github.com/fivetran/dbt_hubspot_source#adding-property-label) of the README for instructions on how to enable this feature! 
   - This update applies to models:
     - `stg_hubspot__company`
     - `stg_hubspot__contact`
     - `stg_hubspot__deal`
     - `stg_hubspot__ticket`
-
-## Features
-- Added the following staging models, along with documentation and tests:
-  - `stg_hubspot__property`
-  - `stg_hubspot__property_option`
-  - These tables can be disabled by setting `hubspot_property_enabled': False` in your dbt_project.yml vars. See [Step 4 of the README](https://github.com/fivetran/dbt_hubspot_source#step-4-disable-models-for-non-existent-sources) for more details. 
 
 ## Bug fixes
 - Updated macro `remove_duplicate_and_prefix_from_columns` to accommodate incoming custom column names containing characters such as `-` or `$` that are not permitted. The resulting column name will have these characters removed or replaced in its `stg_*` model. 
