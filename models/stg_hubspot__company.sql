@@ -63,7 +63,10 @@ with base as (
     from macro
 
 {% endif %}
+
+), joined as (
+    {{ add_property_labels('hubspot__company_pass_through_columns', cte_name='fields') }}
 )
 
 select *
-from fields
+from joined

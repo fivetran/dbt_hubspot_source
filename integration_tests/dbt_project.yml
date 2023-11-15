@@ -1,14 +1,18 @@
 name: 'hubspot_source_integration_tests'
-version: '0.13.0'
+version: '0.14.0'
 profile: 'integration_tests'
 config-version: 2
 models:
   hubspot_source:
     +schema:
 vars:
-  hubspot_schema: hubspot_source_integration_tests_7
+  hubspot_schema: hubspot_source_integration_tests_999
   hubspot_source:
     hubspot_service_enabled: true
+    # hubspot_sales_enabled: true # enable when generating docs
+    # hubspot_marketing_enabled: true # enable when generating docs
+    # hubspot_contact_merge_audit_enabled: true # enable when generating docs
+    # hubspot_using_all_email_events: true # enable when generating docs
     hubspot_company_property_history_identifier: "company_property_history_data"
     hubspot_company_identifier: "company_data"
     hubspot_contact_identifier: "contact_data"
@@ -43,6 +47,8 @@ vars:
     hubspot_engagement_note_identifier: "engagement_note_data"
     hubspot_engagement_task_identifier: "engagement_task_data"
     hubspot_owner_identifier: "owner_data"
+    hubspot_property_identifier: "property_data"
+    hubspot_property_option_identifier: "property_option_data"
     hubspot_ticket_company_identifier: "ticket_company_data"
     hubspot_ticket_contact_identifier: "ticket_contact_data"
     hubspot_ticket_deal_identifier: "ticket_deal_data"

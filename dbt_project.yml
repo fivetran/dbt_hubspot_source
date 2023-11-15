@@ -1,5 +1,5 @@
 name: 'hubspot_source'
-version: '0.13.0'
+version: '0.14.0'
 config-version: 2
 require-dbt-version: [">=1.3.0", "<2.0.0"]
 models:
@@ -47,6 +47,8 @@ vars:
     engagement_note: "{{ source('hubspot','engagement_note') }}"
     engagement_task: "{{ source('hubspot','engagement_task') }}"
     owner: "{{ source('hubspot','owner') }}"
+    property: "{{ source('hubspot','property') }}"
+    property_option: "{{ source('hubspot','property_option') }}"
     ticket_company: "{{ source('hubspot','ticket_company') }}"
     ticket_contact: "{{ source('hubspot','ticket_contact') }}"
     ticket_deal: "{{ source('hubspot','ticket_deal') }}"
