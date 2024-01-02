@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_ticket_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -27,6 +35,14 @@ with base as (
                 staging_columns=get_ticket_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
         {% if all_passthrough_column_check('stg_hubspot__ticket_tmp',get_ticket_columns()) > 0 %}
         -- just pass everything through if extra columns are present, but ensure required columns are present.
         {{  
@@ -52,7 +68,8 @@ with base as (
         ticket_priority,
         owner_id,
         ticket_subject,
-        ticket_content
+        ticket_content,
+        source_relation
 
         --The below macro adds the fields defined within your hubspot__ticket_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__ticket_pass_through_columns') }}

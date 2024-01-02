@@ -16,6 +16,14 @@ with base as (
                 staging_columns=get_ticket_engagement_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+        
         {% if new_cols | length > 0 %} 
             {{ new_cols }} 
         {% endif %}

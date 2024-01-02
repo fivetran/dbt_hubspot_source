@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_deal_contact_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -22,7 +30,8 @@ with base as (
         contact_id,
         deal_id,
         type_id,
-        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
+        source_relation
         
     from macro
     

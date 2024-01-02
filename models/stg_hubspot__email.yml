@@ -4,6 +4,11 @@ models:
 
   - name: stg_hubspot__email_event_bounce
     description: Each record represents a BOUNCE email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -15,15 +20,21 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: returned_response
         description: The full response from the recipient's email server.
       - name: returned_status
         description: The status code returned from the recipient's email server.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_click
     description: Each record represents a CLICK email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -34,7 +45,6 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: geo_location
         description: '{{ doc("email_event_location") }}'
@@ -44,9 +54,16 @@ models:
         description: The URL of the webpage that linked to the URL clicked. Whether this is provided, and what its value is, is determined by the recipient's email client.
       - name: user_agent
         description: '{{ doc("email_event_user_agent") }}'
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_deferred
     description: Each record represents a DEFERRED email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -55,28 +72,40 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: returned_response
         description: The full response from the recipient's email server.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_delivered
     description: Each record represents a DELIVERED email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: returned_response
         description: The full response from the recipient's email server.
       - name: smtp_id
         description: An ID attached to the message by HubSpot.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_dropped
     description: Each record represents a DROPPED email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -93,15 +122,21 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: from_email
         description: The 'from' field of the email message.
       - name: reply_to_email
         description: The 'reply-to' field of the email message.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_forward
     description: Each record represents a FORWARD email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -110,7 +145,6 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: geo_location
         description: '{{ doc("email_event_location") }}'
@@ -118,9 +152,16 @@ models:
         description: '{{ doc("email_event_ip_address") }}'
       - name: user_agent
         description: '{{ doc("email_event_user_agent") }}'
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_open
     description: Each record represents a OPEN email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -131,7 +172,6 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: geo_location
         description: '{{ doc("email_event_location") }}'
@@ -139,9 +179,16 @@ models:
         description: '{{ doc("email_event_ip_address") }}'
       - name: user_agent
         description: '{{ doc("email_event_user_agent") }}'
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_print
     description: Each record represents a PRINT email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -150,7 +197,6 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: geo_location
         description: '{{ doc("email_event_location") }}'
@@ -158,9 +204,16 @@ models:
         description: '{{ doc("email_event_ip_address") }}'
       - name: user_agent
         description: '{{ doc("email_event_user_agent") }}'
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_sent
     description: Each record represents a SENT email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -173,46 +226,55 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: from_email
         description: The 'from' field of the email message.
       - name: reply_to_email
         description: The 'reply-to' field of the email message.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_spam_report
     description: Each record represents a SPAM_REPORT email event.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: ip_address
         description: '{{ doc("email_event_ip_address") }}'
       - name: user_agent
         description: '{{ doc("email_event_user_agent") }}'
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event_status_change
     description: Each record represents a STATUS_CHANGE email event in Hubspot.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: change_source
         description: The source of the subscription change. 
-
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: is_bounced
         description: | 
               A HubSpot employee explicitly initiated the status change to block messages to the recipient. 
               (Note this usage has been deprecated in favor of dropping messages with a 'dropReason' of BLOCKED_ADDRESS.)
-
       - name: requested_by_email
         description: The email address of the person requesting the change on behalf of the recipient. If not applicable, this property is omitted.
       - name: subscription_status
@@ -220,14 +282,20 @@ models:
               The recipient's portal subscription status. 
               Note that if this is 'UNSUBSCRIBED', the property 'subscriptions' is not necessarily an empty array, nor are all 
               subscriptions contained in it necessarily going to have their statuses set to 'UNSUBSCRIBED'.)
-
       - name: subscriptions
         description: |
               An array of JSON objects representing the status of subscriptions for the recipient. 
               Each JSON subscription object is comprised of the properties: 'id', 'status'.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_event
     description: Each record represents an email event in Hubspot.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - event_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -244,7 +312,6 @@ models:
       - name: event_id
         description: The ID of the event.
         tests:
-          - unique
           - not_null
       - name: event_type
         description: The type of event.
@@ -262,9 +329,16 @@ models:
         description: The event ID which uniquely identifies the email message's SENT event. If not applicable, this property is omitted.
       - name: sent_timestamp
         description: The timestamp of the SENT event related to this event.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__email_campaign
     description: Each record represents an email campaign in Hubspot.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - email_campaign_id
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -277,7 +351,6 @@ models:
       - name: email_campaign_id
         description: The ID of the email campaign.
         tests:
-          - unique
           - not_null
       - name: email_campaign_name
         description: The name of the email campaign.
@@ -291,3 +364,5 @@ models:
         description: The number of messages included as part of the email campaign.
       - name: num_queued
         description: The number of messages queued as part of the email campaign.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'

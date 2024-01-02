@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_email_event_click_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -26,7 +34,9 @@ with base as (
         location as geo_location,
         referer as referer_url,
         url as click_url,
-        user_agent
+        user_agent,
+        source_relation
+        
     from macro
     
 )

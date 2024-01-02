@@ -1,3 +1,7 @@
+# dbt_hubspot_source v0.15.0
+
+Unioning coming soon...
+
 # dbt_hubspot_source v0.14.0
 [PR #122](https://github.com/fivetran/dbt_hubspot_source/pull/122) includes the following updates:
 

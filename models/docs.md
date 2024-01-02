@@ -2,6 +2,10 @@
 Timestamp of when Fivetran synced a record.
 {% enddocs %}
 
+{% docs source_relation %}
+The schema or database this record came from if you are unioning multiple Zendesk connectors together in this package. If you are running the package on a single connector, this will be its schema name.
+{% enddocs %}
+
 {% docs _fivetran_deleted %}
 Boolean indicating whether a record has been deleted in Hubspot and/or inferred deleted in Hubspot by Fivetran; _fivetran_deleted and is_deleted fields are equivalent. 
 {% enddocs %}

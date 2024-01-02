@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_contact_list_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -32,7 +40,8 @@ with base as (
         metadata_size,
         name as contact_list_name,
         portal_id,
-        cast(updated_at as {{ dbt.type_timestamp() }}) as updated_timestamp
+        cast(updated_at as {{ dbt.type_timestamp() }}) as updated_timestamp,
+        source_relation
     from macro
     
 )

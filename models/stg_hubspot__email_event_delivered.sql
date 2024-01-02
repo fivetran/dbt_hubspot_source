@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_email_event_delivered_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -22,7 +30,9 @@ with base as (
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         id as event_id,
         response as returned_response,
-        smtp_id
+        smtp_id,
+        source_relation
+        
     from macro
     
 )
