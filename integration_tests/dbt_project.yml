@@ -6,7 +6,7 @@ models:
   hubspot_source:
     +schema:
 vars:
-  hubspot_schema: hubspot_source_integration_tests_999
+  hubspot_schema: hubspot_source_integration_tests_001
   hubspot_source:
     hubspot_service_enabled: true
     # hubspot_sales_enabled: true # enable when generating docs
