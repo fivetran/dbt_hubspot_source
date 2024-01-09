@@ -1,6 +1,8 @@
 # dbt_hubspot_source v0.15.0
+[PR #123](https://github.com/fivetran/dbt_hubspot_source/pull/123) includes the following updates:
 
-Unioning coming soon...
+## 🎉 Feature Update 🎉 
+- This release supports running the package on multiple Hubspot sources at once! See the [README](https://github.com/fivetran/dbt_hubspot_source?tab=readme-ov-file#step-3-define-database-and-schema-variables) for details on how to leverage this feature.
 
 # dbt_hubspot_source v0.14.0
 [PR #122](https://github.com/fivetran/dbt_hubspot_source/pull/122) includes the following updates:
