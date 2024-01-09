@@ -48,7 +48,7 @@ with base as (
         ,{{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__contact_tmp')), 
-                prefix='property_', exclude=get_macro_columns(get_contact_columns())) 
+                prefix='property_', exclude=(get_macro_columns(get_contact_columns()) + ['_dbt_source_relation'])) 
         }}
         {% endif %}
     from base

@@ -48,7 +48,7 @@ with base as (
         {{  
             remove_duplicate_and_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__ticket_tmp')), 
-                prefix='property_', exclude=get_macro_columns(get_ticket_columns())) 
+                prefix='property_', exclude=(get_macro_columns(get_ticket_columns()) + ['_dbt_source_relation'])) 
         }}
         {% endif %}
     from base
