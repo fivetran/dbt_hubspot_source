@@ -6,6 +6,8 @@ sources:
     database: "{% if target.type != 'spark'%}{{ var('hubspot_database', target.database) }}{% endif %}"
     loader: Fivetran
     loaded_at_field: _fivetran_synced
+    config:
+      enabled: "{{ var('hubspot_union_schemas', []) == [] and var('hubspot_union_databases', []) == [] }}"
     tables:
       - name: calendar_event
         identifier: "{{ var('hubspot_calendar_event_identifier', 'calendar_event')}}"
