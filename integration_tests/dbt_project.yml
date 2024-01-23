@@ -6,7 +6,7 @@ models:
   hubspot_source:
     +schema:
 vars:
-  hubspot__pass_through_all_columns: true
+  hubspot__pass_through_all_columns: true # TODO: move to buildkite step before merging
   hubspot_schema: hubspot_source_integration_tests_7
   hubspot_source:
     hubspot_service_enabled: true
