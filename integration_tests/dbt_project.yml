@@ -6,7 +6,8 @@ models:
   hubspot_source:
     +schema:
 vars:
-  hubspot_schema: hubspot_source_integration_tests_999
+  hubspot__pass_through_all_columns: true
+  hubspot_schema: hubspot_source_integration_tests_7
   hubspot_source:
     hubspot_service_enabled: true
     # hubspot_sales_enabled: true # enable when generating docs
