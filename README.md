@@ -48,7 +48,7 @@ packages:
 ```
 
 ## Step 3: Define database and schema variables
-### Option 1: Single connector
+### Option 1: Single connector 💃
 By default, this package runs using your destination and the `hubspot` schema. If this is not where your HubSpot data is (for example, if your HubSpot schema is named `hubspot_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
@@ -58,7 +58,7 @@ vars:
 ```
 > **Note**: If you are running the package on one source connector, each model will have a `source_relation` column that is just an empty string.
 
-### Option 2: Union multiple connectors
+### Option 2: Union multiple connectors 👯
 If you have multiple Hubspot connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `hubspot_union_schemas` OR `hubspot_union_databases` variables (cannot do both, though a more flexible approach is in the works...) in your root `dbt_project.yml` file:
 
 ```yml
@@ -1412,6 +1412,7 @@ vars:
 If you are not using a source table that involves freshness tests, please be aware that the feature to disable freshness was only introduced in dbt-core 1.1.0. Therefore ensure the dbt version you're using is v1.1.0 or greater for this config to work.
 
 ## (Optional) Step 5: Additional configurations
+<details open><summary>Expand/collapse configurations</summary>
 
 ### Adding passthrough columns
 This package includes all source columns defined in the macros folder. Models by default only bring in a few fields for the `company`, `contact`, `deal`, and `ticket` tables. You can add more columns using our pass-through column variables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables within your root `dbt_project.yml`.
@@ -1503,7 +1504,7 @@ models:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
     
-### Change the source table references
+### Change the source table references (only if using a single connector)
 If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable:
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_hubspot_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
     
@@ -1512,7 +1513,7 @@ vars:
     hubspot_<default_source_table_name>_identifier: your_table_name 
 ```
 
-This solution is most relevant to users running the package on a single connector.
+</details>
 
 ## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 
