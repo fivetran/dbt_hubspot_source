@@ -25,3 +25,5 @@ models:
         description: The type of owner.
       - name: updated_timestamp
         description: A timestamp for when the owner was last updated.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'

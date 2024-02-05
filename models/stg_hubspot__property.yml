@@ -4,11 +4,15 @@ models:
 
   - name: stg_hubspot__property
     description: Each record represents a property.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - _fivetran_id
+            - source_relation
     columns:
       - name: _fivetran_id
         description: Fivetran generated id. Joins to `property_id` in the `property_option` table.
         tests:
-          - unique
           - not_null
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -34,6 +38,8 @@ models:
         description: One of string, number, date, datetime, or enumeration.
       - name: updated_at
         description: Timestamp representing when the property was last updated.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__property_option
     description: Each record represents an option for the related property.
@@ -42,6 +48,7 @@ models:
           combination_of_columns:
             - property_id
             - property_option_label
+            - source_relation
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
@@ -55,3 +62,5 @@ models:
         description: Boolean if the option will be displayed in HubSpot
       - name: property_option_value
         description: The internal value of the option.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'

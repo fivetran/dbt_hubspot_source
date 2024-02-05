@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_engagement_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -26,7 +34,9 @@ with base as (
         occurred_timestamp,
         portal_id,
         engagement_type,
-        is_active
+        is_active,
+        source_relation
+        
     from macro
     
 )

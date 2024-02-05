@@ -14,9 +14,16 @@ models:
         description: The ID of the related contact.
       - name: contact_list_id
         description: The ID of the related contact list.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__contact_list
     description: Each record represents a contact list in Hubspot.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - contact_list_id
+            - source_relation 
     columns:
       - name: is_contact_list_deleted
         description: '{{ doc("is_deleted") }}'
@@ -25,7 +32,6 @@ models:
       - name: contact_list_id
         description: The ID of the contact list.
         tests:
-          - unique
           - not_null
       - name: contact_list_name
         description: The name of the contact list.
@@ -51,6 +57,8 @@ models:
         description: '{{ doc("portal_id") }}'
       - name: updated_timestamp
         description: A timestamp of the time that the list was last modified.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__contact_property_history
     description: Each record represents a change to contact record in Hubspot.
@@ -69,6 +77,8 @@ models:
         description: '{{ doc("history_name") }}'
       - name: new_value
         description: '{{ doc("history_value") }}'
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__contact_merge_audit
     description: Each record contains a contact merge event and the contacts effected by the merge.
@@ -93,9 +103,16 @@ models:
         description: The ID of the user.
       - name: vid_to_merge
         description: The ID of the contact which was merged.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'
 
   - name: stg_hubspot__contact
     description: Each record represents a contact in Hubspot.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: 
+            - contact_id
+            - source_relation
     columns:
       - name: is_contact_deleted
         description: '{{ doc("is_deleted") }}'
@@ -104,7 +121,6 @@ models:
       - name: contact_id
         description: The ID of the contact.
         tests:
-          - unique
           - not_null
       - name: email
         description: The email address of the contact.
@@ -127,3 +143,5 @@ models:
           List of mappings representing contact IDs that have been merged into the contact at hand.
           Format: <merged_contact_id>:<merged_at_in_epoch_time>;<second_merged_contact_id>:<merged_at_in_epoch_time>
           This field has replaced the `CONTACT_MERGE_AUDIT` table, which was deprecated by the Hubspot v3 CRM API.
+      - name: source_relation
+        description: '{{ doc("source_relation") }}'

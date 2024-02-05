@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_company_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -27,12 +35,20 @@ with base as (
                 staging_columns=get_company_columns()
             )
         }}
+        
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
         {% if all_passthrough_column_check('stg_hubspot__company_tmp',get_company_columns()) > 0 %}
         -- just pass everything through if extra columns are present, but ensure required columns are present.
         ,{{ 
             fivetran_utils.remove_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__company_tmp')), 
-                prefix='property_', exclude=get_macro_columns(get_company_columns()))
+                prefix='property_', exclude=(get_macro_columns(get_company_columns()) + ['_dbt_source_relation']))
         }}
         {% endif %}
     from base
@@ -52,7 +68,8 @@ with base as (
         city,
         state,
         country,
-        company_annual_revenue
+        company_annual_revenue,
+        source_relation
         
         --The below macro adds the fields defined within your hubspot__ticket_pass_through_columns variable into the staging model
         {{ fivetran_utils.fill_pass_through_columns('hubspot__company_pass_through_columns') }}

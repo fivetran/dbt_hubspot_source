@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_contact_merge_audit_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -33,7 +41,8 @@ with base as (
         as {{ dbt.type_timestamp() }}) as timestamp_at,
         user_id,
         vid_to_merge,
-        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
+        source_relation
     from macro
     
 )

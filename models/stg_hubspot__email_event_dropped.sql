@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_email_event_dropped_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -27,7 +35,9 @@ with base as (
         from_email, -- source field name = from ; alias declared in macros/get_email_event_dropped_columns.sql
         id as event_id,
         reply_to as reply_to_email,
-        subject as email_subject
+        subject as email_subject,
+        source_relation
+        
     from macro
     
 )

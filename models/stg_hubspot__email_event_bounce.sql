@@ -15,6 +15,14 @@ with base as (
                 staging_columns=get_email_event_bounce_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+        
     from base
     
 ), fields as (
@@ -24,7 +32,9 @@ with base as (
         category as bounce_category,
         id as event_id,
         response as returned_response,
-        status as returned_status
+        status as returned_status,
+        source_relation
+        
     from macro
     
 )

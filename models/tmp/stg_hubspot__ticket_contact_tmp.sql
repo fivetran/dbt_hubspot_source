@@ -1,4 +1,14 @@
 {{ config(enabled=var('hubspot_service_enabled', False)) }}
 
-select {{ dbt_utils.star(source('hubspot','ticket_contact')) }}
-from {{ var('ticket_contact') }}
+{{
+    fivetran_utils.union_data(
+        table_identifier='ticket_contact', 
+        database_variable='hubspot_database', 
+        schema_variable='hubspot_schema', 
+        default_database=target.database,
+        default_schema='hubspot',
+        default_variable='ticket_contact',
+        union_schema_variable='hubspot_union_schemas',
+        union_database_variable='hubspot_union_databases'
+    )
+}}

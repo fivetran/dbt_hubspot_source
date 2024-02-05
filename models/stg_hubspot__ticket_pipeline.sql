@@ -17,6 +17,13 @@ fields as (
             )
         }}
 
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 ),
 
@@ -31,7 +38,8 @@ final as (
         label as pipeline_label,
         object_type_id,
         created_at as ticket_pipeline_created_at,
-        updated_at as ticket_pipeline_updated_at
+        updated_at as ticket_pipeline_updated_at,
+        source_relation
     from fields
 )
 

@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_email_campaign_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -29,7 +37,9 @@ with base as (
         num_queued,
         sub_type as email_campaign_sub_type,
         subject as email_campaign_subject,
-        type as email_campaign_type
+        type as email_campaign_type,
+        source_relation
+        
     from macro
     
 )

@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_property_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -31,7 +39,9 @@ with base as (
         label as property_label,
         name as property_name,
         type as property_type,
-        updated_at
+        updated_at,
+        source_relation
+        
     from macro
     
 )

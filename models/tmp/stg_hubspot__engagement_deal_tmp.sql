@@ -1,4 +1,14 @@
 {{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_engagement_enabled','hubspot_engagement_deal_enabled'])) }}
 
-select {{ dbt_utils.star(source('hubspot','engagement_deal')) }}
-from {{ var('engagement_deal') }}
+{{
+    fivetran_utils.union_data(
+        table_identifier='engagement_deal', 
+        database_variable='hubspot_database', 
+        schema_variable='hubspot_schema', 
+        default_database=target.database,
+        default_schema='hubspot',
+        default_variable='engagement_deal',
+        union_schema_variable='hubspot_union_schemas',
+        union_database_variable='hubspot_union_databases'
+    )
+}}

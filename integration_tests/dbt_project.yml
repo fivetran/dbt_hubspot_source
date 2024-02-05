@@ -1,12 +1,12 @@
 name: 'hubspot_source_integration_tests'
-version: '0.14.0'
+version: '0.15.0'
 profile: 'integration_tests'
 config-version: 2
 models:
   hubspot_source:
     +schema:
 vars:
-  hubspot_schema: hubspot_source_integration_tests_999
+  hubspot_schema: hubspot_source_integration_tests_001
   hubspot_source:
     hubspot_service_enabled: true
     # hubspot_sales_enabled: true # enable when generating docs

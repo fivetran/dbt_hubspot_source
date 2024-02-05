@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_contact_property_history_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -25,7 +33,9 @@ with base as (
         source as change_source,
         source_id as change_source_id,
         cast(change_timestamp as {{ dbt.type_timestamp() }}) as change_timestamp, -- source field name = timestamp ; alias declared in macros/get_contact_property_history_columns.sql
-        value as new_value
+        value as new_value,
+        source_relation
+        
     from macro
     
 )

@@ -17,6 +17,13 @@ fields as (
             )
         }}
         
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 ),
 
@@ -30,7 +37,9 @@ final as (
         value as deal_stage_name,
         _fivetran_active,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
-        cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start
+        cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
+        source_relation
+        
     from fields
 )
 

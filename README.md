@@ -44,9 +44,11 @@ Include the following hubspot_source package version in your `packages.yml` file
 ```yaml
 packages:
   - package: fivetran/hubspot_source
-    version: [">=0.14.0", "<0.15.0"]
+    version: [">=0.15.0", "<0.16.0"]
 ```
+
 ## Step 3: Define database and schema variables
+### Option 1: Single connector 💃
 By default, this package runs using your destination and the `hubspot` schema. If this is not where your HubSpot data is (for example, if your HubSpot schema is named `hubspot_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
@@ -54,7 +56,50 @@ vars:
     hubspot_database: your_destination_name
     hubspot_schema: your_schema_name 
 ```
+> **Note**: If you are running the package on one source connector, each model will have a `source_relation` column that is just an empty string.
+
+### Option 2: Union multiple connectors 👯
+If you have multiple Hubspot connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `hubspot_union_schemas` OR `hubspot_union_databases` variables (cannot do both, though a more flexible approach is in the works...) in your root `dbt_project.yml` file:
+
+```yml
+# dbt_project.yml
+
+vars:
+    hubspot_union_schemas: ['hubspot_usa','hubspot_canada'] # use this if the data is in different schemas/datasets of the same database/project
+    hubspot_union_databases: ['hubspot_usa','hubspot_canada'] # use this if the data is in different databases/projects but uses the same schema name
+```
+
+#### Recommended: Incorporate unioned sources into DAG
+By default, this package defines one single-connector source, called `hubspot`, which will be disabled if you are unioning multiple connectors. This means that your DAG will not include your Hubspot sources, though the package will run successfully.
+
+To properly incorporate all of your Hubspot connectors into your project's DAG:
+1. Define each of your sources in a `.yml` file in your project. Utilize the following template for the `source`-level configurations, and, **most importantly**, copy and paste the table and column-level definitions from the package's `src_hubspot.yml` [file](https://github.com/fivetran/dbt_hubspot_source/blob/main/models/src_hubspot.yml#L9-L1313).
+
+```yml
+# a .yml file in your root project
+sources:
+  - name: <name> # ex: hubspot_usa
+    schema: <schema_name> # one of var('hubspot_union_schemas') if unioning schemas, otherwise just 'hubspot'
+    database: <database_name> # one of var('hubspot_union_databases') if unioning databases, otherwise whatever DB your hubspot schemas all live in
+    loader: Fivetran
+    loaded_at_field: _fivetran_synced
+    tables: # copy and paste from models/src_hubspot.yml 
+```
+
+> **Note**: If there are source tables you do not have (see [Step 4](https://github.com/fivetran/dbt_hubspot_source?tab=readme-ov-file#step-4-disable-models-for-non-existent-sources)), you may still include them here, as long as you have set the right variables to `False`. Otherwise, you may remove them from your source definitions.
+
+2. Set the `has_defined_sources` variable (scoped to the `hubspot_source` package) to `True`, like such:
+```yml
+# dbt_project.yml
+vars:
+  hubspot_source:
+    has_defined_sources: true
+```
+
 ## Step 4: Disable models for non-existent sources
+
+> _This step is unnecessary (but still available for use) if you are unioning multiple connectors together in the previous step. That is, the `union_data` macro we use will create completely empty staging models for sources that are not found in any of your Hubspot schemas/databases. However, you can still leverage the below variables if you would like to avoid this behavior._
+
 When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. Therefore we have added enable/disable configs in the `src.yml` to allow you to disable certain sources not present. Downstream models are automatically disabled as well. In order to disable the relevant functionality in the package, you will need to add the relevant variables in your root `dbt_project.yml`. By default, all variables are assumed to be `true` (with exception of `hubspot_service_enabled`, `hubspot_ticket_deal_enabled`, and `hubspot_contact_merge_audit_enabled`). You only need to add variables for the tables different from default:
 
 ```yml
@@ -111,10 +156,8 @@ vars:
   hubspot_ticket_deal_enabled: true
 ```
 
-### Dbt-core Version Requirement for disabling freshness tests
-If you are not using a source table that involves freshness tests, please be aware that the feature to disable freshness was only introduced in dbt-core 1.1.0. Therefore ensure the dbt version you're using is v1.1.0 or greater for this config to work.
-
 ## (Optional) Step 5: Additional configurations
+<details open><summary>Expand/collapse configurations</summary>
 
 ### Adding passthrough columns
 This package includes all source columns defined in the macros folder. Models by default only bring in a few fields for the `company`, `contact`, `deal`, and `ticket` tables. You can add more columns using our pass-through column variables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables within your root `dbt_project.yml`.
@@ -206,7 +249,7 @@ models:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
     
-### Change the source table references
+### Change the source table references (only if using a single connector)
 If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable:
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_hubspot_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
     
@@ -214,6 +257,8 @@ If an individual source table has a different name than the package expects, add
 vars:
     hubspot_<default_source_table_name>_identifier: your_table_name 
 ```
+
+</details>
 
 ## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 

@@ -14,6 +14,14 @@ with base as (
                 staging_columns=get_deal_pipeline_stage_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='hubspot_union_schemas', 
+                union_database_variable='hubspot_union_databases'
+            ) 
+        }}
+
     from base
 
 ), fields as (
@@ -29,7 +37,9 @@ with base as (
         probability,
         cast(stage_id as {{ dbt.type_string() }}) as deal_pipeline_stage_id,
         created_at as deal_pipeline_stage_created_at,
-        updated_at as deal_pipeline_stage_updated_at
+        updated_at as deal_pipeline_stage_updated_at,
+        source_relation
+        
     from macro
     
 )
