@@ -88,7 +88,7 @@ sources:
 
 > **Note**: If there are source tables you do not have (see [Step 4](https://github.com/fivetran/dbt_hubspot_source?tab=readme-ov-file#step-4-disable-models-for-non-existent-sources)), you may still include them here, as long as you have set the right variables to `False`. Otherwise, you may remove them from your source definitions.
 
-2. Set the `has_defined_sources` variable (scoped to the `hubspot_source` package) to true, like such:
+2. Set the `has_defined_sources` variable (scoped to the `hubspot_source` package) to `True`, like such:
 ```yml
 # dbt_project.yml
 vars:
