@@ -20,7 +20,7 @@ with base as (
     
     select
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        cast(deal_id as {{ dbt.type_int() }}) as deal_id.
+        cast(deal_id as {{ dbt.type_int() }}) as deal_id,
         cast(merged_deal_id as {{ dbt.type_int() }}) as merged_deal_id
     from macro
 )
