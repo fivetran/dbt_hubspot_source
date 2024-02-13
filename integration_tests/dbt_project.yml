@@ -6,7 +6,7 @@ models:
   hubspot_source:
     +schema:
 vars:
-  hubspot_schema: hubspot_source_integration_tests_999
+  hubspot_schema: hubspot_source_integration_tests_20
   hubspot_source:
     hubspot_service_enabled: true
     # hubspot_sales_enabled: true # enable when generating docs
@@ -175,6 +175,9 @@ seeds:
         created: timestamp
         obsoleted_by_created: timestamp
         sent_by_created: timestamp
+    merged_deal_data:
+      +column_types:
+        deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
 
 dispatch:
   - macro_namespace: dbt_utils

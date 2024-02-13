@@ -165,10 +165,13 @@ models:
   - name: stg_hubspot__merged_deal
     description: Each record represents a deal that has been merged along with the related deal it's been merged into.
     columns:
-      - name: deal_id
-        description: The ID of the deal.
       - name: merged_deal_id
-        description: The ID of the deal it has been merged into.
+        description: ID of deal that has been merged.
+        tests:
+          - unique
+          - not_null
+      - name: deal_id
+        description: The ID of the deal the record has been merged INTO.
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
 

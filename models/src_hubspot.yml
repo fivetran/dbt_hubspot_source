@@ -1319,8 +1319,8 @@ sources:
           enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_deal_enabled', true) }}"
         columns:
           - name: deal_id
-            description: The ID of the deal.
+            description: The ID of the deal the record has been merged INTO.
           - name: merged_deal_id
-            description: The ID of the deal it has been merged into.
+            description: ID of deal that has been merged.
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
