@@ -1,3 +1,10 @@
+# dbt_hubspot_source v0.14.1
+[PR #125](https://github.com/fivetran/dbt_hubspot_source/pull/125) includes the following updates:
+
+## Features
+- Adds the `stg_hubspot__merged_deal` model. Downstream, this model is used to remove stale deals and aggregate them to the deal they have been merged into. 
+  - This can be disabled by setting `hubspot_sales_enabled` and `hubspot_deal_enabled` to False in your dbt_project.yml. See [Step 4 of the README](https://github.com/fivetran/dbt_hubspot_source#step-4-disable-models-for-non-existent-sources) for more details. 
+
 # dbt_hubspot_source v0.14.0
 [PR #122](https://github.com/fivetran/dbt_hubspot_source/pull/122) includes the following updates:
 
