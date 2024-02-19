@@ -91,6 +91,7 @@ vars:
   hubspot_company_enabled: false
   hubspot_company_property_history_enabled: false         # Disable the company property history models
   hubspot_deal_enabled: false
+  hubspot_merged_deal_enabled: true                       # Enables the merged_deal table, which will filter out merged deals from the final deal models.
   hubspot_deal_company_enabled: false
   hubspot_deal_contact_enabled: false
   hubspot_deal_property_history_enabled: false            # Disables the deal property history tables
@@ -105,7 +106,6 @@ vars:
   hubspot_engagement_task_enabled: false
   hubspot_owner_enabled: false
   hubspot_property_enabled: false                         # Disables property and property_option tables
-  hubspot_merged_deal_enabled: true                       # Enables the merged_deal table, which will filter out merged deals from the final deal models.
 
   # Service
   hubspot_service_enabled: true                           # Enables all service models
