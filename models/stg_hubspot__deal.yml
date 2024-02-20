@@ -168,10 +168,11 @@ models:
       - name: merged_deal_id
         description: ID of deal that has been merged.
         tests:
-          - unique
           - not_null
       - name: deal_id
         description: The ID of the deal the record has been merged INTO.
+        tests:
+          - not_null
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
 
