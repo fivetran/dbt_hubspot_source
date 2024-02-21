@@ -1311,3 +1311,16 @@ sources:
             description: Short summary of ticket.
           - name: property_content
             description: Text in body of the ticket.
+
+      - name: merged_deal
+        identifier: '{{ var("hubspot_merged_deal_identifier", "merged_deal") }}'
+        description: Each record represents a deal that has been merged along with the related deal it's been merged into.
+        config:
+          enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_deal_enabled', true) and var('hubspot_merged_deal_enabled', false) }}"
+        columns:
+          - name: deal_id
+            description: The ID of the deal the record has been merged INTO.
+          - name: merged_deal_id
+            description: ID of deal that has been merged.
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'

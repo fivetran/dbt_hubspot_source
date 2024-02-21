@@ -1,18 +1,19 @@
 name: 'hubspot_source_integration_tests'
-version: '0.14.0'
+version: '0.14.1'
 profile: 'integration_tests'
 config-version: 2
 models:
   hubspot_source:
     +schema:
 vars:
-  hubspot_schema: hubspot_source_integration_tests_999
+  hubspot_schema: hubspot_source_integration_tests_21
   hubspot_source:
     hubspot_service_enabled: true
     # hubspot_sales_enabled: true # enable when generating docs
     # hubspot_marketing_enabled: true # enable when generating docs
     # hubspot_contact_merge_audit_enabled: true # enable when generating docs
     # hubspot_using_all_email_events: true # enable when generating docs
+    # hubspot_merged_deal_enabled: true # enable when generating docs  
     hubspot_company_property_history_identifier: "company_property_history_data"
     hubspot_company_identifier: "company_data"
     hubspot_contact_identifier: "contact_data"
@@ -60,6 +61,7 @@ vars:
     hubspot_contact_list_identifier: "contact_list_data"
     hubspot_email_event_sent_identifier: "email_event_sent_data"
     hubspot_email_event_dropped_identifier: "email_event_dropped_data"
+    hubspot_merged_deal_identifier: "merged_deal_data"
 
 seeds:
   hubspot_source_integration_tests:
@@ -174,6 +176,10 @@ seeds:
         created: timestamp
         obsoleted_by_created: timestamp
         sent_by_created: timestamp
+    merged_deal_data:
+      +column_types:
+        deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+        merged_deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
 
 dispatch:
   - macro_namespace: dbt_utils
