@@ -3,6 +3,9 @@
 ## Bugfix
 - Added field `_fivetran_end` to macro `get_ticket_property_history_columns()` to ensure the column available for use downstream.
 
+## Documentation
+- Update documentation to include `_fivetran_end` under model `stg_hubspot__ticket_property_history`.
+
 # dbt_hubspot_source v0.14.1
 [PR #125](https://github.com/fivetran/dbt_hubspot_source/pull/125) includes the following updates:
 
