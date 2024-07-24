@@ -6,6 +6,10 @@
 ## Documentation
 - Update documentation to include `_fivetran_end` under model `stg_hubspot__ticket_property_history`.
 
+## Under the hood
+- Updated the maintainer PR template to the current format.
+- Included auto-releaser GitHub Actions workflow to automate future releases.
+
 # dbt_hubspot_source v0.14.1
 [PR #125](https://github.com/fivetran/dbt_hubspot_source/pull/125) includes the following updates:
 
