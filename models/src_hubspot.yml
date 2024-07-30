@@ -1274,6 +1274,10 @@ sources:
             description: '{{ doc("history_name") }}'
           - name: value
             description: '{{ doc("history_value") }}'
+          - name: _fivetran_start
+            description: '{{ doc("_fivetran_start") }}'
+          - name: _fivetran_end
+            description: '{{ doc("_fivetran_end") }}'
 
       - name: ticket
         identifier: "{{ var('hubspot_ticket_identifier', 'ticket')}}"
