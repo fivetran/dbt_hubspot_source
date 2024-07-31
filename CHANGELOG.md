@@ -11,6 +11,7 @@
 ## Under the hood
 - Updated the maintainer PR template to the current format.
 - Included auto-releaser GitHub Actions workflow to automate future releases.
+- Added integration testing for Databricks SQL Warehouse.
 
 # dbt_hubspot_source v0.14.1
 [PR #125](https://github.com/fivetran/dbt_hubspot_source/pull/125) includes the following updates:
