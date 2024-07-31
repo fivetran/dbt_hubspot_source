@@ -45,10 +45,18 @@ integration_tests:
       schema: hubspot_source_integration_tests_21
       threads: 8
     databricks:
-      catalog: null
+      catalog: "{{ env_var('CI_DATABRICKS_DBT_CATALOG') }}"
       host: "{{ env_var('CI_DATABRICKS_DBT_HOST') }}"
       http_path: "{{ env_var('CI_DATABRICKS_DBT_HTTP_PATH') }}"
       schema: hubspot_source_integration_tests_21
       threads: 8
       token: "{{ env_var('CI_DATABRICKS_DBT_TOKEN') }}"
+      type: databricks
+    databricks-sql:
+      catalog: "{{ env_var('CI_DATABRICKS_DBT_CATALOG') }}"
+      host: "{{ env_var('CI_DATABRICKS_DBT_HOST') }}"
+      http_path: "{{ env_var('CI_DATABRICKS_SQL_DBT_HTTP_PATH') }}"
+      schema: hubspot_sqlw_tests
+      threads: 8
+      token: "{{ env_var('CI_DATABRICKS_SQL_DBT_TOKEN') }}"
       type: databricks

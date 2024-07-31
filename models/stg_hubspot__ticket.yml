@@ -48,7 +48,9 @@ models:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: _fivetran_start
-        description: The (UTC DATETIME) to keep track of the time when a record is first created or modified in the source database.
+        description: '{{ doc("_fivetran_start") }}'
+      - name: _fivetran_end
+        description: '{{ doc("_fivetran_end") }}'
       - name: change_source
         description: '{{ doc("history_source") }}'
       - name: change_source_id

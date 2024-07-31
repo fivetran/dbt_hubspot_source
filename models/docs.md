@@ -6,6 +6,14 @@ Timestamp of when Fivetran synced a record.
 Boolean indicating whether a record has been deleted in Hubspot and/or inferred deleted in Hubspot by Fivetran; _fivetran_deleted and is_deleted fields are equivalent. 
 {% enddocs %}
 
+{% docs _fivetran_end %}
+The (UTC DATETIME) when a record became inactive in the source database.
+{% enddocs %}
+
+{% docs _fivetran_start %}
+The (UTC DATETIME) to keep track of the time when a record is first created or modified in the source database.
+{% enddocs %}
+
 {% docs portal_id %}
 The hub ID.
 {% enddocs %}

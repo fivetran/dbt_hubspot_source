@@ -1,3 +1,18 @@
+# dbt_hubspot_source v0.15.0
+[PR #126](https://github.com/fivetran/dbt_hubspot_source/pull/126) includes the following updates:
+
+## 🚨 Breaking Changes 🚨
+- Added field `_fivetran_end` to macro `get_ticket_property_history_columns()` to ensure the column is available for use downstream.
+  - While this should not affect most users, this will add a new column `_fivetran_end` to `stg_hubspot__ticket_property_history` if you do not have `_fivetran_end` in your source `TICKET_PROPERTY_HISTORY` table.
+
+## Documentation
+- Update documentation to include `_fivetran_end` under model `stg_hubspot__ticket_property_history`.
+
+## Under the hood
+- Updated the maintainer PR template to the current format.
+- Included auto-releaser GitHub Actions workflow to automate future releases.
+- Added integration testing for Databricks SQL Warehouse.
+
 # dbt_hubspot_source v0.14.1
 [PR #125](https://github.com/fivetran/dbt_hubspot_source/pull/125) includes the following updates:
 
