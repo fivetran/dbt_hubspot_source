@@ -14,23 +14,23 @@
 
 
 # HubSpot Source dbt Package ([Docs](https://fivetran.github.io/dbt_hubspot_source/))
-# 📣 What does this dbt package do?
+## What does this dbt package do?
 <!--section="hubspot_source_model"-->
 - Materializes [HubSpot staging tables](https://fivetran.github.io/dbt_hubspot_source/#!/overview/hubspot_source/models/?g_v=1) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/hubspot#schemainformation). These staging tables clean, test, and prepare your HubSpot data from [Fivetran's connector](https://fivetran.com/docs/applications/hubspot) for analysis by doing the following:
-  - Name columns for consistency across all packages and for easier analysis
-  - Adds freshness tests to source data
-  - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
+- Name columns for consistency across all packages and for easier analysis
+- Adds freshness tests to source data
+- Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
 - Generates a comprehensive data dictionary of your HubSpot data through the [dbt docs site](https://fivetran.github.io/dbt_hubspot_source/).
 - These tables are designed to work simultaneously with our [HubSpot transformation package](https://github.com/fivetran/dbt_hubspot).
 <!--section-end-->
 
-# 🎯 How do I use the dbt package?
-## Step 1: Prerequisites
+## How do I use the dbt package?
+### Step 1: Prerequisites
 To use this dbt package, you must have the following:
-- At least one Fivetran HubSpot connector syncing data into your destination. 
+- At least one Fivetran HubSpot connector syncing data into your destination.
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
-### Databricks Dispatch Configuration
+#### Databricks Dispatch Configuration
 If you are using a Databricks destination with this package you will need to add the below (or a variation of the below) dispatch configuration within your `dbt_project.yml`. This is required in order for the package to accurately search for macros within the `dbt-labs/spark_utils` then the `dbt-labs/dbt_utils` packages respectively.
 ```yml
 dispatch:
@@ -38,7 +38,7 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 ```
 
-## Step 2: Install the package (skip if also using the `hubspot` transformation package)
+### Step 2: Install the package (skip if also using the `hubspot` transformation package)
 Include the following hubspot_source package version in your `packages.yml` file.
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yaml
@@ -46,7 +46,7 @@ packages:
   - package: fivetran/hubspot_source
     version: [">=0.15.0", "<0.16.0"]
 ```
-## Step 3: Define database and schema variables
+### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `hubspot` schema. If this is not where your HubSpot data is (for example, if your HubSpot schema is named `hubspot_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
@@ -54,7 +54,7 @@ vars:
     hubspot_database: your_destination_name
     hubspot_schema: your_schema_name 
 ```
-## Step 4: Disable models for non-existent sources
+### Step 4: Disable models for non-existent sources
 When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. Therefore we have added enable/disable configs in the `src.yml` to allow you to disable certain sources not present. Downstream models are automatically disabled as well. In order to disable the relevant functionality in the package, you will need to add the relevant variables in your root `dbt_project.yml`. By default, all variables are assumed to be `true` (with exception of `hubspot_service_enabled`, `hubspot_ticket_deal_enabled`, `hubspot_contact_merge_audit_enabled`, and `hubspot_merged_deal_enabled`). You only need to add variables for the tables different from default:
 
 ```yml
@@ -112,12 +112,12 @@ vars:
   hubspot_ticket_deal_enabled: true
 ```
 
-### Dbt-core Version Requirement for disabling freshness tests
+#### Dbt-core Version Requirement for disabling freshness tests
 If you are not using a source table that involves freshness tests, please be aware that the feature to disable freshness was only introduced in dbt-core 1.1.0. Therefore ensure the dbt version you're using is v1.1.0 or greater for this config to work.
 
-## (Optional) Step 5: Additional configurations
+### (Optional) Step 5: Additional configurations
 
-### Adding passthrough columns
+#### Adding passthrough columns
 This package includes all source columns defined in the macros folder. Models by default only bring in a few fields for the `company`, `contact`, `deal`, and `ticket` tables. You can add more columns using our pass-through column variables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables within your root `dbt_project.yml`.
 
 ```yml
@@ -147,12 +147,12 @@ vars:
   hubspot__pass_through_all_columns: true # default is false
 ```
 
-### Adding property label
-For `property_hs_*` columns, you can enable the corresponding, human-readable `property_option`.`label` to be included in the staging models. 
+#### Adding property label
+For `property_hs_*` columns, you can enable the corresponding, human-readable `property_option`.`label` to be included in the staging models.
 
-#### Important! 
-- You must have sources `property` and `property_option` enabled to enable labels. By default, these sources are enabled.  
-- You CANNOT enable labels if using `hubspot__pass_through_all_columns: true`.` 
+##### Important.
+- You must have sources `property` and `property_option` enabled to enable labels. By default, these sources are enabled.
+- You CANNOT enable labels if using `hubspot__pass_through_all_columns: true`.`
 - We recommend being selective with the label columns you add. As you add more label columns, your run time will increase due to the underlying logic requirements.
 
 To enable labels for a given property, set the property attribute `add_property_label: true`, using the below format.
@@ -165,7 +165,7 @@ vars:
       add_property_label: true
 ```
 
-Alternatively, you can enable labels for all passthrough properties by using variable `hubspot__enable_all_property_labels: true`, formatted like the below example. 
+Alternatively, you can enable labels for all passthrough properties by using variable `hubspot__enable_all_property_labels: true`, formatted like the below example.
 
 ```yml
 vars:
@@ -174,7 +174,7 @@ vars:
     - name: "property_hs_fieldname1"
     - name: "property_hs_fieldname2"
 ```
-### Including calculated fields
+#### Including calculated fields
 This package also provides the ability to pass calculated fields through to the `company`, `contact`, `deal`, and `ticket` staging models. If you would like to add a calculated field to any of the mentioned staging models, you may configure the respective `hubspot__[table_name]_calculated_fields` variables with the `name` of the field you would like to create, and the `transform_sql` which will be the actual calculation that will make up the calculated field.
 ```yml
 vars:
@@ -191,14 +191,14 @@ vars:
     - name:          "ticket_calculated_field"
       transform_sql: "total_field / other_total_field"
 ```
-### Filter email events
+#### Filter email events
 When leveraging email events, HubSpot customers may take advantage of filtering out specified email events. These filtered email events are present within the `stg_hubspot__email_events` model and are identified by the `is_filtered_event` boolean field. By default, these events are included in the staging and downstream models generated from this package. However, if you wish to remove these filtered events you may do so by setting the `hubspot_using_all_email_events` variable to false. See below for exact configurations you may provide in your `dbt_project.yml` file:
 ```yml
 vars:
   hubspot_using_all_email_events: false # True by default
 ```
 
-### Change the build schema
+#### Change the build schema
 By default, this package builds the hubspot staging models within a schema titled (`<target_schema>` + `_stg_hubspot`) in your destination. If this is not where you would like your hubspot staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
@@ -207,7 +207,7 @@ models:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
     
-### Change the source table references
+#### Change the source table references
 If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable:
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_hubspot_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
     
@@ -216,12 +216,12 @@ vars:
     hubspot_<default_source_table_name>_identifier: your_table_name 
 ```
 
-## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
+### (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
 
-# 🔍 Does this package have dependencies?
-This dbt package is dependent on the following dbt packages. Please be aware that these dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
+## Does this package have dependencies?
+This dbt package is dependent on the following dbt packages. These dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > IMPORTANT: If you have any of these dependent packages in your own `packages.yml` file, we highly recommend that you remove them from your root `packages.yml` to avoid package version conflicts.
 ```yml
 packages:
@@ -233,16 +233,15 @@ packages:
       version: [">=0.3.0", "<0.4.0"]
 ```
           
-# 🙌 How is this package maintained and can I contribute?
-## Package Maintenance
+## How is this package maintained and can I contribute?
+### Package Maintenance
 The Fivetran team maintaining this package _only_ maintains the latest version of the package. We highly recommend that you stay consistent with the [latest version](https://hub.getdbt.com/fivetran/hubspot_source/latest/) of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_hubspot_source/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
 
-## Contributions
-A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions! 
+### Contributions
+A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions.
 
-We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) to learn how to contribute to a dbt package!
+We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) to learn how to contribute to a dbt package.
 
-# 🏪 Are there any resources available?
-- If you have questions or want to reach out for help, please refer to the [GitHub Issue](https://github.com/fivetran/dbt_hubspot_source/issues/new/choose) section to find the right avenue of support for you.
+## Are there any resources available?
+- If you have questions or want to reach out for help, see the [GitHub Issue](https://github.com/fivetran/dbt_hubspot_source/issues/new/choose) section to find the right avenue of support for you.
 - If you would like to provide feedback to the dbt package team at Fivetran or would like to request a new dbt package, fill out our [Feedback Form](https://www.surveymonkey.com/r/DQ7K7WW).
-- Have questions or want to be part of the community discourse? Create a post in the [Fivetran community](https://community.fivetran.com/t5/user-group-for-dbt/gh-p/dbt-user-group) and our team along with the community can join in on the discussion!
