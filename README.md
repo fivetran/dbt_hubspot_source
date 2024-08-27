@@ -17,9 +17,9 @@
 ## What does this dbt package do?
 <!--section="hubspot_source_model"-->
 - Materializes [HubSpot staging tables](https://fivetran.github.io/dbt_hubspot_source/#!/overview/hubspot_source/models/?g_v=1) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/hubspot#schemainformation). These staging tables clean, test, and prepare your HubSpot data from [Fivetran's connector](https://fivetran.com/docs/applications/hubspot) for analysis by doing the following:
-- Name columns for consistency across all packages and for easier analysis
-- Adds freshness tests to source data
-- Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
+  - Name columns for consistency across all packages and for easier analysis
+  - Adds freshness tests to source data
+  - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
 - Generates a comprehensive data dictionary of your HubSpot data through the [dbt docs site](https://fivetran.github.io/dbt_hubspot_source/).
 - These tables are designed to work simultaneously with our [HubSpot transformation package](https://github.com/fivetran/dbt_hubspot).
 <!--section-end-->
@@ -112,7 +112,7 @@ vars:
   hubspot_ticket_deal_enabled: true
 ```
 
-#### Dbt-core Version Requirement for disabling freshness tests
+#### dbt-core Version Requirement for disabling freshness tests
 If you are not using a source table that involves freshness tests, please be aware that the feature to disable freshness was only introduced in dbt-core 1.1.0. Therefore ensure the dbt version you're using is v1.1.0 or greater for this config to work.
 
 ### (Optional) Step 5: Additional configurations
@@ -150,7 +150,7 @@ vars:
 #### Adding property label
 For `property_hs_*` columns, you can enable the corresponding, human-readable `property_option`.`label` to be included in the staging models.
 
-##### Important.
+##### Important
 - You must have sources `property` and `property_option` enabled to enable labels. By default, these sources are enabled.
 - You CANNOT enable labels if using `hubspot__pass_through_all_columns: true`.`
 - We recommend being selective with the label columns you add. As you add more label columns, your run time will increase due to the underlying logic requirements.
