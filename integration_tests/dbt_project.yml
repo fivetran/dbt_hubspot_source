@@ -1,5 +1,5 @@
 name: 'hubspot_source_integration_tests'
-version: '0.15.0'
+version: '0.15.1'
 profile: 'integration_tests'
 config-version: 2
 
@@ -64,6 +64,12 @@ vars:
     hubspot_email_event_sent_identifier: "email_event_sent_data"
     hubspot_email_event_dropped_identifier: "email_event_dropped_data"
     hubspot_merged_deal_identifier: "merged_deal_data"
+
+    # hubspot__pass_through_all_columns: true
+    # hubspot__company_pass_through_columns:
+    #   - name: "property_hs_all-funky-a9384-syntax"
+    #     alias: funky_field
+
 
 seeds:
   hubspot_source_integration_tests:

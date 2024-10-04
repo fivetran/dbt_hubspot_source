@@ -1,3 +1,8 @@
+# dbt_hubspot_source v0.15.1
+[PR #12](https://github.com/fivetran/dbt_hubspot_source/pull/) includes the following updates:
+## Bugfix
+- Switched from using the `fivetran_utils.remove_prefix_from_columns` macro to the `hubspot_source.remove_duplicate_and_prefix_from_columns` macro for when `hubspot__pass_through_all_columns` is enabled and you are passing through all columns in the `stg_hubspot__company`, `stg_hubspot__contact`, `stg_hubspot__deal`.
+
 # dbt_hubspot_source v0.15.0
 [PR #126](https://github.com/fivetran/dbt_hubspot_source/pull/126) includes the following updates:
 
