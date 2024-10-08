@@ -66,9 +66,9 @@ vars:
     hubspot_merged_deal_identifier: "merged_deal_data"
 
     # hubspot__pass_through_all_columns: true
-    # hubspot__company_pass_through_columns:
-    #   - name: "property_hs_all-funky-a9384-syntax"
-    #     alias: funky_field
+    hubspot__company_pass_through_columns:
+      - name: "property_hs_all-funky-a9384-syntax"
+        alias: "funky_field"
 
 
 seeds:
