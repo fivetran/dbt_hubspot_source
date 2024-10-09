@@ -14,7 +14,7 @@
     {"name": "property_annualrevenue", "datatype": dbt.type_int(), "alias": "company_annual_revenue"}
 ] %}
 
-{{ fivetran_utils.add_pass_through_columns(columns, var('hubspot__contact_pass_through_columns')) }}
+{{ hubspot_add_pass_through_columns(columns, var('hubspot__contact_pass_through_columns')) }}
 
 {{ return(columns) }}
 

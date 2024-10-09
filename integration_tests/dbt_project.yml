@@ -10,12 +10,15 @@ models:
 vars:
   hubspot_schema: hubspot_source_integration_tests_22
   hubspot_source:
-    hubspot_service_enabled: true
-    # hubspot_sales_enabled: true # enable when generating docs
-    # hubspot_marketing_enabled: true # enable when generating docs
-    # hubspot_contact_merge_audit_enabled: true # enable when generating docs
-    # hubspot_using_all_email_events: true # enable when generating docs
-    # hubspot_merged_deal_enabled: true # enable when generating docs  
+    hubspot_service_enabled: true # enable when generating docs
+    hubspot_deal_enabled: true # enable when generating docs
+    hubspot_contact_enabled: true # enable when generating docs
+    hubspot_sales_enabled: true # enable when generating docs
+    hubspot_company_enabled: true # enable when generating docs
+    hubspot_marketing_enabled: true # enable when generating docs
+    hubspot_contact_merge_audit_enabled: true # enable when generating docs
+    hubspot_using_all_email_events: true # enable when generating docs
+    hubspot_merged_deal_enabled: true # enable when generating docs  
     hubspot_company_property_history_identifier: "company_property_history_data"
     hubspot_company_identifier: "company_data"
     hubspot_contact_identifier: "contact_data"
@@ -78,8 +81,12 @@ seeds:
       +column_types:
         owner_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     company_data:
+      +enabled: "{{ true if target.type not in ('postgres') else false }}"
       +column_types:
         id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+    company_data_postgres:
+      +alias: company_data
+      +enabled: "{{ true if target.type == 'postgres' else false }}"
     deal_data:
       +column_types:
         deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
