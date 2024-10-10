@@ -30,7 +30,7 @@ with base as (
         {% if all_passthrough_column_check('stg_hubspot__deal_tmp',get_deal_columns()) > 0 %}
         -- just pass everything through if extra columns are present, but ensure required columns are present.
         {{ 
-            hubspot_source.remove_duplicate_and_prefix_from_columns(
+            remove_duplicate_and_prefix_from_columns(
                 columns=adapter.get_columns_in_relation(ref('stg_hubspot__deal_tmp')), 
                 prefix='property_',exclude=get_macro_columns(get_deal_columns()))
         }}
