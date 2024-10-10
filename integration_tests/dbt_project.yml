@@ -82,7 +82,8 @@ seeds:
         owner_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     company_data:
       +enabled: "{{ true if target.type not in ('postgres','snowflake','databricks') else false }}"
-      id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+      +column_types:
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     company_data_postgres:
       +alias: company_data
       +enabled: "{{ true if target.type == 'postgres' else false }}"
