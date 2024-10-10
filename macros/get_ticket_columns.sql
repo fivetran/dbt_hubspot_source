@@ -17,7 +17,7 @@
     {"name": "property_content", "datatype": dbt.type_string(), "alias": "ticket_content"}  
 ] %}
 
-{{ fivetran_utils.add_pass_through_columns(columns, var('hubspot__ticket_pass_through_columns')) }}
+{{ hubspot_add_pass_through_columns(columns, var('hubspot__ticket_pass_through_columns')) }}
 
 {{ return(columns) }}
 
