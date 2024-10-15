@@ -95,7 +95,7 @@ seeds:
         id: bigint
     company_data_databricks:
       +alias: company_data
-      +enabled: "{{ true if target.type == 'databricks' else false }}"
+      +enabled: "{{ true if target.type in ('databricks','databricks-sql') else false }}"
       +column_types:
         id: bigint
     deal_data:
