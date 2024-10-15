@@ -8,7 +8,7 @@ models:
   # +schema: "hubspot_{{ var('directed_schema','dev') }}" ## To be used for validation testing
 
 vars:
-  hubspot_schema: hubspot_source_integration_tests_26
+  hubspot_schema: hubspot_source_integration_tests_27
   hubspot_source:
     # hubspot_service_enabled: true # enable when generating docs
     # hubspot_deal_enabled: true # enable when generating docs
