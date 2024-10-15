@@ -7,7 +7,7 @@ models:
   +schema: "{{ 'hubspot_sqlw_tests' if target.name == 'databricks-sql' else 'hubspot' }}"
 
 vars:
-  hubspot_schema: hubspot_source_integration_tests_27
+  hubspot_schema: hubspot_source_integration_tests_28
   hubspot_source:
     # hubspot_service_enabled: true # enable when generating docs
     # hubspot_deal_enabled: true # enable when generating docs
