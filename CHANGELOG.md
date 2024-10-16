@@ -2,10 +2,14 @@
 [PR #129](https://github.com/fivetran/dbt_hubspot_source/pull/129) includes the following updates:
 
 ## Breaking Changes
-- Switched from using the `fivetran_utils.remove_prefix_from_columns` macro to the `hubspot_source.remove_duplicate_and_prefix_from_columns` macro for when `hubspot__pass_through_all_columns` is enabled and you are passing through all columns in the `stg_hubspot__company`, `stg_hubspot__contact`, `stg_hubspot__deal`, and `stg_hubspot__ticket` models. This also ensures the source fields passed through are all quoted from the onset. This is a breaking change because this macro can remove duplicate fields, resulting in an impact to your schema. See the [v0.12.0 release notes](https://github.com/fivetran/dbt_hubspot_source/releases/tag/v0.12.0) for more information.
+- Switched from using the `fivetran_utils.remove_prefix_from_columns` macro to the `hubspot_source.remove_duplicate_and_prefix_from_columns` macro for when `hubspot__pass_through_all_columns` is enabled and you are passing through all columns in the `stg_hubspot__company`, `stg_hubspot__contact`, and `stg_hubspot__deal` models. This also ensures the source fields passed through are all quoted from the onset. This is a breaking change because this macro can remove duplicate fields, resulting in an impact to your schema.
 
 ## Bug Fixes
-- Introduced hubspot-specific version of the `fivetran_utils.add_pass_through_columns` macro titled `hubspot_add_pass_through_columns`, which introduces quoting around the source fields being brought in as passthrough columns. This will ensure that your warehouse reads the sql correctly, particularly if the field contains special characters or syntax.
+- Introduced hubspot-specific version of the `fivetran_utils.pass_through_columns` macro titled `hubspot_add_pass_through_columns`, which introduces quoting around the source fields being brought in as passthrough columns. This will ensure that your warehouse reads the sql correctly, particularly if the field contains special characters or syntax. This is now used in the respective `get_<>_columns` macros of the following models:
+  - `stg_hubspot__company`
+  - `stg_hubspot__contact`
+  - `stg_hubspot__deal`
+  - `stg_hubspot__ticket`
 
 ## Under the Hood
 - Updated seed data to include fields with special syntax in order to test the above changes.
