@@ -127,7 +127,7 @@ models:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__deal_contact
     description: Each record represents a 'link' between a deal and contact.
@@ -148,7 +148,7 @@ models:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__deal_property_history
     description: Each record represents the details of your deal properties.
@@ -182,6 +182,6 @@ models:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
 

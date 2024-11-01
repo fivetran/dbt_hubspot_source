@@ -1,7 +1,21 @@
 # dbt_hubspot_source v0.17.0
 
 ## Breaking Change
-- We are introducing a new `category` column which will be a part of the uniqueness tests for
+- Introduced a new `category` column to the below models. This association field differentiates records by either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label) and was introduced to the connector in October 2024.
+  - `stg_hubspot__deal_company`
+  - `stg_hubspot__deal_contact`
+  - `stg_hubspot__merged_deal`
+  - `stg_hubspot__engagement_company`
+  - `stg_hubspot__engagement_contact`
+  - `stg_hubspot__engagement_deal`
+  - `stg_hubspot__ticket_company`
+  - `stg_hubspot__ticket_contact`
+  - `stg_hubspot__ticket_deal`
+  - `stg_hubspot__ticket_engagement`
+
+- The `category` field which will be a part of the uniqueness tests for the following models:
+  - `stg_hubspot__deal_contact`
+  - `stg_hubspot__deal_company`
 
 # dbt_hubspot_source v0.16.0
 [PR #129](https://github.com/fivetran/dbt_hubspot_source/pull/129) includes the following updates:

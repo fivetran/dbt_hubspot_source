@@ -47,7 +47,7 @@ models:
       - name: engagement_id
         description: The ID of the related engagement.
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__engagement_contact
     description: Each record represents a 'link' between a contact and an engagement.
@@ -59,7 +59,7 @@ models:
       - name: engagement_id
         description: The ID of the related engagement.
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__engagement_deal
     description: Each record represents a 'link' between a deal and an engagement.
@@ -71,7 +71,7 @@ models:
       - name: engagement_id
         description: The ID of the related engagement.
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__engagement_email
     description: Each record represents an EMAIL engagement event.

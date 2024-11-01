@@ -12,7 +12,7 @@ models:
       - name: company_id
         description: The ID of the related company.
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__ticket_contact
     description: Each record represents a 'link' between a ticket and a contact.
@@ -24,7 +24,7 @@ models:
       - name: contact_id
         description: The ID of the related contact.
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__ticket_deal
     description: Each record represents a 'link' between a ticket and a deal.
@@ -36,7 +36,7 @@ models:
       - name: deal_id
         description: The ID of the related deal.
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__ticket_engagement
     description: Each record represents a 'link' between a ticket and an engagement.
@@ -48,7 +48,7 @@ models:
       - name: engagement_id
         description: The ID of the related deal.
       - name: category
-        description: The association category. either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
+        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
   - name: stg_hubspot__ticket_property_history
     description: Each record represents a change to ticket record in Hubspot.
