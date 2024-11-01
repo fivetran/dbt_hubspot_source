@@ -1,3 +1,8 @@
+# dbt_hubspot_source v0.17.0
+
+## Breaking Change
+- We are introducing a new `category` column which will be a part of the uniqueness tests for
+
 # dbt_hubspot_source v0.16.0
 [PR #129](https://github.com/fivetran/dbt_hubspot_source/pull/129) includes the following updates:
 
