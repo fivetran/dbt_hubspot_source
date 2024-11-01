@@ -22,6 +22,7 @@ with base as (
         contact_id,
         deal_id,
         type_id,
+        category,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced
         
     from macro

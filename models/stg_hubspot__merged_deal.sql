@@ -21,7 +21,8 @@ with base as (
     select
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         deal_id,
-        merged_deal_id
+        merged_deal_id,
+        category
     from macro
 )
 
