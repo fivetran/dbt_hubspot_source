@@ -1,7 +1,7 @@
 # dbt_hubspot_source v0.17.0
 
 ## Breaking Change (`--full-refresh` required after upgrading)  
-- Introduced a new `category` column to the below models. This association field differentiates records by either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label) and was introduced to the connector in October 2024.
+- Introduced a new `category` column to the below models. This association field differentiates records by either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label) and was introduced to the Hubspot connector in October 2024. See the [connector release notes](https://fivetran.com/docs/connectors/applications/hubspot/changelog#october2024) for more.
   - `stg_hubspot__deal_company`
   - `stg_hubspot__deal_contact`
   - `stg_hubspot__merged_deal`
@@ -13,15 +13,13 @@
   - `stg_hubspot__ticket_deal`
   - `stg_hubspot__ticket_engagement`
 
-- This will be a breaking change and will require a `--full-refresh`.
-
 ## Bug Fixes
 - Updated the unique key to include the new `category` field for the following models in order for the uniqueness tests to pass:
   - `stg_hubspot__deal_contact`
   - `stg_hubspot__deal_company`
 
 ## Under the Hood
-- Updated the seed files, `get_column` macros, and documentation of the mentioned models to include the `category` field.
+- Updated the respective seed files, `get_[source_table]_column` macros, and documentation of the mentioned models to include the `category` field.
 
 # dbt_hubspot_source v0.16.0
 [PR #129](https://github.com/fivetran/dbt_hubspot_source/pull/129) includes the following updates:
