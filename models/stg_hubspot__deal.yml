@@ -181,7 +181,5 @@ models:
           - not_null
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
-      - name: category
-        description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
 
