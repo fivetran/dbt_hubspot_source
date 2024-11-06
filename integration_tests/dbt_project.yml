@@ -87,17 +87,17 @@ seeds:
       +alias: company_data
       +enabled: "{{ true if target.type == 'postgres' else false }}"
       +column_types:
-        id: bigint
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     company_data_snowflake:
       +alias: company_data
       +enabled: "{{ true if target.type == 'snowflake' else false }}"
       +column_types:
-        id: bigint
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     company_data_databricks:
       +alias: company_data
       +enabled: "{{ true if target.type in ('databricks','databricks-sql') else false }}"
       +column_types:
-        id: bigint
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     deal_data:
       +column_types:
         deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
