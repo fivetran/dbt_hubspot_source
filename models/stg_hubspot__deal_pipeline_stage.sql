@@ -25,7 +25,7 @@ with base as (
         closed_won as is_closed_won,
         display_order,
         label as pipeline_stage_label,
-        pipeline_id as deal_pipeline_id,
+        cast(pipeline_id as {{ dbt.type_string() }}) as deal_pipeline_id,
         probability,
         cast(stage_id as {{ dbt.type_string() }}) as deal_pipeline_stage_id,
         created_at as deal_pipeline_stage_created_at,
