@@ -4,10 +4,10 @@ profile: 'integration_tests'
 config-version: 2
 
 models:
-  +schema: "{{ 'hubspot_sqlw_tests_2' if target.name == 'databricks-sql' else 'hubspot' }}"
+  +schema: "{{ 'hubspot_sqlw_tests_3' if target.name == 'databricks-sql' else 'hubspot' }}"
 
 vars:
-  hubspot_schema: hubspot_source_integration_tests_29
+  hubspot_schema: hubspot_source_integration_tests_30
   hubspot_source:
     # hubspot_service_enabled: true # enable when generating docs
     # hubspot_deal_enabled: true # enable when generating docs
