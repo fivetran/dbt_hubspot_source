@@ -352,6 +352,8 @@ sources:
             description: The ID of the deal.
           - name: type_id
             description: The ID of the type.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
       - name: deal_contact
         identifier: "{{ var('hubspot_deal_contact_identifier', 'deal_contact')}}"
@@ -367,6 +369,8 @@ sources:
             description: The ID of the deal.
           - name: type_id
             description: The ID of the type.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
       - name: deal_pipeline
         identifier: "{{ var('hubspot_deal_pipeline_identifier', 'deal_pipeline')}}"
@@ -851,6 +855,8 @@ sources:
             description: The ID of the related company.
           - name: engagement_id
             description: The ID of the related engagement.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
       - name: engagement_contact
         identifier: "{{ var('hubspot_engagement_contact_identifier', 'engagement_contact')}}"
@@ -864,6 +870,8 @@ sources:
             description: The ID of the related contact.
           - name: engagement_id
             description: The ID of the related engagement.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
       - name: engagement_deal
         identifier: "{{ var('hubspot_engagement_deal_identifier', 'engagement_deal')}}"
@@ -877,6 +885,8 @@ sources:
             description: The ID of the related contact.
           - name: engagement_id
             description: The ID of the related engagement.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
       - name: engagement_email
         identifier: "{{ var('hubspot_engagement_email_identifier', 'engagement_email')}}"
@@ -1160,6 +1170,8 @@ sources:
             description: The ID of the related ticket.
           - name: company_id
             description: The ID of the related company.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
       - name: ticket_contact
         identifier: "{{ var('hubspot_ticket_contact_identifier', 'ticket_contact')}}"
@@ -1173,6 +1185,8 @@ sources:
             description: The ID of the related ticket.
           - name: contact_id
             description: The ID of the related contact.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
       - name: ticket_deal
         identifier: "{{ var('hubspot_ticket_deal_identifier', 'ticket_deal')}}"
@@ -1186,6 +1200,8 @@ sources:
             description: The ID of the related ticket.
           - name: deal_id
             description: The ID of the related deal.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
 
       - name: ticket_engagement
         identifier: "{{ var('hubspot_ticket_engagement_identifier', 'ticket_engagement')}}"
@@ -1199,6 +1215,8 @@ sources:
             description: The ID of the related ticket.
           - name: engagement_id
             description: The ID of the related deal.
+          - name: category
+            description: The association category. Either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label).
       
       - name: ticket_pipeline_stage
         identifier: "{{ var('hubspot_ticket_pipeline_stage_identifier', 'ticket_pipeline_stage')}}"

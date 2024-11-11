@@ -1,3 +1,28 @@
+# dbt_hubspot_source v0.17.0
+
+## Breaking Change (`--full-refresh` required after upgrading)  
+- Introduced a new `category` column to the below models. This association field differentiates records by either HUBSPOT_DEFINED (default label) or USER_DEFINED (custom label) and was introduced to the Hubspot connector in October 2024. See the [connector release notes](https://fivetran.com/docs/connectors/applications/hubspot/changelog#october2024) for more.
+  - `stg_hubspot__deal_company`
+  - `stg_hubspot__deal_contact`
+  - `stg_hubspot__engagement_company`
+  - `stg_hubspot__engagement_contact`
+  - `stg_hubspot__engagement_deal`
+  - `stg_hubspot__ticket_company`
+  - `stg_hubspot__ticket_contact`
+  - `stg_hubspot__ticket_deal`
+  - `stg_hubspot__ticket_engagement`
+
+- Added explicit casting of `pipeline_id` to string in `stg_hubspot__deal_pipeline_stage` to ensure successful downstream joins.
+
+## Bug Fixes
+- Updated the unique key to include the new `category` field for the following models in order for the uniqueness tests to pass:
+  - `stg_hubspot__deal_contact`
+  - `stg_hubspot__deal_company`
+
+## Under the Hood
+- Updated the respective seed files, `get_[source_table]_column` macros, and documentation of the mentioned models to include the `category` field.
+- Removed `property_hs_timestamp` and `property_hs_createdate` field casting for the `engagement_meeting` source table in the `integration_tests/dbt_project.yml` file since they are not present in the seed data.
+
 # dbt_hubspot_source v0.16.0
 [PR #129](https://github.com/fivetran/dbt_hubspot_source/pull/129) includes the following updates:
 

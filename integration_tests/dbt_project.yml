@@ -1,13 +1,13 @@
 name: 'hubspot_source_integration_tests'
-version: '0.16.0'
+version: '0.17.0'
 profile: 'integration_tests'
 config-version: 2
 
 models:
-  +schema: "{{ 'hubspot_sqlw_tests_1' if target.name == 'databricks-sql' else 'hubspot' }}"
+  +schema: "{{ 'hubspot_sqlw_tests_7' if target.name == 'databricks-sql' else 'hubspot' }}"
 
 vars:
-  hubspot_schema: hubspot_source_integration_tests_28
+  hubspot_schema: hubspot_source_integration_tests_34
   hubspot_source:
     # hubspot_service_enabled: true # enable when generating docs
     # hubspot_deal_enabled: true # enable when generating docs
@@ -18,6 +18,7 @@ vars:
     # hubspot_contact_merge_audit_enabled: true # enable when generating docs
     # hubspot_using_all_email_events: true # enable when generating docs
     # hubspot_merged_deal_enabled: true # enable when generating docs  
+    # hubspot_ticket_deal_enabled: true # enable when generating docs  
     hubspot_company_property_history_identifier: "company_property_history_data"
     hubspot_company_identifier: "company_data"
     hubspot_contact_identifier: "contact_data"
@@ -86,17 +87,17 @@ seeds:
       +alias: company_data
       +enabled: "{{ true if target.type == 'postgres' else false }}"
       +column_types:
-        id: bigint
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     company_data_snowflake:
       +alias: company_data
       +enabled: "{{ true if target.type == 'snowflake' else false }}"
       +column_types:
-        id: bigint
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     company_data_databricks:
       +alias: company_data
       +enabled: "{{ true if target.type in ('databricks','databricks-sql') else false }}"
       +column_types:
-        id: bigint
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
     deal_data:
       +column_types:
         deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
@@ -104,6 +105,8 @@ seeds:
         _fivetran_synced: timestamp
         property_closedate: timestamp
         property_createdate: timestamp
+        deal_pipeline_id: "{{ 'varchar(100)'  if target.type in ('redshift','postgres') else 'string'}}"
+        deal_pipeline_stage_id: "{{ 'varchar(100)'  if target.type in ('redshift','postgres') else 'string'}}"
     deal_contact_data:
       +column_types:
         contact_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
@@ -139,6 +142,7 @@ seeds:
       +column_types:
         engagement_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
         deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+        created_at: timestamp
     engagement_data:
       +column_types:
         id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
@@ -146,8 +150,6 @@ seeds:
       +column_types:
         engagement_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
         _fivetran_synced: timestamp
-        property_hs_createdate: timestamp
-        property_hs_timestamp: timestamp
     engagement_email_data:
       +column_types:
         engagement_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
@@ -173,6 +175,7 @@ seeds:
     deal_pipeline_stage_data:
       +column_types:
         stage_id: "{{ 'varchar(100)'  if target.type in ('redshift','postgres') else 'string'}}"
+        pipeline_id: "{{ 'varchar(100)'  if target.type in ('redshift','postgres') else 'string'}}"
     email_event_sent_data_snowflake:
       +alias: email_event_sent_data
       +enabled: "{{ true if target.type == 'snowflake' else false }}"
