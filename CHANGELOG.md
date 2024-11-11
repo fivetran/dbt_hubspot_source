@@ -12,6 +12,8 @@
   - `stg_hubspot__ticket_deal`
   - `stg_hubspot__ticket_engagement`
 
+- Added explicit casting of `pipeline_id` to string in `stg_hubspot__deal_pipeline_stage` to ensure successful downstream joins.
+
 ## Bug Fixes
 - Updated the unique key to include the new `category` field for the following models in order for the uniqueness tests to pass:
   - `stg_hubspot__deal_contact`
@@ -19,7 +21,7 @@
 
 ## Under the Hood
 - Updated the respective seed files, `get_[source_table]_column` macros, and documentation of the mentioned models to include the `category` field.
-- Added explicit casting of `pipeline_id` to string in `stg_hubspot__deal_pipeline_stage` to ensure successful downstream joins.
+- Removed `property_hs_timestamp` and `property_hs_createdate` field casting for the `engagement_meeting` source table in the integration_tests/dbt_project.yml file since they are not present in the seed data.
 
 # dbt_hubspot_source v0.16.0
 [PR #129](https://github.com/fivetran/dbt_hubspot_source/pull/129) includes the following updates:
