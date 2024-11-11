@@ -21,7 +21,7 @@
 
 ## Under the Hood
 - Updated the respective seed files, `get_[source_table]_column` macros, and documentation of the mentioned models to include the `category` field.
-- Removed `property_hs_timestamp` and `property_hs_createdate` field casting for the `engagement_meeting` source table in the integration_tests/dbt_project.yml file since they are not present in the seed data.
+- Removed `property_hs_timestamp` and `property_hs_createdate` field casting for the `engagement_meeting` source table in the `integration_tests/dbt_project.yml` file since they are not present in the seed data.
 
 # dbt_hubspot_source v0.16.0
 [PR #129](https://github.com/fivetran/dbt_hubspot_source/pull/129) includes the following updates:
