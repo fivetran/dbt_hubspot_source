@@ -1,3 +1,8 @@
+# dbt_hubspot_source version.version
+
+## Documentation
+- Corrected references to connectors and connections in the README. ([#136](https://github.com/fivetran/dbt_hubspot_source/pull/136))
+
 # dbt_hubspot_source v0.17.0
 
 ## Breaking Change (`--full-refresh` required after upgrading)  
