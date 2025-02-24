@@ -1,10 +1,25 @@
 # dbt_hubspot_source v0.18.0
+
+## Deprecations
+- The following fields have been deprecated from the `stg_hubspot__contact_list` model. The full removal date is planned for May 10th, 2025. Follow [Deprecation Issue #138](https://github.com/fivetran/dbt_hubspot_source/issues/138) for more details and updates around the planned sunsetting of the fields.
+  - `is_deletable`
+  - `is_dynamic`
+  - `metadata_error`
+  - `metadata_last_processing_state_change_at`
+  - `metadata_last_size_change_at`
+  - `metadata_processing`
+  - `metadata_size`
+  - `portal_id`
+
 ## Breaking Changes
 - TBD
 
 ## Documentation
 - TBD
 - Corrected references to connectors and connections in the README. ([#136](https://github.com/fivetran/dbt_hubspot_source/pull/136))
+
+## Under the Hood
+- TBD: New deprecation tracker github issue template.
 
 # dbt_hubspot_source v0.17.0
 
