@@ -10,7 +10,7 @@ body:
   - type: input
     attributes:
       label: Planned Removal Date
-      description: Enter the date when this deprecated item will be fully removed (format: Month Day, Year).
+      description: Enter the date when this deprecated item will be fully removed (format: Month Day, Year. eg. May 10th, 2025).
     validations:
       required: true
   - type: input
@@ -46,7 +46,7 @@ body:
     attributes:
       label: Rationale and Impact Analysis
       description: |
-        Explain why this item is being deprecated and discuss any potential impacts on users or systems. This helps us understand the context and prepare appropriate migration guidance.
+        Explain why this item is being deprecated and discuss any potential impacts.
     validations:
       required: true
   - type: textarea
