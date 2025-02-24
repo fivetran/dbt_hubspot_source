@@ -1,5 +1,5 @@
 name: 'hubspot_source_integration_tests'
-version: '0.17.0'
+version: '0.18.0'
 profile: 'integration_tests'
 config-version: 2
 
@@ -192,11 +192,6 @@ seeds:
       +enabled: "{{ true if target.type == 'postgres' else false }}"
     email_event_dropped_data:
       +enabled: "{{ true if target.type not in ('snowflake', 'postgres') else false }}"
-    contact_list_data:
-      +enabled: "{{ true if target.type != 'postgres' else false }}"
-    contact_list_data_postgres:
-      +alias: contact_list_data
-      +enabled: "{{ true if target.type == 'postgres' else false }}"
     email_event_data: 
       +column_types:
         _fivetran_synced: timestamp
