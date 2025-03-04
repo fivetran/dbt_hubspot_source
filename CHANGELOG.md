@@ -28,7 +28,7 @@
 - Corrected references to connectors and connections in the README. ([#136](https://github.com/fivetran/dbt_hubspot_source/pull/136))
 
 ## Under the Hood
-- Added a deprecation tracker github issue template to ensure deprecated fields are appropriately tracked for full removal in a future planned update. ([#137](https://github.com/fivetran/dbt_hubspot_source/pull/137))
+- Added a deprecation tracker GitHub issue template to ensure deprecated fields are appropriately tracked for full removal in a future planned update. ([#137](https://github.com/fivetran/dbt_hubspot_source/pull/137))
 
 # dbt_hubspot_source v0.17.0
 
