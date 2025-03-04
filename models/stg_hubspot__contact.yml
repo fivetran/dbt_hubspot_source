@@ -86,11 +86,6 @@ models:
           '{{ doc("portal_id") }}'
 
           NOTE: This field is deprecated and will not be populated for connectors utilizing the HubSpot v3 API. This field will be removed in a future release.
-      - name: updated_timestamp
-        description: >
-          A timestamp of the time that the list was last modified.
-
-          NOTE: This field is deprecated and will not be populated for connectors utilizing the HubSpot v3 API. This field will be removed in a future release.
 
   - name: stg_hubspot__contact_property_history
     description: Each record represents a change to contact record in Hubspot.
