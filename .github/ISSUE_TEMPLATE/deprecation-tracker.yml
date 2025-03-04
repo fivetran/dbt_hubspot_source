@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for helping us manage our deprecation process. This template is intended to track deprecated items and plan for their ultimate removal. Providing complete information below will help us ensure a smooth transition and keep our users informed.
+        Thank you for helping manage our deprecation process. This template is intended to track deprecated items and plan for their ultimate removal. Providing complete information below will help us ensure a smooth transition and keep our users informed.
   - type: input
     attributes:
       label: Planned Removal Date
@@ -28,7 +28,7 @@ body:
   - type: dropdown
     attributes:
       label: Deprecated Item Type
-      description: Select the type of item being deprecated.
+      description: Select the type(s) of item(s) being deprecated.
       options:
         - Field
         - Model
@@ -39,7 +39,7 @@ body:
   - type: input
     attributes:
       label: Deprecated Item
-      description: Specify the name or identifier of the deprecated item.
+      description: Specify the name(s) and any other relevant information of the deprecated item(s).
     validations:
       required: true
   - type: textarea
