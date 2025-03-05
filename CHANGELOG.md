@@ -14,7 +14,7 @@
 
 ## Breaking Changes
 - Select fields have been added to the `stg_hubspot__contact_list` model. ([#137](https://github.com/fivetran/dbt_hubspot_source/pull/137))
-  - The deprecated fields include the following:
+  - The newly added fields include the following:
     - `created_by_id`
     - `object_type_id`
     - `processing_status`
