@@ -1,8 +1,11 @@
 # dbt_hubspot_source v0.18.1
-[PR #140](https://github.com/fivetran/dbt_hubspot_source/pull/139) includes the following updates:
+[PR #140](https://github.com/fivetran/dbt_hubspot_source/pull/140) includes the following updates:
 
 ## Fixes
 - Removes the uniqueness test for `stg_hubspot__property` on `_fivetran_id` and adds a `unique_combination_of_columns` using `stg_hubspot__property._fivetran_id` and `stg_hubspot__property.hubspot_object`.
+
+## Contributors
+- [@kcraig-ats](https://github.com/kcraig-ats) ([PR #140](https://github.com/fivetran/dbt_hubspot/issues/140))
 
 # dbt_hubspot_source v0.18.0
 
