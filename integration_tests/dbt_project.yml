@@ -1,10 +1,10 @@
 name: 'hubspot_source_integration_tests'
-version: '0.18.0'
+version: '0.18.1'
 profile: 'integration_tests'
 config-version: 2
 
 models:
-  +schema: "{{ 'hubspot_sqlw_tests_7' if target.name == 'databricks-sql' else 'hubspot' }}"
+  +schema: "{{ 'hubspot_sqlw_tests_8' if target.name == 'databricks-sql' else 'hubspot' }}"
 
 vars:
   hubspot_schema: hubspot_source_integration_tests_34
