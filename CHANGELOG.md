@@ -6,7 +6,7 @@
   - See the `PROPERTY` table within the [HubSpot Marketing Hub Schema ERD](https://fivetran.com/docs/connectors/applications/hubspot#marketinghubschema) for more details about the updated composite key.
 
 ## Contributors
-- [@kcraig-ats](https://github.com/kcraig-ats) ([PR #140](https://github.com/fivetran/dbt_hubspot/issues/140))
+- [@kcraig-ats](https://github.com/kcraig-ats) ([PR #140](https://github.com/fivetran/dbt_hubspot_source/pull/140))
 
 # dbt_hubspot_source v0.18.0
 
