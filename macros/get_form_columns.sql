@@ -5,18 +5,18 @@
     {"name": "_fivetran_deleted", "datatype": dbt.type_boolean()},
     {"name": "guid", "datatype": dbt.type_string()},
     {"name": "action", "datatype": dbt.type_string()},
-    {"name": "createdAt", "datatype": dbt.type_timestamp()},
-    {"name": "cssClass", "datatype": dbt.type_string()},
-    {"name": "followUpId", "datatype": dbt.type_string()},
-    {"name": "formType", "datatype": dbt.type_string()},
-    {"name": "leadNurturingCampaignId", "datatype": dbt.type_string()},
+    {"name": "created_at", "datatype": dbt.type_timestamp()},
+    {"name": "css_class", "datatype": dbt.type_string()},
+    {"name": "follow_up_id", "datatype": dbt.type_string()},
+    {"name": "form_type", "datatype": dbt.type_string()},
+    {"name": "lead_nurturing_campaign_id", "datatype": dbt.type_string()},
     {"name": "method", "datatype": dbt.type_string()},
     {"name": "name", "datatype": dbt.type_string()},
-    {"name": "notifyRecipients", "datatype": dbt.type_boolean()},
-    {"name": "portalId", "datatype": dbt.type_int()},
+    {"name": "notify_recipients", "datatype": dbt.type_boolean()},
+    {"name": "portal_id", "datatype": dbt.type_int()},
     {"name": "redirect", "datatype": dbt.type_string()},
-    {"name": "submitText", "datatype": dbt.type_string()},
-    {"name": "updatedAt", "datatype": dbt.type_timestamp()}
+    {"name": "submit_text", "datatype": dbt.type_string()},
+    {"name": "updated_at", "datatype": dbt.type_timestamp()}
 ] %}
 
 {{ return(columns) }}

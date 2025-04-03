@@ -1,4 +1,4 @@
-guid,action,createdAt,cssClass,followUpId,formType,leadNurturingCampaignId,method,name,notifyRecipients,portalId,redirect,submitText,updatedAt
+guid,action,created_at,css_class,follow_up_id,form_type,lead_nurturing_campaign_id,method,name,notify_recipients,portal_id,redirect,submit_text,updated_at
 abc123,POST,2023-11-01T10:15:00Z,form-css,fup123,REGULAR,lnc001,POST,Newsletter Signup,true,12345,/thank-you,Submit,2023-11-02T11:00:00Z
 def456,GET,2023-10-15T08:00:00Z,custom-style,fup456,POPUP,lnc002,GET,Download Guide,false,12345,/download,Download,2023-10-16T08:30:00Z
 ghi789,POST,2023-09-20T09:45:00Z,,,REGULAR,,POST,Contact Us,true,12345,/contact-success,Send,2023-09-20T10:00:00Z
