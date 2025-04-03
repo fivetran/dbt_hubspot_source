@@ -2,7 +2,8 @@
 [PR #140](https://github.com/fivetran/dbt_hubspot_source/pull/140) includes the following updates:
 
 ## Fixes
-- Removes the uniqueness test for `stg_hubspot__property` on `_fivetran_id` and adds a `unique_combination_of_columns` using `stg_hubspot__property._fivetran_id` and `stg_hubspot__property.hubspot_object`.
+- Removes the uniqueness test for `stg_hubspot__property` on `_fivetran_id` and adds a `unique_combination_of_columns` using `_fivetran_id` and `hubspot_object`. This was necessary to account for a primary key change to the HubSpot connector. 
+  - See the `PROPERTY` table within the [HubSpot Marketing Hub Schema ERD](https://fivetran.com/docs/connectors/applications/hubspot#marketinghubschema) for more details about the updated composite key.
 
 ## Contributors
 - [@kcraig-ats](https://github.com/kcraig-ats) ([PR #140](https://github.com/fivetran/dbt_hubspot/issues/140))
