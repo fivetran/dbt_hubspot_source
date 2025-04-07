@@ -878,6 +878,12 @@ sources:
 
               PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version.
 
+      - name: engagement_communication
+        identifier: "{{ var('hubspot_engagement_company_identifier', 'engagement_communication')}}"
+        description: Each record represents a 'link' between a communication and an engagement.
+        config:
+          enabled: "{{ var('hubspot_sales_enabled', true) and var('hubspot_engagement_enabled', true) and var('hubspot_engagement_communication_enabled', true) }}"
+
       - name: engagement_company
         identifier: "{{ var('hubspot_engagement_company_identifier', 'engagement_company')}}"
         description: Each record represents a 'link' between a company and an engagement.
