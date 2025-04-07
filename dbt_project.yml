@@ -41,6 +41,7 @@ vars:
     email_event_status_change: "{{ source('hubspot','email_event_status_change') }}"
     engagement: "{{ source('hubspot','engagement') }}"
     engagement_call: "{{ source('hubspot','engagement_call') }}"
+    engagement_communication: "{{ source('hubspot','engagement_communication') }}"
     engagement_company: "{{ source('hubspot','engagement_company') }}"
     engagement_contact: "{{ source('hubspot','engagement_contact') }}"
     engagement_deal: "{{ source('hubspot','engagement_deal') }}"
