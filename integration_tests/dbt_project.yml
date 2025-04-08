@@ -133,6 +133,12 @@ seeds:
         _fivetran_synced: timestamp
         property_hs_createdate: timestamp
         property_hs_timestamp: timestamp
+    engagement_communication_data:
+      +column_types:
+        engagement_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+        _fivetran_synced: timestamp
+        property_hs_createdate: timestamp
+        property_hs_timestamp: timestamp
     engagement_company_data:
       +column_types:
         engagement_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
