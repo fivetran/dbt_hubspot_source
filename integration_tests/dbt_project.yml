@@ -7,7 +7,7 @@ models:
   +schema: "{{ 'hubspot_sqlw_tests_7' if target.name == 'databricks-sql' else 'hubspot' }}"
 
 vars:
-  hubspot_schema: hubspot_source_integration_tests_34
+  hubspot_schema: zz_hubspot #hubspot_source_integration_tests_34
   hubspot_source:
     # hubspot_service_enabled: true # enable when generating docs
     # hubspot_deal_enabled: true # enable when generating docs
@@ -56,8 +56,12 @@ vars:
     hubspot_engagement_task_identifier: "engagement_task_data"
     hubspot_form_identifier: "form_data"
     hubspot_owner_identifier: "owner_data"
+    hubspot_owner_team_identifier: "owner_team_data"
     hubspot_property_identifier: "property_data"
     hubspot_property_option_identifier: "property_option_data"
+    hubspot_role_identifier: "role_data"
+    hubspot_team_identifier: "team_data"
+    hubspot_team_user_identifier: "team_user_data"
     hubspot_ticket_company_identifier: "ticket_company_data"
     hubspot_ticket_contact_identifier: "ticket_contact_data"
     hubspot_ticket_deal_identifier: "ticket_deal_data"
@@ -66,6 +70,7 @@ vars:
     hubspot_ticket_pipeline_stage_identifier: "ticket_pipeline_stage_data"
     hubspot_ticket_property_history_identifier: "ticket_property_history_data"
     hubspot_ticket_identifier: "ticket_data"
+    hubspot_users_identifier: "users_data"
     hubspot_contact_list_identifier: "contact_list_data"
     hubspot_email_event_sent_identifier: "email_event_sent_data"
     hubspot_email_event_dropped_identifier: "email_event_dropped_data"

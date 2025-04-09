@@ -1387,3 +1387,49 @@ sources:
             description: ID of deal that has been merged.
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
+
+      - name: users
+        identifier: '{{ var("hubspot_users_identifier", "users") }}'
+        description: ''
+        config:
+          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_users_enabled",
+            true) }}'
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+      - name: team_user
+        identifier: '{{ var("hubspot_team_user_identifier", "team_user") }}'
+        description: ''
+        config:
+          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_team_enabled",
+            true) }}'
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+      - name: team
+        identifier: '{{ var("hubspot_team_identifier", "team") }}'
+        description: ''
+        config:
+          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_team_enabled",
+            true) }}'
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+      - name: owner_team
+        identifier: '{{ var("hubspot_owner_team_identifier", "owner_team") }}'
+        description: ''
+        config:
+          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_team_enabled",
+            true) }}'
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+      - name: role
+        identifier: '{{ var("hubspot_role_identifier", "role") }}'
+        description: ''
+        config:
+          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_role_enabled",
+            true) }}'
+        columns:
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'

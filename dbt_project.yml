@@ -51,8 +51,12 @@ vars:
     engagement_task: "{{ source('hubspot','engagement_task') }}"
     form: "{{ source('hubspot','form') }}"
     owner: "{{ source('hubspot','owner') }}"
+    owner_team: "{{ source('hubspot','owner_team') }}"
     property: "{{ source('hubspot','property') }}"
     property_option: "{{ source('hubspot','property_option') }}"
+    role: "{{ source('hubspot','role') }}"
+    team: "{{ source('hubspot','team') }}"
+    team_user: "{{ source('hubspot','team_user') }}"
     ticket_company: "{{ source('hubspot','ticket_company') }}"
     ticket_contact: "{{ source('hubspot','ticket_contact') }}"
     ticket_deal: "{{ source('hubspot','ticket_deal') }}"
@@ -61,6 +65,7 @@ vars:
     ticket_pipeline_stage: "{{ source('hubspot','ticket_pipeline_stage') }}"
     ticket_property_history: "{{ source('hubspot','ticket_property_history') }}"
     ticket: "{{ source('hubspot','ticket') }}"
+    users: "{{ source('hubspot','users') }}"
     hubspot__deal_pass_through_columns: []
     hubspot__contact_pass_through_columns: []
     hubspot__company_pass_through_columns: []
