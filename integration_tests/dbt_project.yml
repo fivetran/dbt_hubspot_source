@@ -7,7 +7,7 @@ models:
   +schema: "{{ 'hubspot_sqlw_tests_7' if target.name == 'databricks-sql' else 'hubspot' }}"
 
 vars:
-  hubspot_schema: zz_hubspot #hubspot_source_integration_tests_34
+  hubspot_schema: hubspot_source_integration_tests_34
   hubspot_source:
     # hubspot_service_enabled: true # enable when generating docs
     # hubspot_deal_enabled: true # enable when generating docs
@@ -217,6 +217,31 @@ seeds:
       +column_types:
         deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
         merged_deal_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+    contact_form_submission_data:
+      +column_types:
+        form_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+        contact_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+        conversion_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+    form_data:
+      +column_types:
+        guid: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+    owner_team_data:
+      +column_types:
+        owner_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+        team_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+    role_data:
+      +column_types:
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+    team_data:
+      +column_types:
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+    owner_team_data:
+      +column_types:
+        user_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+        team_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
+    user_data:
+      +column_types:
+        id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
 
 dispatch:
   - macro_namespace: dbt_utils
