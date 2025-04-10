@@ -239,7 +239,7 @@ seeds:
       +column_types:
         user_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
         team_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
-    user_data:
+    users_data:
       +column_types:
         id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
 
