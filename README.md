@@ -70,6 +70,7 @@ These default to `false` and must be explicitly enabled if needed. You only need
 vars:
   # Marketing
 
+  hubspot_marketing_enabled: false # Disables all marketing models
   hubspot_contact_enabled: false                          # Disables the contact models
   hubspot_contact_form_submission_enabled: false          # Disables contact form submission data and its relationship to contacts
   hubspot_contact_list_enabled: false                     # Disables contact list models
@@ -86,6 +87,7 @@ vars:
   hubspot_email_event_delivered_enabled: false
   hubspot_email_event_dropped_enabled: false
   hubspot_email_event_forward_enabled: false
+  hubspot_email_event_click_enabled: false
   hubspot_email_event_open_enabled: false
   hubspot_email_event_print_enabled: false
   hubspot_email_event_sent_enabled: false
