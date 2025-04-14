@@ -4,11 +4,15 @@ models:
 
   - name: stg_hubspot__property
     description: Each record represents a property.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - _fivetran_id
+            - hubspot_object
     columns:
       - name: _fivetran_id
         description: Fivetran generated id. Joins to `property_id` in the `property_option` table.
         tests:
-          - unique
           - not_null
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
