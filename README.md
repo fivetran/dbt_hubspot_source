@@ -107,7 +107,7 @@ vars:
   hubspot_engagement_enabled: false                       # Disables all engagement models and functionality
   hubspot_engagement_call_enabled: false
   hubspot_engagement_company_enabled: false
-  hubspot_engagement_communication_enabled: false         # Disables the link between communications and engagements (default = false)
+  hubspot_engagement_communication_enabled: true          # Enables the link between communications and engagements
   hubspot_engagement_contact_enabled: false
   hubspot_engagement_deal_enabled: false
   hubspot_engagement_email_enabled: false
