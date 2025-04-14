@@ -97,6 +97,7 @@ vars:
 
   # Sales
 
+  hubspot_sales_enabled: false                            # Disables all sales models
   hubspot_company_enabled: false
   hubspot_company_property_history_enabled: false         # Disables the company property history models
   hubspot_deal_enabled: false
@@ -117,7 +118,6 @@ vars:
   hubspot_owner_enabled: false
   hubspot_property_enabled: false                         # Disables property and property_option tables
   hubspot_role_enabled: false                             # Disables role metadata
-  hubspot_sales_enabled: false                            # Disables all sales models
   hubspot_team_enabled: false                             # Disables team metadata
   hubspot_team_user_enabled: false                        # Disables user-to-team relationships
 
