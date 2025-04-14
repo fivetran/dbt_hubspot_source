@@ -120,9 +120,8 @@ vars:
   hubspot_team_user_enabled: false                        # Disables user-to-team relationships
 
   # Service
-
-  hubspot_service_enabled: true                           # Enables all service models (default = false)
-  hubspot_ticket_deal_enabled: true                       # Enables ticket-deal relationship models (default = false)
+  hubspot_service_enabled: true                           # Enables all service models
+  hubspot_ticket_deal_enabled: true
 ```
 
 #### dbt-core Version Requirement for disabling freshness tests
