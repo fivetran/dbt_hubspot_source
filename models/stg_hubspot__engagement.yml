@@ -37,6 +37,41 @@ models:
 
           PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version.
 
+  - name: stg_hubspot__engagement_communication
+    description: Each record represents a 'link' between a communication and an engagement.
+    columns:
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+      - name: _fivetran_deleted
+        description: '{{ doc("_fivetran_deleted") }}'
+      - name: engagement_id
+        description: ID of the engagement associated with the communication.
+        tests:
+          - not_null
+          - unique
+      - name: engagement_type
+        description: The type of the engagement.
+      - name: created_timestamp
+        description: >
+          This field marks the call's time of creation and determines where the call sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: occurred_timestamp
+        description: > 
+          This field marks the call's time of occurrence and determines where the call sits on the record timeline. You can use either a Unix timestamp in milliseconds or UTC format. 
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: owner_id
+        description: > 
+          The ID of the owner associated with the call. This field determines the user listed as the call creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version. For the pre HubSpot v3 versions, this value may be found within the parent `engagement` table.
+      - name: team_id
+        description: >
+          The ID of the team associated with the call. This field determines the team listed as the call creator on the record timeline.
+
+          PLEASE NOTE: This field will only be populated for connectors utilizing the HubSpot v3 API version.
+
   - name: stg_hubspot__engagement_company
     description: Each record represents a 'link' between a company and an engagement.
     columns:

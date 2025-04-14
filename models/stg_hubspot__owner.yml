@@ -5,6 +5,11 @@ models:
   - name: stg_hubspot__owner
     description: Each record represents an owner/user in Hubspot.
     columns:
+      - name: owner_id
+        description: The ID of the owner.
+        tests:
+          - unique
+          - not_null
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
       - name: active_user_id
@@ -19,8 +24,6 @@ models:
         description: Full name of the owner.
       - name: last_name
         description: The last name of the owner.
-      - name: owner_id
-        description: The ID of the owner.
       - name: portal_id
         description: '{{ doc("portal_id") }}'
       - name: owner_type

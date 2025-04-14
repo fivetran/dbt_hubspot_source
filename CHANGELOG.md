@@ -1,5 +1,6 @@
 # dbt_hubspot_source v0.19.0
 [PR #142](https://github.com/fivetran/dbt_hubspot_source/pull/142) includes the following updates:
+- 
 
 # dbt_hubspot_source v0.18.1
 [PR #140](https://github.com/fivetran/dbt_hubspot_source/pull/140) includes the following updates:

@@ -26,7 +26,8 @@ with base as (
         page_id,
         page_url,
         portal_id,
-        title
+        title,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced
     from macro
 )
 
