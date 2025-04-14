@@ -1129,6 +1129,8 @@ sources:
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
+          - name: active_user_id
+            description: ID of the active user account associated with the owner. Null if owner is not an active user.
           - name: created_at
             description: A timestamp for when the owner was created.
           - name: email
@@ -1144,6 +1146,7 @@ sources:
           - name: type
             description: The type of owner.
           - name: updated_at
+            description: Timestamp the owner was updated.
   
       - name: property
         identifier: "{{ var('hubspot_property_identifier', 'property')}}"
@@ -1388,43 +1391,81 @@ sources:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
 
-      - name: users
-        identifier: '{{ var("hubspot_users_identifier", "users") }}'
-        description: ''
-        config:
-          enabled: '{{ var("hubspot_role_enabled", true) }}'
-        columns:
-          - name: _fivetran_synced
-            description: '{{ doc("_fivetran_synced") }}'
-      - name: team_user
-        identifier: '{{ var("hubspot_team_user_identifier", "team_user") }}'
-        description: ''
-        config:
-          enabled: '{{ var("hubspot_team_enabled", true) }}'
-        columns:
-          - name: _fivetran_synced
-            description: '{{ doc("_fivetran_synced") }}'
-      - name: team
-        identifier: '{{ var("hubspot_team_identifier", "team") }}'
-        description: ''
-        config:
-          enabled: '{{ var("hubspot_team_enabled", true) }}'
-        columns:
-          - name: _fivetran_synced
-            description: '{{ doc("_fivetran_synced") }}'
       - name: owner_team
         identifier: '{{ var("hubspot_owner_team_identifier", "owner_team") }}'
-        description: ''
+        description: Table mapping owners to their associated teams in HubSpot.
         config:
           enabled: '{{ var("hubspot_team_enabled", true) }}'
         columns:
+          - name: owner_id
+            description: Unique ID of the HubSpot owner (user) assigned to the team.
+          - name: team_id
+            description: Unique ID of the team to which the owner belongs.
+          - name: is_team_primary
+            description: Indicates whether the team is the owner's primary team.
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
+
       - name: role
         identifier: '{{ var("hubspot_role_identifier", "role") }}'
-        description: ''
+        description: Table containing role information for HubSpot users.
         config:
           enabled: '{{ var("hubspot_role_enabled", true) }}'
         columns:
+          - name: id
+            description: Unique ID of the role.
+          - name: name
+            description: Name of the role.
+          - name: requires_billing_write
+            description: Indicates whether the role requires billing write access.
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+      - name: team
+        identifier: '{{ var("hubspot_team_identifier", "team") }}'
+        description: Table containing HubSpot team details.
+        config:
+          enabled: '{{ var("hubspot_team_enabled", true) }}'
+        columns:
+          - name: id
+            description: Unique ID of the team.
+          - name: name
+            description: Name of the team.
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+      - name: team_user
+        identifier: '{{ var("hubspot_team_user_identifier", "team_user") }}'
+        description: Table representing associations between users and teams, including secondary team assignments.
+        config:
+          enabled: '{{ var("hubspot_team_enabled", true) }}'
+        columns:
+          - name: user_id
+            description: Unique ID of the user associated with the team.
+          - name: team_id
+            description: Unique ID of the associated team.
+          - name: is_secondary_user
+            description: Indicates whether the team is a secondary team for the user.
+          - name: _fivetran_synced
+            description: '{{ doc("_fivetran_synced") }}'
+
+      - name: users
+        identifier: '{{ var("hubspot_users_identifier", "users") }}'
+        description: Table containing information about HubSpot users.
+        config:
+          enabled: '{{ var("hubspot_role_enabled", true) }}'
+        columns:
+          - name: id
+            description: Unique ID of the user.
+          - name: primary_team_id
+            description: ID of the user's primary team.
+          - name: role_id
+            description: ID of the role assigned to the user.
+          - name: email
+            description: Email address of the user.
+          - name: first_name
+            description: First name of the user.
+          - name: last_name
+            description: Last name of the user.
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'

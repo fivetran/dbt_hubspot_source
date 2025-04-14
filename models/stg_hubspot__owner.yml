@@ -7,6 +7,8 @@ models:
     columns:
       - name: _fivetran_synced
         description: '{{ doc("_fivetran_synced") }}'
+      - name: active_user_id
+        description: ID of the active user account associated with the owner. Null if owner is not an active user.
       - name: created_timestamp
         description: A timestamp for when the owner was created.
       - name: email_address

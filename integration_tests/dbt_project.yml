@@ -1,5 +1,5 @@
 name: 'hubspot_source_integration_tests'
-version: '0.18.1'
+version: '0.19.0'
 profile: 'integration_tests'
 config-version: 2
 
@@ -7,18 +7,23 @@ models:
   +schema: "{{ 'hubspot_sqlw' if target.name == 'databricks-sql' else 'hubspot' }}"
 
 vars:
-  hubspot_schema: hubspot_source_integration_tests_34
   hubspot_source:
-    # hubspot_service_enabled: true # enable when generating docs
-    # hubspot_deal_enabled: true # enable when generating docs
-    # hubspot_contact_enabled: true # enable when generating docs
-    # hubspot_sales_enabled: true # enable when generating docs
-    # hubspot_company_enabled: true # enable when generating docs
-    # hubspot_marketing_enabled: true # enable when generating docs
-    # hubspot_contact_merge_audit_enabled: true # enable when generating docs
-    # hubspot_using_all_email_events: true # enable when generating docs
-    # hubspot_merged_deal_enabled: true # enable when generating docs  
-    # hubspot_ticket_deal_enabled: true # enable when generating docs  
+    ## Enable when generating docs
+    hubspot_service_enabled: true
+    hubspot_deal_enabled: true
+    hubspot_contact_enabled: true
+    hubspot_sales_enabled: true
+    hubspot_company_enabled: true
+    hubspot_marketing_enabled: true
+    hubspot_contact_merge_audit_enabled: true
+    hubspot_using_all_email_events: true
+    hubspot_merged_deal_enabled: true  
+    hubspot_ticket_deal_enabled: true
+    hubspot_engagement_communication_enabled: true
+    hubspot_role_enabled: true
+    hubspot_team_enabled: true
+
+    hubspot_schema: zz_hubspot #hubspot_source_integration_tests_34
     hubspot_company_property_history_identifier: "company_property_history_data"
     hubspot_company_identifier: "company_data"
     hubspot_contact_form_submission_identifier: "contact_form_submission_data"
