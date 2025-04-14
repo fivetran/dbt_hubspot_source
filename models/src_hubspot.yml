@@ -1392,7 +1392,7 @@ sources:
         identifier: '{{ var("hubspot_users_identifier", "users") }}'
         description: ''
         config:
-          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_users_enabled",
+          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_role_enabled",
             true) }}'
         columns:
           - name: _fivetran_synced
