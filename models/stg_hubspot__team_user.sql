@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_team_enabled', 'hubspot_team_user_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_team_enabled', 'hubspot_team_user_enabled'])) }}
 
 with base as (
 

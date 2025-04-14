@@ -1392,7 +1392,7 @@ sources:
         identifier: '{{ var("hubspot_users_identifier", "users") }}'
         description: ''
         config:
-          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_role_enabled", true) }}'
+          enabled: 'var("hubspot_role_enabled", true) }}'
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1400,7 +1400,7 @@ sources:
         identifier: '{{ var("hubspot_team_user_identifier", "team_user") }}'
         description: ''
         config:
-          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_team_enabled", true) }}'
+          enabled: 'var("hubspot_team_enabled", true) }}'
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1408,7 +1408,7 @@ sources:
         identifier: '{{ var("hubspot_team_identifier", "team") }}'
         description: ''
         config:
-          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_team_enabled", true) }}'
+          enabled: '{{ var("hubspot_team_enabled", true) }}'
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1416,7 +1416,7 @@ sources:
         identifier: '{{ var("hubspot_owner_team_identifier", "owner_team") }}'
         description: ''
         config:
-          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_team_enabled", true) }}'
+          enabled: '{{ var("hubspot_team_enabled", true) }}'
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -1424,7 +1424,7 @@ sources:
         identifier: '{{ var("hubspot_role_identifier", "role") }}'
         description: ''
         config:
-          enabled: '{{ var("hubspot_sales_enabled", true) and var("hubspot_role_enabled", true) }}'
+          enabled: '{{ var("hubspot_role_enabled", true) }}'
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
