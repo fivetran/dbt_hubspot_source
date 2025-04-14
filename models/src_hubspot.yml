@@ -1454,7 +1454,7 @@ sources:
         identifier: '{{ var("hubspot_team_user_identifier", "team_user") }}'
         description: Table representing associations between users and teams, including secondary team assignments.
         config:
-          enabled: '{{ var("hubspot_team_enabled", true) }}'
+          enabled: '{{ var("hubspot_team_user_enabled", true) }}'
         columns:
           - name: user_id
             description: Unique ID of the user associated with the team.

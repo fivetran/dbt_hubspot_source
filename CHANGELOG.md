@@ -1,6 +1,41 @@
 # dbt_hubspot_source v0.19.0
 [PR #142](https://github.com/fivetran/dbt_hubspot_source/pull/142) includes the following updates:
-- 
+
+## Breaking Changes
+- Introduced new sources and their associated staging models to support expanded HubSpot data coverage:
+  - Sources:
+    - `contact_form_submission`
+    - `engagement_communication`
+    - `form`
+    - `owner_team`
+    - `role`
+    - `team`
+    - `team_user`
+    - `user`
+  - Staging models:
+    - `stg_hubspot__contact_form_submission`
+    - `stg_hubspot__engagement_communication`
+    - `stg_hubspot__form`
+    - `stg_hubspot__owner_team`
+    - `stg_hubspot__role`
+    - `stg_hubspot__team`
+    - `stg_hubspot__team_user`
+    - `stg_hubspot__user`
+- Added column `active_user_id` to the existing `owner` source and `stg_hubspot__owner` staging table.
+- Introduced new variables to enable or disable models:
+  - `hubspot_contact_form_submission_enabled` (default: `true`)
+  - `hubspot_engagement_communication_enabled` (default: `false`)
+  - `hubspot_form_enabled` (default: `true`)
+  - `hubspot_team_enabled` (default: `true`)
+  - `hubspot_role_enabled` (default: `true`)
+  - `hubspot_team_user_enabled` (default: `true`)
+
+## Documentation
+- Added column-level descriptions for all new models and fields.
+
+## Under the Hood
+- Added seeds for each new source.
+- Added `get_*_columns` macros for each new source.
 
 # dbt_hubspot_source v0.18.1
 [PR #140](https://github.com/fivetran/dbt_hubspot_source/pull/140) includes the following updates:
