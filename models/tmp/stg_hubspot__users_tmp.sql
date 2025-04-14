@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled', 'hubspot_role_enabled'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_role_enabled'])) }}
 
 select {{ dbt_utils.star(source('hubspot','users')) }}
 from {{ var('users') }}
