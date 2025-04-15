@@ -1106,7 +1106,7 @@ sources:
         identifier: "{{ var('hubspot_form_identifier', 'form')}}"
         description: Each record represents a form created in HubSpot, including metadata about its configuration and behavior.
         config:
-          enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_form_enabled', true) }}"
+          enabled: "{{ var('hubspot_contact_form_enabled', true) }}"
         columns:
           - name: guid
             description: Unique identifier for the form.
