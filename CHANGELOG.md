@@ -23,9 +23,8 @@
     - `stg_hubspot__user`
 - Added column `active_user_id` to the existing `owner` source and `stg_hubspot__owner` staging table.
 - Introduced new variables to enable or disable models:
-  - `hubspot_contact_form_submission_enabled` (default: `true`)
+  - `hubspot_contact_form_enabled` (default: `true`)
   - `hubspot_engagement_communication_enabled` (default: `false`)
-  - `hubspot_form_enabled` (default: `true`)
   - `hubspot_team_enabled` (default: `true`)
   - `hubspot_role_enabled` (default: `true`)
   - `hubspot_team_user_enabled` (default: `true`)
