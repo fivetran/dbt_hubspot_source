@@ -1,3 +1,32 @@
+# dbt_hubspot_source v0.19.0
+[PR #142](https://github.com/fivetran/dbt_hubspot_source/pull/142) includes the following updates:
+
+## Breaking Changes
+- Introduced new sources and their associated staging models to support expanded HubSpot data coverage:
+
+| Source Table                | Staging Model                                 | Enablement Variable(s) - Default is true unless otherwise mentioned |
+|-----------------------------|-----------------------------------------------|------------------------------------------|
+| `contact_form_submission`   | `stg_hubspot__contact_form_submission`        | `hubspot_contact_form_enabled` <br> `hubspot_marketing_enabled` |
+| `engagement_communication`  | `stg_hubspot__engagement_communication`       | `hubspot_engagement_communication_enabled` (default: false) <br> `hubspot_engagement_enabled` <br>  `hubspot_sales_enabled` |
+| `form`                      | `stg_hubspot__form`                           | `hubspot_contact_form_enabled` <br>  `hubspot_marketing_enabled` |
+| `owner_team`                | `stg_hubspot__owner_team`                     | `hubspot_team_enabled` |
+| `role`                      | `stg_hubspot__role`                           | `hubspot_role_enabled` |
+| `team`                      | `stg_hubspot__team`                           | `hubspot_team_enabled` |
+| `team_user`                 | `stg_hubspot__team_user`                      | `hubspot_team_user_enabled` <br>  `hubspot_team_enabled` |
+| `user`                      | `stg_hubspot__user`                           | `hubspot_role_enabled` |
+
+- See [Step 4 of the README](https://github.com/fivetran/dbt_hubspot_source?tab=readme-ov-file#step-4-disable-models-for-non-existent-sources) for more details on enabling/disabling sources.
+- Updated the `owner` source and `stg_hubspot__owner` staging model:
+  - Added the `active_user_id` column.
+  - Removed the requirement for `hubspot_sales_enabled` to be true since this logic now applies to multiple objects (e.g. tickets and deals) downstream.
+
+## Documentation
+- Added column-level descriptions for all new models and fields.
+
+## Under the Hood
+- Added seeds for each new source.
+- Added `get_*_columns` macros for each new source.
+
 # dbt_hubspot_source v0.18.1
 [PR #140](https://github.com/fivetran/dbt_hubspot_source/pull/140) includes the following updates:
 

@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['hubspot_sales_enabled','hubspot_owner_enabled'])) }}
+{{ config(enabled=var('hubspot_owner_enabled', true)) }}
 
 with base as (
 
@@ -20,11 +20,12 @@ with base as (
 
     select
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
+        owner_id,
+        active_user_id,
         cast(created_at as {{ dbt.type_timestamp() }}) as created_timestamp,
         email as email_address,
         first_name,
         last_name,
-        owner_id,
         portal_id,
         type as owner_type,
         cast(updated_at as {{ dbt.type_timestamp() }}) as updated_timestamp,

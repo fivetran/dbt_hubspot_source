@@ -44,7 +44,7 @@ Include the following hubspot_source package version in your `packages.yml` file
 ```yaml
 packages:
   - package: fivetran/hubspot_source
-    version: [">=0.18.0", "<0.19.0"]
+    version: [">=0.19.0", "<0.20.0"]
 ```
 ### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `hubspot` schema. If this is not where your HubSpot data is (for example, if your HubSpot schema is named `hubspot_fivetran`), add the following configuration to your root `dbt_project.yml` file:
@@ -54,18 +54,30 @@ vars:
     hubspot_database: your_destination_name
     hubspot_schema: your_schema_name 
 ```
-### Step 4: Disable models for non-existent sources
-When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. Therefore we have added enable/disable configs in the `src.yml` to allow you to disable certain sources not present. Downstream models are automatically disabled as well. In order to disable the relevant functionality in the package, you will need to add the relevant variables in your root `dbt_project.yml`. By default, all variables are assumed to be `true` (with exception of `hubspot_service_enabled`, `hubspot_ticket_deal_enabled`, `hubspot_contact_merge_audit_enabled`, and `hubspot_merged_deal_enabled`). You only need to add variables for the tables different from default:
+
+### Step 4: Disable/enable models and sources
+When setting up your Hubspot connection in Fivetran, it is possible that not every table this package expects will be synced. This can occur because you either don't use that functionality in Hubspot or have actively decided to not sync some tables. Therefore we have added enable/disable configs in the `src.yml` to allow you to disable certain sources not present. Downstream models are automatically disabled as well. In order to disable the relevant functionality in the package, you will need to add the relevant variables in your root `dbt_project.yml`. By default, all variables are assumed to be `true`, **with the exception of**:
+
+- `hubspot_service_enabled`
+- `hubspot_ticket_deal_enabled`
+- `hubspot_contact_merge_audit_enabled`
+- `hubspot_merged_deal_enabled`
+- `hubspot_engagement_communication_enabled`
+
+These default to `false` and must be explicitly enabled if needed. You only need to add variables for the sources that differ from their defaults.
 
 ```yml
-# dbt_project.yml
 vars:
   # Marketing
 
   hubspot_marketing_enabled: false                        # Disables all marketing models
   hubspot_contact_enabled: false                          # Disables the contact models
+  hubspot_contact_form_enabled: false                     # Disables form and contact form submission data and its relationship to contacts
   hubspot_contact_list_enabled: false                     # Disables contact list models
   hubspot_contact_list_member_enabled: false              # Disables contact list member models
+  hubspot_contact_merge_audit_enabled: true               # Enables the use of the CONTACT_MERGE_AUDIT table (deprecated by Hubspot v3 API) for removing merged contacts in the final models.
+                                                          # If false, contacts will still be merged using the CONTACT.property_hs_calculated_merged_vids field.
+                                                          # Default = false
   hubspot_contact_property_enabled: false                 # Disables the contact property models
   hubspot_contact_property_history_enabled: false         # Disables the contact property history models
   hubspot_email_event_enabled: false                      # Disables all email_event models and functionality
@@ -81,31 +93,32 @@ vars:
   hubspot_email_event_sent_enabled: false
   hubspot_email_event_spam_report_enabled: false
   hubspot_email_event_status_change_enabled: false
-  
-  hubspot_contact_merge_audit_enabled: true               # Enables the use of the CONTACT_MERGE_AUDIT table (deprecated by Hubspot v3 API) for removing merged contacts in the final models.
-                                                          # If false, ~~~contacts will still be merged~~~, but using the CONTACT.property_hs_calculated_merged_vids field (introduced in v3 of the Hubspot CRM API)
-                                                          # Default = false
+
   # Sales
 
   hubspot_sales_enabled: false                            # Disables all sales models
   hubspot_company_enabled: false
-  hubspot_company_property_history_enabled: false         # Disable the company property history models
+  hubspot_company_property_history_enabled: false         # Disables the company property history models
   hubspot_deal_enabled: false
-  hubspot_merged_deal_enabled: true                       # Enables the merged_deal table, which will be used to filter out merged deals from the final deal models. False by default. Note that `hubspot_sales_enabled` and `hubspot_deal_enabled` must not be set to False.
   hubspot_deal_company_enabled: false
   hubspot_deal_contact_enabled: false
-  hubspot_deal_property_history_enabled: false            # Disables the deal property history tables
+  hubspot_deal_property_history_enabled: false            # Disables the deal property history models
   hubspot_engagement_enabled: false                       # Disables all engagement models and functionality
-  hubspot_engagement_contact_enabled: false
-  hubspot_engagement_company_enabled: false
-  hubspot_engagement_deal_enabled: false
   hubspot_engagement_call_enabled: false
+  hubspot_engagement_company_enabled: false
+  hubspot_engagement_communication_enabled: true          # Enables the link between communications and engagements
+  hubspot_engagement_contact_enabled: false
+  hubspot_engagement_deal_enabled: false
   hubspot_engagement_email_enabled: false
   hubspot_engagement_meeting_enabled: false
   hubspot_engagement_note_enabled: false
   hubspot_engagement_task_enabled: false
+  hubspot_merged_deal_enabled: true                       # Enables the merged_deal table to filter merged deals from final models. Default = false
   hubspot_owner_enabled: false
   hubspot_property_enabled: false                         # Disables property and property_option tables
+  hubspot_role_enabled: false                             # Disables role metadata
+  hubspot_team_enabled: false                             # Disables team metadata
+  hubspot_team_user_enabled: false                        # Disables user-to-team relationships
 
   # Service
   hubspot_service_enabled: true                           # Enables all service models

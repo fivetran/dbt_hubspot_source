@@ -21,7 +21,7 @@ dbt seed --vars '{hubspot_schema: hubspot_sqlw_tests_8}' --target "$db" --full-r
 dbt compile --vars '{hubspot_schema: hubspot_sqlw_tests_8}' --target "$db"
 dbt run --vars '{hubspot_schema: hubspot_sqlw_tests_8}' --target "$db" --full-refresh
 dbt test --vars '{hubspot_schema: hubspot_sqlw_tests_8}' --target "$db"
-dbt run --vars '{hubspot_schema: hubspot_sqlw_tests_8, hubspot_marketing_enabled: true, hubspot_contact_merge_audit_enabled: true, hubspot_sales_enabled: false}' --target "$db"
+dbt run --vars '{hubspot_schema: hubspot_sqlw_tests_8, hubspot_marketing_enabled: true, hubspot_contact_merge_audit_enabled: true, hubspot_sales_enabled: false, hubspot_engagement_communication_enabled: true}' --target "$db"
 dbt run --vars '{hubspot_schema: hubspot_sqlw_tests_8, hubspot_marketing_enabled: false, hubspot_sales_enabled: true, hubspot_merged_deal_enabled: true, hubspot__pass_through_all_columns: true, hubspot_using_all_email_events: false, hubspot_owner_enabled: false}' --target "$db"
 dbt test --vars '{hubspot_schema: hubspot_sqlw_tests_8}' --target "$db"
 else
@@ -29,7 +29,7 @@ dbt seed --target "$db" --full-refresh
 dbt run --target "$db" --full-refresh
 dbt test --target "$db"            
 dbt run --vars '{hubspot_marketing_enabled: true, hubspot_sales_enabled: false}' --target "$db"
-dbt run --vars '{hubspot_marketing_enabled: true, hubspot_contact_merge_audit_enabled: true, hubspot_sales_enabled: false}' --target "$db"
+dbt run --vars '{hubspot_marketing_enabled: true, hubspot_contact_merge_audit_enabled: true, hubspot_sales_enabled: false, hubspot_engagement_communication_enabled: true}' --target "$db"
 dbt run --vars '{hubspot_marketing_enabled: false, hubspot_sales_enabled: true}' --target "$db"
 dbt run --vars '{hubspot_marketing_enabled: false, hubspot_sales_enabled: false}' --target "$db"
 dbt run --vars '{hubspot_deal_enabled: true, hubspot_sales_enabled: true, hubspot_merged_deal_enabled: true}' --target "$db"

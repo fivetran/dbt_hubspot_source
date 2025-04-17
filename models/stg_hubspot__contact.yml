@@ -1,6 +1,34 @@
 version: 2
 
 models:
+  - name: stg_hubspot__contact_form_submission
+    description: Table containing contact form submission information.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - contact_id
+            - form_id
+            - occurred_timestamp
+    columns:
+      - name: _fivetran_synced
+        description: '{{ doc("_fivetran_synced") }}'
+      - name: contact_id
+        description: The ID of the related contact.
+      - name: conversion_id
+        description: A Unique ID for the specific form conversion.
+      - name: form_id
+        description: The GUID of the form that the submission belongs to.
+      - name: page_id
+        description: The ID of the related page.
+      - name: page_url
+        description: The URL that the form was submitted on, if applicable.
+      - name: portal_id
+        description: '{{ doc("portal_id") }}'
+      - name: occurred_timestamp
+        description: A Unix timestamp in milliseconds of the time the submission occurred.
+      - name: title
+        description: The title of the page that the form was submitted on. This will default to the name of the form if no title is provided.
+
   - name: stg_hubspot__contact_list_member
     description: Each record represents a 'link' between a contact and a contact list.
     columns:
