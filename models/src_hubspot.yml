@@ -150,12 +150,12 @@ sources:
 
       - name: contact
         identifier: "{{ var('hubspot_contact_identifier', 'contact')}}"
-        freshness:
-          warn_after: {count: 84, period: hour}
-          error_after: {count: 168, period: hour}
         description: Each record represents a contact in Hubspot.
         config:
           enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_enabled', true) }}"
+          freshness:
+            warn_after: {count: 84, period: hour}
+            error_after: {count: 168, period: hour}
         columns:
           - name: _fivetran_deleted
             description: '{{ doc("_fivetran_deleted") }}'
@@ -301,12 +301,12 @@ sources:
 
       - name: contact_property_history
         identifier: "{{ var('hubspot_contact_property_history_identifier', 'contact_property_history')}}"
-        freshness:
-          warn_after: {count: 84, period: hour}
-          error_after: {count: 168, period: hour}
         description: Each record represents a change to contact record in Hubspot.
         config:
           enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_contact_property_enabled', true) and var('hubspot_contact_property_history_enabled', true) }}"
+          freshness:
+            warn_after: {count: 84, period: hour}
+            error_after: {count: 168, period: hour}
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
@@ -515,12 +515,12 @@ sources:
 
       - name: email_event
         identifier: "{{ var('hubspot_email_event_identifier', 'email_event')}}"
-        freshness:
-          warn_after: {count: 84, period: hour}
-          error_after: {count: 168, period: hour}
         description: Each record represents an email event in Hubspot.
         config:
           enabled: "{{ var('hubspot_marketing_enabled', true) and var('hubspot_email_event_enabled', true) }}"
+          freshness:
+            warn_after: {count: 84, period: hour}
+            error_after: {count: 168, period: hour}
         columns:
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
