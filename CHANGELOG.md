@@ -1,18 +1,19 @@
 # dbt_hubspot_source v0.20.1
 
-[PR #145](https://github.com/fivetran/dbt_hubspot_source/pull/145) includes the
+[PR #146](https://github.com/fivetran/dbt_hubspot_source/pull/146) includes the
 following updates:
 
 ## Schema Changes 
-**8 total changes • 8 possible breaking changes**
+**1 total changes • 1 possible breaking changes**
 | **Model** | **Change type** | **Old name** | **New name** | **Notes** |
 |-----------|----------------|--------------|--------------|---------|
-| [stg_hubspot__deal_pipeline_stage](https://fivetran.github.io/dbt_hubspot_source/#!/model/model.hubspot_source.stg_hubspot__deal_pipeline_stage) | Column Renamed | `is_closed_won` | `is_closed` | Column renamed to more accurately match the source data. The renamed `is_closed` column is generated via a coalesce between the previous `closed_won` source column and the newly added `is_closed` column. This renamed column represents whether a deal is closed, regardless of its label as “Closed Won” or “Closed Lost.” You can still use the `label` column to differentiate between "Closed Won" and "Closed Lost" stages. |
+| [stg_hubspot__deal_pipeline_stage](https://fivetran.github.io/dbt_hubspot_source/#!/model/model.hubspot_source.stg_hubspot__deal_pipeline_stage) | Column Renamed | `is_closed_won` | `is_closed` | Column renamed to more accurately match the source data. The renamed `is_closed` column is generated via a coalesce between the previous `closed_won` source column and the newly added `is_closed` column. This renamed column represents whether a deal is closed, regardless of its label as “Closed Won” or “Closed Lost.” You can still use the `pipeline_stage_label` column to differentiate between "Closed Won" and "Closed Lost" stages. |
 
 ## Feature Updates
 - Documented the column updates and deprecations in the respective yml files.
 - Updated the `deal_pipeline_stage_data` seed to include the `is_closed` column.
 - Introduced the generate-docs github workflow for consistent docs generation.
+- Updated the maintainer pull request template.
 
 # dbt_hubspot_source v0.20.0
 
