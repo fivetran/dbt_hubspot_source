@@ -22,7 +22,7 @@ with base as (
         _fivetran_deleted as is_deal_pipeline_stage_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         active as is_active,
-        closed_won as is_closed_won,
+        coalesce(is_closed, closed_won) as is_closed,
         display_order,
         label as pipeline_stage_label,
         cast(pipeline_id as {{ dbt.type_string() }}) as deal_pipeline_id,

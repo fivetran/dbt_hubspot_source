@@ -5,6 +5,7 @@
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
     {"name": "active", "datatype": "boolean"},
     {"name": "closed_won", "datatype": "boolean"},
+    {"name": "is_closed", "datatype": "boolean"},
     {"name": "display_order", "datatype": dbt.type_int()},
     {"name": "label", "datatype": dbt.type_string()},
     {"name": "pipeline_id", "datatype": dbt.type_string()},
