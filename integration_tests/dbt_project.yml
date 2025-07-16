@@ -87,6 +87,8 @@ vars:
     #     alias: "funky_field"
 
 seeds:
+  +docs:
+    show: False
   hubspot_source_integration_tests:
     +quote_columns: "{{ true if target.type == 'redshift' else false }}"
     owner_data:
@@ -254,3 +256,5 @@ dispatch:
 
 flags:
   send_anonymous_usage_stats: False
+
+  use_colors: True
