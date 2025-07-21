@@ -42,7 +42,7 @@ Include the following hubspot_source package version in your `packages.yml` file
 ```yaml
 packages:
   - package: fivetran/hubspot_source
-    version: [">=0.19.0", "<0.20.0"]
+    version: [">=0.21.0", "<0.22.0"]
 ```
 ### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `hubspot` schema. If this is not where your HubSpot data is (for example, if your HubSpot schema is named `hubspot_fivetran`), add the following configuration to your root `dbt_project.yml` file:

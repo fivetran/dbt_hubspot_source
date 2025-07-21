@@ -1,3 +1,20 @@
+# dbt_hubspot_source v0.20.1
+
+[PR #146](https://github.com/fivetran/dbt_hubspot_source/pull/146) includes the
+following updates:
+
+## Schema Changes 
+**1 total changes • 1 possible breaking changes**
+| **Model** | **Change type** | **Old name** | **New name** | **Notes** |
+|-----------|----------------|--------------|--------------|---------|
+| [stg_hubspot__deal_pipeline_stage](https://fivetran.github.io/dbt_hubspot_source/#!/model/model.hubspot_source.stg_hubspot__deal_pipeline_stage) | Column Renamed | `is_closed_won` | `is_closed` | Column renamed to more accurately match the source data. The renamed `is_closed` column is generated via a coalesce between the previous `closed_won` source column and the newly added `is_closed` column. This renamed column represents whether a deal is closed, regardless of its label as “Closed Won” or “Closed Lost.” You can still use the `pipeline_stage_label` column to differentiate between "Closed Won" and "Closed Lost" stages. |
+
+## Feature Updates
+- Documented the column updates and deprecations in the respective yml files.
+- Updated the `deal_pipeline_stage_data` seed to include the `is_closed` column.
+- Introduced the generate-docs github workflow for consistent docs generation.
+- Updated the maintainer pull request template.
+
 [PR #147](https://github.com/fivetran/dbt_hubspot_source/pull/147) includes the following updates:
 
 ### Under the Hood - July 2025 Updates
@@ -8,13 +25,7 @@
 - Migrated `flags` (e.g., `send_anonymous_usage_stats`, `use_colors`) from `sample.profiles.yml` to `integration_tests/dbt_project.yml`.
 - Updated `maintainer_pull_request_template.md` with improved checklist.
 - Refreshed README tag block:
-  - Standardized Quickstart-compatible badge set
   - Left-aligned and positioned below the H1 title.
-- Updated Python image version to `3.10.13` in `pipeline.yml`.
-- Added `CI_DATABRICKS_DBT_CATALOG` to:
-  - `.buildkite/hooks/pre-command` (as an export)
-  - `pipeline.yml` (under the `environment` block, after `CI_DATABRICKS_DBT_TOKEN`)
-- Added `certifi==2025.1.31` to `requirements.txt` (if missing).
 - Updated `.gitignore` to exclude additional DBT, Python, and system artifacts.
 
 # dbt_hubspot_source v0.20.0
