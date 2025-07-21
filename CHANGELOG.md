@@ -15,6 +15,19 @@ following updates:
 - Introduced the generate-docs github workflow for consistent docs generation.
 - Updated the maintainer pull request template.
 
+[PR #147](https://github.com/fivetran/dbt_hubspot_source/pull/147) includes the following updates:
+
+### Under the Hood - July 2025 Updates
+
+- Updated conditions in `.github/workflows/auto-release.yml`.
+- Added `.github/workflows/generate-docs.yml`.
+- Added `+docs: show: False` to `integration_tests/dbt_project.yml`.
+- Migrated `flags` (e.g., `send_anonymous_usage_stats`, `use_colors`) from `sample.profiles.yml` to `integration_tests/dbt_project.yml`.
+- Updated `maintainer_pull_request_template.md` with improved checklist.
+- Refreshed README tag block:
+  - Left-aligned and positioned below the H1 title.
+- Updated `.gitignore` to exclude additional DBT, Python, and system artifacts.
+
 # dbt_hubspot_source v0.20.0
 
 [PR #144](https://github.com/fivetran/dbt_hubspot_source/pull/144) includes the following updates:
