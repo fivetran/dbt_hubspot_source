@@ -9,22 +9,18 @@ following updates:
 |-----------|----------------|--------------|--------------|---------|
 | [stg_hubspot__deal_pipeline_stage](https://fivetran.github.io/dbt_hubspot_source/#!/model/model.hubspot_source.stg_hubspot__deal_pipeline_stage) | Column Renamed | `is_closed_won` | `is_closed` | Column renamed to more accurately match the source data. The renamed `is_closed` column is generated via a coalesce between the previous `closed_won` source column and the newly added `is_closed` column. This renamed column represents whether a deal is closed, regardless of its label as “Closed Won” or “Closed Lost.” You can still use the `pipeline_stage_label` column to differentiate between "Closed Won" and "Closed Lost" stages. |
 
-## Feature Updates
-- Documented the column updates and deprecations in the respective yml files.
-- Updated the `deal_pipeline_stage_data` seed to include the `is_closed` column.
-- Introduced the generate-docs github workflow for consistent docs generation.
-- Updated the maintainer pull request template.
-
-### Under the Hood - July 2025 Updates
-[PR #147](https://github.com/fivetran/dbt_hubspot_source/pull/147) includes the following updates:
-
-- Updated conditions in `.github/workflows/auto-release.yml`.
-- Added `.github/workflows/generate-docs.yml`.
-- Added `+docs: show: False` to `integration_tests/dbt_project.yml`.
-- Migrated `flags` (e.g., `send_anonymous_usage_stats`, `use_colors`) from `sample.profiles.yml` to `integration_tests/dbt_project.yml`.
-- Updated `maintainer_pull_request_template.md` with improved checklist.
+## Under the Hood
+- Documented the column updates and deprecations in the respective yml files. 
+- Updated the `deal_pipeline_stage_data` seed to include the `is_closed` column. 
+- Introduced the generate-docs github workflow for consistent docs generation. 
+- Updated the maintainer pull request template. 
+- Updated conditions in `.github/workflows/auto-release.yml`. 
+- Added `.github/workflows/generate-docs.yml`. 
+- Added `+docs: show: False` to `integration_tests/dbt_project.yml`. 
+- Migrated `flags` (e.g., `send_anonymous_usage_stats`, `use_colors`) from `sample.profiles.yml` to `integration_tests/dbt_project.yml`. 
+- Updated `maintainer_pull_request_template.md` with improved checklist. 
 - Refreshed README tag block:
-  - Left-aligned and positioned below the H1 title.
+  - Left-aligned and positioned below the H1 title. 
 - Updated `.gitignore` to exclude additional DBT, Python, and system artifacts.
 
 # dbt_hubspot_source v0.20.0
