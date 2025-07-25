@@ -1,4 +1,4 @@
-# dbt_hubspot_source v0.21.0
+# dbt_hubspot_source v0.21.0 
 This release includes the following updates: 
 
 ## Schema Changes 
@@ -24,6 +24,7 @@ This release includes the following updates:
 - Refreshed README tag block [PR #147](https://github.com/fivetran/dbt_hubspot_source/pull/147):
   - Left-aligned and positioned below the H1 title. 
 - Updated `.gitignore` to exclude additional DBT, Python, and system artifacts. [PR #147](https://github.com/fivetran/dbt_hubspot_source/pull/147)
+ 
 
 # dbt_hubspot_source v0.20.0
 
