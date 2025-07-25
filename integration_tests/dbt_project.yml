@@ -1,5 +1,5 @@
 name: 'hubspot_source_integration_tests'
-version: '0.20.0'
+version: '0.21.0'
 profile: 'integration_tests'
 config-version: 2
 
@@ -9,21 +9,21 @@ models:
 vars:
   hubspot_source:
     ## Enable when generating docs
-    # hubspot_service_enabled: true
-    # hubspot_deal_enabled: true
-    # hubspot_contact_enabled: true
-    # hubspot_sales_enabled: true
-    # hubspot_company_enabled: true
-    # hubspot_marketing_enabled: true
-    # hubspot_contact_merge_audit_enabled: true
-    # hubspot_using_all_email_events: true
-    # hubspot_merged_deal_enabled: true  
-    # hubspot_ticket_deal_enabled: true
-    # hubspot_engagement_communication_enabled: true
-    # hubspot_role_enabled: true
-    # hubspot_team_enabled: true
+    # hubspot_service_enabled: true # @docs-include
+    # hubspot_deal_enabled: true # @docs-include
+    # hubspot_contact_enabled: true # @docs-include
+    # hubspot_sales_enabled: true # @docs-include
+    # hubspot_company_enabled: true # @docs-include
+    # hubspot_marketing_enabled: true # @docs-include
+    # hubspot_contact_merge_audit_enabled: true # @docs-include
+    # hubspot_using_all_email_events: true # @docs-include
+    # hubspot_merged_deal_enabled: true # @docs-include
+    # hubspot_ticket_deal_enabled: true # @docs-include
+    # hubspot_engagement_communication_enabled: true # @docs-include
+    # hubspot_role_enabled: true # @docs-include
+    # hubspot_team_enabled: true # @docs-include
 
-    hubspot_schema: zz_dbt_avinash_seed
+    hubspot_schema: hubspot_source_integration_tests_34
     hubspot_company_property_history_identifier: "company_property_history_data"
     hubspot_company_identifier: "company_data"
     hubspot_contact_form_submission_identifier: "contact_form_submission_data"
@@ -87,6 +87,8 @@ vars:
     #     alias: "funky_field"
 
 seeds:
+  +docs:
+    show: False
   hubspot_source_integration_tests:
     +quote_columns: "{{ true if target.type == 'redshift' else false }}"
     owner_data:
@@ -254,3 +256,4 @@ dispatch:
 
 flags:
   send_anonymous_usage_stats: False
+  use_colors: True

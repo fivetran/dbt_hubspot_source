@@ -4,7 +4,8 @@
     <a alt="License"
         href="https://github.com/fivetran/dbt_hubspot_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
-    <img src="https://img.shields.io/badge/dbt_Core™_version->=1.3.0_,<2.0.0-orange.svg" /></a>
+    <a alt="dbt-core">
+        <img src="https://img.shields.io/badge/dbt_Core™_version->=1.3.0_,<2.0.0-orange.svg" /></a>
     <a alt="Maintained?">
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
@@ -44,7 +45,7 @@ Include the following hubspot_source package version in your `packages.yml` file
 ```yaml
 packages:
   - package: fivetran/hubspot_source
-    version: [">=0.19.0", "<0.20.0"]
+    version: [">=0.21.0", "<0.22.0"]
 ```
 ### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `hubspot` schema. If this is not where your HubSpot data is (for example, if your HubSpot schema is named `hubspot_fivetran`), add the following configuration to your root `dbt_project.yml` file:
