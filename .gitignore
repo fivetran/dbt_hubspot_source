@@ -69,5 +69,5 @@ service-account.json
 ENV/
 env/
 env.bak/
-venv/
-venv.bak/
+venv/ 
+venv.bak/ 
