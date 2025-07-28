@@ -11,7 +11,7 @@ This release includes the following updates:
 | [`stg_hubspot__ticket_pipeline_stage`](https://fivetran.github.io/dbt_hubspot_source/#!/model/model.hubspot_source.stg_hubspot__ticket_pipeline_stage) | Column datatype | `ticket_pipeline_id` (`int`)<br/> `ticket_pipeline_stage_id` (`int`)  | `ticket_pipeline_id` (`string`)<br/> `ticket_pipeline_stage_id` (`string`)  | Reverted ticket pipeline identifiers back to their original string format to prevent datatype errors in compilation. [PR #151](https://github.com/fivetran/dbt_hubspot_source/pull/151)   |
 
 ## Under the Hood 
-- Updated seed files to validate that the new identifiers compile as expected in both the source and transform packages.[PR #151](https://github.com/fivetran/dbt_hubspot_source/pull/151)
+- Updated seed files to validate that the new identifiers compile as expected in both the source and transform packages. [PR #151](https://github.com/fivetran/dbt_hubspot_source/pull/151)
 - Documented the column updates and deprecations in the respective yml files. [PR #146](https://github.com/fivetran/dbt_hubspot_source/pull/146)
 - Updated the `deal_pipeline_stage_data` seed to include the `is_closed` column. [PR #146](https://github.com/fivetran/dbt_hubspot_source/pull/146)
 - Introduced the generate-docs github workflow for consistent docs generation. [PR #146](https://github.com/fivetran/dbt_hubspot_source/pull/146)
