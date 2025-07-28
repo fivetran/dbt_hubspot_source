@@ -29,7 +29,7 @@ integration_tests:
       role: "{{ env_var('CI_SNOWFLAKE_DBT_ROLE') }}"
       database: "{{ env_var('CI_SNOWFLAKE_DBT_DATABASE') }}"
       warehouse: "{{ env_var('CI_SNOWFLAKE_DBT_WAREHOUSE') }}"
-      schema: hubspot_source_integration_tests_34
+      schema: hubspot_source_integration_tests_35
       threads: 8
     postgres:
       type: postgres
