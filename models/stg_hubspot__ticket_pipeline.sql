@@ -23,7 +23,7 @@ fields as (
 final as (
 
     select
-        pipeline_id as ticket_pipeline_id,
+        cast(pipeline_id as {{ dbt.type_string() }}) as ticket_pipeline_id,
         _fivetran_deleted as is_ticket_pipeline_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         active as is_active,
