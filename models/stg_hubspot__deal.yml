@@ -21,7 +21,7 @@ models:
       - name: is_active
         description: Whether the pipeline stage is currently in use.
       - name: is_closed
-        description: Boolean indicating if the pipeline stage is closed. For the state of the closed deal ("Closed Won" vs "Closed Lost"), refer to the pipeline_stage_label column.      
+        description: Boolean indicating if the pipeline stage is closed. For the state of the closed deal ("Closed Won" vs "Closed Lost"), refer to the pipeline_stage_label column.     
       - name: pipeline_stage_label
         description: The human-readable label for the stage. The label is used when showing the stage in HubSpot.
       - name: probability
