@@ -447,7 +447,11 @@ sources:
           - name: active
             description: Whether the pipeline stage is currently in use.
           - name: closed_won
-            description: Whether the stage represents a Closed Won deal.
+            description: >
+              Boolean indicating if the pipeline stage is closed.
+              NOTE: This field is deprecated in favor of the `is_closed` column.
+          - name: is_closed
+            description: Boolean indicating if the pipeline stage is closed.
           - name: display_order
             description: Used to determine the order in which the stages appear when viewed in HubSpot.
           - name: label

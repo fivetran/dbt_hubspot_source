@@ -29,8 +29,8 @@ final as (
         display_order,
         is_closed,
         label as pipeline_stage_label,
-        cast(pipeline_id as {{ dbt.type_int() }} ) as ticket_pipeline_id,
-        cast(stage_id as {{ dbt.type_int() }} ) as ticket_pipeline_stage_id,
+        cast(pipeline_id as {{ dbt.type_string() }}) as ticket_pipeline_id,
+        cast(stage_id as {{ dbt.type_string() }}) as ticket_pipeline_stage_id,
         ticket_state,
         created_at as ticket_pipeline_stage_created_at,
         updated_at as ticket_pipeline_stage_updated_at
